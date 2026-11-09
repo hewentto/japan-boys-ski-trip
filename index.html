@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Japan Boys Ski Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a trail-map itinerary. One reading column, a route line of stops up top,
+   each day a lift-ticket stub + plan, every block carrying the same vote bar. */
+:root{
+  --snow:#f2f4f7; --paper:#ffffff; --tint:#e7edf4;
+  --ink:#17203a; --ink-2:#536080; --line:#d6dce7;
+  --accent:#d2452a; --accent-ink:#ffffff;
+  --ice:#256a9c;
+  --up:#1c7f55; --down:#b23e36; --warn:#8a5a00;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --snow:#0d1322; --paper:#151d31; --tint:#1c2640;
+    --ink:#e8ecf5; --ink-2:#a1acc6; --line:#2a3553;
+    --accent:#ff7350; --accent-ink:#1a0c07;
+    --ice:#82bbe3;
+    --up:#52c492; --down:#f08379; --warn:#e3b04b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --snow:#0d1322; --paper:#151d31; --tint:#1c2640;
+  --ink:#e8ecf5; --ink-2:#a1acc6; --line:#2a3553;
+  --accent:#ff7350; --accent-ink:#1a0c07;
+  --ice:#82bbe3;
+  --up:#52c492; --down:#f08379; --warn:#e3b04b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--snow);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-text-size-adjust:100%}
+a{color:var(--ice)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:clamp(2.4rem,6vw,3.6rem);text-transform:uppercase}
+h2{font-size:1.9rem;text-transform:uppercase}
+h3{font-size:1.35rem}
+h4{font-size:1.08rem;font-weight:600}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+.muted{color:var(--ink-2)}
+.small{font-size:.875rem}
+
+/* hero */
+.hero{background:var(--paper);border-bottom:1px solid var(--line)}
+.hero .wrap{padding-top:28px;padding-bottom:24px;display:grid;gap:20px}
+.eyebrow{font:600 .8rem/1.35 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero p.lede{max-width:62ch;font-size:1.08rem;color:var(--ink-2)}
+.route{display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;margin:0;padding:0;list-style:none}
+.route li{display:flex;align-items:center;font:600 .95rem/1.2 var(--body)}
+.route li .dot{width:11px;height:11px;border-radius:50%;border:2.5px solid var(--accent);background:var(--paper);margin-right:7px;flex:none}
+.route li.ski .dot{background:var(--accent)}
+.route li small{display:block;font-weight:400;color:var(--ink-2);font-size:.8rem}
+.route li + li::before{content:"";width:26px;height:2px;background:var(--line);margin:0 9px;flex:none}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fact{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--snow)}
+.fact b{display:block;font:700 1.45rem/1.1 var(--display)}
+.fact span{font-size:.86rem;color:var(--ink-2)}
+.fact .k{font:600 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:block;margin-bottom:6px}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.facts{grid-template-columns:1fr}}
+
+/* sticky bar */
+.bar{position:sticky;top:0;z-index:20;background:var(--ink);color:var(--snow)}
+.bar .wrap{display:flex;align-items:center;gap:14px;min-height:48px}
+.bar nav{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{color:inherit;text-decoration:none;font:600 .86rem/1 var(--body);padding:9px 9px;border-radius:6px;white-space:nowrap;opacity:.85}
+.bar nav a:hover{opacity:1;background:rgba(255,255,255,.12)}
+.me{flex:none;display:flex;align-items:center;gap:8px;font-size:.86rem}
+.me button{background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:7px 12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.status{flex:none;font-size:.78rem;display:flex;align-items:center;gap:6px;opacity:.9;white-space:nowrap}
+.status i{width:8px;height:8px;border-radius:50%;background:#8c96ad;display:block}
+.status.live i{background:#52c492}.status.warn i{background:#e3b04b}
+@media (max-width:640px){.status span{display:none}}
+
+.banner{margin:16px 0 0;padding:12px 14px;border-radius:var(--r);border:1px solid var(--warn);background:var(--paper);font-size:.93rem}
+.banner b{color:var(--warn)}
+
+section{padding:40px 0 8px}
+.sec-head{display:grid;gap:6px;margin-bottom:18px}
+.sec-head p{max-width:68ch;color:var(--ink-2)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.how div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:.93rem}
+.how b{font:700 1.05rem/1.2 var(--display);display:block;text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+@media (max-width:720px){.how{grid-template-columns:1fr}}
+
+/* vote bar */
+.vb{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:10px}
+.vbtn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 11px 5px 9px;cursor:pointer;font-weight:600;font-size:.9rem;min-height:34px}
+.vbtn svg{width:14px;height:14px;flex:none}
+.vbtn.up:hover,.vbtn.up[aria-pressed="true"]{border-color:var(--up);color:var(--up)}
+.vbtn.down:hover,.vbtn.down[aria-pressed="true"]{border-color:var(--down);color:var(--down)}
+.vbtn[aria-pressed="true"]{background:var(--tint)}
+.cbtn{border:0;background:none;color:var(--ice);cursor:pointer;font-weight:600;font-size:.88rem;padding:6px 4px;text-decoration:underline;text-underline-offset:3px}
+.who{font-size:.8rem;color:var(--ink-2);flex-basis:100%}
+.who:empty{display:none}
+.who .u{color:var(--up)}.who .d{color:var(--down)}
+.thread{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:10px}
+.thread[hidden]{display:none}
+.notes{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.note{background:var(--tint);border-radius:8px;padding:9px 11px;font-size:.93rem}
+.note .meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.78rem;color:var(--ink-2);margin-bottom:3px}
+.note .meta b{color:var(--ink);font-weight:600}
+.note p{white-space:pre-wrap;overflow-wrap:anywhere}
+.note .vb{margin-top:6px}
+.note .del{margin-left:auto;border:0;background:none;color:var(--ink-2);cursor:pointer;font-size:.78rem;text-decoration:underline}
+.pill{display:inline-block;font:600 .68rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;border:1px solid currentColor;white-space:nowrap}
+.pill.change{color:var(--accent)}.pill.fb{color:var(--ice)}.pill.pick{color:var(--ink-2)}.pill.lead{color:var(--up)}
+.compose{display:grid;gap:8px}
+.compose textarea{width:100%;min-height:64px;resize:vertical;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--paper)}
+.compose .row{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1.5px solid var(--ink);background:var(--ink);color:var(--snow);border-radius:8px;padding:7px 13px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn.alt{background:none;color:var(--ink)}
+.btn.hot{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* decisions */
+.decisions{display:grid;gap:18px}
+.dec{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.dec > p{color:var(--ink-2);max-width:70ch;margin-top:4px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.opt{border:1.5px solid var(--line);border-radius:8px;padding:13px 14px;display:flex;flex-direction:column;gap:6px;background:var(--snow)}
+.opt.leading{border-color:var(--up)}
+.opt .tags{display:flex;gap:6px;flex-wrap:wrap;min-height:20px}
+.opt ul{margin:0;padding-left:18px;font-size:.92rem;color:var(--ink-2);display:grid;gap:3px}
+.opt .cost{font-size:.88rem;font-weight:600}
+.opt .vb{margin-top:auto;padding-top:8px}
+
+/* days */
+.days{display:grid;gap:14px}
+.day{display:grid;grid-template-columns:104px 1fr;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.stub{background:var(--ink);color:var(--snow);padding:16px 10px;text-align:center;display:flex;flex-direction:column;gap:4px;align-items:center;border-right:2px dashed var(--snow)}
+.stub .dow{font:600 .78rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.stub .d{font:700 2.5rem/1 var(--display)}
+.stub .mo{font:600 .78rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.stub .kj{font-size:1.25rem;margin-top:6px;opacity:.9}
+.stub .type{margin-top:8px;font:600 .68rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:rgba(255,255,255,.14)}
+.day.ski .stub{background:var(--accent);color:var(--accent-ink)}
+.day .body{padding:16px 18px;min-width:0}
+.day .body > p{color:var(--ink-2);margin-top:4px;max-width:70ch}
+.tl{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:9px}
+.tl li{display:grid;grid-template-columns:74px 1fr;gap:10px;font-size:.95rem}
+.tl .t{font-weight:600;color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:.86rem;padding-top:2px}
+.tl b{font-weight:600}
+.dayfoot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:.86rem;color:var(--ink-2)}
+.dayfoot b{color:var(--ink);font-weight:600}
+.extras{margin-top:12px;display:grid;gap:8px}
+.extra{border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:.93rem;background:var(--snow)}
+.extra .vb{margin-top:6px}
+@media (max-width:600px){
+  .day{grid-template-columns:1fr}
+  .stub{flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-right:0;border-bottom:2px dashed var(--snow)}
+  .stub .d{font-size:1.7rem}.stub .kj,.stub .type{margin-top:0}.stub .type{margin-left:auto}
+  .tl li{grid-template-columns:60px 1fr}
+}
+
+/* info blocks */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.card ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:.95rem}
+.card .price{font:700 1.5rem/1.1 var(--display)}
+.tablewrap{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.94rem;min-width:520px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .74rem/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.total td{font-weight:600;border-top:2px solid var(--ink);font-size:1.02rem}
+.calc{display:grid;grid-template-columns:260px 1fr;gap:14px;align-items:start}
+.calc form{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px}
+.calc label{display:grid;gap:4px;font-size:.9rem;font-weight:600}
+.calc label.chk{display:flex;gap:8px;align-items:center;font-weight:500}
+.calc select,.calc input[type=number]{border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--paper);width:100%}
+@media (max-width:760px){.calc{grid-template-columns:1fr}}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.check li{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:130px 1fr;gap:6px 16px}
+.check .when{font:700 1.1rem/1.2 var(--display);text-transform:uppercase;color:var(--accent)}
+.check ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.95rem}
+@media (max-width:600px){.check li{grid-template-columns:1fr}}
+
+/* board */
+.board{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.board form{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;position:sticky;top:64px}
+.board form label{font-size:.88rem;font-weight:600;display:grid;gap:4px}
+.board form select,.board form textarea{border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--paper);width:100%}
+.board form textarea{min-height:96px;resize:vertical}
+.board .list{display:grid;gap:10px}
+.board .empty{background:var(--paper);border:1px dashed var(--line);border-radius:var(--r);padding:18px;color:var(--ink-2)}
+.board .note{background:var(--paper);border:1px solid var(--line)}
+@media (max-width:820px){.board{grid-template-columns:1fr}.board form{position:static;order:-1}}
+
+.sources{font-size:.88rem;color:var(--ink-2);columns:2;column-gap:28px;padding-left:18px;margin:0}
+.sources li{margin-bottom:6px;break-inside:avoid}
+@media (max-width:700px){.sources{columns:1}}
+footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
+
+/* who dialog */
+.scrim{position:fixed;inset:0;background:rgba(10,14,26,.6);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.scrim[hidden]{display:none}
+.dlg{background:var(--paper);border-radius:14px;padding:22px;max-width:420px;width:100%;display:grid;gap:12px;border:1px solid var(--line)}
+.dlg .names{display:flex;flex-wrap:wrap;gap:8px}
+.dlg .names button{border:1.5px solid var(--line);background:var(--snow);border-radius:999px;padding:7px 13px;cursor:pointer;font-weight:600}
+.dlg input{border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--paper);width:100%}
+.dlg .row{display:flex;gap:8px;justify-content:flex-end}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Draft 2 for the group to vote on · prices checked Nov 9, 2026</p>
+      <h1>Japan Boys Ski Trip</h1>
+    </div>
+    <p class="lede">Sixteen days. Sapporo's Snow Festival, a Hokkaido road trip with four ski days at Furano and Niseko, then Tokyo, Mt. Fuji and a night in Kyoto. Saturday Feb 6 to Sunday Feb 21, 2027, using all ten days off and the weekends on both ends.</p>
+    <ol class="route" aria-label="Route">
+      <li><span class="dot"></span><span>Salt Lake City<small>Sat Feb 6</small></span></li>
+      <li><span class="dot"></span><span>Sapporo<small>2 nights, Snow Festival</small></span></li>
+      <li><span class="dot"></span><span>Otaru + Yoichi<small>1 night</small></span></li>
+      <li class="ski"><span class="dot"></span><span>Furano<small>2 nights, 1 ski day</small></span></li>
+      <li class="ski"><span class="dot"></span><span>Niseko<small>4 nights, 3 ski days</small></span></li>
+      <li><span class="dot"></span><span>Lake Toya + Hell Valley<small>day stop</small></span></li>
+      <li><span class="dot"></span><span>Tokyo + Fuji<small>4 nights</small></span></li>
+      <li><span class="dot"></span><span>Kyoto<small>1 night</small></span></li>
+      <li><span class="dot"></span><span>Salt Lake City<small>Sun Feb 21</small></span></li>
+    </ol>
+    <div class="facts">
+      <div class="fact"><span class="k">Skiing</span><b>4 ski days</b><span>Three at Niseko United, one at Furano</span></div>
+      <div class="fact"><span class="k">Airports</span><b>CTS in, HND out</b><span>Fly into Sapporo New Chitose, home from Tokyo Haneda</span></div>
+      <div class="fact"><span class="k">Time off</span><b>10 work days</b><span>Feb 8–12 and 15–19, 14 nights in Japan</span></div>
+      <div class="fact"><span class="k">Rough cost each</span><b class="num" id="heroCost">…</b><span id="heroCostSub">flights, beds, food, transport</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <nav aria-label="Sections">
+      <a href="#decisions">Decisions</a>
+      <a href="#days">Day by day</a>
+      <a href="#flights">Flights</a>
+      <a href="#stays">Where to stay</a>
+      <a href="#transport">Getting around</a>
+      <a href="#costs">Costs</a>
+      <a href="#booking">Booking order</a>
+      <a href="#board">Proposals</a>
+    </nav>
+    <div class="status" id="status"><i></i><span>Connecting…</span></div>
+    <div class="me"><button type="button" id="meBtn">Pick your name</button></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="banner" class="banner" hidden></div>
+
+  <div class="how">
+    <div><b>1. Pick your name</b>Top right. Your votes and comments show under it for everyone.</div>
+    <div><b>2. Vote on everything</b>Up or down on each option, day and add-on. Tap again to undo. Tallies update live.</div>
+    <div><b>3. Push back</b>Comment on any block, or post a change proposal that the rest of us can vote on.</div>
+  </div>
+
+  <section id="decisions">
+    <div class="sec-head">
+      <h2>The big decisions</h2>
+      <p>The day-by-day plan below assumes the option marked Draft pick in each box. Vote up what you want and down what you would veto. Whatever leads gets written into Draft 2.</p>
+    </div>
+    <div class="decisions" id="decList"></div>
+  </section>
+
+  <section id="days">
+    <div class="sec-head">
+      <h2>Day by day</h2>
+      <p>Times are local and approximate until flights are booked. Vote on each day as a whole, and on the optional add-ons inside it.</p>
+    </div>
+    <div class="days" id="dayList"></div>
+  </section>
+
+  <section id="flights">
+    <div class="sec-head">
+      <h2>Flights</h2>
+      <p>There is no nonstop from Salt Lake to Japan, so every option is one stop on the way to Tokyo (usually Seattle or Los Angeles) plus a 1h40 hop to Sapporo. Fares below are what search sites showed in the past week. Weekend departures can run higher than midweek, so recheck for our exact days before buying.</p>
+    </div>
+    <div class="grid2" id="flightCards"></div>
+    <div class="tablewrap" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Fare seen</th><th>Route</th><th class="r">Price</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Sale fare, Jan–Feb 2027 travel</td><td>SLC ⇄ Tokyo HND, Alaska/Hawaiian, 1 stop</td><td class="r">$777</td><td>Slickdeals / Alaska</td></tr>
+          <tr><td>Best round trip, last 72 hours</td><td>SLC ⇄ Tokyo HND</td><td class="r">$749</td><td>momondo</td></tr>
+          <tr><td>Best round trip, last 3 days</td><td>SLC ⇄ Tokyo HND</td><td class="r">$912</td><td>Kayak</td></tr>
+          <tr><td>Delta, last 7 days</td><td>SLC ⇄ Tokyo HND</td><td class="r">$981</td><td>Travelocity</td></tr>
+          <tr><td>Sample dates Feb 9 – Feb 28</td><td>SLC ⇄ Sapporo CTS</td><td class="r">$886</td><td>Flights.com</td></tr>
+          <tr><td>Cheapest, last 7 days</td><td>SLC ⇄ Sapporo CTS</td><td class="r">$1,022</td><td>Travelocity</td></tr>
+          <tr><td>JAL Japan Explorer Pass, one way</td><td>Tokyo ⇄ Sapporo (visitors only, bag included)</td><td class="r">from $80</td><td>JAL</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="stays">
+    <div class="sec-head">
+      <h2>Where to stay</h2>
+      <p>Fourteen nights in six places. Nightly prices are per person sharing, and they are planning estimates until we pull real quotes for our exact dates and head count. February is Niseko's most expensive month, and many condos want a 5 to 7 night minimum, so hotels are the flexible fallback for a 4 night stay. Sapporo is at its yearly peak for the festival.</p>
+    </div>
+    <div class="grid2" id="stayCards"></div>
+  </section>
+
+  <section id="transport">
+    <div class="sec-head">
+      <h2>Getting around</h2>
+      <p>Hokkaido is the only part where a car is worth considering. Tokyo and Kyoto are trains only.</p>
+    </div>
+    <div class="grid2" id="transCards"></div>
+  </section>
+
+  <section id="costs">
+    <div class="sec-head">
+      <h2>What it costs</h2>
+      <p>Per person, in US dollars at about ¥158 to $1 (the October 2026 level). You pay in yen over there, so these move with the exchange rate. Change the inputs to match your situation. Lodging, food and the van are estimates. Lift tickets, gear rental, buses and the bullet train are published 2026–27 prices.</p>
+    </div>
+    <div class="calc">
+      <form id="calcForm">
+        <label for="cSize">People sharing<input type="number" id="cSize" min="2" max="10" value="4"></label>
+        <label for="cTier">Comfort level
+          <select id="cTier"><option value="0">Lean</option><option value="1" selected>Middle</option><option value="2">Plush</option></select>
+        </label>
+        <label class="chk" for="cRent"><input type="checkbox" id="cRent"> I'm renting skis or a board</label>
+        <label class="chk" for="cVan"><input type="checkbox" id="cVan" checked> Group rents a van in Hokkaido</label>
+        <label class="chk" for="cKyoto"><input type="checkbox" id="cKyoto" checked> Night in Kyoto</label>
+      </form>
+      <div class="tablewrap">
+        <table><thead><tr><th>Item</th><th>Basis</th><th class="r">Per person</th></tr></thead><tbody id="calcBody"></tbody></table>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:12px;max-width:75ch">Also know: Japan's departure tax tripled to about $19 on July 1, 2026 and is inside your ticket price. Since Nov 1, 2026 tax-free shopping is pay full price in store, then claim the 10% back at the airport before you fly, so leave time at Haneda. Hotels collect a small local lodging tax at the desk. No tipping.</p>
+  </section>
+
+  <section id="booking">
+    <div class="sec-head">
+      <h2>Booking order</h2>
+      <p>What has to happen when, working back from Feb 6.</p>
+    </div>
+    <ol class="check" id="bookList"></ol>
+  </section>
+
+  <section id="board">
+    <div class="sec-head">
+      <h2>Proposals and feedback</h2>
+      <p>Everything anyone posts on this page lands here: change proposals first, ranked by votes, then comments. Use the form for ideas that do not belong to one day or decision.</p>
+    </div>
+    <div class="board">
+      <div class="list" id="boardList"></div>
+      <form id="boardForm">
+        <h3>Add yours</h3>
+        <label for="bAbout">About<select id="bAbout"></select></label>
+        <label for="bText">What should change, or what do you think?<textarea id="bText" maxlength="600" placeholder="Swap the Kyoto day for a second ski resort…"></textarea></label>
+        <div class="compose"><div class="row">
+          <button class="btn hot" type="submit" data-kind="change">Post change proposal</button>
+          <button class="btn alt" type="submit" data-kind="comment">Post as feedback</button>
+        </div></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="sec-head"><h2>Sources</h2><p>Checked Nov 9, 2026. Prices are converted from yen at about ¥158 to $1, or are estimates where the page says so.</p></div>
+    <ul class="sources">
+      <li><a href="https://thejapanode.com/guides/japan-ski-trip-cost">Niseko lift ticket prices 2026–27</a></li>
+      <li><a href="https://todolist-japan.com/en/furano-ski-guide/">Furano lift ticket prices 2026–27</a></li>
+      <li><a href="https://watabi.org/en/articles/asahikawa-zoo-guide">Asahiyama Zoo and the penguin walk</a></li>
+      <li><a href="https://www.japan.travel/en/sports/snow/snow-travel/blue-pond/">Biei Blue Pond winter illumination</a></li>
+      <li><a href="https://www.niseko.ne.jp/en/?p=9050">Niseko United: new Mori-no Gondola and Ace #3 lift</a></li>
+      <li><a href="https://www.sapporo.travel/en/event-list/page/2/?cssn%5B0%5D=s-winter">Sapporo tourism: Snow Festival Feb 4–11, Otaru Snow Light Path Feb 6–13</a></li>
+      <li><a href="https://thejapanode.com/guides/new-chitose-airport-to-niseko">New Chitose to Niseko buses, winter 2026–27</a></li>
+      <li><a href="https://nisekocentral.com/guest-services/niseko-car-rental">Niseko car rental and permit rules</a></li>
+      <li><a href="https://www.triptojapan.com/blog/japan-ski-trip-cost">Japan ski trip costs 2026–27, Rhythm rental prices</a></li>
+      <li><a href="https://nikka.com/en/distilleries/yoichi/faq/">Nikka Yoichi Distillery tour rules</a></li>
+      <li><a href="https://slickdeals.net/f/19955391-round-trip-salt-lake-city-to-tokyo-japan-777-airfares-on-alaska-hawaiian-airlines-or-697-using-ymmv-amex-offer-limited-travel-january-february-2027">SLC to Tokyo $777 sale fare</a></li>
+      <li><a href="https://www.kayak.com/flight-routes/Salt-Lake-City-SLC/Tokyo-Haneda-HND">Kayak: SLC to Tokyo Haneda</a></li>
+      <li><a href="https://www.flights.com/lp/flights/slc/cts/salt-lake-city-to-sapporo">Flights.com: SLC to Sapporo</a></li>
+      <li><a href="https://www.jal.co.jp/flights/en-ph/japan-domestic-routes">JAL Japan Explorer Pass fares</a></li>
+      <li><a href="https://www.aeroroutes.com/eng/241231-dlnw25slcicn">Delta SLC to Seoul winter schedule</a></li>
+      <li><a href="https://japantrain.net/th/guide/tokyo-kyoto-shinkansen-price">Shinkansen fares and JR Pass math</a></li>
+      <li><a href="https://selfguidejapan.com/blog/japan-tourist-tax-2026">Japan departure tax and tax-free changes 2026</a></li>
+      <li><a href="https://30rates.com/usd-to-jpy-forecast-converter-dollar-to-yen">USD to JPY rate</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer><div class="wrap">Draft 2. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay, so keep it to trip talk.</div></footer>
+
+<div class="scrim" id="whoScrim" hidden>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
+    <h3 id="whoTitle">Who are you?</h3>
+    <p class="small muted">Pick your name if it is listed, or add it. This is how your votes are labeled for the group.</p>
+    <div class="names" id="whoNames"></div>
+    <form id="whoForm" class="compose">
+      <label class="small" for="whoInput">New name</label>
+      <input id="whoInput" maxlength="24" autocomplete="off" placeholder="First name">
+      <div class="row"><button type="button" class="btn alt" id="whoCancel">Cancel</button><button type="submit" class="btn hot">That's me</button></div>
+    </form>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ---------- content ---------- */
+const RATE = 158;
+const DECISIONS = [
+  { id:"dates", q:"Trip dates", blurb:"Ten work days off, Feb 8–12 and 15–19. Flying west you lose a calendar day, flying home you land the same day you leave.",
+    opts:[
+      { id:"dates-a", pick:true, t:"Sat Feb 6 → Sun Feb 21", pts:["Every day off plus both weekends: 14 nights in Japan","Land Sunday Feb 7 with four days of the Snow Festival still to run","Home Sunday afternoon, work Monday"] },
+      { id:"dates-b", t:"Sat Feb 6 → Sat Feb 20", pts:["Same trip minus the last day, so Kyoto becomes a day trip","A full Sunday at home before work"] },
+      { id:"dates-c", t:"Sun Feb 7 → Sun Feb 21", pts:["A Saturday at home to pack","Lands Monday Feb 8, so one Sapporo day instead of two"] }
+    ]},
+  { id:"base", q:"Ski base", blurb:"Three bases that make sense for a 3 day hit.",
+    opts:[
+      { id:"base-niseko", pick:true, t:"Niseko United, Hokkaido", pts:["Four linked resorts, 2,191 acres, night skiing, backcountry gates","One All Mountain pass covers all four: about $85 a day, $250 for 3 days","New 8-person Mori-no Gondola at Niseko Village and a new quad at Hirafu this season","Best food and bars. Also the busiest and priciest beds in Japan","The draft also gives Furano one day on the way there"], cost:"About 2.5 h from New Chitose airport" },
+      { id:"base-furano", t:"Furano as the main base", pts:["Quieter, colder, cheaper, more of a real Japanese town","Less terrain and nightlife than Niseko","Would pair with Asahikawa and Biei instead of Otaru and Hell Valley"], cost:"About 2 to 2.5 h from New Chitose" },
+      { id:"base-honshu", t:"Myoko area, Honshu (Arai, Suginohara, Madarao)", pts:["Three resorts near each other, very deep snow, cheaper lodging","No domestic flight: bullet train from Tokyo in about 2 h","Not Hokkaido, and the snow runs a little heavier"], cost:"Saves the Sapporo flights, loses the Hokkaido road trip" }
+    ]},
+  { id:"wheels", q:"Hokkaido transport", blurb:"This one changes what we can see. The van is what makes the Furano loop, the onsens and the Hell Valley drive-out easy.",
+    opts:[
+      { id:"wheels-van", pick:true, t:"Rent a 4WD van, Tue Feb 9 to Tue Feb 16", pts:["Pick up in Sapporo after the festival, drop at the airport a week later","Unlocks Otaru at our pace, Asahikawa, Biei, Furano, Rusutsu, Lake Toya, Hell Valley","Every driver needs an International Driving Permit from AAA before leaving","Left side of the road, snow and ice, zero alcohol for the driver"], cost:"Est. $870 total with gas and tolls, split by the group" },
+      { id:"wheels-bus", t:"Buses and trains only", pts:["Nobody drives","Furano to Niseko by train and bus eats most of a day","Hell Valley becomes a paid tour or gets dropped","Ship ski bags ahead between stops"], cost:"About $150 each, estimate" }
+    ]},
+  { id:"mid", q:"Wed and Thu, Feb 10–11: the two extra Hokkaido days", blurb:"Between Otaru and the Niseko weekend there are two days to play with.",
+    opts:[
+      { id:"mid-furano", pick:true, t:"Asahikawa, Biei and a ski day at Furano", pts:["Penguin walk at the zoo, the Blue Pond lit up at night","One ski day at Furano: drier snow, quieter, $57 lift ticket","About 6 h more driving than going straight to Niseko"] },
+      { id:"mid-niseko", t:"Straight to Niseko, ski five days", pts:["Otaru to Niseko is 1.5 h","Two more lift days at about $85 each","Six nights of Niseko lodging, the priciest beds of the trip"] },
+      { id:"mid-onsen", t:"Onsen days: Lake Toya and Noboribetsu", pts:["Two nights in a hot spring ryokan with dinner included","Hell Valley without the airport clock","Skiing stays at 3 days"] }
+    ]},
+  { id:"wild", q:"Last ski day (Mon Feb 15)", blurb:"Monday is the quiet day after the weekend. What do we do with it?",
+    opts:[
+      { id:"wild-niseko", pick:true, t:"Follow the snow at Niseko", pts:["Peak hike to 1,308 m if the gate is open, back bowls, whatever skied best","No extra travel, and it stays on the 3 day pass"] },
+      { id:"wild-guide", t:"Hire a backcountry guide", pts:["Guide plus avalanche gear for the gates and beyond","Price needs a quote for our group size"] },
+      { id:"wild-rusutsu", t:"Day trip to Rusutsu", pts:["Famous tree skiing, fewer people, 40 min by van","Separate lift ticket: last season $76 online, $103 at the window"] }
+    ]},
+  { id:"after", q:"After skiing: how to spend Tue Feb 16 to Sun Feb 21", blurb:"Five nights between leaving Niseko and flying home.",
+    opts:[
+      { id:"after-mix", pick:true, t:"Tokyo, a Fuji day, and a night in Kyoto", pts:["Hell Valley on the way out of Hokkaido","Three nights in Tokyo, one in Kyoto, last night back in Tokyo","Covers the most"] },
+      { id:"after-tokyo", t:"All Tokyo, Kyoto as a day trip", pts:["One hotel for all five nights","Kyoto in 12 hours, or skip it and save about $180 each"] },
+      { id:"after-hakone", t:"Trade a Tokyo night for a Hakone onsen ryokan", pts:["Outdoor baths, a multi-course dinner, Fuji views","Replaces the Fuji day trip"] }
+    ]},
+  { id:"thu", q:"Thursday day trip from Tokyo", blurb:"One full day outside the city.",
+    opts:[
+      { id:"thu-fuji", pick:true, t:"Mt. Fuji: Kawaguchiko and Chureito Pagoda", pts:["Winter gives the clearest Fuji views of the year","About 2 h each way by highway bus, around $28 round trip"] },
+      { id:"thu-hakone", t:"Hakone loop", pts:["Ropeway over the Owakudani sulfur vents, lake cruise, onsen","Fuji views if the weather plays along"] },
+      { id:"thu-monkeys", t:"Snow monkeys in Nagano", pts:["Wild macaques soaking in a hot spring in the snow","Long day: bullet train plus bus, and pricier"] },
+      { id:"thu-nikko", t:"Nikko", pts:["Toshogu shrine in the cedars, Kegon Falls partly frozen","About 2 h each way by train"] }
+    ]},
+  { id:"tokyo", q:"Tokyo base", blurb:"Where the hotel goes for the 4 nights.",
+    opts:[
+      { id:"tokyo-shinjuku", pick:true, t:"Shinjuku", pts:["Best nightlife on foot: Golden Gai, Omoide Yokocho, Kabukicho","Fuji buses leave from here, easy Haneda access"] },
+      { id:"tokyo-shibuya", t:"Shibuya", pts:["Younger, louder, Scramble crossing outside the door","Slightly pricier rooms"] },
+      { id:"tokyo-asakusa", t:"Asakusa or Ueno", pts:["Old Tokyo feel, cheapest rooms of the three","Quieter at night, longer rides to the west side"] }
+    ]},
+  { id:"roll-gear", q:"Roll call: your gear", blurb:"This sets how big a van we need.",
+    opts:[
+      { id:"gear-own", t:"Bringing my own skis or board", pts:["Counts as a checked bag on most airlines. Confirm with yours"] },
+      { id:"gear-rent", t:"Renting in Niseko", pts:["Rhythm premium set with boots: $178 for 3 days, 10% off booked online 48 h ahead","Standard set: $141"] }
+    ]}
+];
+
+const DAYS = [
+  { id:"d0206", dow:"Sat", d:"6", kj:"土", type:"Travel", title:"Wheels up from Salt Lake",
+    sum:"One stop on the West Coast, then about 11 hours over the Pacific. You cross the date line and land Sunday.",
+    tl:[["Morning","<b>SLC to Seattle or Los Angeles</b>, then the long haul to Tokyo Haneda."],
+        ["On board","Sleep on the second half of the flight. Tokyo is 16 hours ahead of Utah."]],
+    foot:[["Have ready","passport, International Driving Permit, an eSIM, Visit Japan Web QR code"]] },
+  { id:"d0207", dow:"Sun", d:"7", kj:"日", type:"Travel", title:"Land in Japan, on to Sapporo",
+    sum:"A long day that ends with ramen in the snow.",
+    tl:[["~15:30","<b>Land Tokyo Haneda.</b> Immigration, recheck bags."],
+        ["~18:00","<b>Fly Haneda to Sapporo New Chitose</b>, 1h40."],
+        ["~20:30","<b>JR Rapid Airport train to Sapporo</b>, about 40 min and $8. Check in near Susukino."],
+        ["Night","If anyone is still standing: the Odori Park sculptures lit up, then miso ramen."]],
+    foot:[["Sleep","Sapporo, night 1 of 2"]] },
+  { id:"d0208", dow:"Mon", d:"8", kj:"月", type:"City", title:"Sapporo Snow Festival",
+    sum:"The festival runs Feb 4–11 at three sites and is free. A full day on foot to shake the jet lag, with beer.",
+    tl:[["08:30","<b>Nijo Market</b> seafood rice bowl breakfast."],
+        ["10:00","<b>Odori Park.</b> Eleven city blocks of snow sculptures, the biggest ones several stories tall."],
+        ["13:00","<b>Sapporo Beer Museum</b>, then all-you-can-eat grilled lamb in the old brick beer hall."],
+        ["16:30","<b>Mt. Moiwa ropeway</b> for the city lights at dusk, about $13."],
+        ["Night","Odori again after dark, the <b>Susukino ice sculptures</b>, and the bars around them."]],
+    foot:[["Sleep","Sapporo, night 2 of 2"]],
+    extras:[{id:"x-tsudome", t:"Snow slides and tubing at the Tsudome festival site"},
+            {id:"x-jump", t:"Ride the lift to the top of the Okurayama Olympic ski jump"}] },
+  { id:"d0209", dow:"Tue", d:"9", kj:"火", type:"Sights", title:"Whisky, sushi and a candle-lit canal",
+    sum:"Pick up the van and head for the coast. We sleep in Otaru, so nobody drives after dark and nobody skips the whisky.",
+    tl:[["09:00","<b>Collect the van</b>, 45 min by expressway to Otaru. Drop bags and park at the hotel."],
+        ["11:00","<b>Train to Yoichi</b> (25 min) for the <b>Nikka Distillery</b>. Free guided tour with three tastings, reservation required and it opens 4 weeks ahead. Tour is in Japanese. Museum and paid tasting bar need no booking."],
+        ["14:30","<b>Back in Otaru.</b> Sushi, the canal and stone warehouses, Sankaku fish market, glass shops."],
+        ["17:00","<b>Otaru Snow Light Path.</b> Thousands of candles in snow lanterns along the canal and the old rail line. Runs Feb 6–13."],
+        ["Night","Izakaya dinner on foot."]],
+    foot:[["Sleep","Otaru"],["Driving","about 45 min"]] },
+  { id:"d0210", dow:"Wed", d:"10", kj:"水", type:"Sights", title:"Penguins, ramen and the Blue Pond",
+    sum:"North to Asahikawa, then down through the snowfields of Biei to Furano.",
+    tl:[["08:00","<b>Drive to Asahikawa</b>, about 2h15 by expressway."],
+        ["10:30","<b>Asahiyama Zoo.</b> The penguin walk through the snow (11:00 and 14:30 last winter, posted daily), polar bears and seals from underwater tunnels. $6."],
+        ["13:00","<b>Asahikawa ramen</b>, the soy-sauce style the city is known for."],
+        ["15:00","<b>Biei.</b> Rolling white hills and Shirahige Falls pouring into a blue river."],
+        ["17:30","<b>Blue Pond light-up.</b> The frozen pond and its dead larches under shifting lights, on until 9 pm."],
+        ["18:30","<b>Drive to Furano</b>, about 50 min. Check in, late dinner."]],
+    foot:[["Sleep","Furano, night 1 of 2"],["Driving","about 4 h total"]],
+    extras:[{id:"x-nozoo", t:"Skip the zoo, go straight to Furano and ski the afternoon"}] },
+  { id:"d0211", dow:"Thu", d:"11", kj:"木", type:"Ski", ski:true, title:"Ski day 1: Furano",
+    sum:"A warm-up day on some of Hokkaido's driest snow, with a real town at the bottom. It is National Foundation Day, so locals will be out too.",
+    tl:[["08:30","<b>Kitanomine gondola</b> and laps on that side while it is fresh."],
+        ["Midday","Cross to the <b>Furano zone</b> and ride the ropeway to the top at 1,074 m for the long runs and the volcano views."],
+        ["16:00","<b>Night skiing</b> until 19:30 on holidays, a separate $25 ticket."],
+        ["Evening","<b>Ningle Terrace</b>, log cabin craft shops lit up in snowy woods, then omelette curry or an izakaya in Kitanomine."]],
+    foot:[["Sleep","Furano, night 2 of 2"],["Lift ticket","$57"]] },
+  { id:"d0212", dow:"Fri", d:"12", kj:"金", type:"Travel", title:"Across Hokkaido to Niseko",
+    sum:"The one long drive of the trip, mostly expressway.",
+    tl:[["09:00","<b>Leave Furano.</b> About 3.5 to 4 h on winter roads, with a lunch stop near Sapporo."],
+        ["14:00","<b>Arrive Hirafu.</b> Check in, collect rental gear and lift passes for the morning."],
+        ["16:30","Optional <b>night skiing at Hirafu</b> on a separate night ticket."],
+        ["Evening","First Niseko dinner. Reserve weeks ahead, tables vanish in February."]],
+    foot:[["Sleep","Niseko, night 1 of 4"],["Driving","3.5 to 4 h"]],
+    extras:[{id:"x-early", t:"Leave Furano at 7 am and ski the Niseko afternoon"}] },
+  { id:"d0213", dow:"Sat", d:"13", kj:"土", type:"Ski", ski:true, title:"Ski day 2: Grand Hirafu and Hanazono",
+    sum:"All Mountain passes cover all four Niseko areas and the shuttle between them. Saturday is the busiest day, so be on the first gondola.",
+    tl:[["08:30","<b>Hirafu Gondola</b> and the upper lifts, including the Ace #3 chair, rebuilt as a quad this season."],
+        ["Midday","Traverse to <b>Hanazono</b> for Strawberry Fields tree runs and lunch at the base."],
+        ["16:30","<b>Night skiing at Hirafu.</b> Your day pass covers it. Night season runs Dec 12 to Mar 22."],
+        ["Evening","Onsen soak, then izakaya dinner in Hirafu."]],
+    foot:[["Sleep","Niseko"],["Lift ticket","about $85 a day, $250 for 3 days"]],
+    extras:[{id:"x-gyu", t:"Late drinks at the fridge-door bar (Bar Gyu+)"}] },
+  { id:"d0214", dow:"Sun", d:"14", kj:"日", type:"Ski", ski:true, title:"Ski day 3: Annupuri and Niseko Village",
+    sum:"The far side of the mountain, away from the Hirafu weekend crowd.",
+    tl:[["08:30","<b>Annupuri</b> for mellow powder bowls and the backcountry gates. Gates open and close on patrol's call. Beacon, shovel and probe if you go through one."],
+        ["Midday","<b>Niseko Village</b>: ride the new 8-person Mori-no Gondola (first stage, to 670 m) and ski the steeper trees."],
+        ["16:00","<b>Onsen at Annupuri</b>, outdoor pool in the snow, about $6 to $8."],
+        ["Evening","Dinner down in Kutchan town: yakitori or soup curry at local prices."]],
+    foot:[["Sleep","Niseko"],["Lift ticket","about $85 a day, $250 for 3 days"]] },
+  { id:"d0215", dow:"Mon", d:"15", kj:"月", type:"Ski", ski:true, title:"Ski day 4: follow the snow",
+    sum:"A quiet Monday after the weekend. The plan depends on the Last ski day vote above.",
+    tl:[["Morning","<b>Peak hike</b> if the gate is open: 20 minutes of bootpacking from the top lift to the 1,308 m summit, then the back bowls."],
+        ["Afternoon","Laps on whatever skied best all weekend. Return rental gear."],
+        ["Evening","<b>Last night dinner.</b> Hokkaido crab, wagyu or a proper sushi counter."]],
+    foot:[["Sleep","Niseko"],["Lift ticket","about $85 a day, $250 for 3 days"]],
+    extras:[{id:"x-snowmobile", t:"Trade the afternoon for a snowmobile tour"}] },
+  { id:"d0216", dow:"Tue", d:"16", kj:"火", type:"Sights", title:"Volcano road: Lake Toya and Hell Valley, then fly to Tokyo",
+    sum:"The scenic way back to the airport through Shikotsu-Toya National Park.",
+    tl:[["08:00","<b>Leave Niseko</b> with Mt. Yotei in the mirror."],
+        ["09:15","<b>Lake Toya.</b> Caldera lake viewpoint at the Silo observatory."],
+        ["11:00","<b>Noboribetsu Jigokudani (Hell Valley).</b> Boardwalk through a steaming volcanic crater, the hot river foot bath at Oyunuma, lunch, and a soak at one of the big onsen hotels (about $13 to $16)."],
+        ["15:00","<b>Drive to New Chitose</b>, about 1 h by expressway. Return the van."],
+        ["~18:00","<b>Fly Sapporo to Tokyo Haneda</b>, 1h40. Hotel by about 21:30, late ramen."]],
+    foot:[["Sleep","Tokyo, night 1 of 3"],["Driving","about 3.5 h total"]],
+    extras:[{id:"x-shikotsu", t:"Stop at the Lake Shikotsu Ice Festival near the airport (usually runs late Jan to late Feb, 2027 dates not posted)"},
+            {id:"x-ninja", t:"Add the Edo-period ninja village in Noboribetsu (Date Jidaimura)"}] },
+  { id:"d0217", dow:"Wed", d:"17", kj:"水", type:"City", title:"Tokyo, old to neon",
+    sum:"East side in the morning, west side at night.",
+    tl:[["09:00","<b>Senso-ji temple</b> and Nakamise street in Asakusa."],
+        ["11:30","<b>Akihabara</b>: arcades, retro games, a ramen counter."],
+        ["14:30","<b>teamLab</b> digital art museum, timed ticket, about $25."],
+        ["17:00","<b>Shibuya Scramble</b> and <b>Shibuya Sky</b> rooftop for sunset, about $19. Book the sunset slot ahead."],
+        ["Night","<b>Shinjuku</b>: yakitori in Omoide Yokocho, tiny bars in Golden Gai, karaoke."]],
+    foot:[["Sleep","Tokyo"]],
+    extras:[{id:"x-kart", t:"Street go-karts through Shibuya (needs the driving permit)"},
+            {id:"x-sumo", t:"Morning sumo stable practice visit"},
+            {id:"x-wagyu", t:"One blowout wagyu or omakase sushi dinner"}] },
+  { id:"d0218", dow:"Thu", d:"18", kj:"木", type:"Sights", title:"Mt. Fuji day",
+    sum:"February has the clearest air of the year for Fuji.",
+    tl:[["07:30","<b>Highway bus Shinjuku to Kawaguchiko</b>, about 2 h."],
+        ["10:00","<b>Chureito Pagoda.</b> 398 steps to the classic pagoda and Fuji view."],
+        ["12:30","Hoto noodle lunch, then the north shore of <b>Lake Kawaguchi</b>."],
+        ["15:00","Onsen with a Fuji view, bus back by 19:00."],
+        ["Night","Conveyor belt sushi or yakiniku."]],
+    foot:[["Sleep","Tokyo"],["Transit","about $28 round trip"]] },
+  { id:"d0219", dow:"Fri", d:"19", kj:"金", type:"Sights", title:"Bullet train to Kyoto, stay the night",
+    sum:"The Nozomi takes 2h15 and costs $91 each way with a reserved seat. Sit on the right side for another look at Fuji. Big bags stay at the Tokyo hotel.",
+    tl:[["07:30","<b>Nozomi from Tokyo Station.</b>"],
+        ["10:00","<b>Fushimi Inari.</b> The tunnel of ten thousand red torii gates up the mountain."],
+        ["12:30","<b>Nishiki Market</b> lunch."],
+        ["14:00","<b>Kiyomizu-dera</b> and the old lanes below it."],
+        ["17:00","<b>Gion</b> at dusk."],
+        ["Night","Dinner in the Pontocho alley, then a sake bar."]],
+    foot:[["Sleep","Kyoto"],["Transit","$182 round trip"]] },
+  { id:"d0220", dow:"Sat", d:"20", kj:"土", type:"Sights", title:"Kyoto morning, last night in Tokyo",
+    sum:"An early start beats the crowds, then back to Tokyo for one more night out.",
+    tl:[["07:30","<b>Arashiyama bamboo grove</b> while it is empty, then <b>Kinkaku-ji</b>, the golden pavilion."],
+        ["12:00","Lunch, last look around, station bento for the ride."],
+        ["14:00","<b>Bullet train to Tokyo.</b>"],
+        ["17:00","Check back in, souvenirs."],
+        ["Night","<b>Last night out</b> in Shinjuku or Shibuya."]],
+    foot:[["Sleep","Tokyo"]],
+    extras:[{id:"x-nara", t:"Swap the Kyoto morning for Nara: the deer park and the Great Buddha, 45 min by train"},
+            {id:"x-osaka", t:"Stop in Osaka for Dotonbori street food on the way back"}] },
+  { id:"d0221", dow:"Sun", d:"21", kj:"日", type:"Travel", title:"Tsukiji breakfast and home",
+    sum:"You take off Sunday afternoon and land in Salt Lake Sunday afternoon. Work Monday Feb 22.",
+    tl:[["08:00","<b>Tsukiji Outer Market</b>: tuna, tamago, coffee."],
+        ["10:00","Last shopping. Tax-free refunds now happen at the airport, so keep receipts and passports together."],
+        ["13:00","<b>Haneda.</b> Allow time for the tax refund counter."],
+        ["Afternoon","<b>Fly home</b>, one stop on the West Coast."]],
+    foot:[["Sleep","your own bed"]] }
+];
+
+const FLIGHTS = [
+  { t:"Recommended: multi-city ticket", price:"est. $950–1,250", pts:["Out: SLC to Sapporo (CTS) on Sat Feb 6, connecting in Tokyo","Back: Tokyo Haneda to SLC on Sun Feb 21","One booking, bags checked through, protected if the first leg runs late","Add Sapporo to Tokyo on Tue Feb 16 separately: JAL Japan Explorer Pass from about $80","Price it under Multi-city on Google Flights. The range is our estimate from the fares below"] },
+  { t:"Cheaper and more flexible: Tokyo round trip plus two hops", price:"about $910–1,140", pts:["SLC ⇄ Tokyo Haneda round trip, seen at $749 to $981 this week","Two JAL Explorer one-ways, Tokyo to Sapporo and back, about $80 each","Separate tickets, so leave 3 hours at Haneda on the way in","The Alaska/Hawaiian $777 sale covers January and February 2027"] },
+  { t:"Worth a look: via Seoul", price:"check price", pts:["Delta flies SLC to Seoul Incheon nonstop (3 a week last winter)","Seoul to Sapporo is a nonstop of under 3 hours on several airlines","Could beat backtracking through Tokyo if the days line up"] }
+];
+const STAYS = [
+  { t:"Sapporo · 2 nights · Feb 7–9", price:"$75–175 each per night", pts:["Snow Festival week is the most expensive week of the year here. Book a cancellable room now","Stay in Susukino or by Odori Park, walking distance to the sculptures and ramen alley","Twin rooms in business hotels are fine"] },
+  { t:"Otaru · 1 night · Feb 9", price:"$50–125 each", pts:["By the canal, so the Snow Light Path is outside the door","Pick a hotel with parking for the van"] },
+  { t:"Furano · 2 nights · Feb 10–12", price:"$65–160 each per night", pts:["Kitanomine side: walk to the gondola, bars and izakayas","Or the New Furano Prince: ski-in ski-out, next to Ningle Terrace","Small town with fewer beds. Book it with Niseko"] },
+  { t:"Niseko · 4 nights · Feb 12–16", price:"$120–315 each per night", pts:["<b>Lean:</b> hotel twin or triple rooms with a lift shuttle, such as Midtown Niseko in Hirafu, or a pension in Annupuri or Kutchan town","<b>Middle (draft pick):</b> a 2 to 3 bedroom condo in Hirafu village, walk to the gondola and the bars","<b>Plush:</b> ski-in ski-out with an onsen, such as Hilton Niseko Village, or the new Moxy Niseko Village beside the Village gondola","Hirafu has the nightlife. Niseko Village and Annupuri are quieter and closer to the new gondola"] },
+  { t:"Tokyo · 4 nights · Feb 16–19 and Feb 20", price:"$55–140 each per night", pts:["Three nights, then one more after Kyoto. Same hotel, and it holds our big bags in between","Shinjuku is the draft pick. See the Tokyo base vote","Twin rooms in business hotels are small. Book two or three rooms, not one"] },
+  { t:"Kyoto · 1 night · Feb 19", price:"$55–160 each", pts:["Around Gion or Kawaramachi for the evening, or by Kyoto Station for the early train","Kyoto adds its own lodging tax at check-in"] }
+];
+const TRANS = [
+  { t:"Airport to Sapporo", pts:["JR Rapid Airport train from under the terminal, about 40 min and $8","Runs several times an hour into the evening"] },
+  { t:"Rental van (draft pick)", pts:["4WD minivan with winter tires, est. $65 to $115 a day with basic insurance","International Driving Permit (1949 Geneva format, from AAA) plus your Utah license and passport, for every driver","Ask for an ETC toll card. Drive on the left. The legal alcohol limit is effectively zero","Pick up in Sapporo Tue Feb 9, drop at New Chitose Tue Feb 16. Confirm the one-way fee when quoting"] },
+  { t:"Without a van", pts:["Hokkaido Resort Liner bus from the airport to Niseko or Furano: $38 one way","White Liner: $38 booked online, $44 standard, runs Dec 12 to Mar 23","Allow 90 min between an international landing and the bus","Inside Niseko the United shuttle between the four bases is free with an All Mountain pass"] },
+  { t:"Tokyo and Kyoto", pts:["Add a Suica card to Apple Wallet and tap onto every train and subway","Haneda to Shinjuku is 30 to 45 min","Tokyo to Kyoto Nozomi: $91 each way reserved. Book seats in the smartEX app","Skip the Japan Rail Pass. The 7 day pass costs $316 or more and the Kyoto round trip is $182"] },
+  { t:"Ski bags", pts:["With the van they ride with us","Without it, send them by Yamato courier from the airport to the first ski lodging, and from Niseko to Haneda for the flight home","Roughly $20 to $30 a bag each way. Send 2 days ahead"] }
+];
+const BOOKING = [
+  { when:"This month", pts:["Vote here and lock the dates","Book flights while the winter sale fares are live","Sapporo hotel for Feb 7–9. Festival week sells out","Niseko and Furano lodging. February is peak and the good places go first"] },
+  { when:"By early December", pts:["Otaru, Tokyo and Kyoto hotels with free cancellation","Reserve the van for Feb 9–16"] },
+  { when:"December to January", pts:["International Driving Permits at AAA","Niseko dinner reservations for all four nights","Backcountry guide or Rusutsu tickets if they win the vote","Ski rentals online (10% off 48 h ahead)"] },
+  { when:"Tue Jan 12", pts:["Nikka Yoichi tour for Feb 9. The booking window opens 4 weeks before"] },
+  { when:"Late January", pts:["Shibuya Sky sunset slot and teamLab tickets","Bullet train seats to Kyoto","Visit Japan Web entry forms, eSIMs, yen for cash-only spots"] }
+];
+
+/* cost model: yen unless marked usd */
+const COST = {
+  flight:[950,1100,1250], hop:80,
+  sapporo:[12000,18000,28000], otaru:[8000,12000,20000], furano:[10000,15000,25000],
+  niseko:[19000,30000,50000], tokyo:[9000,13000,22000], kyotoBed:[9000,14000,25000],
+  food:[6000,9500,16000], foodDays:14,
+  liftNiseko:39500, liftFurano:9000, rentNiseko:28200, rentFurano:7000,
+  vanDay:15000, vanDays:7, vanGas:18000, vanTolls:14000,
+  airportTrain:1200, busPlan:22800,
+  tokyoTransit:8000, fujiBus:4400, kyoto:28740,
+  activities:16000, miscUsd:40
+};
+function costLines(o){
+  const t=o.tier, y=v=>v/RATE, d=v=>"$"+Math.round(v/RATE).toLocaleString("en-US"), L=[];
+  const tokyoNights=o.kyoto?4:5;
+  L.push(["Flights from SLC","multi-city ticket, estimate",COST.flight[t]]);
+  L.push(["Sapporo to Tokyo flight","JAL Explorer Pass",COST.hop]);
+  L.push(["Sapporo, 2 nights","estimate, "+d(COST.sapporo[t])+" a night, festival week",y(COST.sapporo[t]*2)]);
+  L.push(["Otaru, 1 night","estimate",y(COST.otaru[t])]);
+  L.push(["Furano, 2 nights","estimate, "+d(COST.furano[t])+" a night",y(COST.furano[t]*2)]);
+  L.push(["Niseko, 4 nights","estimate, "+d(COST.niseko[t])+" a night",y(COST.niseko[t]*4)]);
+  L.push(["Tokyo, "+tokyoNights+" nights","estimate, "+d(COST.tokyo[t])+" a night",y(COST.tokyo[t]*tokyoNights)]);
+  if(o.kyoto) L.push(["Kyoto, 1 night","estimate",y(COST.kyotoBed[t])]);
+  L.push(["Lift tickets, 4 days","Niseko 3 day pass "+d(COST.liftNiseko)+", Furano day "+d(COST.liftFurano),y(COST.liftNiseko+COST.liftFurano)]);
+  if(o.rent) L.push(["Ski or board rental, 4 days","Niseko premium set "+d(COST.rentNiseko)+", Furano day est. "+d(COST.rentFurano),y(COST.rentNiseko+COST.rentFurano)]);
+  if(o.van){
+    const van=COST.vanDay*COST.vanDays+COST.vanGas+COST.vanTolls;
+    L.push(["Hokkaido van share","est. "+d(van)+" split "+o.size+" ways, plus airport train",y(van/o.size+COST.airportTrain)]);
+  } else {
+    L.push(["Hokkaido buses and trains","estimate for the whole loop, including airport train",y(COST.airportTrain+COST.busPlan)]);
+  }
+  L.push(["Tokyo transit and Fuji bus","subway, airport, "+d(COST.fujiBus)+" bus",y(COST.tokyoTransit+COST.fujiBus)]);
+  if(o.kyoto) L.push(["Kyoto bullet train",d(COST.kyoto/2)+" each way",y(COST.kyoto)]);
+  L.push(["Food and drink","estimate, "+d(COST.food[t])+" a day for "+COST.foodDays+" days",y(COST.food[t]*COST.foodDays)]);
+  L.push(["Tickets and onsens","zoo, ropeway, teamLab, Shibuya Sky, baths, temples",y(COST.activities)]);
+  L.push(["Permit, eSIM, odds and ends","",COST.miscUsd]);
+  return L;
+}
+const costTotal=o=>costLines(o).reduce((s,l)=>s+l[2],0);
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const round50=n=>Math.round(n/50)*50;
+
+/* ---------- tiny DOM helper ---------- */
+function h(tag, attrs, ...kids){
+  const e=document.createElement(tag);
+  if(attrs) for(const k in attrs){
+    const v=attrs[k];
+    if(v==null||v===false) continue;
+    if(k==="class") e.className=v; else if(k==="html") e.innerHTML=v;
+    else if(k.startsWith("on")) e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v===true?"":v);
+  }
+  for(const k of kids.flat()){ if(k==null||k===false) continue; e.append(k.nodeType?k:document.createTextNode(k)); }
+  return e;
+}
+const $=id=>document.getElementById(id);
+const ICON_UP='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 10.5 8 5l5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_DN='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 5.5 8 11l5-5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* ---------- shared state ---------- */
+const state={ people:{}, me:null, meName:null, mode:"connecting" };
+const LABELS={ general:"The whole trip" };
+const widgets=[];
+const LS={ get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
+const ID_OK=/^[a-z0-9-]{1,80}$/;
+const slugify=s=>(s||"").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);
+
+/* one document per person: {name, votes:{itemId:{v,t}}, notes:{noteId:{item,kind,text,ts}|{del,ts}}, updated} */
+function cleanDoc(d){
+  if(!d||typeof d!=="object") return null;
+  const out={name:String(d.name||"").slice(0,24),votes:{},notes:{},updated:+d.updated||0};
+  if(d.votes&&typeof d.votes==="object") for(const k of Object.keys(d.votes).slice(0,400)){
+    const x=d.votes[k]; if(x&&typeof x.t==="number"&&ID_OK.test(k)) out.votes[k]={v:x.v===1?1:x.v===-1?-1:0,t:x.t};
+  }
+  if(d.notes&&typeof d.notes==="object") for(const k of Object.keys(d.notes).slice(0,300)){
+    const x=d.notes[k]; if(!x||typeof x!=="object"||!ID_OK.test(k)) continue;
+    out.notes[k]=x.del?{del:true,ts:+x.ts||0}:{item:ID_OK.test(x.item)?x.item:"general",kind:x.kind==="change"?"change":"comment",text:String(x.text||"").slice(0,600),ts:+x.ts||0};
+  }
+  return out;
+}
+function canon(o){
+  if(o===null||typeof o!=="object") return JSON.stringify(o);
+  if(Array.isArray(o)) return "["+o.map(canon).join(",")+"]";
+  return "{"+Object.keys(o).sort().map(k=>JSON.stringify(k)+":"+canon(o[k])).join(",")+"}";
+}
+/* merging two copies of a person's document never loses a vote or a comment: newest wins per item */
+function mergeDoc(a,b){
+  if(!a) return b; if(!b) return a;
+  const ua=a.updated||0, ub=b.updated||0;
+  let name; if(ua!==ub) name=(ua>ub?a.name:b.name)||a.name||b.name; else name=[a.name,b.name].filter(Boolean).sort()[0]||"";
+  const out={name,votes:{},notes:{},updated:Math.max(ua,ub)};
+  for(const src of [a.votes,b.votes]) for(const k in src){ const x=src[k], c=out.votes[k]; if(!c||x.t>c.t||(x.t===c.t&&x.v>c.v)) out.votes[k]=x; }
+  for(const src of [a.notes,b.notes]) for(const k in src){ const x=src[k], c=out.notes[k];
+    if(!c) out.notes[k]=x; else if(x.del&&!c.del) out.notes[k]=x; else if(!!x.del===!!c.del&&canon(x)<canon(c)) out.notes[k]=x; }
+  return out;
+}
+state.me=LS.get("jbst.me")||null; state.meName=LS.get("jbst.name")||null;
+try{ const c=JSON.parse(LS.get("jbst.cache")||"{}"); for(const k in c){ const d=cleanDoc(c[k]); if(d&&/^[a-z0-9-]{1,40}$/.test(k)) state.people[k]=d; } }catch(e){}
+function saveCache(){ LS.set("jbst.cache",JSON.stringify(state.people)); }
+
+function myVote(id){ const p=state.me&&state.people[state.me]; const x=p&&p.votes[id]; return x?x.v:0; }
+function tally(id){
+  const up=[],down=[];
+  for(const k in state.people){ const p=state.people[k]; const x=p.votes[id]; const v=x?x.v:0; if(v===1) up.push(p.name||k); else if(v===-1) down.push(p.name||k); }
+  return {up,down,net:up.length-down.length};
+}
+function allNotes(){
+  const out=[];
+  for(const k in state.people){ const p=state.people[k]; for(const id in p.notes){ const n=p.notes[id]; if(!n.del&&n.text) out.push(Object.assign({id,by:k,byName:p.name||k},n)); } }
+  return out;
+}
+const notesFor=id=>allNotes().filter(n=>n.item===id).sort((a,b)=>(a.ts||0)-(b.ts||0));
+
+/* ---------- writes ---------- */
+function mutate(slug, fn){
+  const cur=state.people[slug]||{name:slug,votes:{},notes:{},updated:0};
+  const next=JSON.parse(JSON.stringify(cur)); fn(next); next.updated=Date.now();
+  state.people=Object.assign({},state.people,{[slug]:next});
+  saveCache(); refresh(); publish(slug);
+}
+
+/* ---------- identity ---------- */
+let afterWho=null;
+function openWho(cb){
+  afterWho=cb||null;
+  const box=$("whoNames"); box.textContent="";
+  for(const k of Object.keys(state.people).sort()) box.append(h("button",{type:"button",onclick:()=>setMe(k,state.people[k].name||k)},state.people[k].name||k));
+  $("whoScrim").hidden=false; $("whoInput").value=""; setTimeout(()=>$("whoInput").focus(),30);
+}
+function closeWho(){ $("whoScrim").hidden=true; afterWho=null; }
+function setMe(slug,name){
+  state.me=slug; state.meName=name; LS.set("jbst.me",slug); LS.set("jbst.name",name);
+  if(!state.people[slug]) mutate(slug,p=>{p.name=name;});
+  const cb=afterWho; $("whoScrim").hidden=true; afterWho=null;
+  refresh(); if(cb) cb();
+}
+function needMe(cb){ if(state.me) cb(); else openWho(cb); }
+function loading(){ return false; }
+
+/* ---------- actions ---------- */
+function vote(id,v){ needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const cur=p.votes[id]?p.votes[id].v:0; p.votes[id]={v:cur===v?0:v,t:Date.now()}; })); }
+function addNote(item,kind,text){
+  text=(text||"").trim().slice(0,600); if(!text) return false;
+  needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const now=Date.now(); p.notes["n-"+state.me+"-"+now.toString(36)]={item,kind,text,ts:now}; }));
+  return true;
+}
+function delNote(n){ mutate(n.by,p=>{ p.notes[n.id]={del:true,ts:Date.now()}; }); }
+
+/* ---------- sync: each person's document is a retained, encrypted message on two public MQTT relays ---------- */
+const SYNC={ prefix:"jbst-d681dbca690e8839/v1/p/", brokers:["wss://broker.emqx.io:8084/mqtt","wss://broker.hivemq.com:8884/mqtt"], pass:"AjiRR9PXb0V1lIw4tJthmVHTr_-G103M" };
+const links=[]; const t0=Date.now(); let keyP=null;
+function getKey(){ if(!keyP) keyP=crypto.subtle.digest("SHA-256",new TextEncoder().encode(SYNC.pass)).then(d=>crypto.subtle.importKey("raw",d,"AES-GCM",false,["encrypt","decrypt"])); return keyP; }
+async function seal(obj){
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const ct=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},await getKey(),new TextEncoder().encode(JSON.stringify(obj))));
+  const all=new Uint8Array(12+ct.length); all.set(iv); all.set(ct,12);
+  let bin=""; for(let i=0;i<all.length;i+=8192) bin+=String.fromCharCode.apply(null,all.subarray(i,i+8192));
+  return btoa(bin);
+}
+async function unseal(b64){
+  if(typeof b64!=="string"||b64.length<40||b64.length>300000) return null;
+  try{ const bin=atob(b64); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.subarray(0,12)},await getKey(),u.subarray(12)))); }
+  catch(e){ return null; }
+}
+const pubTimers={};
+function publish(slug){
+  clearTimeout(pubTimers[slug]);
+  pubTimers[slug]=setTimeout(async()=>{
+    const doc=state.people[slug]; if(!doc||!links.some(L=>L.up)) return;
+    let payload; try{ payload=await seal({s:slug,d:doc}); }catch(e){ return; }
+    for(const L of links) if(L.up){ try{ L.client.publish(SYNC.prefix+slug,payload,{qos:1,retain:true}); }catch(e){} }
+  },250);
+}
+let refreshTimer=null;
+function scheduleRefresh(){ clearTimeout(refreshTimer); refreshTimer=setTimeout(refresh,60); }
+async function onMessage(L,topic,msg){
+  if(!topic.startsWith(SYNC.prefix)) return;
+  const slug=topic.slice(SYNC.prefix.length); if(!/^[a-z0-9-]{1,40}$/.test(slug)) return;
+  const obj=await unseal(msg.toString()); if(!obj||obj.s!==slug) return;
+  const inc=cleanDoc(obj.d); if(!inc) return;
+  L.seen.add(slug);
+  const cur=state.people[slug], merged=mergeDoc(cur,inc), cm=canon(merged);
+  if(!cur||canon(cur)!==cm){ state.people=Object.assign({},state.people,{[slug]:merged}); saveCache(); scheduleRefresh(); }
+  if(canon(inc)!==cm) publish(slug);
+}
+function updateMode(){
+  const m=links.some(L=>L.up)?"live":(Date.now()-t0>9500?"offline":"connecting");
+  if(m!==state.mode) setMode(m);
+}
+function startSync(){
+  if(!window.mqtt||!window.crypto||!crypto.subtle){ setMode("offline"); return; }
+  for(const url of SYNC.brokers){
+    const L={up:false,seen:new Set(),client:null}; links.push(L);
+    let c; try{ c=mqtt.connect(url,{clientId:"jbst_"+Math.random().toString(16).slice(2,12),clean:true,keepalive:45,reconnectPeriod:5000,connectTimeout:10000}); }catch(e){ continue; }
+    L.client=c;
+    c.on("connect",()=>{
+      L.up=true; L.seen=new Set(); updateMode();
+      c.subscribe(SYNC.prefix+"+",{qos:1},()=>{
+        /* after the relay has replayed what it holds, re-send anything it is missing */
+        setTimeout(()=>{ if(L.up) for(const slug in state.people) if(!L.seen.has(slug)) publish(slug); },2500);
+      });
+    });
+    c.on("message",(t,m)=>{ onMessage(L,t,m); });
+    const down=()=>{ L.up=false; updateMode(); };
+    c.on("close",down); c.on("offline",down); c.on("error",()=>{});
+  }
+  setTimeout(updateMode,10000);
+}
+
+/* ---------- vote bar ---------- */
+function voteBar(id,opts){
+  opts=opts||{};
+  const up=h("button",{class:"vbtn up",type:"button","aria-label":"Vote up","aria-pressed":"false",html:ICON_UP+'<span class="num">0</span>',onclick:()=>vote(id,1)});
+  const dn=h("button",{class:"vbtn down",type:"button","aria-label":"Vote down","aria-pressed":"false",html:ICON_DN+'<span class="num">0</span>',onclick:()=>vote(id,-1)});
+  const who=h("span",{class:"who"});
+  const bar=h("div",{class:"vb"},up,dn);
+  let thread=null,list=null,cbtn=null;
+  if(!opts.mini){
+    cbtn=h("button",{class:"cbtn",type:"button",onclick:()=>{ thread.hidden=!thread.hidden; update(); }},"Comment");
+    bar.append(cbtn);
+    list=h("ul",{class:"notes"});
+    const ta=h("textarea",{id:"ta-"+id,maxlength:"600","aria-label":"Your comment",placeholder:"Say why, or suggest a change…"});
+    const post=kind=>{ if(addNote(id,kind,ta.value)) ta.value=""; };
+    thread=h("div",{class:"thread",hidden:true},list,
+      h("div",{class:"compose"},ta,h("div",{class:"row"},
+        h("button",{class:"btn",type:"button",onclick:()=>post("comment")},"Post comment"),
+        h("button",{class:"btn alt",type:"button",onclick:()=>post("change")},"Post as change proposal"))));
+  }
+  bar.append(who);
+  function update(){
+    const t=tally(id), mine=myVote(id);
+    up.lastChild.textContent=t.up.length; dn.lastChild.textContent=t.down.length;
+    up.setAttribute("aria-pressed",mine===1?"true":"false"); dn.setAttribute("aria-pressed",mine===-1?"true":"false");
+    who.textContent="";
+    if(t.up.length) who.append(h("span",{class:"u"},"Up: "),t.up.join(", "));
+    if(t.up.length&&t.down.length) who.append(" · ");
+    if(t.down.length) who.append(h("span",{class:"d"},"Down: "),t.down.join(", "));
+    if(cbtn){
+      const ns=notesFor(id);
+      cbtn.textContent=ns.length?("Comments ("+ns.length+")"):"Comment";
+      if(!thread.hidden){ list.textContent=""; for(const n of ns) list.append(noteEl(n,false)); }
+    }
+  }
+  widgets.push(update); update();
+  const frag=document.createDocumentFragment(); frag.append(bar); if(thread) frag.append(thread);
+  return frag;
+}
+function miniVote(id){
+  const t=tally(id), mine=myVote(id);
+  const bar=h("div",{class:"vb"},
+    h("button",{class:"vbtn up",type:"button","aria-label":"Vote up","aria-pressed":mine===1?"true":"false",html:ICON_UP+'<span class="num">'+t.up.length+'</span>',onclick:()=>vote(id,1)}),
+    h("button",{class:"vbtn down",type:"button","aria-label":"Vote down","aria-pressed":mine===-1?"true":"false",html:ICON_DN+'<span class="num">'+t.down.length+'</span>',onclick:()=>vote(id,-1)}));
+  const who=h("span",{class:"who"});
+  if(t.up.length) who.append(h("span",{class:"u"},"Up: "),t.up.join(", "));
+  if(t.up.length&&t.down.length) who.append(" · ");
+  if(t.down.length) who.append(h("span",{class:"d"},"Down: "),t.down.join(", "));
+  bar.append(who); return bar;
+}
+function noteEl(n,showAbout){
+  const meta=h("div",{class:"meta"},h("b",null,n.byName),
+    h("span",null,n.ts?new Date(n.ts).toLocaleDateString(undefined,{month:"short",day:"numeric"}):""),
+    h("span",{class:"pill "+(n.kind==="change"?"change":"fb")},n.kind==="change"?"Change proposal":"Feedback"));
+  if(showAbout){ const lab=LABELS[n.item]||"The whole trip"; meta.append(h("span",null,"on "),h("a",{href:"#"+(document.getElementById("i-"+n.item)?"i-"+n.item:"board")},lab)); }
+  if(n.by===state.me) meta.append(h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete"));
+  const li=h("li",{class:"note"},meta,h("p",null,n.text));
+  if(n.kind==="change") li.append(miniVote(n.id));
+  return li;
+}
+
+/* ---------- render static content ---------- */
+function renderDecisions(){
+  const root=$("decList");
+  for(const d of DECISIONS){
+    LABELS[d.id]=d.q;
+    const opts=h("div",{class:"opts"});
+    for(const o of d.opts){
+      LABELS[o.id]=d.q+": "+o.t;
+      const tags=h("div",{class:"tags"}, o.pick?h("span",{class:"pill pick"},"Draft pick"):null, h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"));
+      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null);
+      const vbWrap=h("div",{style:"margin-top:auto"}); vbWrap.append(voteBar(o.id)); el.append(vbWrap);
+      opts.append(el);
+    }
+    root.append(h("div",{class:"dec",id:"i-"+d.id},h("h3",null,d.q),h("p",null,d.blurb),opts));
+  }
+}
+function renderDays(){
+  const root=$("dayList");
+  for(const d of DAYS){
+    LABELS[d.id]=d.dow+" Feb "+d.d+": "+d.title;
+    const body=h("div",{class:"body"},h("h3",null,d.title),h("p",null,d.sum),
+      h("ul",{class:"tl"},d.tl.map(r=>h("li",null,h("span",{class:"t"},r[0]),h("span",{html:r[1]})))),
+      h("div",{class:"dayfoot"},d.foot.map(f=>h("span",null,h("b",null,f[0]+": "),f[1]))));
+    if(d.extras){
+      const ex=h("div",{class:"extras"});
+      for(const x of d.extras){ LABELS[x.id]="Add-on: "+x.t; const e=h("div",{class:"extra",id:"i-"+x.id},h("span",null,h("span",{class:"pill pick"},"Optional")," ",x.t)); e.append(voteBar(x.id)); ex.append(e); }
+      body.append(ex);
+    }
+    body.append(voteBar(d.id));
+    root.append(h("article",{class:"day"+(d.ski?" ski":""),id:"i-"+d.id},
+      h("div",{class:"stub"},h("span",{class:"dow"},d.dow),h("span",{class:"d num"},d.d),h("span",{class:"mo"},"Feb"),h("span",{class:"kj",title:"Weekday in Japanese",lang:"ja"},d.kj),h("span",{class:"type"},d.type)),
+      body));
+  }
+}
+function renderCards(rootId,items,prefix){
+  const root=$(rootId);
+  items.forEach((c,i)=>{
+    const id=prefix+"-"+i; LABELS[id]=c.t;
+    const el=h("div",{class:"card",id:"i-"+id},h("h3",null,c.t),c.price?h("div",{class:"price num"},c.price):null,h("ul",null,c.pts.map(p=>h("li",{html:p}))));
+    const w=h("div",{style:"margin-top:auto"}); w.append(voteBar(id)); el.append(w); root.append(el);
+  });
+}
+function renderBooking(){
+  const root=$("bookList");
+  for(const b of BOOKING) root.append(h("li",null,h("div",{class:"when"},b.when),h("ul",null,b.pts.map(p=>h("li",null,p)))));
+}
+function renderCalc(){
+  const o={ size:Math.min(10,Math.max(2,parseInt($("cSize").value,10)||4)), tier:+$("cTier").value, rent:$("cRent").checked, van:$("cVan").checked, kyoto:$("cKyoto").checked };
+  const body=$("calcBody"); body.textContent="";
+  for(const l of costLines(o)) body.append(h("tr",null,h("td",null,l[0]),h("td",{class:"muted small"},l[1]),h("td",{class:"r"},money(l[2]))));
+  body.append(h("tr",{class:"total"},h("td",null,"Total each"),h("td",{class:"muted small"},"door to door, 15 nights away"),h("td",{class:"r"},money(costTotal(o)))));
+}
+function renderHeroCost(){
+  const base={size:4,rent:false,van:true,kyoto:true};
+  const mid=costTotal(Object.assign({tier:1},base)), lo=costTotal(Object.assign({tier:0},base)), hi=costTotal(Object.assign({tier:2},base));
+  $("heroCost").textContent="about "+money(round50(mid));
+  $("heroCostSub").textContent="Lean "+money(round50(lo))+" to plush "+money(round50(hi))+". Four sharing, 4 days of lift tickets, own skis";
+}
+function renderAboutSelect(){
+  const sel=$("bAbout"); sel.append(h("option",{value:"general"},"The whole trip"));
+  for(const d of DAYS) sel.append(h("option",{value:d.id},d.dow+" Feb "+d.d));
+  for(const d of DECISIONS) sel.append(h("option",{value:d.id},"Decision: "+d.q));
+}
+
+/* ---------- dynamic refresh ---------- */
+function refreshBoard(){
+  const list=$("boardList"); list.textContent="";
+  const ns=allNotes();
+  ns.sort((a,b)=>{ const ka=a.kind==="change"?1:0, kb=b.kind==="change"?1:0; if(ka!==kb) return kb-ka; const d=tally(b.id).net-tally(a.id).net; return d|| (b.ts||0)-(a.ts||0); });
+  if(!ns.length){ list.append(h("div",{class:"empty"},"Nothing posted yet. Be the first to object to something.")); return; }
+  const ul=h("ul",{class:"notes"}); for(const n of ns) ul.append(noteEl(n,true)); list.append(ul);
+}
+function refreshLeaders(){
+  for(const d of DECISIONS){
+    let best=null,bestNet=0,tie=false;
+    for(const o of d.opts){ const n=tally(o.id).net; if(n>bestNet){best=o.id;bestNet=n;tie=false;} else if(n===bestNet&&n>0) tie=true; }
+    for(const o of d.opts){
+      const lead=!tie&&best===o.id;
+      const pill=document.querySelector('[data-lead="'+o.id+'"]'); if(pill) pill.hidden=!lead;
+      const el=document.querySelector('[data-opt="'+o.id+'"]'); if(el) el.classList.toggle("leading",lead);
+    }
+  }
+}
+function refresh(){
+  for(const u of widgets) u();
+  refreshBoard(); refreshLeaders();
+  const n=Object.keys(state.people).length;
+  $("meBtn").textContent=state.me?("Voting as "+((state.people[state.me]&&state.people[state.me].name)||state.meName||state.me)):"Pick your name";
+  const s=$("status"), txt=s.lastElementChild;
+  s.className="status"+(state.mode==="live"?" live":(state.mode==="connecting"?"":" warn"));
+  txt.textContent={connecting:"Connecting…",live:"Live · "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
+  const b=$("banner");
+  if(state.mode==="offline"){ b.hidden=false; b.textContent=""; b.append(h("b",null,"Can't reach the vote relay right now.")," Votes you cast are saved on this device and will sync when it reconnects."); }
+  else b.hidden=true;
+}
+function setMode(m){ state.mode=m; refresh(); }
+
+/* ---------- wire up ---------- */
+renderDecisions(); renderDays();
+renderCards("flightCards",FLIGHTS,"flight"); renderCards("stayCards",STAYS,"stay"); renderCards("transCards",TRANS,"trans");
+renderBooking(); renderAboutSelect(); renderCalc(); renderHeroCost(); refresh();
+
+$("calcForm").addEventListener("input",renderCalc);
+$("calcForm").addEventListener("change",renderCalc);
+$("calcForm").addEventListener("submit",e=>e.preventDefault());
+$("meBtn").addEventListener("click",()=>{ if(!loading()) openWho(null); });
+$("whoCancel").addEventListener("click",closeWho);
+$("whoScrim").addEventListener("click",e=>{ if(e.target===$("whoScrim")) closeWho(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("whoScrim").hidden) closeWho(); });
+$("whoForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("whoInput").value.trim().slice(0,24); const slug=slugify(name);
+  if(!slug){ $("whoInput").focus(); return; }
+  setMe(slug,(state.people[slug]&&state.people[slug].name)||name);
+});
+$("boardForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const kind=(e.submitter&&e.submitter.dataset.kind)||"change";
+  if(addNote($("bAbout").value,kind,$("bText").value)) $("bText").value="";
+});
+
+(function loadSync(){
+  const el=document.createElement("script");
+  el.src="https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js";
+  el.onload=startSync; el.onerror=()=>setMode("offline");
+  document.head.append(el);
+})();
+</script>
+</body>
+</html>
