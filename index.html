@@ -362,7 +362,7 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
   <section id="stays">
     <div class="sec-head">
       <h2>Where to stay</h2>
-      <p>Fourteen nights in six places. Nightly prices are per person sharing, and they are planning estimates until we pull real quotes for our exact dates and head count. February is Niseko's most expensive month, and many condos want a 5 to 7 night minimum, so hotels are the flexible fallback for a 4 night stay. Sapporo is at its yearly peak for the festival.</p>
+      <p>Fourteen nights in six places. Nightly prices are per person sharing, and they are planning estimates until we pull real quotes for our exact dates and head count. February is Niseko's most expensive month, so the draft sleeps in Kutchan town, 10 to 15 minutes from the lifts, instead of at the base. Many Niseko rentals want a 5 to 7 night minimum, so hotels are the flexible fallback for a 4 night stay. Sapporo is at its yearly peak for the festival.</p>
     </div>
     <div class="grid2" id="stayCards"></div>
   </section>
@@ -443,6 +443,10 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
       <li><a href="https://www.jal.co.jp/flights/en-ph/japan-domestic-routes">JAL Japan Explorer Pass fares</a></li>
       <li><a href="https://www.aeroroutes.com/eng/241231-dlnw25slcicn">Delta SLC to Seoul winter schedule</a></li>
       <li><a href="https://japantrain.net/th/guide/tokyo-kyoto-shinkansen-price">Shinkansen fares and JR Pass math</a></li>
+      <li><a href="https://www.kikijourney.com/where-to-stay-niseko/">Where to stay in Niseko: price ranges by area</a></li>
+      <li><a href="https://www.powderhounds.com/Japan/Hokkaido/Kutchan.aspx">Kutchan as a cheaper Niseko base</a></li>
+      <li><a href="https://www.airroi.com/airbnb-data/japan/hokkaido-prefecture/niseko">Niseko Airbnb nightly rates</a></li>
+      <li><a href="https://watabi.org/en/articles/japan-accommodation-tax-guide">Kutchan 3% lodging tax</a></li>
       <li><a href="https://selfguidejapan.com/blog/japan-tourist-tax-2026">Japan departure tax and tax-free changes 2026</a></li>
       <li><a href="https://30rates.com/usd-to-jpy-forecast-converter-dollar-to-yen">USD to JPY rate</a></li>
     </ul>
@@ -502,6 +506,12 @@ const DECISIONS = [
       { id:"base-niseko", pick:true, t:"Niseko United, Hokkaido", pts:["Four linked resorts, 2,191 acres, night skiing, backcountry gates","One All Mountain pass covers all four: about $85 a day, $250 for 3 days","New 8-person Mori-no Gondola at Niseko Village and a new quad at Hirafu this season","Best food and bars. Also the busiest and priciest beds in Japan","The draft also gives Furano one day on the way there"], cost:"About 2.5 h from New Chitose airport" },
       { id:"base-furano", t:"Furano as the main base", pts:["Quieter, colder, cheaper, more of a real Japanese town","Less terrain and nightlife than Niseko","Would pair with Asahikawa and Biei instead of Otaru and Hell Valley"], cost:"About 2 to 2.5 h from New Chitose" },
       { id:"base-honshu", t:"Myoko area, Honshu (Arai, Suginohara, Madarao)", pts:["Three resorts near each other, very deep snow, cheaper lodging","No domestic flight: bullet train from Tokyo in about 2 h","Not Hokkaido, and the snow runs a little heavier"], cost:"Saves the Sapporo flights, loses the Hokkaido road trip" }
+    ]},
+  { id:"lodge", q:"Where we sleep in Niseko", blurb:"The slopeside villages are the priciest beds in Japan in February. Staying 10 to 15 minutes away in Kutchan or Niseko town cuts the bill by more than half, and we have the van.",
+    opts:[
+      { id:"lodge-house", pick:true, t:"Whole house on Airbnb in Kutchan or Niseko town", pts:["Kitchen, living room and a drying room for the group","A 3 bedroom house runs roughly $250–400 a night in February: $60–100 each for four, less with six","10 to 15 minute drive to the Hirafu lifts, parking for the van","Many hosts want 5+ nights at peak, so filter for a 4 night stay"], cost:"Est. $82 each a night" },
+      { id:"lodge-kutchan", t:"Kutchan town hotel with a free lift shuttle", pts:["Torifito Hotel & Pod or similar: shared bath, free shuttle to Hirafu and Hanazono","Twin or triple rooms, roughly $70–110 a room","Cheap ramen and izakayas in town, no one has to drive to dinner"], cost:"Est. $47 each a night" },
+      { id:"lodge-hirafu", t:"Condo in Hirafu village", pts:["Walk to the gondola and the bars, nobody drives after drinks","The most expensive option by far"], cost:"Est. $190 each a night" }
     ]},
   { id:"wheels", q:"Hokkaido transport", blurb:"This one changes what we can see. The van is what makes the Furano loop, the onsens and the Hell Valley drive-out easy.",
     opts:[
@@ -597,7 +607,7 @@ const DAYS = [
   { id:"d0212", dow:"Fri", d:"12", kj:"金", type:"Travel", title:"Across Hokkaido to Niseko",
     sum:"The one long drive of the trip, mostly expressway.",
     tl:[["09:00","<b>Leave Furano.</b> About 3.5 to 4 h on winter roads, with a lunch stop near Sapporo."],
-        ["14:00","<b>Arrive Hirafu.</b> Check in, collect rental gear and lift passes for the morning."],
+        ["14:00","<b>Arrive Niseko.</b> Check in, stock the fridge at the MaxValu in Kutchan, collect rental gear and lift passes for the morning."],
         ["16:30","Optional <b>night skiing at Hirafu</b> on a separate night ticket."],
         ["Evening","First Niseko dinner. Reserve weeks ahead, tables vanish in February."]],
     foot:[["Sleep","Niseko, night 1 of 4"],["Driving","3.5 to 4 h"]],
@@ -689,8 +699,8 @@ const FLIGHTS = [
 const STAYS = [
   { t:"Sapporo · 2 nights · Feb 7–9", price:"$75–175 each per night", pts:["Snow Festival week is the most expensive week of the year here. Book a cancellable room now","Stay in Susukino or by Odori Park, walking distance to the sculptures and ramen alley","Twin rooms in business hotels are fine"] },
   { t:"Otaru · 1 night · Feb 9", price:"$50–125 each", pts:["By the canal, so the Snow Light Path is outside the door","Pick a hotel with parking for the van"] },
-  { t:"Furano · 2 nights · Feb 10–12", price:"$65–160 each per night", pts:["Kitanomine side: walk to the gondola, bars and izakayas","Or the New Furano Prince: ski-in ski-out, next to Ningle Terrace","Small town with fewer beds. Book it with Niseko"] },
-  { t:"Niseko · 4 nights · Feb 12–16", price:"$120–315 each per night", pts:["<b>Lean:</b> hotel twin or triple rooms with a lift shuttle, such as Midtown Niseko in Hirafu, or a pension in Annupuri or Kutchan town","<b>Middle (draft pick):</b> a 2 to 3 bedroom condo in Hirafu village, walk to the gondola and the bars","<b>Plush:</b> ski-in ski-out with an onsen, such as Hilton Niseko Village, or the new Moxy Niseko Village beside the Village gondola","Hirafu has the nightlife. Niseko Village and Annupuri are quieter and closer to the new gondola"] },
+  { t:"Furano · 2 nights · Feb 10–12", price:"$40–125 each per night", pts:["<b>Draft pick:</b> a hotel in Furano town by the station, such as the Furano Natulux, about $130–170 a twin room","Cheaper: a pension or older hotel in town","Plush: the New Furano Prince, ski-in ski-out next to Ningle Terrace","Small town with fewer beds. Book it with Niseko"] },
+  { t:"Niseko · 4 nights · Feb 12–16", price:"$45–190 each per night", pts:["<b>Lean:</b> a Kutchan town hotel with a free lift shuttle, such as Torifito Hotel & Pod, or the MY ecolodge in East Hirafu. Roughly $70–110 a room","<b>Middle (draft pick):</b> a whole house on Airbnb in Kutchan or Niseko town. A 3 bedroom place runs roughly $250–400 a night in February, so $60–100 each for four","<b>Plush:</b> a condo in Hirafu village, walk to the gondola and the bars, about $190 each","Kutchan, which includes Hirafu, adds a 3% lodging tax at check-in","On Airbnb compare the total with cleaning fees, and check the house has parking and a drying room"] },
   { t:"Tokyo · 4 nights · Feb 16–19 and Feb 20", price:"$55–140 each per night", pts:["Three nights, then one more after Kyoto. Same hotel, and it holds our big bags in between","Shinjuku is the draft pick. See the Tokyo base vote","Twin rooms in business hotels are small. Book two or three rooms, not one"] },
   { t:"Kyoto · 1 night · Feb 19", price:"$55–160 each", pts:["Around Gion or Kawaramachi for the evening, or by Kyoto Station for the early train","Kyoto adds its own lodging tax at check-in"] }
 ];
@@ -702,7 +712,7 @@ const TRANS = [
   { t:"Ski bags", pts:["With the van they ride with us","Without it, send them by Yamato courier from the airport to the first ski lodging, and from Niseko to Haneda for the flight home","Roughly $20 to $30 a bag each way. Send 2 days ahead"] }
 ];
 const BOOKING = [
-  { when:"This month", pts:["Vote here and lock the dates","Book flights while the winter sale fares are live","Sapporo hotel for Feb 7–9. Festival week sells out","Niseko and Furano lodging. February is peak and the good places go first"] },
+  { when:"This month", pts:["Vote here and lock the dates","Book flights while the winter sale fares are live","Sapporo hotel for Feb 7–9. Festival week sells out","Niseko house and Furano hotel. February is peak and the cheap places go first"] },
   { when:"By early December", pts:["Otaru, Tokyo and Kyoto hotels with free cancellation","Reserve the van for Feb 9–16"] },
   { when:"December to January", pts:["International Driving Permits at AAA","Niseko dinner reservations for all four nights","Backcountry guide or Rusutsu tickets if they win the vote","Ski rentals online (10% off 48 h ahead)"] },
   { when:"Tue Jan 12", pts:["Nikka Yoichi tour for Feb 9. The booking window opens 4 weeks before"] },
@@ -712,8 +722,8 @@ const BOOKING = [
 /* cost model: yen unless marked usd */
 const COST = {
   flight:[950,1100,1250], hop:80,
-  sapporo:[12000,18000,28000], otaru:[8000,12000,20000], furano:[10000,15000,25000],
-  niseko:[19000,30000,50000], tokyo:[9000,13000,22000], kyotoBed:[9000,14000,25000],
+  sapporo:[12000,18000,28000], otaru:[8000,12000,20000], furano:[6000,10000,20000],
+  niseko:[7500,13000,30000], tokyo:[9000,13000,22000], kyotoBed:[9000,14000,25000],
   food:[6000,9500,16000], foodDays:14,
   liftNiseko:39500, liftFurano:9000, rentNiseko:28200, rentFurano:7000,
   vanDay:15000, vanDays:7, vanGas:18000, vanTolls:14000,
