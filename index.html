@@ -510,6 +510,7 @@ const DECISIONS = [
   { id:"lodge", q:"Where we sleep in Niseko", blurb:"The slopeside villages are the priciest beds in Japan in February. Staying 10 to 15 minutes away in Kutchan or Niseko town cuts the bill by more than half, and we have the van.",
     opts:[
       { id:"lodge-house", pick:true, t:"Whole house on Airbnb in Kutchan or Niseko town", pts:["Kitchen, living room and a drying room for the group","A 3 bedroom house runs roughly $250–400 a night in February: $60–100 each for four, less with six","10 to 15 minute drive to the Hirafu lifts, parking for the van","Many hosts want 5+ nights at peak, so filter for a 4 night stay"], cost:"Est. $82 each a night" },
+      { id:"lodge-cottage", t:"Classic Cozy Cottage in Rankoshi (Airbnb)", url:"https://www.airbnb.com/rooms/22412172", pts:["$1,352 for 4 nights, so about $85 each a night for four (price seen for Feb 11–15, we need Feb 12–16)","2 bedrooms with 4 single beds plus a floor mattress, 1 bathroom, sleeps 5","4.92 stars from 113 reviews, Superhost, full kitchen, ski and waxing stand in the garage","10 min to Annupuri and Moiwa, roughly 25–30 min to Hirafu. Car essential, so nights out need a sober driver"], cost:"$338 each for 4 nights" },
       { id:"lodge-kutchan", t:"Kutchan town hotel with a free lift shuttle", pts:["Torifito Hotel & Pod or similar: shared bath, free shuttle to Hirafu and Hanazono","Twin or triple rooms, roughly $70–110 a room","Cheap ramen and izakayas in town, no one has to drive to dinner"], cost:"Est. $47 each a night" },
       { id:"lodge-hirafu", t:"Condo in Hirafu village", pts:["Walk to the gondola and the bars, nobody drives after drinks","The most expensive option by far"], cost:"Est. $190 each a night" }
     ]},
@@ -1131,7 +1132,7 @@ function renderDecisions(){
     for(const o of d.opts){
       LABELS[o.id]=d.q+": "+o.t;
       const tags=h("div",{class:"tags"}, o.pick?h("span",{class:"pill pick"},"Draft pick"):null, h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"));
-      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null);
+      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null,o.url?h("a",{href:o.url,target:"_blank",rel:"noopener",class:"small"},"See the listing"):null);
       const vbWrap=h("div",{style:"margin-top:auto"}); vbWrap.append(voteBar(o.id)); el.append(vbWrap);
       opts.append(el);
     }
