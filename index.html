@@ -271,7 +271,7 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
   <div id="banner" class="banner" hidden></div>
 
   <div class="how">
-    <div><b>1. Pick your name</b>Top right. Your votes and comments show under it for everyone.</div>
+    <div><b>1. Say who you are</b>You are asked once and this device remembers. Change it any time from the button at the top right.</div>
     <div><b>2. Vote on everything</b>Up or down on each option, day and add-on. Tap again to undo. Tallies update live.</div>
     <div><b>3. Push back</b>Comment on any block, or post a change proposal that the rest of us can vote on.</div>
   </div>
@@ -409,12 +409,12 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 <div class="scrim" id="whoScrim" hidden>
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
     <h3 id="whoTitle">Who are you?</h3>
-    <p class="small muted">Pick your name if it is listed, or add it. This is how your votes are labeled for the group.</p>
+    <p class="small muted">Tap your name if it is listed, or type it in. Your votes show under it for the group, and this device remembers it for next time.</p>
     <div class="names" id="whoNames"></div>
     <form id="whoForm" class="compose">
       <label class="small" for="whoInput">New name</label>
       <input id="whoInput" maxlength="24" autocomplete="off" placeholder="First name">
-      <div class="row"><button type="button" class="btn alt" id="whoCancel">Cancel</button><button type="submit" class="btn hot">That's me</button></div>
+      <div class="row"><button type="button" class="btn alt" id="whoCancel">Just looking</button><button type="submit" class="btn hot">That's me</button></div>
     </form>
   </div>
 </div>
@@ -765,10 +765,12 @@ function mutate(slug, fn){
 
 /* ---------- identity ---------- */
 let afterWho=null;
-function openWho(cb){
-  afterWho=cb||null;
+function renderWhoNames(){
   const box=$("whoNames"); box.textContent="";
   for(const k of Object.keys(state.people).sort()) box.append(h("button",{type:"button",onclick:()=>setMe(k,state.people[k].name||k)},state.people[k].name||k));
+}
+function openWho(cb){
+  afterWho=cb||null; renderWhoNames();
   $("whoScrim").hidden=false; $("whoInput").value=""; setTimeout(()=>$("whoInput").focus(),30);
 }
 function closeWho(){ $("whoScrim").hidden=true; afterWho=null; }
@@ -1003,6 +1005,7 @@ function refresh(){
   const s=$("status"), txt=s.lastElementChild;
   s.className="status"+(state.mode==="live"?" live":(state.mode==="connecting"?"":" warn"));
   txt.textContent={connecting:"Connecting…",live:"Live · "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
+  if(!$("whoScrim").hidden) renderWhoNames();
   const b=$("banner");
   if(state.mode==="offline"){ b.hidden=false; b.textContent=""; b.append(h("b",null,"Can't reach the vote relay right now.")," Votes you cast are saved on this device and will sync when it reconnects."); }
   else b.hidden=true;
@@ -1039,6 +1042,8 @@ $("boardForm").addEventListener("submit",e=>{
   el.onload=startSync; el.onerror=()=>setMode("offline");
   document.head.append(el);
 })();
+/* first visit on this device: ask for a name straight away */
+if(!state.me) openWho(null);
 </script>
 </body>
 </html>
