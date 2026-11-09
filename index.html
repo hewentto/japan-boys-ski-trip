@@ -219,6 +219,51 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 .dlg .names button{border:1.5px solid var(--line);background:var(--snow);border-radius:999px;padding:7px 13px;cursor:pointer;font-weight:600}
 .dlg input{border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--paper);width:100%}
 .dlg .row{display:flex;gap:8px;justify-content:flex-end}
+
+/* group chat */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.chat{display:flex;flex-direction:column;background:var(--paper);border-left:1px solid var(--line);min-height:0}
+.chat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 16px 10px;border-bottom:1px solid var(--line)}
+.chat-head h2{font-size:1.5rem}
+.chat-head p{margin-top:2px}
+.chat-x{border:1.5px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 11px;font-weight:600;cursor:pointer}
+.chat-tabs{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.chat-tabs button{border:1.5px solid var(--line);background:var(--snow);border-radius:999px;padding:5px 11px;font-weight:600;font-size:.85rem;cursor:pointer}
+.chat-tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--snow)}
+.chat-list{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;min-height:0;overscroll-behavior:contain}
+.chat-empty{color:var(--ink-2);font-size:.92rem;margin:auto 0;text-align:center;padding:0 12px}
+.msg{background:var(--tint);border-radius:10px;padding:8px 11px;max-width:92%;align-self:flex-start;font-size:.94rem;min-width:0}
+.msg.mine{align-self:flex-end;background:var(--snow);border:1px solid var(--line)}
+.msg.grouped{margin-top:-5px}
+.msg.q{border-left:3px solid var(--accent)}
+.msg.flash{outline:2px solid var(--ice);outline-offset:2px}
+.mmeta{display:flex;gap:8px;align-items:baseline;font-size:.76rem;color:var(--ink-2);margin-bottom:2px}
+.mmeta b{color:var(--ink);font-weight:600;font-size:.86rem}
+.mtext{white-space:pre-wrap;overflow-wrap:anywhere}
+.mquote{display:block;width:100%;text-align:left;border:0;border-left:3px solid var(--line);background:none;color:var(--ink-2);font-size:.8rem;padding:1px 8px;margin:2px 0 5px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.macts{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin-top:5px}
+.macts button{border:0;background:none;padding:2px 0;color:var(--ice);font-size:.78rem;font-weight:600;cursor:pointer}
+.macts .pill{font-size:.62rem}
+.chat-form{border-top:1px solid var(--line);padding:10px 16px 14px;display:grid;gap:8px;background:var(--paper)}
+.chat-form textarea{width:100%;resize:none;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--paper);min-height:46px;max-height:160px}
+.chat-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chat-row .chk{display:flex;gap:6px;align-items:center;font-size:.86rem;cursor:pointer}
+.chat-reply{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--ink-2);background:var(--tint);border-radius:6px;padding:4px 8px}
+.chat-reply span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.chat-reply button{border:0;background:none;color:var(--ice);font-weight:600;cursor:pointer;font-size:.8rem}
+.chat-fab{display:flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 18px;font-weight:600;box-shadow:0 6px 18px rgba(10,14,26,.28);cursor:pointer}
+.badge{background:var(--ink);color:var(--snow);border-radius:999px;min-width:22px;padding:2px 7px;font-size:.78rem;text-align:center}
+@media (min-width:1180px){
+  body{padding-right:380px}
+  .chat{position:fixed;top:0;right:0;bottom:0;width:380px;z-index:30}
+  .chat-fab,.chat-x{display:none}
+}
+@media (max-width:1179.98px){
+  .chat{position:fixed;inset:0;z-index:40;display:none;border-left:0}
+  .chat.open{display:flex}
+  .chat-fab{position:fixed;right:16px;bottom:16px;z-index:35}
+  body.chat-lock{overflow:hidden}
+}
 </style>
 </head>
 <body>
@@ -273,7 +318,7 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
   <div class="how">
     <div><b>1. Say who you are</b>You are asked once and this device remembers. Change it any time from the button at the top right.</div>
     <div><b>2. Vote on everything</b>Up or down on each option, day and add-on. Tap again to undo. Tallies update live.</div>
-    <div><b>3. Push back</b>Comment on any block, or post a change proposal that the rest of us can vote on.</div>
+    <div><b>3. Push back</b>Comment on any block, post a change proposal for a vote, or ask anything in the group chat.</div>
   </div>
 
   <section id="decisions">
@@ -405,6 +450,28 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 </main>
 
 <footer><div class="wrap">Draft 2. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay, so keep it to trip talk.</div></footer>
+
+<aside class="chat" id="chat" aria-label="Group chat">
+  <div class="chat-head">
+    <div><h2>Group chat</h2><p class="small muted">Open questions, ideas, trash talk</p></div>
+    <button type="button" class="chat-x" id="chatClose">Close</button>
+  </div>
+  <div class="chat-tabs" role="group" aria-label="Show">
+    <button type="button" id="chatTabAll" aria-pressed="true">Everything</button>
+    <button type="button" id="chatTabOpen" aria-pressed="false">Open questions (0)</button>
+  </div>
+  <div class="chat-list" id="chatList"></div>
+  <form class="chat-form" id="chatForm">
+    <div class="chat-reply" id="chatReply" hidden><span id="chatReplyText"></span><button type="button" id="chatReplyX">Cancel reply</button></div>
+    <label class="sr" for="chatInput">Message</label>
+    <textarea id="chatInput" rows="2" maxlength="500" enterkeyhint="send" placeholder="Message the group…"></textarea>
+    <div class="chat-row">
+      <label class="chk" for="chatQ"><input type="checkbox" id="chatQ"> Ask as a question</label>
+      <button class="btn hot" type="submit">Send</button>
+    </div>
+  </form>
+</aside>
+<button type="button" class="chat-fab" id="chatFab">Group chat <span class="badge" id="chatBadge" hidden>0</span></button>
 
 <div class="scrim" id="whoScrim" hidden>
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
@@ -793,7 +860,7 @@ function addNote(item,kind,text){
 function delNote(n){ mutate(n.by,p=>{ p.notes[n.id]={del:true,ts:Date.now()}; }); }
 
 /* ---------- sync: each person's document is a retained, encrypted message on two public MQTT relays ---------- */
-const SYNC={ prefix:"jbst-d681dbca690e8839/v1/p/", brokers:["wss://broker.emqx.io:8084/mqtt","wss://broker.hivemq.com:8884/mqtt"], pass:"AjiRR9PXb0V1lIw4tJthmVHTr_-G103M" };
+const SYNC={ prefix:"jbst-d681dbca690e8839/v1/p/", chatPrefix:"jbst-d681dbca690e8839/v1/c/", brokers:["wss://broker.emqx.io:8084/mqtt","wss://broker.hivemq.com:8884/mqtt"], pass:"AjiRR9PXb0V1lIw4tJthmVHTr_-G103M" };
 const links=[]; const t0=Date.now(); let keyP=null;
 function getKey(){ if(!keyP) keyP=crypto.subtle.digest("SHA-256",new TextEncoder().encode(SYNC.pass)).then(d=>crypto.subtle.importKey("raw",d,"AES-GCM",false,["encrypt","decrypt"])); return keyP; }
 async function seal(obj){
@@ -821,6 +888,7 @@ function publish(slug){
 let refreshTimer=null;
 function scheduleRefresh(){ clearTimeout(refreshTimer); refreshTimer=setTimeout(refresh,60); }
 async function onMessage(L,topic,msg){
+  if(topic.startsWith(SYNC.chatPrefix)) return onChatMessage(L,topic,msg);
   if(!topic.startsWith(SYNC.prefix)) return;
   const slug=topic.slice(SYNC.prefix.length); if(!/^[a-z0-9-]{1,40}$/.test(slug)) return;
   const obj=await unseal(msg.toString()); if(!obj||obj.s!==slug) return;
@@ -837,14 +905,14 @@ function updateMode(){
 function startSync(){
   if(!window.mqtt||!window.crypto||!crypto.subtle){ setMode("offline"); return; }
   for(const url of SYNC.brokers){
-    const L={up:false,seen:new Set(),client:null}; links.push(L);
+    const L={up:false,seen:new Set(),seenC:new Set(),client:null}; links.push(L);
     let c; try{ c=mqtt.connect(url,{clientId:"jbst_"+Math.random().toString(16).slice(2,12),clean:true,keepalive:45,reconnectPeriod:5000,connectTimeout:10000}); }catch(e){ continue; }
     L.client=c;
     c.on("connect",()=>{
-      L.up=true; L.seen=new Set(); updateMode();
-      c.subscribe(SYNC.prefix+"+",{qos:1},()=>{
+      L.up=true; L.seen=new Set(); L.seenC=new Set(); updateMode();
+      c.subscribe([SYNC.prefix+"+",SYNC.chatPrefix+"+"],{qos:1},()=>{
         /* after the relay has replayed what it holds, re-send anything it is missing */
-        setTimeout(()=>{ if(L.up) for(const slug in state.people) if(!L.seen.has(slug)) publish(slug); },2500);
+        setTimeout(()=>{ if(L.up){ for(const slug in state.people) if(!L.seen.has(slug)) publish(slug); for(const slug in chat.people) if(!L.seenC.has(slug)) publishChat(slug); } },2500);
       });
     });
     c.on("message",(t,m)=>{ onMessage(L,t,m); });
@@ -853,6 +921,136 @@ function startSync(){
   }
   setTimeout(updateMode,10000);
 }
+
+/* ---------- group chat: one document per person on its own relay topic ---------- */
+const chat={ people:{}, filter:"all", open:false, stick:true, lastSeen:+(LS.get("jbst.chatSeen")||0) };
+const WIDE=window.matchMedia("(min-width:1180px)");
+let replyTo=null;
+function cleanChat(d){
+  if(!d||typeof d!=="object") return null;
+  const out={msgs:{},res:{},updated:+d.updated||0};
+  if(d.msgs&&typeof d.msgs==="object") for(const k of Object.keys(d.msgs).slice(-400)){
+    const x=d.msgs[k]; if(!x||typeof x!=="object"||!ID_OK.test(k)) continue;
+    out.msgs[k]=x.del?{del:true,ts:+x.ts||0}:{text:String(x.text||"").slice(0,500),q:!!x.q,re:ID_OK.test(x.re||"")?x.re:"",ts:+x.ts||0};
+  }
+  if(d.res&&typeof d.res==="object") for(const k of Object.keys(d.res).slice(-400)){
+    const x=d.res[k]; if(x&&typeof x.t==="number"&&ID_OK.test(k)) out.res[k]={v:x.v===1?1:0,t:x.t};
+  }
+  return out;
+}
+function mergeChat(a,b){
+  if(!a) return b; if(!b) return a;
+  const out={msgs:{},res:{},updated:Math.max(a.updated||0,b.updated||0)};
+  for(const src of [a.res,b.res]) for(const k in src){ const x=src[k], c=out.res[k]; if(!c||x.t>c.t||(x.t===c.t&&x.v>c.v)) out.res[k]=x; }
+  for(const src of [a.msgs,b.msgs]) for(const k in src){ const x=src[k], c=out.msgs[k];
+    if(!c) out.msgs[k]=x; else if(x.del&&!c.del) out.msgs[k]=x; else if(!!x.del===!!c.del&&canon(x)<canon(c)) out.msgs[k]=x; }
+  return out;
+}
+try{ const c=JSON.parse(LS.get("jbst.chatCache")||"{}"); for(const k in c){ const d=cleanChat(c[k]); if(d&&/^[a-z0-9-]{1,40}$/.test(k)) chat.people[k]=d; } }catch(e){}
+function saveChatCache(){ LS.set("jbst.chatCache",JSON.stringify(chat.people)); }
+function mutateChat(slug,fn){
+  const cur=chat.people[slug]||{msgs:{},res:{},updated:0};
+  const next=JSON.parse(JSON.stringify(cur)); fn(next);
+  const ids=Object.keys(next.msgs); if(ids.length>200){ ids.sort((a,b)=>(next.msgs[a].ts||0)-(next.msgs[b].ts||0)); for(const k of ids.slice(0,ids.length-200)) delete next.msgs[k]; }
+  const rs=Object.keys(next.res); if(rs.length>300){ rs.sort((a,b)=>next.res[a].t-next.res[b].t); for(const k of rs.slice(0,rs.length-300)) delete next.res[k]; }
+  next.updated=Date.now();
+  chat.people=Object.assign({},chat.people,{[slug]:next});
+  saveChatCache(); renderChat(); publishChat(slug);
+}
+function publishChat(slug){
+  clearTimeout(pubTimers["c:"+slug]);
+  pubTimers["c:"+slug]=setTimeout(async()=>{
+    const doc=chat.people[slug]; if(!doc||!links.some(L=>L.up)) return;
+    let payload; try{ payload=await seal({s:slug,c:doc}); }catch(e){ return; }
+    for(const L of links) if(L.up){ try{ L.client.publish(SYNC.chatPrefix+slug,payload,{qos:1,retain:true}); }catch(e){} }
+  },250);
+}
+async function onChatMessage(L,topic,msg){
+  const slug=topic.slice(SYNC.chatPrefix.length); if(!/^[a-z0-9-]{1,40}$/.test(slug)) return;
+  const obj=await unseal(msg.toString()); if(!obj||obj.s!==slug||!obj.c) return;
+  const inc=cleanChat(obj.c); if(!inc) return;
+  L.seenC.add(slug);
+  const cur=chat.people[slug], merged=mergeChat(cur,inc), cm=canon(merged);
+  if(!cur||canon(cur)!==cm){ chat.people=Object.assign({},chat.people,{[slug]:merged}); saveChatCache(); scheduleRefresh(); }
+  if(canon(inc)!==cm) publishChat(slug);
+}
+function chatName(slug){ const p=state.people[slug]; return (p&&p.name)||slug; }
+function allChat(){
+  const out=[];
+  for(const k in chat.people){ const d=chat.people[k]; for(const id in d.msgs){ const m=d.msgs[id]; if(!m.del&&m.text) out.push(Object.assign({id,by:k},m)); } }
+  return out.sort((a,b)=>(a.ts-b.ts)||(a.id<b.id?-1:1));
+}
+function answered(id){ let best=null; for(const k in chat.people){ const r=chat.people[k].res[id]; if(r&&(!best||r.t>best.t)) best=r; } return !!(best&&best.v===1); }
+function fmtTime(ts){
+  const d=new Date(ts), age=Date.now()-ts;
+  return age<6*864e5 ? d.toLocaleString(undefined,{weekday:"short",hour:"numeric",minute:"2-digit"}) : d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+}
+function chatVisible(){ return WIDE.matches||chat.open; }
+function renderChat(){
+  const list=$("chatList"); if(!list) return;
+  const msgs=allChat(), byId={}; for(const m of msgs) byId[m.id]=m;
+  const openQs=msgs.filter(m=>m.q&&!answered(m.id));
+  $("chatTabOpen").textContent="Open questions ("+openQs.length+")";
+  $("chatTabAll").setAttribute("aria-pressed",chat.filter==="all"?"true":"false");
+  $("chatTabOpen").setAttribute("aria-pressed",chat.filter==="open"?"true":"false");
+  const shown=chat.filter==="open"?openQs:msgs;
+  const nearBottom=list.scrollHeight-list.scrollTop-list.clientHeight<90, prevTop=list.scrollTop;
+  list.textContent="";
+  if(!shown.length) list.append(h("p",{class:"chat-empty"},chat.filter==="open"?"No open questions. Tick “Ask as a question” when you post one and it stays here until someone marks it answered.":"Nothing here yet. Start the conversation."));
+  let prev=null;
+  for(const m of shown){
+    const mine=m.by===state.me;
+    const grouped=chat.filter==="all"&&prev&&prev.by===m.by&&m.ts-prev.ts<5*6e4&&!m.q&&!m.re;
+    const el=h("div",{class:"msg"+(mine?" mine":"")+(grouped?" grouped":"")+(m.q?" q":""),id:"m-"+m.id});
+    if(!grouped) el.append(h("div",{class:"mmeta"},h("b",null,chatName(m.by)),h("span",null,fmtTime(m.ts))));
+    if(m.re&&byId[m.re]){ const r=byId[m.re]; el.append(h("button",{class:"mquote",type:"button",onclick:()=>jumpTo(r.id)},chatName(r.by)+": "+r.text.slice(0,100))); }
+    el.append(h("p",{class:"mtext"},m.text));
+    const acts=h("div",{class:"macts"});
+    if(m.q){ const a=answered(m.id); acts.append(h("span",{class:"pill "+(a?"lead":"change")},a?"Answered":"Open question"),h("button",{type:"button",onclick:()=>setAnswered(m.id,!a)},a?"Reopen":"Mark answered")); }
+    acts.append(h("button",{type:"button",onclick:()=>startReply(m)},"Reply"));
+    if(mine) acts.append(h("button",{type:"button",onclick:()=>delChat(m.id)},"Delete"));
+    el.append(acts); list.append(el); prev=m;
+  }
+  if(chat.stick||nearBottom){ list.scrollTop=list.scrollHeight; chat.stick=false; } else list.scrollTop=prevTop;
+  const latest=msgs.length?msgs[msgs.length-1].ts:0;
+  if(chatVisible()&&latest>chat.lastSeen){ chat.lastSeen=latest; LS.set("jbst.chatSeen",String(latest)); }
+  const unread=msgs.filter(m=>m.ts>chat.lastSeen&&m.by!==state.me).length;
+  const badge=$("chatBadge"); badge.textContent=unread>9?"9+":String(unread); badge.hidden=!unread;
+}
+function jumpTo(id){
+  if(!$("m-"+id)){ chat.filter="all"; renderChat(); }
+  const e=$("m-"+id); if(!e) return;
+  e.scrollIntoView({block:"center"}); e.classList.add("flash"); setTimeout(()=>e.classList.remove("flash"),1400);
+}
+function startReply(m){
+  replyTo=m.id; $("chatReplyText").textContent="Replying to "+chatName(m.by)+": "+m.text.slice(0,80);
+  $("chatReply").hidden=false; $("chatInput").focus();
+}
+function clearReply(){ replyTo=null; $("chatReply").hidden=true; }
+function sendChat(){
+  const ta=$("chatInput"), text=ta.value.trim().slice(0,500); if(!text) return;
+  needMe(()=>{
+    const q=$("chatQ").checked, re=replyTo||"";
+    chat.stick=true;
+    mutateChat(state.me,d=>{ const now=Date.now(); d.msgs["c-"+state.me+"-"+now.toString(36)]={text,q,re,ts:now}; });
+    ta.value=""; $("chatQ").checked=false; clearReply();
+  });
+}
+function setAnswered(id,v){ needMe(()=>mutateChat(state.me,d=>{ d.res[id]={v:v?1:0,t:Date.now()}; })); }
+function delChat(id){ mutateChat(state.me,d=>{ d.msgs[id]={del:true,ts:Date.now()}; }); }
+function openChat(on){
+  chat.open=on; $("chat").classList.toggle("open",on); document.body.classList.toggle("chat-lock",on&&!WIDE.matches);
+  if(on){ chat.stick=true; renderChat(); setTimeout(()=>$("chatInput").focus(),30); }
+}
+$("chatForm").addEventListener("submit",e=>{ e.preventDefault(); sendChat(); });
+$("chatInput").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); sendChat(); } });
+$("chatTabAll").addEventListener("click",()=>{ chat.filter="all"; chat.stick=true; renderChat(); });
+$("chatTabOpen").addEventListener("click",()=>{ chat.filter="open"; chat.stick=true; renderChat(); });
+$("chatFab").addEventListener("click",()=>openChat(true));
+$("chatClose").addEventListener("click",()=>openChat(false));
+$("chatReplyX").addEventListener("click",clearReply);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&chat.open&&$("whoScrim").hidden&&!WIDE.matches) openChat(false); });
+if(WIDE.addEventListener) WIDE.addEventListener("change",()=>{ document.body.classList.toggle("chat-lock",chat.open&&!WIDE.matches); renderChat(); });
 
 /* ---------- vote bar ---------- */
 function voteBar(id,opts){
@@ -1005,6 +1203,7 @@ function refresh(){
   const s=$("status"), txt=s.lastElementChild;
   s.className="status"+(state.mode==="live"?" live":(state.mode==="connecting"?"":" warn"));
   txt.textContent={connecting:"Connecting…",live:"Live · "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
+  renderChat();
   if(!$("whoScrim").hidden) renderWhoNames();
   const b=$("banner");
   if(state.mode==="offline"){ b.hidden=false; b.textContent=""; b.append(h("b",null,"Can't reach the vote relay right now.")," Votes you cast are saved on this device and will sync when it reconnects."); }
