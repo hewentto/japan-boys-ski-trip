@@ -60,19 +60,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* hero */
 .hero{background:var(--paper);border-bottom:1px solid var(--line)}
-.eyebrow{font:600 .8rem/1.35 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .hero p.lede{max-width:62ch;font-size:1.08rem;color:var(--ink-2)}
 .route{display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;margin:0;padding:0;list-style:none}
 .route li{display:flex;align-items:center;font:600 .95rem/1.2 var(--body)}
-.route li .dot{width:11px;height:11px;border-radius:50%;border:2.5px solid var(--accent);background:var(--paper);margin-right:7px;flex:none}
-.route li.ski .dot{background:var(--accent)}
 .route li small{display:block;font-weight:400;color:var(--ink-2);font-size:.8rem}
 .route li + li::before{content:"";width:26px;height:2px;background:var(--line);margin:0 9px;flex:none}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.fact{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--snow)}
-.fact b{display:block;font:700 1.45rem/1.1 var(--display)}
-.fact span{font-size:.86rem;color:var(--ink-2)}
-.fact .k{font:600 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:block;margin-bottom:6px}
 @media (max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:420px){.facts{grid-template-columns:1fr}}
 
@@ -108,7 +101,6 @@ section{padding:40px 0 8px}
 .vbtn.up:hover,.vbtn.up[aria-pressed="true"]{border-color:var(--up);color:var(--up)}
 .vbtn.down:hover,.vbtn.down[aria-pressed="true"]{border-color:var(--down);color:var(--down)}
 .vbtn[aria-pressed="true"]{background:var(--tint)}
-.cbtn{border:0;background:none;color:var(--ice);cursor:pointer;font-weight:600;font-size:.88rem;padding:6px 4px;text-decoration:underline;text-underline-offset:3px}
 .who{font-size:.8rem;color:var(--ink-2);flex-basis:100%}
 .who:empty{display:none}
 .who .u{color:var(--up)}.who .d{color:var(--down)}
@@ -132,15 +124,7 @@ section{padding:40px 0 8px}
 
 /* decisions */
 .decisions{display:grid;gap:18px}
-.dec{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px}
-.dec > p{color:var(--ink-2);max-width:70ch;margin-top:4px}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
-.opt{border:1.5px solid var(--line);border-radius:8px;padding:13px 14px;display:flex;flex-direction:column;gap:6px;background:var(--snow)}
-.opt.leading{border-color:var(--up)}
-.opt .tags{display:flex;gap:6px;flex-wrap:wrap;min-height:20px}
-.opt ul{margin:0;padding-left:18px;font-size:.92rem;color:var(--ink-2);display:grid;gap:3px}
-.opt .cost{font-size:.88rem;font-weight:600}
-.opt .vb{margin-top:auto;padding-top:8px}
 
 /* stops: one card per place, major facts up top, ideas folded away */
 .stops{display:grid;gap:16px}
@@ -154,12 +138,6 @@ section{padding:40px 0 8px}
   .stop-photos::-webkit-scrollbar{display:none}
   .stop-photos .ph{scroll-snap-align:start}
 }
-.stop-body{padding:18px;display:grid;gap:14px;min-width:0}
-.stop-head{display:flex;gap:14px;align-items:center}
-.stop-n{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--snow);font:700 1.5rem/1 var(--display)}
-.stop.ski .stop-n{background:var(--accent);color:var(--accent-ink)}
-.stop-head h3{font-size:1.75rem;text-transform:uppercase}
-.stop-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .chip{font:600 .8rem/1 var(--body);padding:5px 9px;border-radius:999px;background:var(--tint);color:var(--ink);white-space:nowrap}
 .chip.ski{background:var(--accent);color:var(--accent-ink)}
 .chip.flag{background:none;border:1.5px solid var(--warn);color:var(--warn);padding:3.5px 8px}
@@ -175,24 +153,8 @@ section{padding:40px 0 8px}
 .kv dt{font:600 .74rem/1.5 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
 .kv dd{margin:0;max-width:72ch}
 @media (max-width:600px){.kv > div{grid-template-columns:1fr}}
-.blk{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px}
-.blk h4{font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.blk .sub{font:600 .74rem/1.2 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:6px}
 .rows{display:grid;gap:8px;list-style:none;margin:0;padding:0}
-.row-i{border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--snow);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;align-items:start}
-.row-i.leading{border-color:var(--up)}
-.row-i .rt{font-weight:600;grid-column:1}
-.row-i .rt .pill{margin-left:6px;vertical-align:1px}
-.row-i .rd{font-size:.89rem;color:var(--ink-2);grid-column:1}
-.row-i .rp{font-weight:600;font-size:.92rem;white-space:nowrap;text-align:right;grid-column:2;grid-row:1}
-.row-i .vb{grid-column:1/-1;margin-top:5px}
-.row-i.idea .rt{font-weight:500}
 .pill.book{color:var(--warn)}
-@media (min-width:700px){
-  .row-i.idea .vb{grid-column:2;grid-row:1 / span 2;margin-top:0;justify-content:flex-end;max-width:240px}
-  .row-i.idea .who{text-align:right}
-}
-@media (max-width:480px){.row-i .rp{grid-column:1;grid-row:auto;text-align:left}}
 details.fold > summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font:700 1.2rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;padding:2px 0}
 details.fold > summary::-webkit-details-marker{display:none}
 details.fold > summary::before{content:"";width:9px;height:9px;flex:none;border-right:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg);transition:transform .15s ease;margin:0 3px 0 2px}
@@ -202,13 +164,7 @@ details.fold > summary:hover{color:var(--accent)}
 details.fold[open] > summary{margin-bottom:8px}
 details.fold > .rows{margin-top:8px}
 @media (prefers-reduced-motion: reduce){details.fold > summary::before{transition:none}}
-.stop-vote{border-top:1px solid var(--line);padding-top:4px}
-.stop-vote.cand .vb::before{content:"Add this place"}
-.stop-vote .vb::before{content:"This stop";font:600 .74rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-right:4px}
 .legs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
-
-/* info blocks */
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 .card ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:.95rem}
 .card .price{font:700 1.5rem/1.1 var(--display)}
@@ -260,7 +216,7 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 :root{--shadow:0 1px 2px rgba(23,32,58,.05),0 6px 18px -8px rgba(23,32,58,.16)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 24px -12px rgba(0,0,0,.65)}}
 :root[data-theme="dark"]{--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 24px -12px rgba(0,0,0,.65)}
-.dec,.stop,.card,.check li,.how div,.board form,.calc form,.tablewrap,.board .note{box-shadow:var(--shadow)}
+.stop,.card,.check li,.how div,.board form,.calc form,.tablewrap,.board .note{box-shadow:var(--shadow)}
 .sec-head h2::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:var(--accent);margin-bottom:12px}
 
 /* hero photo */
@@ -269,14 +225,12 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 .hero-photo > img.in{opacity:1}
 .hero-photo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(9,14,28,.45) 0%,rgba(9,14,28,0) 22%,rgba(9,14,28,0) 44%,rgba(9,14,28,.55) 72%,rgba(9,14,28,.86) 100%)}
 .hero-copy{width:100%;padding-top:88px;padding-bottom:30px;display:grid;gap:10px}
-.hero-copy .eyebrow{color:#ffcdbd}
 .hero-copy h1{color:#fff;font-size:clamp(2.7rem,7.2vw,5.2rem);text-shadow:0 2px 28px rgba(0,0,0,.35)}
 .hero-sub{font:600 1.06rem/1.4 var(--body);color:rgba(255,255,255,.93);text-shadow:0 1px 12px rgba(0,0,0,.45)}
 .hero-credit{position:absolute;top:12px;right:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);border:0;border-radius:999px;padding:6px 11px;background:rgba(9,14,28,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font:600 .74rem/1.2 var(--body);cursor:zoom-in}
 .hero-credit:hover{background:rgba(9,14,28,.72)}
 .hero-credit svg{width:12px;height:12px;flex:none}
 .hero-credit span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hero-meta{padding-top:22px;padding-bottom:24px;display:grid;gap:18px}
 .route a{color:inherit;text-decoration:none;border-radius:4px}
 .route a:hover{color:var(--accent)}
 @media (max-width:600px){
@@ -303,8 +257,7 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 .cap svg{width:11px;height:11px;flex:none;opacity:.85}
 @media (prefers-reduced-motion: reduce){.ph img,.hero-photo > img{transition:none}.ph-btn:hover img{transform:none}}
 
-.opt,.card{overflow:hidden}
-.opt > .ph{margin:-13px -14px 6px;flex:none}
+.card{overflow:hidden}
 .card > .ph{margin:-16px -18px 4px;flex:none}
 
 /* lightbox */
@@ -327,7 +280,6 @@ html:has(.lb[open]){overflow:hidden}
 @media (max-width:600px){.lb-stage{padding:12px 8px 0}.lb-stage img{max-height:calc(100dvh - 170px);border-radius:4px}.lb-bar{padding:12px 14px calc(14px + env(safe-area-inset-bottom))}}
 
 .credits{margin-top:26px;display:grid;gap:8px}
-.card-sub{font:600 .76rem/1.2 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:-4px}
 
 /* group chat */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -360,71 +312,226 @@ html:has(.lb[open]){overflow:hidden}
 .chat-reply{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--ink-2);background:var(--tint);border-radius:6px;padding:4px 8px}
 .chat-reply span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .chat-reply button{border:0;background:none;color:var(--ice);font-weight:600;cursor:pointer;font-size:.8rem}
-.chat-fab{display:flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 18px;font-weight:600;box-shadow:0 6px 18px rgba(10,14,26,.28);cursor:pointer}
 .badge{background:var(--ink);color:var(--snow);border-radius:999px;min-width:22px;padding:2px 7px;font-size:.78rem;text-align:center}
-@media (min-width:1180px){
-  body{padding-right:380px}
-  .chat{position:fixed;top:0;right:0;bottom:0;width:380px;z-index:30}
-  .chat-fab,.chat-x{display:none}
-}
-@media (max-width:1179.98px){
-  .chat{position:fixed;inset:0;z-index:40;display:none;border-left:0}
-  .chat.open{display:flex}
-  .chat-fab{position:fixed;right:16px;bottom:16px;z-index:35}
-  body.chat-lock{overflow:hidden}
-}
-
-/* things to do: grouped lists with a time and cost line */
-.cats{display:grid;gap:14px;margin-top:10px}
 .cat{display:grid;gap:6px}
 .cat > .sub{margin-top:0}
-.row-i .rm{grid-column:1;display:flex;flex-wrap:wrap;gap:2px 12px;font-size:.82rem;font-weight:600;color:var(--ice)}
-.row-i .rm .sk{color:var(--accent)}
-.row-i.wanted{border-color:var(--up);background:linear-gradient(90deg,color-mix(in srgb,var(--up) 9%,var(--snow)),var(--snow) 60%)}
 .idea-add select{border:1.5px solid var(--line);border-radius:8px;padding:8px;background:var(--paper);max-width:140px}
 @media (max-width:520px){.idea-add{flex-wrap:wrap}.idea-add input{flex-basis:100%}}
-.stop.cand .stop-n{background:none;border:2px dashed var(--ink-2);color:var(--ink-2)}
 .src-h{margin:22px 0 10px;font-size:1.1rem;text-transform:uppercase}
 
-/* time check */
-.tbar{position:relative;display:block;height:10px;border-radius:999px;background:var(--tint);overflow:visible}
-.tbar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--ink-2);transition:width .25s ease}
-.tbar s{position:absolute;top:-3px;bottom:-3px;width:2.5px;margin-left:-1.25px;border-radius:2px;background:var(--ink);text-decoration:none}
-[data-k="light"] .tbar i{background:var(--ice)}
-[data-k="ok"] .tbar i{background:var(--up)}
-[data-k="full"] .tbar i{background:var(--warn)}
-[data-k="over"] .tbar i{background:var(--accent)}
-.tc{display:grid;gap:7px;font-size:.93rem}
-.tc p{max-width:72ch}
-.tc-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.tc-top b{font:700 1.2rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
-.tc-v,.tcr-v{font:600 .72rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;border:1px solid currentColor;color:var(--ink-2);white-space:nowrap}
-[data-k="light"] .tc-v,[data-k="light"] .tcr-v{color:var(--ice)}
-[data-k="ok"] .tc-v,[data-k="ok"] .tcr-v{color:var(--up)}
-[data-k="full"] .tc-v,[data-k="full"] .tcr-v{color:var(--warn)}
-[data-k="over"] .tc-v,[data-k="over"] .tcr-v{color:var(--accent)}
-.tcl-wrap{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:16px;display:grid;gap:10px;box-shadow:var(--shadow)}
-.tcl-head{display:grid;gap:4px}
-.tcl-head h3{font-size:1.35rem;text-transform:uppercase}
-.tcl-head p{max-width:78ch}
-.tcl{display:grid;gap:2px}
-.tcl-sub{font:600 .74rem/1.2 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:6px}
-.tcr{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(90px,1.4fr) 88px 120px;gap:4px 14px;align-items:center;padding:8px 6px;border-radius:8px;color:inherit;text-decoration:none}
-.tcr:hover{background:var(--tint)}
-.tcr-n{display:grid;line-height:1.2}
-.tcr-n b{font-weight:600}
-.tcr-n small{color:var(--ink-2);font-size:.8rem}
-.tcr-h{font-size:.86rem;color:var(--ink-2);text-align:right;white-space:nowrap}
-.tcr-v{justify-self:start}
-.tcr-add{grid-column:1/-1;font-size:.8rem;color:var(--ink-2);margin-top:-2px}
-@media (max-width:640px){
-  .tcr{grid-template-columns:1fr auto;gap:6px 10px}
-  .tcr .tbar{grid-column:1/-1;grid-row:2}
-  .tcr-h{grid-row:1;grid-column:2}
-  .tcr-v{grid-row:3;grid-column:1}
-  .tcr-add{grid-row:3;grid-column:2;margin:0;text-align:right}
+/* =====================================================================================================
+   Decision-first layout. Only what needs an answer this week gets colour and size:
+   a slim photo band, the navy "Your turn" board, the plan, the open round, then everything else folded.
+   ===================================================================================================== */
+.hero{border-bottom:0}
+.hero-photo{min-height:clamp(170px,26vh,270px)}
+.hero-copy{padding-top:52px;padding-bottom:16px;gap:2px}
+.hero-copy h1{font-size:clamp(2.1rem,6vw,3.6rem)}
+@media (max-width:600px){
+  .hero-photo{min-height:164px}
+  .hero-copy{padding-top:46px;padding-bottom:14px}
 }
-@media (prefers-reduced-motion: reduce){.tbar i{transition:none}}
+.sec-head h2::before{display:none}
+.flash{outline:3px solid var(--accent);outline-offset:3px;border-radius:var(--r)}
+
+/* status: the same dots as a trail map. Filled red = voting now, hollow = up next, green = decided */
+.st{display:inline-flex;align-items:center;gap:7px;font:600 .8rem/1.2 var(--body);color:var(--ink-2);white-space:nowrap}
+.st::before{content:"";width:10px;height:10px;border-radius:50%;border:2.5px solid var(--ink-2);flex:none}
+.st[data-k="open"]{color:var(--accent)}
+.st[data-k="open"]::before{background:var(--accent);border-color:var(--accent)}
+.st[data-k="done"]{color:var(--up)}
+.st[data-k="done"]::before{background:var(--up);border-color:var(--up)}
+
+/* sticky bar */
+.bar .wrap{gap:8px}
+.bar .chatb{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:34px;border:1.5px solid color-mix(in srgb,currentColor 35%,transparent);background:none;color:inherit;border-radius:999px;padding:5px 11px;font-weight:600;font-size:.84rem;cursor:pointer}
+.bar .chatb svg{width:15px;height:15px}
+.bar .chatb .badge{background:var(--accent);color:var(--accent-ink);min-width:18px;padding:1px 6px;font-size:.72rem}
+.me button{max-width:150px;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:480px){.bar .chatb .tx{display:none}.bar .chatb{padding:5px 9px}}
+
+/* first screen: your turn + the plan */
+.top{display:grid;gap:16px;margin-top:18px}
+@media (min-width:900px){.top{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}}
+.turn{background:var(--ink);color:var(--snow);border-radius:14px;padding:20px;display:grid;gap:10px}
+.turn h2{font-size:1.05rem;letter-spacing:.06em;opacity:.72}
+.turn-big{font:700 2.05rem/1.04 var(--display);text-transform:uppercase;text-wrap:balance}
+.turn-sub{font-size:.95rem;opacity:.86;max-width:46ch}
+.turn-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.turn-list a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 12px;border-radius:9px;background:color-mix(in srgb,var(--snow) 11%,transparent);color:inherit;text-decoration:none;font-weight:600}
+.turn-list a:hover{background:color-mix(in srgb,var(--snow) 18%,transparent)}
+.turn-list .mk{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--accent);display:grid;place-items:center}
+.turn-list .ok .mk{border-color:#52c492;background:#52c492;color:#0d1322}
+.turn-list .mk svg{width:11px;height:11px}
+.turn-list .go{font-size:.82rem;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink)}
+.turn-list .ok .go{background:none;color:inherit;opacity:.7;padding-right:0}
+.turn-ok{margin-top:4px;border:0;border-radius:10px;min-height:48px;padding:10px 14px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:1rem;cursor:pointer}
+.turn-ok:hover{filter:brightness(1.07)}
+.turn-note{font-size:.82rem;opacity:.72}
+.turn-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem;font-weight:600}
+.turn-links a{color:inherit;text-underline-offset:3px}
+.turn-news{border-top:1px solid color-mix(in srgb,var(--snow) 22%,transparent);padding-top:10px;font-size:.86rem}
+.turn-news b{font-weight:600}
+.turn-news ul{margin:4px 0 0;padding-left:18px;opacity:.86}
+.turn :focus-visible{outline-color:var(--snow)}
+
+.plan{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px;box-shadow:var(--shadow);min-width:0}
+.plan h2{font-size:1.5rem}
+.plan-rows{display:grid}
+.plan-rows a{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);color:inherit;text-decoration:none}
+.plan-rows a:hover .v{color:var(--ice)}
+.plan-rows .k{font-size:.82rem;font-weight:600;color:var(--ink-2)}
+.plan-rows .v{font-weight:600;font-size:.96rem;line-height:1.35}
+.plan-rows .v small{display:block;font-weight:500;font-size:.78rem;color:var(--up)}
+.plan-route{border-top:1px solid var(--line);padding-top:11px;display:grid;gap:8px}
+.plan-route > b{font-size:.82rem;font-weight:600;color:var(--ink-2)}
+.legs2{list-style:none;counter-reset:leg;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:8px 12px}
+.legs2 li{counter-increment:leg}
+.legs2 a{display:grid;grid-template-columns:24px minmax(0,1fr);gap:0 8px;color:inherit;text-decoration:none;line-height:1.25}
+.legs2 a::before{content:counter(leg);grid-row:1 / span 2;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--snow);font:700 .9rem/1 var(--display)}
+.legs2 .ski a::before{background:var(--accent);color:var(--accent-ink)}
+.legs2 b{font-weight:600}
+.legs2 small{grid-column:2;color:var(--ink-2);font-size:.78rem}
+.legs2 a:hover b{color:var(--ice)}
+.plan-cost{border-top:1px solid var(--line);padding-top:11px}
+.plan-cost b{display:block;font:700 1.45rem/1.1 var(--display)}
+.plan-cost small{color:var(--ink-2);font-size:.84rem}
+.rounds{list-style:none;margin:0;padding:11px 0 0;border-top:1px solid var(--line);display:grid;gap:9px}
+.rounds a{display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 10px;color:inherit;text-decoration:none;line-height:1.3}
+.rounds a::before{content:"";grid-row:1 / span 2;margin-top:4px;width:10px;height:10px;border-radius:50%;border:2.5px solid var(--ink-2)}
+.rounds [data-k="open"] a::before{background:var(--accent);border-color:var(--accent)}
+.rounds [data-k="done"] a::before{background:var(--up);border-color:var(--up)}
+.rounds b{font-weight:600;font-size:.95rem}
+.rounds [data-k="next"] b{font-weight:500}
+.rounds small{grid-column:2;color:var(--ink-2);font-size:.8rem}
+.plan > .lnk{justify-self:start}
+
+/* text buttons */
+.lnk{border:0;background:none;padding:6px 0;color:var(--ice);font-weight:600;font-size:.88rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.lnk[aria-pressed="true"]{color:var(--down)}
+
+/* decision cards */
+.now-h{display:flex;align-items:center;gap:12px}
+.now-h::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--accent);flex:none}
+.zone-h{font-size:1.5rem;text-transform:uppercase;margin-top:34px}
+.zone-p{margin:4px 0 10px}
+.dcs{display:grid;gap:16px}
+.dc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 10px;display:grid;gap:12px;box-shadow:var(--shadow);min-width:0}
+.dc-head{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between}
+.dc-head h3{font-size:1.55rem;text-transform:uppercase}
+.dc-blurb{color:var(--ink-2);max-width:72ch;font-size:.96rem}
+.dc-opts{display:grid;gap:10px}
+@media (min-width:760px){.dc-opts{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}}
+.o{border:1.5px solid var(--line);border-radius:8px;padding:12px;background:var(--snow);display:flex;flex-direction:column;gap:8px;min-width:0}
+.o.lead{border-color:var(--up);box-shadow:inset 4px 0 0 var(--up)}
+.o-top{display:flex;gap:10px;align-items:flex-start}
+.o-top .ph{flex:none;width:58px;aspect-ratio:1;border-radius:6px}
+.o-top .cap{display:none}
+.o-tt{min-width:0;display:grid;gap:6px}
+.o h4{font:600 1.02rem/1.3 var(--body)}
+.o-tags{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.o-tags:empty{display:none}
+.tag{font:600 .74rem/1 var(--body);padding:4px 7px;border-radius:4px;background:var(--tint);color:var(--ink-2);white-space:nowrap}
+.tag.lead{background:none;border:1px solid var(--up);color:var(--up);padding:3px 6px}
+.o-cost{font-weight:600;font-size:.9rem}
+.o ul{margin:0;padding-left:18px;font-size:.9rem;color:var(--ink-2);display:grid;gap:3px}
+.more > summary{cursor:pointer;font-size:.86rem;font-weight:600;color:var(--ice);padding:2px 0}
+.more > ul{margin-top:6px}
+.o-vote{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.yn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1.5px solid var(--line);background:var(--paper);border-radius:8px;font-weight:600;font-size:.9rem;line-height:1.15;cursor:pointer;padding:6px 8px}
+.yn svg{width:15px;height:15px;flex:none}
+.yn.yes:hover:not(:disabled){border-color:var(--up);color:var(--up)}
+.yn.no:hover:not(:disabled){border-color:var(--down);color:var(--down)}
+.yn.yes[aria-pressed="true"]{background:var(--up);border-color:var(--up);color:var(--paper)}
+.yn.no[aria-pressed="true"]{background:var(--down);border-color:var(--down);color:var(--paper)}
+.yn:disabled{opacity:.55;cursor:default}
+.o-who{font-size:.8rem;color:var(--ink-2);line-height:1.4}
+.o-who:empty{display:none}
+.o-who .u{color:var(--up);font-weight:600}
+.o-who .d{color:var(--down);font-weight:600}
+.dc-foot{display:grid;gap:3px;border-top:1px solid var(--line);padding-top:10px;font-size:.9rem}
+.dc-if{font-weight:600}
+.dc-in{color:var(--ink-2)}
+.dc-acts{display:flex;flex-wrap:wrap;gap:2px 18px;align-items:center}
+.dc.closed .o.lost{display:none}
+.dc.closed.show-all .o.lost{display:flex;opacity:.8}
+.dc.roll > .o-vote{max-width:560px}
+.dc > .thread{margin-top:0}
+details.round{margin-top:10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+details.round[open]{background:none;border-color:transparent;padding:12px 0}
+details.round > summary{font-size:1.15rem}
+#voteNext > .dc{margin-top:16px}
+
+/* explore: flat rows, hearts, nothing boxed that doesn't need a decision */
+.sxs{display:grid;gap:8px}
+.sub-h{font-size:1.3rem;text-transform:uppercase;margin:26px 0 4px}
+details.sx{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+details.sx > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto 10px;gap:12px;align-items:center;padding:12px 16px}
+details.sx > summary::-webkit-details-marker{display:none}
+details.sx > summary::after{content:"";width:9px;height:9px;border-right:2.5px solid var(--ink-2);border-bottom:2.5px solid var(--ink-2);transform:rotate(45deg);margin-top:-5px;transition:transform .15s ease}
+details.sx[open] > summary::after{transform:rotate(-135deg);margin-top:4px}
+@media (prefers-reduced-motion: reduce){details.sx > summary::after{transition:none}}
+.sx-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--snow);font:700 1.05rem/1 var(--display)}
+.sx-n.ski{background:var(--accent);color:var(--accent-ink)}
+.sx-n.cand{background:none;border:2px dashed var(--ink-2);color:var(--ink-2)}
+.sx-name{display:grid;line-height:1.2;min-width:0}
+.sx-name b{font:700 1.3rem/1.1 var(--display);text-transform:uppercase}
+.sx-name small{color:var(--ink-2);font-size:.82rem}
+.sx-count{font-size:.8rem;color:var(--ink-2);text-align:right}
+@media (max-width:480px){.sx-count{max-width:76px}}
+.sx-body{padding:16px;display:grid;gap:14px;min-width:0}
+.sx-beds{font-size:.92rem;line-height:1.6}
+.sx-beds b{font-weight:600}
+.sx-ideas{display:grid;gap:8px;min-width:0;border-top:1px solid var(--line);padding-top:14px}
+.sx-ideas h4{font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.sx-time{font-size:.86rem;color:var(--ink-2);max-width:72ch}
+.fchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}
+.fchips::-webkit-scrollbar{display:none}
+.fchips button{flex:none;border:1.5px solid var(--line);background:var(--snow);border-radius:999px;min-height:34px;padding:5px 12px;font-weight:600;font-size:.84rem;cursor:pointer;white-space:nowrap}
+.fchips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--snow)}
+.ideas{list-style:none;margin:0;padding:0}
+.idea{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 10px;align-items:center;border-top:1px solid var(--line)}
+.ideas > .idea:first-child,.cat-h + .idea{border-top:0}
+.idea-t{border:0;background:none;text-align:left;padding:9px 0;display:grid;gap:2px;min-width:0}
+button.idea-t{cursor:pointer}
+.idea-tt{font-weight:500;font-size:.95rem;line-height:1.35}
+.idea.wanted .idea-tt{font-weight:600}
+.idea-m{display:flex;flex-wrap:wrap;gap:0 12px;font-size:.8rem;font-weight:600;color:var(--ice)}
+.idea-m .sk{color:var(--accent)}
+.idea-m .bk{color:var(--warn)}
+.idea-m .del{border:0;background:none;padding:0;color:var(--ink-2);cursor:pointer;font-size:.8rem;text-decoration:underline}
+.heart{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:46px;min-height:40px;border:1.5px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink-2);cursor:pointer;font-weight:600;font-size:.88rem;padding:0 11px}
+.heart svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7}
+.heart:hover{border-color:var(--accent);color:var(--accent)}
+.heart[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.heart[aria-pressed="true"] svg{fill:currentColor}
+.heart .num:empty{display:none}
+.idea-d{grid-column:1 / -1;font-size:.88rem;color:var(--ink-2);padding:0 0 10px;display:grid;gap:4px;max-width:72ch}
+.idea-x{display:flex;flex-wrap:wrap;gap:0 14px;align-items:center}
+.cat-h{font:600 .82rem/1.2 var(--body);color:var(--ink-2);padding:16px 0 2px}
+
+/* everything else, folded */
+.folds{display:grid;gap:8px}
+.folds > details.fold{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+.folds > details.fold > .fold-body{display:grid;gap:14px;padding:6px 0 6px}
+.folds .lede{color:var(--ink-2);max-width:75ch;font-size:.95rem}
+.board form{box-shadow:none}
+
+/* group chat: a drawer you open, not a fixture */
+.chat{position:fixed;inset:0;z-index:40;display:none;border-left:0}
+.chat.open{display:flex}
+body.chat-lock{overflow:hidden}
+@media (min-width:700px){
+  .chat{left:auto;width:400px;border-left:1px solid var(--line);box-shadow:-18px 0 40px -20px rgba(10,14,26,.45)}
+  body.chat-lock{overflow:auto}
+}
+
+/* folded headings: caret on the left, title and note stacked beside it */
+details.round > summary,.folds > details.fold > summary{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 8px;align-items:center}
+details.round > summary .count,.folds > details.fold > summary .count{grid-column:2}
+.folds > details.fold > summary{font-size:1.15rem}
+details.fold > summary::before{border-color:var(--ink-2)}
+details.fold > summary:hover{color:inherit}
 </style>
 </head>
 <body>
@@ -434,29 +541,8 @@ html:has(.lb[open]){overflow:hidden}
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/960px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1920px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1920w" sizes="(min-width: 1180px) calc(100vw - 380px), 100vw" alt="Mount Yotei rising behind the snowy slopes of Niseko Annupuri" style="object-position:32% 50%" fetchpriority="high" decoding="async" onload="this.classList.add('in')">
     <button type="button" class="hero-credit" data-ph="hero1" aria-label="View larger photo: Mount Yotei rising behind the snowy slopes of Niseko Annupuri"><span>Mt. Yotei from Niseko Annupuri</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="wrap hero-copy">
-      <p class="eyebrow">Draft 4 · the big picture, plus everything worth doing at each stop · prices checked Nov 9, 2026</p>
       <h1>Japan Boys Ski Trip</h1>
-      <p class="hero-sub">Sat Feb 6 to Sun Feb 21, 2027 · Hokkaido, Tokyo and Kyoto</p>
-    </div>
-  </div>
-  <div class="wrap hero-meta">
-    <p class="lede">Sixteen days. Sapporo's Snow Festival, a Hokkaido road trip with four ski days at Furano and Niseko, then Tokyo, Mt. Fuji and a night in Kyoto. Saturday Feb 6 to Sunday Feb 21, 2027, using all ten days off and the weekends on both ends.</p>
-    <ol class="route" aria-label="Route">
-      <li><span class="dot"></span><a href="#flights">Fly out<small>Sat Feb 6</small></a></li>
-      <li><span class="dot"></span><a href="#i-s-sapporo">Sapporo<small>2 nights, Snow Festival</small></a></li>
-      <li><span class="dot"></span><a href="#i-s-otaru">Otaru + Yoichi<small>1 night</small></a></li>
-      <li class="ski"><span class="dot"></span><a href="#i-mid-furano">Furano<small>2 nights, 1 ski day</small></a></li>
-      <li class="ski"><span class="dot"></span><a href="#i-s-niseko">Niseko<small>4 nights, 3 ski days</small></a></li>
-      <li><span class="dot"></span><a href="#i-s-niseko">Lake Toya + Hell Valley<small>day stop</small></a></li>
-      <li><span class="dot"></span><a href="#i-s-tokyo">Tokyo + Fuji<small>4 nights</small></a></li>
-      <li><span class="dot"></span><a href="#i-s-kyoto">Kyoto<small>1 night</small></a></li>
-      <li><span class="dot"></span><a href="#flights">Fly home<small>Sun Feb 21</small></a></li>
-    </ol>
-    <div class="facts">
-      <div class="fact"><span class="k">Skiing</span><b>4 ski days</b><span>Three at Niseko United, one at Furano</span></div>
-      <div class="fact"><span class="k">Airports</span><b>CTS in, HND out</b><span>Fly into Sapporo New Chitose, home from Tokyo Haneda</span></div>
-      <div class="fact"><span class="k">Time off</span><b>10 work days</b><span>Feb 8–12 and 15–19, 14 nights in Japan</span></div>
-      <div class="fact"><span class="k">Rough cost each</span><b class="num" id="heroCost">…</b><span id="heroCostSub">flights, beds, food, transport</span></div>
+      <p class="hero-sub">Sat Feb 6 to Sun Feb 21, 2027. Hokkaido, Tokyo and Kyoto.</p>
     </div>
   </div>
 </header>
@@ -464,15 +550,12 @@ html:has(.lb[open]){overflow:hidden}
 <div class="bar">
   <div class="wrap">
     <nav aria-label="Sections">
-      <a href="#flights">Flights</a>
-      <a href="#stops">Where we go</a>
-      <a href="#extra">Could add</a>
-      <a href="#decisions">Trip-wide votes</a>
-      <a href="#costs">Costs</a>
-      <a href="#booking">Booking order</a>
-      <a href="#board">Proposals</a>
+      <a href="#vote">Vote</a>
+      <a href="#explore">Explore</a>
+      <a href="#more">More</a>
     </nav>
     <div class="status" id="status"><i></i><span>Connecting…</span></div>
+    <button type="button" class="chatb" id="chatFab" aria-label="Group chat"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tx">Chat</span><span class="badge" id="chatBadge" hidden>0</span></button>
     <div class="me"><button type="button" id="meBtn">Pick your name</button></div>
   </div>
 </div>
@@ -480,28 +563,91 @@ html:has(.lb[open]){overflow:hidden}
 <main class="wrap">
   <div id="banner" class="banner" hidden></div>
 
-  <div class="how">
-    <div><b>1. Say who you are</b>You are asked once and this device remembers. Change it any time from the button at the top right.</div>
-    <div><b>2. Vote on the stops and what to do</b>Flights, stops, beds and the trip-wide choices, plus the things to do in each place. The time check adds up the picks so we can see which stops need more days and which we can speedrun.</div>
-    <div><b>3. Push back</b>Comment on any stop, post a change proposal for a vote, or ask anything in the group chat.</div>
+  <div class="top">
+    <div class="turn" id="turn" role="region" aria-labelledby="turnH"></div>
+    <div class="plan" id="plan"></div>
   </div>
 
-  <section id="flights">
+  <section id="vote">
+    <div id="voteNow"></div>
+    <div id="voteNext"></div>
+    <div id="voteDone"></div>
+  </section>
+
+  <section id="explore">
     <div class="sec-head">
-      <h2>Flights</h2>
-      <p>We are coming from more than one city, and the flight is more fun together, so the plan is one shared flight across the Pacific out of San Francisco. Everyone gets themselves to it however works best, then we all fly on to Sapporo together. Fares below were checked on Nov 9, 2026, per person.</p>
+      <h2>Explore</h2>
+      <p>Nothing here needs a decision. Open a stop, heart what sounds fun, and we'll work out the days once we're there. Each stop starts with five picks; the full list is one tap away.</p>
     </div>
-    <ul class="legs">
+    <div class="sxs" id="stopList"></div>
+    <h3 class="sub-h">Not on the route yet</h3>
+    <p class="muted small" style="margin-bottom:10px;max-width:72ch">Each of these would take a night or two from Tokyo or Kyoto. Have a look, and say which you'd want in the add-a-stop poll in round 4.</p>
+    <div class="sxs" id="extraList"></div>
+  </section>
+
+  <section id="more">
+    <div class="sec-head">
+      <h2>Costs, booking and feedback</h2>
+      <p>The reference pile. Open what you need.</p>
+    </div>
+    <div class="folds">
+      <details class="fold" id="board">
+        <summary>Proposals and feedback <span class="count" id="boardCount"></span></summary>
+        <div class="fold-body">
+          <p class="lede">Everything anyone has posted, change proposals first. Use the form for anything that doesn't belong to one decision or stop.</p>
+          <div class="board">
+            <div class="list" id="boardList"></div>
+            <form id="boardForm">
+        <h3>Add yours</h3>
+        <label for="bAbout">About<select id="bAbout"></select></label>
+        <label for="bText">What should change, or what do you think?<textarea id="bText" maxlength="600" placeholder="Drop Kyoto and add a second ski resort…"></textarea></label>
+        <div class="compose"><div class="row">
+          <button class="btn hot" type="submit" data-kind="change">Post change proposal</button>
+          <button class="btn alt" type="submit" data-kind="comment">Post as feedback</button>
+        </div></div>
+      </form>
+          </div>
+        </div>
+      </details>
+      <details class="fold" id="costs">
+        <summary>What it costs <span class="count">per person, adjustable</span></summary>
+        <div class="fold-body">
+          <p class="lede">Per person, in US dollars at about ¥158 to $1 (the October 2026 level). Lodging on Lean and Middle is from real Airbnb and Booking.com prices for our dates and four people, checked Nov 9, 2026. Plush lodging, food, flights and the van are estimates. Lift tickets, gear rental, buses and the bullet train are published 2026–27 prices. Change the inputs to match your situation.</p>
+          <div class="calc">
+      <form id="calcForm">
+        <label for="cSize">People sharing<input type="number" id="cSize" min="2" max="10" value="4"></label>
+        <label for="cTier">Comfort level
+          <select id="cTier"><option value="0">Lean: cheapest good stays</option><option value="1" selected>Middle: nicer cheap stays</option><option value="2">Plush: hotels and condos (estimate)</option></select>
+        </label>
+        <label class="chk" for="cRent"><input type="checkbox" id="cRent" checked> I'm renting skis or a board</label>
+        <label class="chk" for="cVan"><input type="checkbox" id="cVan" checked> Group rents a van in Hokkaido</label>
+        <label class="chk" for="cKyoto"><input type="checkbox" id="cKyoto" checked> Night in Kyoto</label>
+      </form>
+      <div class="tablewrap">
+        <table><thead><tr><th>Item</th><th>Basis</th><th class="r">Per person</th></tr></thead><tbody id="calcBody"></tbody></table>
+      </div>
+    </div>
+          <p class="small muted" style="margin-top:12px;max-width:75ch">Also know: Japan's departure tax tripled to about $19 on July 1, 2026 and is inside your ticket price. Since Nov 1, 2026 tax-free shopping is pay full price in store, then claim the 10% back at the airport before you fly, so leave time at Haneda. Hotels collect a small local lodging tax at the desk. No tipping.</p>
+        </div>
+      </details>
+      <details class="fold" id="booking">
+        <summary>Booking order <span class="count">what gets locked in, and when</span></summary>
+        <div class="fold-body">
+          <p class="lede">Only the things that have to be booked ahead: flights, beds and the van. Each round above unlocks the next batch.</p>
+          <ol class="check" id="bookList"></ol>
+        </div>
+      </details>
+      <details class="fold" id="fares">
+        <summary>Fares we checked <span class="count">Nov 9, 2026, per person</span></summary>
+        <div class="fold-body">
+          <ul class="legs">
       <li class="leg"><b>Out · Sat Feb 6</b><span>All of us on United from SFO at 10:20 AM, landing Tokyo Haneda Sun Feb 7 at 2:50 PM.</span></li>
       <li class="leg"><b>Hop · Sun Feb 7</b><span>Haneda to Sapporo together that evening, about $90 (JAL 6:35 PM, Skymark 6:40 PM).</span></li>
       <li class="leg"><b>Hop · Tue Feb 16</b><span>Sapporo to Tokyo Haneda, Air Do or Skymark, $63–76.</span></li>
       <li class="leg"><b>Home · Sun Feb 21</b><span>Tokyo Haneda to home. Lands the same day, work Monday.</span></li>
     </ul>
-    <p class="findtip"><b>How to search.</b> Use something that can stitch different airlines and separate legs together, not only round trips on one airline group. Google Flights Multi-city prices one protected ticket. <a href="https://matrix.itasoftware.com" target="_blank" rel="noopener">ITA Matrix</a> searches almost any combination of airlines, but you book elsewhere. <a href="https://www.kiwi.com" target="_blank" rel="noopener">Kiwi.com</a> and Skyscanner build self-transfer combinations out of separate tickets, which are often cheapest, but nobody rebooks you if the first flight runs late, so leave a long layover. We ran all three: none beat a Tokyo round trip plus a cheap flight to Sapporo.</p>
-    <div class="grid2" id="flightCards"></div>
-    <details class="fold" style="margin-top:16px">
-      <summary>Fares we checked <span class="count">Nov 9, 2026, per person</span></summary>
-      <div class="tablewrap">
+          <p class="findtip"><b>How to search.</b> Use something that can stitch different airlines and separate legs together, not only round trips on one airline group. Google Flights Multi-city prices one protected ticket. <a href="https://matrix.itasoftware.com" target="_blank" rel="noopener">ITA Matrix</a> searches almost any combination of airlines, but you book elsewhere. <a href="https://www.kiwi.com" target="_blank" rel="noopener">Kiwi.com</a> and Skyscanner build self-transfer combinations out of separate tickets, which are often cheapest, but nobody rebooks you if the first flight runs late, so leave a long layover. We ran all three: none beat a Tokyo round trip plus a cheap flight to Sapporo.</p>
+          <div class="tablewrap">
         <table>
           <thead><tr><th>Fare</th><th>Route</th><th class="r">Price</th><th>Where</th></tr></thead>
           <tbody>
@@ -522,86 +668,13 @@ html:has(.lb[open]){overflow:hidden}
           </tbody>
         </table>
       </div>
-    </details>
-  </section>
-
-  <section id="stops">
-    <div class="sec-head">
-      <h2>Where we go</h2>
-      <p>Six stops, in order, with a recommended length for each. Every card shows how we get there, where we ski and where we sleep, then everything worth doing there, grouped by kind with a rough time and cost. Nothing is scheduled. Vote up what you would actually do: the time check adds up those picks against the free time at each stop, so if a stop has a ton we want, it gets another night, and if it has little, we speedrun it.</p>
-    </div>
-    <div class="tcl-wrap" id="timeCheck"></div>
-    <div class="stops" id="stopList"></div>
-  </section>
-
-  <section id="extra">
-    <div class="sec-head">
-      <h2>Places we could add</h2>
-      <p>Not on the route yet. Each one would take nights from Tokyo or Kyoto, or replace a Hokkaido stop, and the card says which. Vote a place up if you would go and vote on what you would do there. Whatever the group wants most goes into the next draft.</p>
-    </div>
-    <div class="stops" id="extraList"></div>
-  </section>
-
-  <section id="decisions">
-    <div class="sec-head">
-      <h2>Trip-wide votes</h2>
-      <p>Four choices that shape the whole route. The stops above assume the option marked Draft pick in each box. Vote up what you want and down what you would veto. Whatever leads gets written into the next draft.</p>
-    </div>
-    <div class="decisions" id="decList"></div>
-  </section>
-
-  <section id="costs">
-    <div class="sec-head">
-      <h2>What it costs</h2>
-      <p>Per person, in US dollars at about ¥158 to $1 (the October 2026 level). Lodging on Lean and Middle is from real Airbnb and Booking.com prices for our dates and four people, checked Nov 9, 2026. Plush lodging, food, flights and the van are estimates. Lift tickets, gear rental, buses and the bullet train are published 2026–27 prices. Change the inputs to match your situation.</p>
-    </div>
-    <div class="calc">
-      <form id="calcForm">
-        <label for="cSize">People sharing<input type="number" id="cSize" min="2" max="10" value="4"></label>
-        <label for="cTier">Comfort level
-          <select id="cTier"><option value="0">Lean: cheapest good stays</option><option value="1" selected>Middle: nicer cheap stays</option><option value="2">Plush: hotels and condos (estimate)</option></select>
-        </label>
-        <label class="chk" for="cRent"><input type="checkbox" id="cRent" checked> I'm renting skis or a board</label>
-        <label class="chk" for="cVan"><input type="checkbox" id="cVan" checked> Group rents a van in Hokkaido</label>
-        <label class="chk" for="cKyoto"><input type="checkbox" id="cKyoto" checked> Night in Kyoto</label>
-      </form>
-      <div class="tablewrap">
-        <table><thead><tr><th>Item</th><th>Basis</th><th class="r">Per person</th></tr></thead><tbody id="calcBody"></tbody></table>
-      </div>
-    </div>
-    <p class="small muted" style="margin-top:12px;max-width:75ch">Also know: Japan's departure tax tripled to about $19 on July 1, 2026 and is inside your ticket price. Since Nov 1, 2026 tax-free shopping is pay full price in store, then claim the 10% back at the airport before you fly, so leave time at Haneda. Hotels collect a small local lodging tax at the desk. No tipping.</p>
-  </section>
-
-  <section id="booking">
-    <div class="sec-head">
-      <h2>Booking order</h2>
-      <p>Only the things that have to be locked in ahead: flights, beds and the van. Everything else can wait for the votes.</p>
-    </div>
-    <ol class="check" id="bookList"></ol>
-  </section>
-
-  <section id="board">
-    <div class="sec-head">
-      <h2>Proposals and feedback</h2>
-      <p>Everything anyone posts on this page lands here: change proposals first, ranked by votes, then comments. Use the form for ideas that do not belong to one stop or decision.</p>
-    </div>
-    <div class="board">
-      <div class="list" id="boardList"></div>
-      <form id="boardForm">
-        <h3>Add yours</h3>
-        <label for="bAbout">About<select id="bAbout"></select></label>
-        <label for="bText">What should change, or what do you think?<textarea id="bText" maxlength="600" placeholder="Drop Kyoto and add a second ski resort…"></textarea></label>
-        <div class="compose"><div class="row">
-          <button class="btn hot" type="submit" data-kind="change">Post change proposal</button>
-          <button class="btn alt" type="submit" data-kind="comment">Post as feedback</button>
-        </div></div>
-      </form>
-    </div>
-  </section>
-
-  <section id="sources">
-    <div class="sec-head"><h2>Sources</h2><p>Checked Nov 9, 2026. Prices are converted from yen at about ¥158 to $1, or are estimates where the page says so.</p></div>
-    <ul class="sources">
+        </div>
+      </details>
+      <details class="fold" id="sources">
+        <summary>Sources and photo credits</summary>
+        <div class="fold-body">
+          <p class="lede">Checked Nov 9, 2026. Prices are converted from yen at about ¥158 to $1, or are estimates where the page says so.</p>
+          <ul class="sources">
       <li><a href="https://thejapanode.com/guides/japan-ski-trip-cost">Niseko lift ticket prices 2026–27</a></li>
       <li><a href="https://todolist-japan.com/en/furano-ski-guide/">Furano lift ticket prices 2026–27</a></li>
       <li><a href="https://watabi.org/en/articles/asahikawa-zoo-guide">Asahiyama Zoo and the penguin walk</a></li>
@@ -695,10 +768,13 @@ html:has(.lb[open]){overflow:hidden}
       <p class="small muted">Every photo is from Wikimedia Commons, shown under the license listed. Tap any photo on the page to see it bigger.</p>
       <ul class="sources" id="photoCredits"></ul>
     </div>
+        </div>
+      </details>
+    </div>
   </section>
 </main>
 
-<footer><div class="wrap">Draft 4. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay and are copied to a public backup every few minutes, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
+<footer><div class="wrap">Draft 5. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay and are copied to a public backup every few minutes, so keep it to trip talk. Prices checked Nov 9, 2026.</div></footer>
 
 <dialog class="lb" id="lb" aria-labelledby="lbCap">
   <div class="lb-stage"><img id="lbImg" alt=""></div>
@@ -733,7 +809,7 @@ html:has(.lb[open]){overflow:hidden}
     </div>
   </form>
 </aside>
-<button type="button" class="chat-fab" id="chatFab">Group chat <span class="badge" id="chatBadge" hidden>0</span></button>
+
 
 <div class="scrim" id="whoScrim" hidden>
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
@@ -1137,7 +1213,7 @@ const ALIAS = {
   d0206:"flight-together", d0207:"s-sapporo", d0208:"s-sapporo", d0209:"s-otaru", d0210:"mid-furano", d0211:"mid-furano",
   d0212:"s-niseko", d0213:"s-niseko", d0214:"s-niseko", d0215:"s-niseko", d0216:"s-niseko",
   d0217:"s-tokyo", d0218:"s-tokyo", d0219:"s-kyoto", d0220:"s-kyoto", d0221:"s-tokyo",
-  mid:"mid-furano", lodge:"s-niseko", wild:"s-niseko", "roll-gear":"s-niseko", thu:"s-tokyo", tokyo:"s-tokyo",
+  mid:"mid-furano", lodge:"s-niseko", wild:"s-niseko", "roll-gear":"gear", thu:"s-tokyo", tokyo:"s-tokyo",
   "stay-0":"s-sapporo", "stay-1":"s-otaru", "stay-2":"mid-furano", "stay-3":"s-niseko", "stay-4":"s-tokyo", "stay-5":"s-kyoto",
   "trans-0":"s-sapporo", "trans-1":"wheels", "trans-2":"wheels", "trans-3":"s-tokyo", "trans-4":"wheels"
 };
@@ -1375,7 +1451,9 @@ function allNotes(){
   for(const k in state.people){ const p=state.people[k]; for(const id in p.notes){ const n=p.notes[id]; if(!n.del&&n.text) out.push(Object.assign({id,by:k,byName:p.name||k},n)); } }
   return out;
 }
-const notesFor=id=>allNotes().filter(n=>n.item===id||ALIAS[n.item]===id||PARENT[n.item]===id).sort((a,b)=>(a.ts||0)-(b.ts||0));
+/* a comment shows on the thing it was posted on, on whatever replaced that thing, and on the decision or stop that holds it */
+const homeOf=item=>PARENT[ALIAS[item]||item]||null;
+const notesFor=id=>allNotes().filter(n=>n.item===id||ALIAS[n.item]===id||PARENT[n.item]===id||homeOf(n.item)===id).sort((a,b)=>(a.ts||0)-(b.ts||0));
 
 /* ---------- writes ---------- */
 function mutate(slug, fn){
@@ -1479,7 +1557,7 @@ function startSync(){
 
 /* ---------- group chat: one document per person on its own relay topic ---------- */
 const chat={ people:{}, filter:"all", open:false, stick:true, lastSeen:+(LS.get("jbst.chatSeen")||0) };
-const WIDE=window.matchMedia("(min-width:1180px)");
+const WIDE={matches:false};   /* the chat is a drawer at every width now */
 let replyTo=null;
 function cleanChat(d){
   if(!d||typeof d!=="object") return null;
@@ -1607,44 +1685,7 @@ $("chatReplyX").addEventListener("click",clearReply);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&chat.open&&$("whoScrim").hidden&&!WIDE.matches) openChat(false); });
 if(WIDE.addEventListener) WIDE.addEventListener("change",()=>{ document.body.classList.toggle("chat-lock",chat.open&&!WIDE.matches); renderChat(); });
 
-/* ---------- vote bar ---------- */
-function voteBar(id,opts){
-  opts=opts||{};
-  const up=h("button",{class:"vbtn up",type:"button","aria-label":"Vote up","aria-pressed":"false",html:ICON_UP+'<span class="num">0</span>',onclick:()=>vote(id,1)});
-  const dn=h("button",{class:"vbtn down",type:"button","aria-label":"Vote down","aria-pressed":"false",html:ICON_DN+'<span class="num">0</span>',onclick:()=>vote(id,-1)});
-  const who=h("span",{class:"who"});
-  const bar=h("div",{class:"vb"},up,dn);
-  let thread=null,list=null,cbtn=null;
-  if(!opts.mini){
-    cbtn=h("button",{class:"cbtn",type:"button",onclick:()=>{ thread.hidden=!thread.hidden; update(); }},"Comment");
-    bar.append(cbtn);
-    list=h("ul",{class:"notes"});
-    const ta=h("textarea",{id:"ta-"+id,maxlength:"600","aria-label":"Your comment",placeholder:"Say why, or suggest a change…"});
-    const post=kind=>{ if(addNote(id,kind,ta.value)) ta.value=""; };
-    thread=h("div",{class:"thread",hidden:true},list,
-      h("div",{class:"compose"},ta,h("div",{class:"row"},
-        h("button",{class:"btn",type:"button",onclick:()=>post("comment")},"Post comment"),
-        h("button",{class:"btn alt",type:"button",onclick:()=>post("change")},"Post as change proposal"))));
-  }
-  bar.append(who);
-  function update(){
-    const t=tally(id), mine=myVote(id);
-    up.lastChild.textContent=t.up.length; dn.lastChild.textContent=t.down.length;
-    up.setAttribute("aria-pressed",mine===1?"true":"false"); dn.setAttribute("aria-pressed",mine===-1?"true":"false");
-    who.textContent="";
-    if(t.up.length) who.append(h("span",{class:"u"},"Up: "),t.up.join(", "));
-    if(t.up.length&&t.down.length) who.append(" · ");
-    if(t.down.length) who.append(h("span",{class:"d"},"Down: "),t.down.join(", "));
-    if(cbtn){
-      const ns=notesFor(id);
-      cbtn.textContent=ns.length?("Comments ("+ns.length+")"):"Comment";
-      if(!thread.hidden){ list.textContent=""; for(const n of ns) list.append(noteEl(n,n.item!==id&&!!LABELS[n.item])); }
-    }
-  }
-  widgets.push(update); update();
-  const frag=document.createDocumentFragment(); frag.append(bar); if(thread) frag.append(thread);
-  return frag;
-}
+/* ---------- votes on change proposals, and one comment ---------- */
 function miniVote(id){
   const t=tally(id), mine=myVote(id);
   const bar=h("div",{class:"vb"},
@@ -1668,102 +1709,399 @@ function noteEl(n,showAbout){
   return li;
 }
 
-/* ---------- render static content ---------- */
-const VOTE_GROUPS=[];   /* sets of option ids that compete, for the Leading marker */
-const IDEA_LISTS=[];    /* idea lists that re-sort by votes */
-function renderDecisions(){
-  const root=$("decList");
-  for(const d of DECISIONS){
-    LABELS[d.id]=d.q;
-    VOTE_GROUPS.push(d.opts.map(o=>o.id));
-    const opts=h("div",{class:"opts"});
-    for(const o of d.opts){
-      LABELS[o.id]=d.q+": "+o.t;
-      const tags=h("div",{class:"tags"}, o.pick?h("span",{class:"pill pick"},"Draft pick"):null, h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"));
-      const cov=photo(o.id,{sizes:"(max-width: 600px) 100vw, 360px",widths:[500,960]});
-      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},cov,tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null,o.url?h("a",{href:o.url,target:"_blank",rel:"noopener",class:"small"},"See the listing"):null);
-      const vbWrap=h("div",{style:"margin-top:auto"}); vbWrap.append(voteBar(o.id)); el.append(vbWrap);
-      opts.append(el);
+
+/* =====================================================================================================
+   DECISION ROUNDS
+   The page asks for a few answers at a time. Each round has a deadline; when it passes, that round's
+   cards lock and show the result, and the next round becomes "Voting now".
+
+   To change the schedule, edit `closes` below (ISO time with the Mountain offset).
+   To change what a round asks, edit `decs` (ids are listed in DECISION IDS further down).
+   To overrule a result after talking it through in the group chat, add e.g.  result:{ dates:"dates-a" }
+   ===================================================================================================== */
+const CREW = 4;                                                    /* how many of us are going */
+const SITE = "https://hewentto.github.io/japan-boys-ski-trip/";
+const ROUNDS = [
+  { id:"r1", name:"Dates and the mountain", closes:"2026-11-13T21:00:00-07:00",
+    then:"Then we price the shared flight for those dates.", decs:["dates","base"] },
+  { id:"r2", name:"Flights and the route", closes:"2026-11-16T21:00:00-07:00",
+    then:"Then we book flights and the route is fixed.", decs:["flight","wheels","keep-otaru","keep-furano"] },
+  { id:"r3", name:"Hokkaido beds and the city days", closes:"2026-11-20T21:00:00-07:00",
+    then:"Then we book the Sapporo, Furano and Niseko beds, which sell out first.", decs:["bed-s-sapporo","bed-mid-furano","bed-s-niseko","after"] },
+  { id:"r4", name:"Tokyo, Kyoto and extras", closes:"2026-12-04T21:00:00-07:00",
+    then:"Then we book the rest with free cancellation.", decs:["tokyo-area","bed-s-tokyo","bed-s-kyoto","bed-s-otaru","add"] }
+];
+/* Five ideas shown first at each stop. Anything the group hearts joins them; the full list is one tap away. */
+const TOP = {
+  "s-sapporo":["a-odori","x-tsudome","a-ramen","a-beer","a-susukino"],
+  "s-otaru":["a-otaru-sushi","a-kiroro","a-wakadori","a-tengu","a-otaru-beer"],
+  "mid-furano":["a-furano-night","a-zoo","a-bluepond","a-kumagera","a-snowland"],
+  "s-niseko":["a-hirafu-night","a-onsen-niseko","wild-rusutsu","a-niseko-dinner","x-gyu"],
+  "s-tokyo":["a-shibuyasky","a-shinjuku-night","thu-fuji","x-sumo","a-ramen-tokyo"],
+  "s-kyoto":["a-fushimi","a-kiyomizu","a-arashiyama","a-gion","a-nintendo"],
+  "c-hakone":["h-ryokan","h-owakudani","h-lake"], "c-fuji":["f-chureito","f-onsen","f-fujiq"],
+  "c-nagano":["n-monkeys","n-shibu","n-nozawa"], "c-kanazawa":["k-shirakawa","k-omicho","k-kenrokuen"],
+  "c-osaka":["o-dotonbori","o-usj","o-shinsekai"]
+};
+
+/* ---------- decisions: every votable call, built from the content above. Option ids never change, so votes carry over. ---------- */
+const DECS = {}, OPT_DEC = {};
+function defDec(d){
+  DECS[d.id]=d; LABELS[d.id]=d.q;
+  for(const o of d.opts){ LABELS[o.id]=d.q+": "+o.t; PARENT[o.id]=d.id; OPT_DEC[o.id]=d; }
+  return d;
+}
+const firstSentence=s=>{ const i=s.indexOf(". "); return i<0?s:s.slice(0,i+1); };
+const stopById=id=>STOPS.find(s=>s.id===id)||CANDIDATES.find(s=>s.id===id);
+(function buildDecisions(){
+  /* DECISION IDS: dates, base, wheels, after (the four trip-wide votes) */
+  const SHORT={ dates:"Trip dates", base:"Ski base", wheels:"Van or buses", after:"City days" };
+  const ASK={ dates:"Which dates work for you?", base:"Where do we base the skiing?", wheels:"How do we get around Hokkaido?", after:"After skiing: how do we spend Feb 16 to 21?" };
+  for(const d of DECISIONS) defDec(Object.assign({},d,{ s:SHORT[d.id]||d.q, q:ASK[d.id]||d.q }));
+
+  /* flight */
+  const FT={ "flight-together":"Everyone on United, SFO to Tokyo, Sat Feb 6 at 10:20 AM", "fl-midnight":"The ANA midnight flight, for a full Sunday in Sapporo", "fl-cheapest":"Cheapest, each on our own" };
+  defDec({ id:"flight", s:"Flight", q:"Which flight do we take?",
+    blurb:"We're coming from more than one city, so the plan is one shared flight across the Pacific out of San Francisco, then all of us on to Sapporo together. Fares checked Nov 9, 2026, per person.",
+    note:'Going through Seoul was priced too: no savings this year, because it lands on Lunar New Year. <a href="#fares">All 14 fares we checked</a>',
+    opts:FLIGHTS.filter(f=>FT[f.id]).map(f=>({ id:f.id, pick:f.id==="flight-together", t:FT[f.id], cost:f.price, pts:f.pts })) });
+
+  /* keep or cut the two stops in question; the stop's own id is the "keep" option */
+  const ot=stopById("s-otaru"), fu=stopById("mid-furano");
+  defDec({ id:"keep-otaru", s:"Otaru night", q:"Otaru: keep the night or cut it?",
+    blurb:"The stop most in question. Early feedback was lukewarm, and cutting it buys a day somewhere else.",
+    opts:[{ id:ot.id, pick:true, t:"Keep Otaru for one night", pts:[firstSentence(ot.sum),"Hostel beds from $26 each","Still an easy half-day from Sapporo if we cut the night"] }]
+      .concat(ot.swaps.opts.map(o=>({ id:o.id, t:o.t, pts:[o.d] }))) });
+  defDec({ id:"keep-furano", s:"Furano", q:"Furano: two nights and a ski day, or skip it?",
+    blurb:"Furano is the quieter, colder ski town on the way to Niseko. Keeping it means four ski days at two resorts.",
+    opts:[{ id:fu.id, pick:true, t:"Keep Furano: 2 nights, 1 ski day", pts:["Lift ticket $57, some of Hokkaido's driest snow","Beds from $36 each a night","The sightseeing loop on the way in is optional"] }]
+      .concat(fu.swaps.opts.map(o=>({ id:o.id, t:o.t, pts:[o.d] }))) });
+
+  /* beds: ids bed-s-sapporo, bed-s-otaru, bed-mid-furano, bed-s-niseko, tokyo-area, bed-s-tokyo, bed-s-kyoto */
+  for(const s of STOPS){
+    if(!s.sleep) continue;
+    s.sleep.groups.forEach((g,gi)=>{
+      const area=s.id==="s-tokyo"&&gi===0;
+      defDec({ id:area?"tokyo-area":"bed-"+s.id, stop:s.id, s:area?"Tokyo: which area":s.name+" beds",
+        q:area?"Tokyo: which part of town?":s.name+": where do we sleep?",
+        blurb:area?"This sets which apartment we look for.":(s.sleep.note||"Prices are for the whole group of four."),
+        opts:g.opts.map(o=>({ id:o.id, pick:o.pick, t:o.t, cost:o.price, url:o.url, pts:o.d?o.d.split(" · "):[] })) });
+    });
+  }
+
+  /* add-a-stop poll: tallies only, nothing locks */
+  defDec({ id:"add", kind:"poll", s:"Extra stops", q:"Add a stop?", yes:"I'd add it", no:"Skip it",
+    blurb:"None of these are on the route. Each one takes a night or two from Tokyo or Kyoto, so adding one means giving something up. Tap any you'd want. This is a poll, so nothing locks.",
+    opts:CANDIDATES.map(c=>({ id:c.id, t:c.name+", "+c.nights, pts:[c.sum].concat(c.facts.filter(f=>f[0]==="Where it fits").map(f=>f[1])) })) });
+
+  ROUNDS.forEach((r,i)=>{ r.n=i+1; r.closesAt=Date.parse(r.closes); r.list=r.decs.map(id=>DECS[id]).filter(Boolean); for(const d of r.list) d.round=r; });
+})();
+/* roll call: a personal answer, not a group vote */
+const GEAR = stopById("s-niseko").extraGroup;
+LABELS.gear="Roll call: your gear";
+for(const o of GEAR.opts){ LABELS[o.id]="Your gear: "+o.t; PARENT[o.id]="gear"; }
+
+/* ---------- time and round helpers ---------- */
+const fmtDay=ts=>new Date(ts).toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});
+const fmtDayTime=ts=>fmtDay(ts)+" at "+new Date(ts).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}).replace(":00","");
+const isClosed=r=>Date.now()>=r.closesAt;
+const currentRound=()=>ROUNDS.find(r=>!isClosed(r))||null;
+const phaseKey=()=>ROUNDS.map(r=>isClosed(r)?"1":"0").join("");
+function phaseOf(d){ const r=d.round; return isClosed(r)?"done":(r===currentRound()?"open":"next"); }
+const nameOf=slug=>{ const p=state.people[slug]; return (p&&p.name)||slug; };
+
+/* votes on one option, optionally only those cast before a cut-off */
+function tallyAt(id,cut){
+  const up=[],down=[];
+  for(const k in state.people){ const x=state.people[k].votes[id]; if(!x||(cut&&x.t>cut)) continue; if(x.v===1) up.push(nameOf(k)); else if(x.v===-1) down.push(nameOf(k)); }
+  return {up,down};
+}
+function answered(d,slug){ const p=state.people[slug]; return !!p&&d.opts.some(o=>p.votes[o.id]&&p.votes[o.id].v!==0); }
+function answerers(d){ return Object.keys(state.people).filter(k=>answered(d,k)).map(nameOf).sort(); }
+/* The rule, same for every decision: the option that works for the most people wins. A "Not for me" takes an option
+   off the table unless that would leave nothing. Ties, and no answers at all, go to the draft pick. */
+function outcome(d){
+  const r=d.round, cut=isClosed(r)?r.closesAt:0;
+  const rows=d.opts.map(o=>{ const t=tallyAt(o.id,cut); return {o,up:t.up.length,down:t.down.length}; });
+  const pick=rows.find(x=>x.o.pick)||rows[0];
+  const forced=r.result&&r.result[d.id]&&rows.find(x=>x.o.id===r.result[d.id]);
+  if(forced) return {win:forced.o,pick:pick.o,by:"set",rows};
+  if(!rows.some(x=>x.up||x.down)) return {win:pick.o,pick:pick.o,by:"default",rows};
+  let pool=rows.filter(x=>!x.down); const stuck=!pool.length; if(stuck) pool=rows;
+  const best=Math.max.apply(null,pool.map(x=>x.up)), top=pool.filter(x=>x.up===best);
+  const win=top.includes(pick)?pick:top[0];
+  return {win:win.o,pick:pick.o,by:win===pick?"draft":"votes",stuck,rows};
+}
+
+/* ---------- small pieces ---------- */
+const ICON_CHECK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_X='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+const ICON_HEART='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.6 2.9 8.7a3.1 3.1 0 0 1 0-4.5 3.2 3.2 0 0 1 4.4 0l.7.7.7-.7a3.2 3.2 0 0 1 4.4 0 3.1 3.1 0 0 1 0 4.5z" stroke-linejoin="round"/></svg>';
+const ICON_CHAT='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+function statusChip(){ return h("span",{class:"st"}); }
+function setChip(el,k,text){ el.dataset.k=k; el.textContent=text; }
+function copyText(text,btn){
+  const done=()=>{ const was=btn.textContent; btn.textContent="Copied"; setTimeout(()=>{ btn.textContent=was; },1600); };
+  const fallback=()=>{ const ta=h("textarea",{style:"position:fixed;opacity:0"}); ta.value=text; document.body.append(ta); ta.select(); try{ document.execCommand("copy"); done(); }catch(e){} ta.remove(); };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,fallback); else fallback();
+}
+const pageURL=()=>/^https?:/.test(location.protocol)?location.origin+location.pathname:SITE;
+
+/* comments on one decision or stop: a count that opens the thread and a box to add to it */
+function threadFor(id){
+  const list=h("ul",{class:"notes"});
+  const ta=h("textarea",{id:"ta-"+id,maxlength:"600","aria-label":"Your comment",placeholder:"Say why, or suggest a change…"});
+  const post=kind=>{ if(addNote(id,kind,ta.value)) ta.value=""; };
+  const thread=h("div",{class:"thread",hidden:true},list,
+    h("div",{class:"compose"},ta,h("div",{class:"row"},
+      h("button",{class:"btn",type:"button",onclick:()=>post("comment")},"Post comment"),
+      h("button",{class:"btn alt",type:"button",onclick:()=>post("change")},"Post as change proposal"))));
+  const btn=h("button",{class:"lnk",type:"button","aria-expanded":"false",onclick:()=>{ thread.hidden=!thread.hidden; btn.setAttribute("aria-expanded",String(!thread.hidden)); update(); }},"Comment");
+  function update(){
+    const ns=notesFor(id);
+    btn.textContent=ns.length?("Comments ("+ns.length+")"):"Comment";
+    if(!thread.hidden){ list.textContent=""; for(const n of ns) list.append(noteEl(n,n.item!==id&&ALIAS[n.item]!==id&&!!(LABELS[n.item]||LABELS[ALIAS[n.item]]))); }
+  }
+  return {btn,thread,update};
+}
+
+/* ---------- decision cards ---------- */
+let voteWidgets=[];
+function voteOpt(d,id,v){ if(isClosed(d.round)) return; vote(id,v); }
+function optionEl(d,o){
+  const yes=h("button",{class:"yn yes",type:"button","aria-pressed":"false",html:ICON_CHECK,onclick:()=>voteOpt(d,o.id,1)},h("span",null,d.yes||"Works for me"));
+  const no=h("button",{class:"yn no",type:"button","aria-pressed":"false",html:ICON_X,onclick:()=>voteOpt(d,o.id,-1)},h("span",null,d.no||"Not for me"));
+  const who=h("p",{class:"o-who"});
+  const lead=h("span",{class:"tag lead",hidden:true});
+  const pts=o.pts||[], shown=pts.slice(0,2), rest=pts.slice(2);
+  const el=h("div",{class:"o"+(o.pick?" pick":""),id:"i-"+o.id},
+    h("div",{class:"o-top"},photo(o.id,{sizes:"64px",widths:[250,500]}),
+      h("div",{class:"o-tt"},h("h4",null,o.t),
+        h("div",{class:"o-tags"},o.pick?h("span",{class:"tag"},"Draft pick"):null,lead,o.cost?h("span",{class:"o-cost num"},o.cost):null))),
+    shown.length?h("ul",null,shown.map(p=>h("li",null,p))):null,
+    rest.length?h("details",{class:"more"},h("summary",null,"More about this"),h("ul",null,rest.map(p=>h("li",null,p)))):null,
+    o.url?h("a",{class:"small",href:o.url,target:"_blank",rel:"noopener"},"See the listing"):null,
+    h("div",{class:"o-vote"},yes,no),who);
+  function update(out,closed){
+    const cut=closed?d.round.closesAt:0, t=tallyAt(o.id,cut), mine=myVote(o.id);
+    yes.setAttribute("aria-pressed",mine===1?"true":"false"); no.setAttribute("aria-pressed",mine===-1?"true":"false");
+    yes.disabled=no.disabled=closed;
+    who.textContent="";
+    if(t.up.length) who.append(h("span",{class:"u"},d.kind==="poll"?"Would add: ":"Works for "),t.up.join(", "));
+    if(t.up.length&&t.down.length) who.append(h("br"));
+    if(t.down.length) who.append(h("span",{class:"d"},d.kind==="poll"?"Would skip: ":"Not for "),t.down.join(", "));
+    const winning=d.kind!=="poll"&&out.win===o&&(closed||out.by==="votes"||(out.by==="draft"&&t.up.length>0));
+    lead.hidden=!winning; lead.textContent=closed?"Decided":"Leading";
+    el.classList.toggle("lead",winning);
+    el.classList.toggle("lost",closed&&d.kind!=="poll"&&out.win!==o);
+  }
+  return {el,update};
+}
+function decisionCard(d){
+  const r=d.round, poll=d.kind==="poll";
+  const st=statusChip(), inLine=h("p",{class:"dc-in"}), ifLine=h("p",{class:"dc-if"});
+  const opts=d.opts.map(o=>optionEl(d,o)), th=threadFor(d.id);
+  const others=h("button",{class:"lnk",type:"button",hidden:true,onclick:()=>{ card.classList.toggle("show-all"); others.textContent=card.classList.contains("show-all")?"Hide the other options":"See the other options"; }},"See the other options");
+  const link=h("button",{class:"lnk",type:"button",onclick:()=>copyText(pageURL()+"#i-"+d.id,link)},"Copy link");
+  const card=h("article",{class:"dc",id:"i-"+d.id},
+    h("div",{class:"dc-head"},h("h3",null,d.q),st),
+    d.blurb?h("p",{class:"dc-blurb"},d.blurb):null,
+    h("div",{class:"dc-opts"},opts.map(x=>x.el)),
+    d.note?h("p",{class:"small muted",html:d.note}):null,
+    h("div",{class:"dc-foot"},ifLine,inLine,h("div",{class:"dc-acts"},others,th.btn,link)),
+    th.thread);
+  function update(){
+    const closed=isClosed(r), ph=phaseOf(d), out=outcome(d);
+    card.classList.toggle("closed",closed&&!poll); others.hidden=!(closed&&!poll);
+    if(poll) setChip(st,ph==="done"?"done":"next","Open poll");
+    else if(ph==="done") setChip(st,"done","Decided "+fmtDay(r.closesAt));
+    else if(ph==="open") setChip(st,"open","Voting, closes "+fmtDay(r.closesAt));
+    else setChip(st,"next","Round "+r.n+", closes "+fmtDay(r.closesAt));
+    for(const x of opts) x.update(out,closed&&!poll);
+    const names=answerers(d);
+    inLine.textContent=!names.length?"Nobody has answered yet."
+      :(names.length>=CREW?"Everyone's in: ":"In so far: ")+names.join(", ")+(names.length<CREW?". "+names.length+" of "+CREW+".":".");
+    ifLine.hidden=poll;
+    if(!poll){
+      if(closed) ifLine.textContent="Going with: "+out.win.t+".";
+      else if(out.stuck) ifLine.textContent="Every option has a “Not for me”. This one needs a conversation.";
+      else if(out.by==="default") ifLine.textContent="No answers by "+fmtDay(r.closesAt)+" and the draft pick stands.";
+      else ifLine.textContent="If nothing changes by "+fmtDay(r.closesAt)+": "+out.win.t+".";
     }
-    root.append(h("div",{class:"dec",id:"i-"+d.id},h("h3",null,d.q),h("p",null,d.blurb),opts));
+    th.update();
+  }
+  voteWidgets.push(update); update();
+  return card;
+}
+function gearCard(){
+  const th=threadFor("gear"), who=h("p",{class:"o-who"});
+  const btns=GEAR.opts.map(o=>{
+    const b=h("button",{class:"yn yes",type:"button","aria-pressed":"false",onclick:()=>pickOne(GEAR.opts.map(x=>x.id),o.id)},o.t);
+    return {o,b};
+  });
+  const card=h("article",{class:"dc roll",id:"i-gear"},
+    h("div",{class:"dc-head"},h("h3",null,"Roll call: your gear"),h("span",{class:"st","data-k":"next"},"Not a vote")),
+    h("p",{class:"dc-blurb"},"Renting or bringing your own? "+GEAR.note+" Renting: a Rhythm premium set with boots is $178 for 3 days. Bringing your own: it counts as a checked bag and gets hauled through every stop."),
+    h("div",{class:"o-vote"},btns.map(x=>x.b)),who,
+    h("div",{class:"dc-foot"},h("div",{class:"dc-acts"},th.btn)),th.thread);
+  voteWidgets.push(()=>{
+    who.textContent="";
+    btns.forEach((x,i)=>{
+      x.b.setAttribute("aria-pressed",myVote(x.o.id)===1?"true":"false");
+      const up=tallyAt(x.o.id,0).up;
+      if(up.length){ if(who.childNodes.length) who.append(h("br")); who.append(h("span",{class:"u"},(i?"Renting: ":"Bringing their own: ")),up.join(", ")); }
+    });
+    th.update();
+  });
+  return card;
+}
+/* choose exactly one of a set (the roll call) */
+function pickOne(ids,chosen){
+  needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const t=Date.now(), was=p.votes[chosen]&&p.votes[chosen].v===1;
+    for(const id of ids){ const cur=p.votes[id]?p.votes[id].v:0, want=(id===chosen&&!was)?1:0; if(cur!==want) p.votes[id]={v:want,t}; } }));
+}
+/* one tap for "whatever you picked is fine": works-for-me on the draft pick of every call you haven't answered */
+function acceptDrafts(r){
+  needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const t=Date.now();
+    for(const d of r.list){ if(d.kind==="poll"||d.opts.some(o=>p.votes[o.id]&&p.votes[o.id].v!==0)) continue;
+      const pick=d.opts.find(o=>o.pick); if(pick) p.votes[pick.id]={v:1,t}; } }));
+}
+
+let lastPhase="";
+function renderVote(){
+  voteWidgets=[]; lastPhase=phaseKey();
+  const now=$("voteNow"), next=$("voteNext"), done=$("voteDone"); now.textContent=""; next.textContent=""; done.textContent="";
+  const cur=currentRound();
+  if(cur){
+    now.append(h("div",{class:"sec-head",id:cur.id},h("h2",{class:"now-h"},"Voting now"),
+      h("p",null,"Round "+cur.n+" of "+ROUNDS.length+": "+cur.name.toLowerCase()+". Closes "+fmtDayTime(cur.closesAt)+". "+cur.then),
+      h("p",{class:"small"},"Tap “Works for me” on every option you could live with. The one that works for the most people wins, and ties go to the draft pick.")),
+      h("div",{class:"dcs"},cur.list.map(decisionCard)));
+  } else {
+    now.append(h("div",{class:"sec-head"},h("h2",null,"Every round has closed"),h("p",null,"The results are below. To reopen something, post a change proposal on it.")));
+  }
+  const upcoming=ROUNDS.filter(r=>!isClosed(r)&&r!==cur);
+  if(upcoming.length){
+    next.append(h("h3",{class:"zone-h"},"Coming up"),h("p",{class:"muted small zone-p"},"These open in order. You can answer early and it counts."));
+    for(const r of upcoming) next.append(h("details",{class:"fold round",id:r.id},
+      h("summary",null,"Round "+r.n+": "+r.name,h("span",{class:"count"},r.list.length+" calls, closes "+fmtDay(r.closesAt))),
+      h("div",{class:"dcs"},r.list.map(decisionCard))));
+  }
+  next.append(gearCard());
+  const past=ROUNDS.filter(isClosed);
+  if(past.length){
+    done.append(h("h3",{class:"zone-h"},"Decided"));
+    for(const r of past) done.append(h("details",{class:"fold round",id:r.id},
+      h("summary",null,"Round "+r.n+": "+r.name,h("span",{class:"count"},"closed "+fmtDay(r.closesAt))),
+      h("div",{class:"dcs"},r.list.map(decisionCard))));
   }
 }
-/* one compact votable row: a bed, an idea or a swap */
-function optRow(o,stop,kind,label){
-  LABELS[o.id]=stop.name+": "+(label||o.t); PARENT[o.id]=stop.id;
-  const title=h("div",{class:"rt"}, o.url?h("a",{href:o.url,target:"_blank",rel:"noopener"},o.t):o.t,
-    o.pick?h("span",{class:"pill pick"},"Draft pick"):null,
-    o.book?h("span",{class:"pill book"},"Book ahead"):null,
-    kind==="pick"?h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"):null);
-  const li=h("li",{class:"row-i"+(kind==="idea"?" idea":""),id:"i-"+o.id,"data-opt":o.id},title,
-    kind==="idea"?h("div",{class:"rm"},h("span",{class:o.sk?"sk":null},durLabel(o)),o.cost?h("span",null,o.cost):null):null,
-    o.price?h("div",{class:"rp num"},o.price):null,
-    o.d?h("div",{class:"rd"},o.d):null);
-  li.append(voteBar(o.id,{mini:true}));
-  return li;
-}
-function optGroup(opts,stop){ VOTE_GROUPS.push(opts.map(o=>o.id)); return h("ul",{class:"rows"},opts.map(o=>optRow(o,stop,"pick"))); }
-const IDEA_HOURS=[[1,"About 1 h"],[2,"About 2 h"],[3,"An evening"],[4,"Half a day"],[9,"A full day"]];
-/* one card per place: big facts, beds, the time check, then everything worth doing, grouped by kind */
-function renderStopCard(s,i,cand){
-  LABELS[s.id]=cand?("Could add: "+s.name):("Stop "+(i+1)+": "+s.name);
-  const photos=h("div",{class:"stop-photos"},(s.photos||[]).map(k=>photo(k,{sizes:"(max-width: 600px) 84vw, 340px",widths:[500,960]})));
-  const body=h("div",{class:"stop-body"},
-    h("div",{class:"stop-head"},h("span",{class:"stop-n num","aria-hidden":"true"},cand?"+":String(i+1)),
-      h("div",null,h("h3",null,s.name),h("div",{class:"stop-meta"},
-        s.dates?h("span",{class:"chip"},s.dates):null,h("span",{class:"chip"},s.nights),
-        s.skiDays?h("span",{class:"chip ski"},s.skiDays):null,s.flag?h("span",{class:"chip flag"},s.flag):null,
-        cand?h("span",{class:"chip flag"},"Not on the route"):null))),
-    h("p",{class:"stop-sum"},s.sum),
-    h("dl",{class:"kv"},s.facts.map(f=>h("div",null,h("dt",null,f[0]),h("dd",null,f[1])))));
-  if(s.sleep){
-    const sleep=h("div",{class:"blk"},h("h4",null,"Where we sleep"),s.sleep.note?h("p",{class:"small muted"},s.sleep.note):null);
-    for(const g of s.sleep.groups){ if(g.label) sleep.append(h("div",{class:"sub"},g.label)); sleep.append(optGroup(g.opts,s)); }
-    body.append(sleep);
+
+/* ---------- your turn ---------- */
+const SINCE=+(LS.get("jbst.seen")||0);
+setTimeout(()=>LS.set("jbst.seen",String(Date.now())),8000);
+function sinceItems(){
+  if(!SINCE||!state.me) return [];
+  const out=[];
+  for(const k in state.people){
+    if(k===state.me) continue;
+    const p=state.people[k], nm=p.name||k, decs=new Set(); let hearts=0, notes=0;
+    for(const id in p.votes){ const x=p.votes[id]; if(x.t<=SINCE||!x.v) continue; if(OPT_DEC[id]) decs.add(OPT_DEC[id].s); else if(x.v===1) hearts++; }
+    for(const id in p.notes){ const n=p.notes[id]; if(!n.del&&n.ts>SINCE) notes++; }
+    if(decs.size) out.push(nm+" answered "+[...decs].join(", "));
+    if(hearts) out.push(nm+" hearted "+hearts+(hearts===1?" idea":" ideas"));
+    if(notes) out.push(nm+" left "+notes+(notes===1?" comment":" comments"));
   }
-  if(s.extraGroup){
-    const g=s.extraGroup;
-    body.append(h("div",{class:"blk"},h("h4",null,g.title),g.note?h("p",{class:"small muted"},g.note):null,h("ul",{class:"rows"},g.opts.map(o=>optRow(o,s,"plain")))));
-  }
-  if(s.swaps){
-    const w=s.swaps;
-    body.append(h("div",{class:"blk"},h("h4",null,w.title),h("p",{class:"small muted"},w.note),h("ul",{class:"rows"},w.opts.map(o=>optRow(o,s,"plain")))));
-  }
-  body.append(h("div",{class:"blk"},h("div",{class:"tc",id:"tc-"+s.id})));
-  const ideaItem="ideas-"+s.id; LABELS[ideaItem]=s.name+": idea from the group";
-  const count=h("span",{class:"count"}), groups=[], cats=h("div",{class:"cats"});
-  for(const [k,label] of CATS){
-    const list=s.ideas.filter(o=>o.c===k); if(!list.length) continue;
-    const ul=h("ul",{class:"rows"},list.map(o=>optRow(o,s,"idea")));
-    groups.push({ul,order:list.map(o=>o.id)});
-    cats.append(h("div",{class:"cat"},h("div",{class:"sub"},label),ul));
-  }
-  const userUl=h("ul",{class:"rows"}), userCat=h("div",{class:"cat",hidden:true},h("div",{class:"sub"},"Added by the group"),userUl);
-  cats.append(userCat);
-  const inp=h("input",{type:"text",maxlength:"200",id:"in-"+ideaItem,"aria-label":"Add an idea for "+s.name,placeholder:"Something else worth doing in "+s.name+"…"});
-  const sel=h("select",{"aria-label":"Roughly how long it takes"},IDEA_HOURS.map(([v,l])=>h("option",{value:String(v),selected:v===2},l)));
-  const form=h("form",{class:"idea-add",onsubmit:e=>{ e.preventDefault(); if(addNote(ideaItem,"change",inp.value,{hrs:+sel.value})) inp.value=""; }},inp,sel,h("button",{class:"btn",type:"submit"},"Add idea"));
-  IDEA_LISTS.push({stop:s,groups,userUl,userCat,box:cats,item:ideaItem,count});
-  body.append(h("div",{class:"blk"},h("details",{class:"fold",id:"i-"+ideaItem},
-    h("summary",null,"Things to do here",count),
-    h("p",{class:"small muted"},"Options, not a plan. Each one shows roughly how long it takes and what it costs. Vote up what you'd actually do and it counts toward the time check above; the favorites rise to the top of each group. Missing something? Add it with a rough time and the group can vote on it."),
-    cats,form)));
-  const sv=h("div",{class:"stop-vote"+(cand?" cand":"")}); sv.append(voteBar(s.id)); body.append(sv);
-  return h("article",{class:"stop"+(s.ski?" ski":"")+(cand?" cand":""),id:"i-"+s.id},photos,body);
+  return out.slice(0,5);
 }
-function renderStops(){
-  const root=$("stopList");
-  root.append(h("div",{class:"leg"},h("b",null,"Sat Feb 6"),h("span",null,"Fly to Sapporo, all on the same long flight across the Pacific if we can line it up. You cross the date line and land Sunday.")));
-  STOPS.forEach((s,i)=>root.append(renderStopCard(s,i,false)));
-  root.append(h("div",{class:"leg"},h("b",null,"Sun Feb 21"),h("span",null,"Fly home from Tokyo Haneda. You land the same day you leave and are at work Monday Feb 22.")));
+function renderTurn(){
+  const box=$("turn"), hadFocus=box.contains(document.activeElement);
+  box.textContent="";
+  const r=currentRound(), me=state.me, myName=me&&(nameOf(me)!==me?nameOf(me):(state.meName||me));
+  const big=h("p",{class:"turn-big"}), sub=h("p",{class:"turn-sub"});
+  box.append(h("h2",{id:"turnH"},"Your turn"),big,sub);
+  if(!r){ big.textContent="All decided"; sub.textContent="Every round has closed. The plan next to this is the plan."; return; }
+  const decs=r.list.filter(d=>d.kind!=="poll"), open=me?decs.filter(d=>!answered(d,me)):decs;
+  const nextR=ROUNDS[r.n]||null;
+  if(!me){
+    big.textContent=decs.length+" answers needed this week";
+    sub.textContent="Round "+r.n+" closes "+fmtDayTime(r.closesAt)+". It takes about a minute. Everything else on this page is optional browsing.";
+  } else if(open.length){
+    big.textContent=myName+", "+open.length+(open.length===1?" answer":" answers")+" left this week";
+    sub.textContent="Round "+r.n+" closes "+fmtDayTime(r.closesAt)+". No answer means the draft pick stands.";
+  } else {
+    big.textContent="You're set, "+myName;
+    sub.textContent="Nothing else is needed from you until "+(nextR?"round "+nextR.n+" closes "+fmtDay(nextR.closesAt):"we book")+". Change an answer any time before "+fmtDay(r.closesAt)+".";
+  }
+  const list=h("ul",{class:"turn-list"});
+  for(const d of decs){
+    const ok=me&&answered(d,me);
+    list.append(h("li",null,h("a",{href:"#i-"+d.id,class:ok?"ok":""},h("span",{class:"mk","aria-hidden":"true",html:ok?ICON_CHECK:""}),h("span",{class:"tl"},d.s),h("span",{class:"go"},ok?"Answered":"Answer"))));
+  }
+  box.append(list);
+  if(!me) box.append(h("button",{class:"turn-ok",type:"button",onclick:()=>openWho(null)},"Pick your name to answer"));
+  else if(open.length) box.append(h("button",{class:"turn-ok",type:"button",onclick:()=>acceptDrafts(r)},"I'm fine with the draft picks"),
+    h("p",{class:"turn-note"},"One tap answers “Works for me” on the draft pick for "+(open.length===1?"the one you haven't answered.":"each one you haven't answered.")));
+  else {
+    const links=h("p",{class:"turn-links"});
+    if(nextR) links.append(h("a",{href:"#"+nextR.id},"Answer round "+nextR.n+" early"));
+    links.append(h("a",{href:"#explore"},"Browse things to do"));
+    if(!GEAR.opts.some(o=>myVote(o.id)===1)) links.append(h("a",{href:"#i-gear"},"Say if you're renting gear"));
+    box.append(links);
+  }
+  const news=sinceItems();
+  if(news.length) box.append(h("div",{class:"turn-news"},h("b",null,"Since you were last here"),h("ul",null,news.map(t=>h("li",null,t)))));
+  if(hadFocus){ const f=box.querySelector(".turn-ok, .turn-list a"); if(f) f.focus({preventScroll:true}); }
 }
-function renderExtra(){
-  const root=$("extraList");
-  CANDIDATES.forEach(s=>root.append(renderStopCard(s,0,true)));
+
+/* ---------- the plan right now ---------- */
+function nudgeText(){
+  const r=currentRound(); if(!r) return "Japan trip: every round has closed. The plan: "+pageURL();
+  const decs=r.list.filter(d=>d.kind!=="poll");
+  const all=Object.keys(state.people).filter(k=>decs.every(d=>answered(d,k))).map(nameOf).sort();
+  const lines=["Japan trip, round "+r.n+": "+decs.length+" quick calls, about a minute."];
+  for(const d of decs) lines.push("- "+d.s+": "+outcome(d).win.t+", unless someone objects");
+  lines.push("No answer by "+fmtDayTime(r.closesAt)+" and those stand.");
+  if(all.length) lines.push("Done so far: "+all.join(", ")+".");
+  lines.push(pageURL()+"#vote");
+  return lines.join("\n");
 }
-/* ---------- time check: the group's picks against each stop's free time ---------- */
+/* how each leading option reads in the one-line plan summary */
+const PLAN_SHORT={ "dates-a":"Sat Feb 6 to Sun Feb 21", "dates-b":"Sat Feb 6 to Sat Feb 20", "dates-c":"Sun Feb 7 to Sun Feb 21",
+  "base-niseko":"Niseko United", "base-furano":"Furano", "base-honshu":"Myoko, on Honshu",
+  "flight-together":"United from SFO, all together", "fl-midnight":"ANA midnight flight from SFO", "fl-cheapest":"Cheapest, each on our own",
+  "wheels-van":"4WD van", "wheels-bus":"Buses and trains",
+  "after-mix":"Tokyo, a Fuji day, a Kyoto night", "after-tokyo":"All Tokyo", "after-hakone":"Tokyo plus a Hakone ryokan night" };
+function stopAnchor(s){ return (OPT_DEC[s.id]?"x-":"i-")+s.id; }
+function renderPlan(){
+  const box=$("plan"), hadFocus=box.contains(document.activeElement); box.textContent="";
+  const rows=h("div",{class:"plan-rows"});
+  for(const id of ["dates","base","flight","wheels","after"]){
+    const d=DECS[id], out=outcome(d), ph=phaseOf(d), st=statusChip();
+    setChip(st,ph,ph==="done"?"Decided":ph==="open"?"Voting":"Round "+d.round.n);
+    rows.append(h("a",{href:"#i-"+d.id},h("span",{class:"k"},d.s),
+      h("span",{class:"v"},PLAN_SHORT[out.win.id]||out.win.t,ph!=="done"&&out.by==="votes"?h("small",null,"Ahead of the draft pick"):null),st));
+  }
+  const mid={size:4,rent:true,van:true,kyoto:true};
+  const cost=costTotal(Object.assign({tier:1},mid)), lo=costTotal(Object.assign({tier:0},mid)), hi=costTotal(Object.assign({tier:2},mid));
+  const copy=h("button",{class:"lnk",type:"button",onclick:()=>copyText(nudgeText(),copy)},"Copy a reminder for the group chat");
+  box.append(h("h2",null,"The plan right now"),
+    h("p",{class:"muted small"},"A draft until each round closes. Nothing is booked yet."),
+    rows,
+    h("div",{class:"plan-route"},h("b",null,"The route"),
+      h("ol",{class:"legs2"},STOPS.map(s=>h("li",{class:s.ski?"ski":null},h("a",{href:"#"+stopAnchor(s)},h("b",null,s.name),h("small",null,s.nights.replace(" here, 1 in Kyoto","")+(s.flag?", in question":"")+(s.skiDays?", "+s.skiDays:""))))))),
+    h("p",{class:"plan-cost"},h("b",{class:"num"},"About "+money(round50(cost))+" each"),
+      h("small",null,"Lean "+money(round50(lo))+" to plush "+money(round50(hi))+". Four sharing, 4 days of lift tickets, rented gear. "),h("a",{href:"#costs",class:"small"},"See the breakdown")),
+    h("ol",{class:"rounds"},ROUNDS.map(r=>{ const k=isClosed(r)?"done":(r===currentRound()?"open":"next");
+      return h("li",{"data-k":k},h("a",{href:"#"+r.id},h("b",null,"Round "+r.n+": "+r.name),h("small",null,(k==="done"?"Closed ":"Closes ")+fmtDay(r.closesAt)))); })),
+    copy);
+  if(hadFocus) copy.focus({preventScroll:true});
+}
+
+/* ---------- explore: one folded row per stop, hearts instead of votes ---------- */
+let exploreWidgets=[];
+const stopViews=[];
 const fmtH=x=>{ const r=Math.round(x*2)/2; return (r%1?r.toFixed(1):String(r))+" h"; };
-const fmtD=x=>{ const d=Math.round(x/DAY_H*2)/2; return d<=0?"":(d===1?"about a day":"about "+(d%1?d.toFixed(1):d)+" days"); };
 function durLabel(o){
   if(o.sk) return "Uses a ski day";
   const x=o.h||0; let s;
@@ -1771,89 +2109,117 @@ function durLabel(o){
   else if(x<=3) s="2–3 h"; else if(x<=5) s="Half a day"; else if(x<=7) s="Most of a day"; else s="Full day";
   return s+(o.eve?", evening":"");
 }
-/* an idea counts as picked when it has more up votes than down */
+const IDEA_HOURS=[[1,"About 1 h"],[2,"About 2 h"],[3,"An evening"],[4,"Half a day"],[9,"A full day"]];
+/* an idea counts toward the time check when more people heart it than skip it */
 function stopPicks(s){
-  let n=0, hrs=0, ski=0, voted=false;
-  for(const o of s.ideas){
-    const t=tally(o.id); if(t.up.length||t.down.length) voted=true;
-    if(t.net>0){ if(o.sk) ski++; else { n++; hrs+=o.h||0; } }
+  let n=0, hrs=0;
+  for(const o of s.ideas){ const t=tally(o.id); if(t.net>0&&!o.sk){ n++; hrs+=o.h||0; } }
+  for(const x of allNotes()){ if(x.item==="ideas-"+s.id&&tally(x.id).net>0){ n++; hrs+=x.hrs||2; } }
+  return {n,hrs};
+}
+function heartBtn(id){
+  return h("button",{class:"heart",type:"button","aria-pressed":"false","aria-label":"I'd do this",html:ICON_HEART+'<span class="num"></span>',onclick:()=>vote(id,1)});
+}
+function setHeart(btn,id){
+  const t=tally(id); btn.setAttribute("aria-pressed",myVote(id)===1?"true":"false"); btn.lastChild.textContent=t.up.length?String(t.up.length):""; return t;
+}
+function ideaRow(o,s){
+  LABELS[o.id]=s.name+": "+o.t; PARENT[o.id]=s.id;
+  const heart=heartBtn(o.id), names=h("span",{class:"idea-who"});
+  const skip=h("button",{class:"lnk skip",type:"button","aria-pressed":"false",onclick:()=>vote(o.id,-1)},"Not for me");
+  const more=h("div",{class:"idea-d",hidden:true},o.d?h("p",null,o.d):null,h("div",{class:"idea-x"},names,skip));
+  const title=h("button",{class:"idea-t",type:"button","aria-expanded":"false",onclick:()=>{ more.hidden=!more.hidden; title.setAttribute("aria-expanded",String(!more.hidden)); }},
+    h("span",{class:"idea-tt"},o.t),
+    h("span",{class:"idea-m"},h("span",{class:o.sk?"sk":null},durLabel(o)),o.cost?h("span",null,o.cost):null,o.book?h("span",{class:"bk"},"Book ahead"):null));
+  const li=h("li",{class:"idea",id:"i-"+o.id},title,heart,more);
+  exploreWidgets.push(()=>{
+    const t=setHeart(heart,o.id);
+    skip.setAttribute("aria-pressed",myVote(o.id)===-1?"true":"false");
+    names.textContent=(t.up.length?t.up.join(", ")+(t.up.length===1?" would do this. ":" would do this. "):"")+(t.down.length?t.down.join(", ")+(t.down.length===1?" would skip it.":" would skip it."):"");
+    li.classList.toggle("wanted",t.up.length>0);
+  });
+  return li;
+}
+function layoutIdeas(v){
+  const s=v.s, hearts=id=>tally(id).up.length, top=TOP[s.id]||s.ideas.slice(0,5).map(o=>o.id);
+  const byHearts=(a,b)=>hearts(b.id)-hearts(a.id);
+  let shown;
+  if(v.filter==="top"){
+    shown=s.ideas.filter(o=>top.includes(o.id)||hearts(o.id)>0)
+      .sort((a,b)=>byHearts(a,b)||((top.indexOf(a.id)+1||99)-(top.indexOf(b.id)+1||99)));
+  } else if(v.filter==="all") shown=null;
+  else shown=s.ideas.filter(o=>o.c===v.filter).sort(byHearts);
+  const ul=v.ul; ul.textContent="";
+  for(const k in v.rows) v.rows[k].hidden=true;
+  if(shown){ for(const o of shown){ v.rows[o.id].hidden=false; ul.append(v.rows[o.id]); } }
+  else for(const [k,label] of CATS){
+    const list=s.ideas.filter(o=>o.c===k).sort(byHearts); if(!list.length) continue;
+    ul.append(h("li",{class:"cat-h"},label));
+    for(const o of list){ v.rows[o.id].hidden=false; ul.append(v.rows[o.id]); }
   }
-  for(const x of allNotes()){
-    if(x.item!=="ideas-"+s.id) continue;
-    const t=tally(x.id); if(t.up.length||t.down.length) voted=true;
-    if(t.net>0){ n++; hrs+=x.hrs||2; }
-  }
-  return {n,hrs,ski,voted};
+  for(const k in v.rows) if(v.rows[k].hidden) ul.append(v.rows[k]);
+  for(const b of v.chips) b.el.setAttribute("aria-pressed",b.k===v.filter?"true":"false");
 }
-function verdict(p,free){
-  if(!p.voted) return {k:"none",short:"No votes yet",long:"Nobody has voted on things to do here yet. Vote up what you'd actually do and this fills in."};
-  if(!p.n&&p.ski) return {k:"none",short:"Only ski swaps",long:"So far the only picks here replace planned skiing, so they cost no extra time."};
-  if(!p.n) return {k:"none",short:"Nothing picked",long:"Nothing here has more up votes than down yet."};
-  const r=p.hrs/free;
-  if(r<0.5) return {k:"light",short:"Room to spare",long:"Light so far. The picks fill less than half the free time, so this stop could be cut short and the time given to another."};
-  if(r<=1.05) return {k:"ok",short:"About right",long:"About right for the time we have here."};
-  if(r<=1.4) return {k:"full",short:"Full",long:"Full. The picks use all the free time here, so expect to drop a few."};
-  return {k:"over",short:"Wants more time",long:"More than fits. Worth adding a night here or trimming the list."};
+function userIdeaRow(n){
+  const heart=heartBtn(n.id); setHeart(heart,n.id);
+  return h("li",{class:"idea user-idea",id:"i-"+n.id},
+    h("div",{class:"idea-t"},h("span",{class:"idea-tt"},n.text),
+      h("span",{class:"idea-m"},h("span",null,durLabel({h:n.hrs||2})),h("span",null,"Added by "+n.byName),
+        n.by===state.me?h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete"):null)),heart);
 }
-function meterBar(p,free,label){
-  const max=Math.max(free,p.hrs)||1;
-  return h("span",{class:"tbar",role:"img","aria-label":label},
-    h("i",{style:"width:"+(p.hrs/max*100).toFixed(1)+"%"}),
-    h("s",{style:"left:"+(free/max*100).toFixed(1)+"%"}));
-}
-function renderMeter(el,s,p,v){
-  el.dataset.k=v.k; el.textContent="";
-  const freeTxt=fmtH(s.free)+(fmtD(s.free)?" ("+fmtD(s.free)+")":"");
-  const skiTxt=p.ski?" "+(p.ski===1?"One more pick replaces planned skiing, so it":p.ski+" more picks replace planned skiing, so they")+" cost"+(p.ski===1?"s":"")+" no extra time.":"";
-  const line=p.n
-    ? (p.n===1?"The one pick takes":"The "+p.n+" picks add up to")+" about "+fmtH(p.hrs)+", against "+freeTxt+" free here: "+s.freeNote+"."+skiTxt
-    : "Free time here: "+freeTxt+", "+s.freeNote+"."+(p.ski?skiTxt.replace(" One more pick"," One pick").replace(" more picks"," picks"):"");
-  el.append(
-    h("div",{class:"tc-top"},h("b",null,"Time check"),h("span",{class:"tc-v"},v.short)),
-    meterBar(p,s.free,"Picks "+fmtH(p.hrs)+" of "+fmtH(s.free)+" free"),
-    h("p",null,line),
-    h("p",null,v.long),
-    h("p",{class:"muted"},s.range));
-}
-function renderTimeCheck(rows){
-  const box=$("timeCheck"); if(!box) return;
-  box.textContent="";
-  const mk=(r,cand)=>{
-    const s=r.s, p=r.p, v=r.v;
-    const add=cand?tally(s.id):null;
-    return h("a",{class:"tcr",href:"#i-"+s.id,"data-k":v.k},
-      h("span",{class:"tcr-n"},h("b",null,s.name),h("small",null,s.nights)),
-      meterBar(p,s.free,"Picks "+fmtH(p.hrs)+" of "+fmtH(s.free)+" free"),
-      h("span",{class:"tcr-h num"},fmtH(p.hrs)+" of "+fmtH(s.free)),
-      h("span",{class:"tcr-v"},v.short),
-      cand?h("span",{class:"tcr-add num"},"Add it: "+add.up.length+" up, "+add.down.length+" down"):null);
+function renderStop(s,i,cand){
+  LABELS[s.id]=cand?("Could add: "+s.name):("Stop "+(i+1)+": "+s.name);
+  const ideaItem="ideas-"+s.id; LABELS[ideaItem]=s.name+": idea from the group";
+  const v={s,filter:"top",rows:{},chips:[],ul:h("ul",{class:"ideas"}),userUl:h("ul",{class:"ideas"}),ideaItem};
+  for(const o of s.ideas) v.rows[o.id]=ideaRow(o,s);
+  const chip=(k,label)=>{ const el=h("button",{type:"button","aria-pressed":"false",onclick:()=>{ v.filter=k; layoutIdeas(v); }},label); v.chips.push({k,el}); return el; };
+  const chips=h("div",{class:"fchips",role:"group","aria-label":"Show"},chip("top","Start here"),chip("all","All "+s.ideas.length),
+    CATS.filter(([k])=>s.ideas.some(o=>o.c===k)).map(([k,label])=>chip(k,label)));
+  const count=h("span",{class:"sx-count"}), time=h("p",{class:"sx-time"}), userHead=h("p",{class:"cat-h",hidden:true},"Added by the group");
+  const inp=h("input",{type:"text",maxlength:"200",id:"in-"+ideaItem,"aria-label":"Add an idea for "+s.name,placeholder:"Something else worth doing in "+s.name+"…"});
+  const sel=h("select",{"aria-label":"Roughly how long it takes"},IDEA_HOURS.map(([val,l])=>h("option",{value:String(val),selected:val===2},l)));
+  const form=h("form",{class:"idea-add",onsubmit:e=>{ e.preventDefault(); if(addNote(ideaItem,"change",inp.value,{hrs:+sel.value})) inp.value=""; }},inp,sel,h("button",{class:"btn",type:"submit"},"Add idea"));
+  const th=threadFor(s.id);
+  const beds=h("p",{class:"sx-beds"});
+  const myDecs=Object.keys(DECS).map(k=>DECS[k]).filter(d=>d.stop===s.id), own=OPT_DEC[s.id];
+  const body=h("div",{class:"sx-body"},
+    h("p",{class:"stop-sum"},s.sum),
+    h("dl",{class:"kv"},s.facts.map(f=>h("div",null,h("dt",null,f[0]),h("dd",null,f[1])))),
+    (myDecs.length||own)?beds:null,
+    h("div",{class:"sx-ideas"},h("h4",null,"Things to do"),chips,v.ul,userHead,v.userUl,time,form),
+    h("div",{class:"dc-acts"},th.btn),th.thread);
+  const det=h("details",{class:"sx"+(cand?" cand":""),id:stopAnchor(s)},
+    h("summary",null,h("span",{class:"sx-n num"+(s.ski?" ski":"")+(cand?" cand":""),"aria-hidden":"true"},cand?"+":String(i+1)),
+      h("span",{class:"sx-name"},h("b",null,s.name),h("small",null,[s.nights,s.skiDays,s.dates].filter(Boolean).join(", "))),count),
+    h("div",{class:"stop-photos"},(s.photos||[]).map(k=>photo(k,{sizes:"(max-width: 600px) 84vw, 340px",widths:[500,960]}))),
+    body);
+  det.addEventListener("toggle",()=>{ if(det.open) layoutIdeas(v); });
+  v.det=det;
+  v.update=()=>{
+    const hearted=s.ideas.filter(o=>tally(o.id).up.length>0).length;
+    const mine=allNotes().filter(n=>n.item===ideaItem).sort((a,b)=>(a.ts||0)-(b.ts||0));
+    count.textContent=(s.ideas.length+mine.length)+" ideas"+(hearted?", "+hearted+" hearted":"");
+    if(!v.userUl.contains(document.activeElement)){ v.userUl.textContent=""; for(const n of mine) v.userUl.append(userIdeaRow(n)); }
+    userHead.hidden=!mine.length;
+    const p=stopPicks(s);
+    time.textContent=(p.n?"Hearted so far adds up to about "+fmtH(p.hrs)+", against about "+fmtH(s.free)+" free here":"About "+fmtH(s.free)+" free here")+": "+s.freeNote+". "+s.range;
+    beds.textContent="";
+    for(const d of myDecs){ const o=outcome(d); beds.append(h("span",null,h("b",null,d.s+": "),o.win.t+(o.win.cost?", "+o.win.cost:"")+". "),h("a",{href:"#i-"+d.id},phaseOf(d)==="done"?"See the result":"Vote in round "+d.round.n),h("br")); }
+    if(own) beds.append(h("span",null,cand?"Want this on the route? ":"This stop is in question. "),h("a",{href:"#i-"+own.id},cand?"Say so in the add-a-stop poll":"Keep it or cut it in round "+own.round.n));
+    th.update();
+    if(!det.open) layoutIdeas(v);
   };
-  const route=rows.filter(r=>!r.cand), extra=rows.filter(r=>r.cand);
-  box.append(
-    h("div",{class:"tcl-head"},h("h3",null,"Time check"),
-      h("p",{class:"small muted"},"Each stop's free time against the things to do the group has voted up. A thing counts once it has more up votes than down. The bar fills with the picked hours; the tick marks the free time we have there. Stops with room to spare are candidates to speedrun; stops that want more time are candidates for another night.")),
-    h("div",{class:"tcl"},route.map(r=>mk(r,false))),
-    h("div",{class:"tcl-sub"},"Places we could add"),
-    h("div",{class:"tcl"},extra.map(r=>mk(r,true))));
+  exploreWidgets.push(v.update);
+  stopViews.push(v);
+  layoutIdeas(v);
+  return det;
 }
-function refreshMeters(){
-  const rows=[];
-  for(const s of STOPS) rows.push({s,cand:false});
-  for(const s of CANDIDATES) rows.push({s,cand:true});
-  for(const r of rows){ r.p=stopPicks(r.s); r.v=verdict(r.p,r.s.free); const el=$("tc-"+r.s.id); if(el) renderMeter(el,r.s,r.p,r.v); }
-  renderTimeCheck(rows);
+function renderExplore(){
+  STOPS.forEach((s,i)=>$("stopList").append(renderStop(s,i,false)));
+  CANDIDATES.forEach(s=>$("extraList").append(renderStop(s,0,true)));
 }
 
-function renderCards(rootId,items,prefix){
-  const root=$(rootId);
-  items.forEach((c,i)=>{
-    const id=c.id||(prefix+"-"+i); LABELS[id]=c.t;
-    const cov=c.ph?photo(c.ph,{sizes:"(max-width: 700px) 100vw, 480px",widths:[500,960]}):null;
-    const tt=c.ph?c.t.split(" · "):[c.t];
-    const el=h("div",{class:"card",id:"i-"+id},cov,h("h3",null,tt[0]),tt.length>1?h("div",{class:"card-sub"},tt.slice(1).join(" · ")):null,c.price?h("div",{class:"price num"},c.price):null,h("ul",null,c.pts.map(p=>h("li",{html:p}))));
-    const w=h("div",{style:"margin-top:auto"}); w.append(voteBar(id)); el.append(w); root.append(el);
-  });
-}
+/* ---------- reference: costs, booking, board ---------- */
 function renderBooking(){
   const root=$("bookList");
   for(const b of BOOKING) root.append(h("li",null,h("div",{class:"when"},b.when),h("ul",null,b.pts.map(p=>h("li",null,p)))));
@@ -1864,78 +2230,52 @@ function renderCalc(){
   for(const l of costLines(o)) body.append(h("tr",null,h("td",null,l[0]),h("td",{class:"muted small"},l[1]),h("td",{class:"r"},money(l[2]))));
   body.append(h("tr",{class:"total"},h("td",null,"Total each"),h("td",{class:"muted small"},"door to door, 15 nights away"),h("td",{class:"r"},money(costTotal(o)))));
 }
-function renderHeroCost(){
-  const base={size:4,rent:true,van:true,kyoto:true};
-  const mid=costTotal(Object.assign({tier:1},base)), lo=costTotal(Object.assign({tier:0},base)), hi=costTotal(Object.assign({tier:2},base));
-  $("heroCost").textContent="about "+money(round50(mid));
-  $("heroCostSub").textContent="Lean "+money(round50(lo))+" to plush "+money(round50(hi))+". Four sharing, 4 days of lift tickets, rented gear";
-}
 function renderAboutSelect(){
   const sel=$("bAbout"); sel.append(h("option",{value:"general"},"The whole trip"));
+  for(const r of ROUNDS) for(const d of r.list) sel.append(h("option",{value:d.id},"Round "+r.n+": "+d.s));
   STOPS.forEach((s,i)=>sel.append(h("option",{value:s.id},"Stop "+(i+1)+": "+s.name)));
   CANDIDATES.forEach(s=>sel.append(h("option",{value:s.id},"Could add: "+s.name)));
-  for(const d of DECISIONS) sel.append(h("option",{value:d.id},"Vote: "+d.q));
 }
-
-/* ---------- dynamic refresh ---------- */
 function refreshBoard(){
   const list=$("boardList"); list.textContent="";
-  const ns=allNotes();
-  ns.sort((a,b)=>{ const ka=a.kind==="change"?1:0, kb=b.kind==="change"?1:0; if(ka!==kb) return kb-ka; const d=tally(b.id).net-tally(a.id).net; return d|| (b.ts||0)-(a.ts||0); });
+  const ns=allNotes().filter(n=>!/^ideas-/.test(n.item));
+  ns.sort((a,b)=>{ const ka=a.kind==="change"?1:0, kb=b.kind==="change"?1:0; if(ka!==kb) return kb-ka; const d=tally(b.id).net-tally(a.id).net; return d||(b.ts||0)-(a.ts||0); });
+  $("boardCount").textContent=ns.length?ns.length+(ns.length===1?" post":" posts"):"nothing yet";
   if(!ns.length){ list.append(h("div",{class:"empty"},"Nothing posted yet. Be the first to object to something.")); return; }
   const ul=h("ul",{class:"notes"}); for(const n of ns) ul.append(noteEl(n,true)); list.append(ul);
 }
-function refreshLeaders(){
-  for(const ids of VOTE_GROUPS){
-    let best=null,bestNet=0,tie=false;
-    for(const id of ids){ const n=tally(id).net; if(n>bestNet){best=id;bestNet=n;tie=false;} else if(n===bestNet&&n>0) tie=true; }
-    for(const id of ids){
-      const lead=!tie&&best===id;
-      const pill=document.querySelector('[data-lead="'+id+'"]'); if(pill) pill.hidden=!lead;
-      const el=document.querySelector('[data-opt="'+id+'"]'); if(el) el.classList.toggle("leading",lead);
-    }
-  }
+
+/* ---------- links into folded parts of the page ---------- */
+function goHash(){
+  let id; try{ id=decodeURIComponent(location.hash.slice(1)); }catch(e){ return; }
+  if(!id||!/^[\w-]+$/.test(id)) return;
+  let el=document.getElementById(id);
+  if(!el&&id.startsWith("i-")) el=document.getElementById("x-"+id.slice(2));
+  if(!el) return;
+  if(el.hidden&&el.classList.contains("idea")){ const v=stopViews.find(x=>x.rows[id.slice(2)]===el); if(v){ v.filter="all"; v.det.open=true; layoutIdeas(v); } }
+  let opened=false;
+  for(let p=el;p;p=p.parentElement) if(p.tagName==="DETAILS"&&!p.open){ p.open=true; opened=true; }
+  /* jump straight there (no smooth scroll), and once more in case photos above it changed height while loading */
+  const jump=()=>el.scrollIntoView({block:"start",behavior:"instant"});
+  const go=()=>{ jump(); el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),1600);
+    setTimeout(()=>{ if(location.hash.slice(1)===id&&Math.abs(el.getBoundingClientRect().top-64)>48) jump(); },450); };
+  if(opened) requestAnimationFrame(go); else go();
 }
-/* ideas with the most votes rise to the top of their group; ties keep the original order */
-function userIdeaRow(n){
-  const li=h("li",{class:"row-i idea user-idea",id:"i-"+n.id,"data-opt":n.id},
-    h("div",{class:"rt"},n.text,h("span",{class:"pill fb"},"Added by "+n.byName)),
-    h("div",{class:"rm"},h("span",null,durLabel({h:n.hrs||2}))),
-    n.by===state.me?h("div",{class:"rd"},h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete my idea")):null);
-  li.append(miniVote(n.id));
-  return li;
-}
-function refreshIdeas(){
-  const notes=allNotes();
-  for(const L of IDEA_LISTS){
-    const act=L.box.contains(document.activeElement)?document.activeElement:null;
-    const actLi=act&&act.closest("li"), actId=actLi&&actLi.id, actCls=act&&act.className;
-    let picked=0;
-    for(const g of L.groups){
-      const rows=g.order.map((id,i)=>({el:$("i-"+id),i,net:tally(id).net}));
-      rows.sort((a,b)=>b.net-a.net||a.i-b.i);
-      for(const x of rows){ x.el.classList.toggle("wanted",x.net>0); if(x.net>0) picked++; }
-      const have=[...g.ul.children];
-      if(rows.some((x,k)=>x.el!==have[k])) for(const x of rows) g.ul.append(x.el);
-    }
-    const mine=notes.filter(n=>n.item===L.item).sort((a,b)=>(a.ts||0)-(b.ts||0))
-      .map((n,j)=>({n,i:j,net:tally(n.id).net})).sort((a,b)=>b.net-a.net||a.i-b.i);
-    L.userUl.textContent="";
-    for(const x of mine){ const li=userIdeaRow(x.n); li.classList.toggle("wanted",x.net>0); if(x.net>0) picked++; L.userUl.append(li); }
-    L.userCat.hidden=!mine.length;
-    const total=L.stop.ideas.length+mine.length;
-    L.count.textContent=total+" ideas"+(mine.length?" · "+mine.length+" from the group":"")+(picked?" · "+picked+" picked":"");
-    if(actId){ const li=$(actId); const again=li&&[...li.querySelectorAll("button,a")].find(b=>b.className===actCls); if(again&&again!==document.activeElement) again.focus({preventScroll:true}); }
-  }
-}
+window.addEventListener("hashchange",goHash);
+document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a&&a.getAttribute("href")===location.hash) setTimeout(goHash,0); });
+
+/* ---------- dynamic refresh ---------- */
 function refresh(){
-  for(const u of widgets) u();
-  refreshBoard(); refreshLeaders(); refreshIdeas(); refreshMeters();
+  if(phaseKey()!==lastPhase) renderVote();
+  for(const u of voteWidgets) u();
+  for(const u of exploreWidgets) u();
+  renderTurn(); renderPlan(); refreshBoard();
   const n=Object.keys(state.people).length;
-  $("meBtn").textContent=state.me?("Voting as "+((state.people[state.me]&&state.people[state.me].name)||state.meName||state.me)):"Pick your name";
+  $("meBtn").textContent=state.me?(nameOf(state.me)!==state.me?nameOf(state.me):(state.meName||state.me)):"Pick your name";
+  $("meBtn").setAttribute("aria-label",state.me?"Voting as "+$("meBtn").textContent+". Change name":"Pick your name");
   const s=$("status"), txt=s.lastElementChild;
   s.className="status"+(state.mode==="live"?" live":(state.mode==="connecting"?"":" warn"));
-  txt.textContent={connecting:"Connecting…",live:"Live · "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
+  txt.textContent={connecting:"Connecting…",live:"Live, "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
   renderChat();
   if(!$("whoScrim").hidden) renderWhoNames();
   const b=$("banner");
@@ -1945,14 +2285,14 @@ function refresh(){
 function setMode(m){ state.mode=m; refresh(); }
 
 /* ---------- wire up ---------- */
-renderCards("flightCards",FLIGHTS,"flight"); renderStops(); renderExtra(); renderDecisions();
-renderBooking(); renderAboutSelect(); renderCalc(); renderHeroCost(); refresh();
-renderCredits(); initLightbox(); initSpy();
+renderExplore(); renderBooking(); renderAboutSelect(); renderCalc(); refresh();
+renderCredits(); initLightbox(); initSpy(); goHash();
+setInterval(()=>{ if(phaseKey()!==lastPhase) refresh(); },30000);
 
 $("calcForm").addEventListener("input",renderCalc);
 $("calcForm").addEventListener("change",renderCalc);
 $("calcForm").addEventListener("submit",e=>e.preventDefault());
-$("meBtn").addEventListener("click",()=>{ if(!loading()) openWho(null); });
+$("meBtn").addEventListener("click",()=>openWho(null));
 $("whoCancel").addEventListener("click",closeWho);
 $("whoScrim").addEventListener("click",e=>{ if(e.target===$("whoScrim")) closeWho(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("whoScrim").hidden) closeWho(); });
@@ -1994,8 +2334,6 @@ function loadBackup(){
   el.onload=()=>backup.then(startSync); el.onerror=()=>backup.then(()=>setMode("offline"));
   document.head.append(el);
 })();
-/* first visit on this device: ask for a name straight away */
-if(!state.me) openWho(null);
 </script>
 </body>
 </html>
