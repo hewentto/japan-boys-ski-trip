@@ -43,7 +43,7 @@
       "notes": {
         "n-jared-mwa3mr97": {"item":"flight-together","kind":"comment","text":"Ran this through tools that mix airlines and separate legs: Google Flights multi-city, ITA Matrix and Kiwi. Best shared flight is United SFO→Haneda Sat Feb 6 at 10:20 AM, then all of us on one flight to Sapporo Sunday evening (~$90). From SF: $1,404 round trip, or $1,459 on one ticket into Sapporo. From SLC: $1,387 on one United ticket with a Friday night in SF. Korea is out this year: Lunar New Year (Feb 6–9) makes Seoul→Sapporo $267–401 with no evening flights, so we'd lose a festival day. All the fares are on this card.","ts":1794279407227}
       },
-      "updated": 1794336667826,
+      "updated": 1794350348740,
       "votes": {
         "a-ramen": {"t":1794331988409,"v":1},
         "a-susukino": {"t":1794332013048,"v":1},
@@ -55,6 +55,8 @@
         "gear-rent": {"t":1794269936504,"v":1},
         "lodge-cottage": {"t":1794270023316,"v":1},
         "lodge-kutchan": {"t":1794270036225,"v":1},
+        "mid-furano": {"t":1794350342843,"v":-1},
+        "mid-niseko": {"t":1794350348740,"v":-1},
         "wheels-van": {"t":1794270091349,"v":1}
       }
     },
