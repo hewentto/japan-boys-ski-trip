@@ -28,6 +28,7 @@ function cleanDoc(d) {
   if (d.notes && typeof d.notes === "object") for (const k of Object.keys(d.notes).slice(0, 300)) {
     const x = d.notes[k]; if (!x || typeof x !== "object" || !ID_OK.test(k)) continue;
     out.notes[k] = x.del ? { del: true, ts: +x.ts || 0 } : { item: ID_OK.test(x.item) ? x.item : "general", kind: x.kind === "change" ? "change" : "comment", text: String(x.text || "").slice(0, 600), ts: +x.ts || 0 };
+    if (!x.del && typeof x.hrs === "number" && x.hrs >= 0.5 && x.hrs <= 12) out.notes[k].hrs = Math.round(x.hrs * 2) / 2;
   }
   return out;
 }
