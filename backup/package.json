@@ -1,0 +1,9 @@
+{
+  "name": "jbst-backup",
+  "private": true,
+  "type": "module",
+  "description": "Copies votes and comments from the vote relays into the backup branch",
+  "dependencies": {
+    "mqtt": "5.10.1"
+  }
+}

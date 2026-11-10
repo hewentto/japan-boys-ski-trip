@@ -1,0 +1,49 @@
+name: Back up votes and comments
+
+# Every 5 minutes, copy what the vote relays hold into the "backup" branch.
+# The site reads backup.json from that branch on every visit and restores anything the relays have lost.
+on:
+  schedule:
+    - cron: "3-58/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the backup script
+        uses: actions/checkout@v6
+
+      - name: Check out the backup branch
+        uses: actions/checkout@v6
+        with:
+          ref: backup
+          path: data
+
+      - name: Install the relay client
+        working-directory: backup
+        run: npm ci --no-audit --no-fund
+
+      - name: Read the relays and update the backup
+        run: node backup/backup.mjs data
+
+      - name: Commit if anything changed
+        working-directory: data
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing new to back up."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Backup $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
