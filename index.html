@@ -60,7 +60,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* hero */
 .hero{background:var(--paper);border-bottom:1px solid var(--line)}
-.hero .wrap{padding-top:28px;padding-bottom:24px;display:grid;gap:20px}
 .eyebrow{font:600 .8rem/1.35 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .hero p.lede{max-width:62ch;font-size:1.08rem;color:var(--ink-2)}
 .route{display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;margin:0;padding:0;list-style:none}
@@ -154,7 +153,7 @@ section{padding:40px 0 8px}
 .stub .type{margin-top:8px;font:600 .68rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:rgba(255,255,255,.14)}
 .day.ski .stub{background:var(--accent);color:var(--accent-ink)}
 .day .body{padding:16px 18px;min-width:0}
-.day .body > p{color:var(--ink-2);margin-top:4px;max-width:70ch}
+.day .dtext > p{color:var(--ink-2);margin-top:4px;max-width:70ch}
 .tl{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:9px}
 .tl li{display:grid;grid-template-columns:74px 1fr;gap:10px;font-size:.95rem}
 .tl .t{font-weight:600;color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:.86rem;padding-top:2px}
@@ -220,6 +219,88 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 .dlg input{border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--paper);width:100%}
 .dlg .row{display:flex;gap:8px;justify-content:flex-end}
 
+/* ---------- photos and polish ---------- */
+:root{--shadow:0 1px 2px rgba(23,32,58,.05),0 6px 18px -8px rgba(23,32,58,.16)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 24px -12px rgba(0,0,0,.65)}}
+:root[data-theme="dark"]{--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 24px -12px rgba(0,0,0,.65)}
+.dec,.day,.card,.check li,.how div,.board form,.calc form,.tablewrap,.board .note{box-shadow:var(--shadow)}
+.sec-head h2::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:var(--accent);margin-bottom:12px}
+
+/* hero photo */
+.hero-photo{position:relative;isolation:isolate;display:flex;align-items:flex-end;min-height:clamp(360px,58vh,580px);background:#1b2740;color:#fff;overflow:hidden}
+.hero-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0;transition:opacity .7s ease}
+.hero-photo > img.in{opacity:1}
+.hero-photo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(9,14,28,.45) 0%,rgba(9,14,28,0) 22%,rgba(9,14,28,0) 44%,rgba(9,14,28,.55) 72%,rgba(9,14,28,.86) 100%)}
+.hero-copy{width:100%;padding-top:88px;padding-bottom:30px;display:grid;gap:10px}
+.hero-copy .eyebrow{color:#ffcdbd}
+.hero-copy h1{color:#fff;font-size:clamp(2.7rem,7.2vw,5.2rem);text-shadow:0 2px 28px rgba(0,0,0,.35)}
+.hero-sub{font:600 1.06rem/1.4 var(--body);color:rgba(255,255,255,.93);text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.hero-credit{position:absolute;top:12px;right:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);border:0;border-radius:999px;padding:6px 11px;background:rgba(9,14,28,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font:600 .74rem/1.2 var(--body);cursor:zoom-in}
+.hero-credit:hover{background:rgba(9,14,28,.72)}
+.hero-credit svg{width:12px;height:12px;flex:none}
+.hero-credit span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-meta{padding-top:22px;padding-bottom:24px;display:grid;gap:18px}
+.route a{color:inherit;text-decoration:none;border-radius:4px}
+.route a:hover{color:var(--accent)}
+@media (max-width:600px){
+  .hero-photo{min-height:clamp(320px,54vh,440px)}
+  .hero-copy{padding-top:64px;padding-bottom:22px}
+  .hero-sub{font-size:.98rem}
+}
+
+/* where you are in the nav */
+.bar nav{position:relative}
+.bar nav a[aria-current]{opacity:1;background:rgba(255,255,255,.16);background:color-mix(in srgb,currentColor 17%,transparent)}
+.bar nav a:hover{background:color-mix(in srgb,currentColor 12%,transparent)}
+
+/* photo frames: one component everywhere */
+.ph{position:relative;margin:0;overflow:hidden;background:var(--tint);aspect-ratio:16/9}
+.ph-btn{position:static;display:block;width:100%;height:100%;padding:0;margin:0;border:0;background:none;color:inherit;cursor:zoom-in}
+.ph img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.ph img.in{opacity:1}
+@media (hover:hover){.ph-btn:hover img{transform:scale(1.04)}}
+.ph-btn:focus-visible{outline:none}
+.ph-btn:focus-visible::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 3px var(--ice),inset 0 0 0 5px rgba(255,255,255,.85)}
+.cap{position:absolute;left:8px;bottom:8px;max-width:calc(100% - 16px);display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:6px;background:rgba(9,14,28,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font:600 .74rem/1.25 var(--body);letter-spacing:.01em;pointer-events:none}
+.cap span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cap svg{width:11px;height:11px;flex:none;opacity:.85}
+@media (prefers-reduced-motion: reduce){.ph img,.hero-photo > img{transition:none}.ph-btn:hover img{transform:none}}
+
+/* day cards: photo beside the plan when there is room, banner on top when narrow */
+.day .body{container-type:inline-size}
+.dtop{display:grid}
+.dtop > .ph{margin:-16px -18px 14px}
+@container (min-width: 600px){
+  .dtop.has-ph{grid-template-columns:minmax(0,1fr) clamp(220px,38%,340px);column-gap:22px;align-items:start}
+  .dtop.has-ph > .ph{grid-column:2;grid-row:1;margin:2px 0 4px;aspect-ratio:4/3;border-radius:8px}
+  .dtop.has-ph > .dtext{grid-column:1;grid-row:1}
+}
+.opt,.card{overflow:hidden}
+.opt > .ph{margin:-13px -14px 6px;flex:none}
+.card > .ph{margin:-16px -18px 4px;flex:none}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;border:0;padding:0;margin:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:rgba(6,9,18,.95);color:#fff;display:grid;grid-template-rows:minmax(0,1fr) auto}
+.lb:not([open]){display:none}
+.lb::backdrop{background:rgba(6,9,18,.7)}
+.lb-stage{display:grid;place-items:center;min-height:0;padding:20px 20px 0}
+.lb-stage img{display:block;max-width:100%;max-height:calc(100dvh - 120px);width:auto;height:auto;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#1b2740}
+.lb-bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
+.lb-text{display:grid;gap:3px;min-width:0;flex:1 1 260px}
+.lb-text b{font:700 1.3rem/1.15 var(--display);letter-spacing:.01em}
+.lb-text span{font-size:.84rem;color:rgba(255,255,255,.75)}
+.lb-text a{color:#a9d4ff}
+.lb-nav{display:flex;align-items:center;gap:8px}
+.lb-nav .num{min-width:58px;text-align:center;font-size:.84rem;color:rgba(255,255,255,.75)}
+.lb-b{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;padding:0}
+.lb-b:hover{background:rgba(255,255,255,.18)}
+.lb-b svg{width:18px;height:18px}
+html:has(.lb[open]){overflow:hidden}
+@media (max-width:600px){.lb-stage{padding:12px 8px 0}.lb-stage img{max-height:calc(100dvh - 170px);border-radius:4px}.lb-bar{padding:12px 14px calc(14px + env(safe-area-inset-bottom))}}
+
+.credits{margin-top:26px;display:grid;gap:8px}
+.card-sub{font:600 .76rem/1.2 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:-4px}
+
 /* group chat */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .chat{display:flex;flex-direction:column;background:var(--paper);border-left:1px solid var(--line);min-height:0}
@@ -269,22 +350,27 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
 <body>
 
 <header class="hero">
-  <div class="wrap">
-    <div>
+  <div class="hero-photo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/960px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1920px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1920w" sizes="(min-width: 1180px) calc(100vw - 380px), 100vw" alt="Mount Yotei rising behind the snowy slopes of Niseko Annupuri" style="object-position:32% 50%" fetchpriority="high" decoding="async" onload="this.classList.add('in')">
+    <button type="button" class="hero-credit" data-ph="hero1" aria-label="View larger photo: Mount Yotei rising behind the snowy slopes of Niseko Annupuri"><span>Mt. Yotei from Niseko Annupuri</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="wrap hero-copy">
       <p class="eyebrow">Draft 2 for the group to vote on · prices checked Nov 9, 2026</p>
       <h1>Japan Boys Ski Trip</h1>
+      <p class="hero-sub">Sat Feb 6 to Sun Feb 21, 2027 · Hokkaido, Tokyo and Kyoto</p>
     </div>
+  </div>
+  <div class="wrap hero-meta">
     <p class="lede">Sixteen days. Sapporo's Snow Festival, a Hokkaido road trip with four ski days at Furano and Niseko, then Tokyo, Mt. Fuji and a night in Kyoto. Saturday Feb 6 to Sunday Feb 21, 2027, using all ten days off and the weekends on both ends.</p>
     <ol class="route" aria-label="Route">
-      <li><span class="dot"></span><span>Salt Lake City<small>Sat Feb 6</small></span></li>
-      <li><span class="dot"></span><span>Sapporo<small>2 nights, Snow Festival</small></span></li>
-      <li><span class="dot"></span><span>Otaru + Yoichi<small>1 night</small></span></li>
-      <li class="ski"><span class="dot"></span><span>Furano<small>2 nights, 1 ski day</small></span></li>
-      <li class="ski"><span class="dot"></span><span>Niseko<small>4 nights, 3 ski days</small></span></li>
-      <li><span class="dot"></span><span>Lake Toya + Hell Valley<small>day stop</small></span></li>
-      <li><span class="dot"></span><span>Tokyo + Fuji<small>4 nights</small></span></li>
-      <li><span class="dot"></span><span>Kyoto<small>1 night</small></span></li>
-      <li><span class="dot"></span><span>Salt Lake City<small>Sun Feb 21</small></span></li>
+      <li><span class="dot"></span><a href="#i-d0206">Salt Lake City<small>Sat Feb 6</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0207">Sapporo<small>2 nights, Snow Festival</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0209">Otaru + Yoichi<small>1 night</small></a></li>
+      <li class="ski"><span class="dot"></span><a href="#i-d0210">Furano<small>2 nights, 1 ski day</small></a></li>
+      <li class="ski"><span class="dot"></span><a href="#i-d0212">Niseko<small>4 nights, 3 ski days</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0216">Lake Toya + Hell Valley<small>day stop</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0217">Tokyo + Fuji<small>4 nights</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0219">Kyoto<small>1 night</small></a></li>
+      <li><span class="dot"></span><a href="#i-d0221">Salt Lake City<small>Sun Feb 21</small></a></li>
     </ol>
     <div class="facts">
       <div class="fact"><span class="k">Skiing</span><b>4 ski days</b><span>Three at Niseko United, one at Furano</span></div>
@@ -451,10 +537,28 @@ footer{padding:28px 0 60px;color:var(--ink-2);font-size:.86rem}
       <li><a href="https://selfguidejapan.com/blog/japan-tourist-tax-2026">Japan departure tax and tax-free changes 2026</a></li>
       <li><a href="https://30rates.com/usd-to-jpy-forecast-converter-dollar-to-yen">USD to JPY rate</a></li>
     </ul>
+    <div class="credits" id="photo-credits">
+      <h3>Photo credits</h3>
+      <p class="small muted">Every photo is from Wikimedia Commons, shown under the license listed. Tap any photo on the page to see it bigger.</p>
+      <ul class="sources" id="photoCredits"></ul>
+    </div>
   </section>
 </main>
 
-<footer><div class="wrap">Draft 2. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay, so keep it to trip talk.</div></footer>
+<footer><div class="wrap">Draft 2. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
+
+<dialog class="lb" id="lb" aria-labelledby="lbCap">
+  <div class="lb-stage"><img id="lbImg" alt=""></div>
+  <div class="lb-bar">
+    <div class="lb-text"><b id="lbCap"></b><span id="lbCredit"></span></div>
+    <div class="lb-nav">
+      <button type="button" class="lb-b" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <span class="num" id="lbCount"></span>
+      <button type="button" class="lb-b" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="lb-b" id="lbClose" aria-label="Close photo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</dialog>
 
 <aside class="chat" id="chat" aria-label="Group chat">
   <div class="chat-head">
@@ -699,12 +803,12 @@ const FLIGHTS = [
   { t:"Worth a look: via Seoul", price:"check price", pts:["Delta flies SLC to Seoul Incheon nonstop (3 a week last winter)","Seoul to Sapporo is a nonstop of under 3 hours on several airlines","Could beat backtracking through Tokyo if the days line up"] }
 ];
 const STAYS = [
-  { t:"Sapporo · 2 nights · Feb 7–9", price:"$52–68 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/plat-hostel-keikyu-sapporo-ichiba-zha-huang-shi.html\" target=\"_blank\" rel=\"noopener\">plat hostel keikyu sapporo ichiba</a>. Private 4-bunk room, shared bathroom, by Nijo Market. $414 for the group, 8.3 from 1,329 reviews","<b>Draft pick:</b> <a href=\"https://www.airbnb.com/rooms/1611202805349746979\" target=\"_blank\" rel=\"noopener\">2-bedroom apartment in Kita-ku</a> on Airbnb. $543 for the group, 4.93 from 194 reviews, 10 minutes by subway to downtown","Or a <a href=\"https://www.airbnb.com/rooms/1559062540418818413\" target=\"_blank\" rel=\"noopener\">Susukino apartment</a> in the bar district at $495, but it lists only 3 beds","Festival week and Korea's Lunar New Year both land on these nights. Book a free-cancellation room now"] },
-  { t:"Otaru · 1 night · Feb 9", price:"$26 each", pts:["<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/otaru-eminabackpackers.html\" target=\"_blank\" rel=\"noopener\">Otaru Eminabackpackers</a>. Private quad with a shared bathroom, $103 for the group, 9.3 from 88 reviews","Backup: <a href=\"https://www.booking.com/hotel/jp/otaru-garden-stay.html\" target=\"_blank\" rel=\"noopener\">Otaru Garden Stay</a>, a quad with 4 twin beds, $109, 7.4 from 182 reviews","Ask about parking for the van when booking"] },
-  { t:"Furano · 2 nights · Feb 10–12", price:"$36–50 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/minshuku-akiba.html\" target=\"_blank\" rel=\"noopener\">Furano Minshuku Akiba</a>, a Japanese-style family room with futons in town. $287 for the group, 7.9 from 220 reviews","<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/hostel-tomar.html\" target=\"_blank\" rel=\"noopener\">Hostel Tomar</a>, a family room with bunks and a shared shower. $400 for the group, 8.5 from 1,183 reviews","Plush: the New Furano Prince, ski-in ski-out next to Ningle Terrace"] },
-  { t:"Niseko · 4 nights · Feb 12–16", price:"$59–85 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/yellow-house-niseko.html\" target=\"_blank\" rel=\"noopener\">Yellow House Niseko</a> in Kutchan, a quad room with breakfast included. $936 for the group, 8.0 from 136 reviews","<b>Draft pick:</b> the <a href=\"https://www.airbnb.com/rooms/22412172\" target=\"_blank\" rel=\"noopener\">Classic Cozy Cottage</a> in Rankoshi. Whole house with a kitchen, $1,352 for the group, 4.92 from 113 reviews, about 25–30 min to Hirafu","Other whole houses near Niseko on Airbnb ran $2,000–2,200 for these dates","Plush: a condo in Hirafu village, about $190 each a night"] },
-  { t:"Tokyo · 5 nights · Feb 16–21", price:"$29–40 each per night", pts:["One apartment for all five nights. We keep it during the Kyoto night so the big bags stay put","<b>Cheapest:</b> <a href=\"https://www.airbnb.com/rooms/717040692625111113\" target=\"_blank\" rel=\"noopener\">Yotsuya Sanchome apartment</a>, a whole 40 m² place. $584 for the group, 4.66 from 218 reviews","<b>Draft pick:</b> <a href=\"https://www.airbnb.com/rooms/1363005724534872075\" target=\"_blank\" rel=\"noopener\">apartment 5 minutes from the station</a> in Shinjuku. $792 for the group, 4.79 from 920 reviews"] },
-  { t:"Kyoto · 1 night · Feb 19", price:"$11–13 each", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/grand-japaning-karigane-kyoto.html\" target=\"_blank\" rel=\"noopener\">Smart Place Inn Kyoto Shijo Horikawa</a>, a quad with 4 twin beds. $44 for the group on sale (normally $65), 8.2 from 1,239 reviews","<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/backpackers-hostel-k-s-house-kyoto.html\" target=\"_blank\" rel=\"noopener\">K's House Kyoto</a>, a Japanese-style quad room. $52 for the group, 8.7 from 2,347 reviews","Kyoto adds its own lodging tax at check-in"] }
+  { ph:"stay-sapporo", t:"Sapporo · 2 nights · Feb 7–9", price:"$52–68 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/plat-hostel-keikyu-sapporo-ichiba-zha-huang-shi.html\" target=\"_blank\" rel=\"noopener\">plat hostel keikyu sapporo ichiba</a>. Private 4-bunk room, shared bathroom, by Nijo Market. $414 for the group, 8.3 from 1,329 reviews","<b>Draft pick:</b> <a href=\"https://www.airbnb.com/rooms/1611202805349746979\" target=\"_blank\" rel=\"noopener\">2-bedroom apartment in Kita-ku</a> on Airbnb. $543 for the group, 4.93 from 194 reviews, 10 minutes by subway to downtown","Or a <a href=\"https://www.airbnb.com/rooms/1559062540418818413\" target=\"_blank\" rel=\"noopener\">Susukino apartment</a> in the bar district at $495, but it lists only 3 beds","Festival week and Korea's Lunar New Year both land on these nights. Book a free-cancellation room now"] },
+  { ph:"stay-otaru", t:"Otaru · 1 night · Feb 9", price:"$26 each", pts:["<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/otaru-eminabackpackers.html\" target=\"_blank\" rel=\"noopener\">Otaru Eminabackpackers</a>. Private quad with a shared bathroom, $103 for the group, 9.3 from 88 reviews","Backup: <a href=\"https://www.booking.com/hotel/jp/otaru-garden-stay.html\" target=\"_blank\" rel=\"noopener\">Otaru Garden Stay</a>, a quad with 4 twin beds, $109, 7.4 from 182 reviews","Ask about parking for the van when booking"] },
+  { ph:"stay-furano", t:"Furano · 2 nights · Feb 10–12", price:"$36–50 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/minshuku-akiba.html\" target=\"_blank\" rel=\"noopener\">Furano Minshuku Akiba</a>, a Japanese-style family room with futons in town. $287 for the group, 7.9 from 220 reviews","<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/hostel-tomar.html\" target=\"_blank\" rel=\"noopener\">Hostel Tomar</a>, a family room with bunks and a shared shower. $400 for the group, 8.5 from 1,183 reviews","Plush: the New Furano Prince, ski-in ski-out next to Ningle Terrace"] },
+  { ph:"stay-niseko", t:"Niseko · 4 nights · Feb 12–16", price:"$59–85 each per night", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/yellow-house-niseko.html\" target=\"_blank\" rel=\"noopener\">Yellow House Niseko</a> in Kutchan, a quad room with breakfast included. $936 for the group, 8.0 from 136 reviews","<b>Draft pick:</b> the <a href=\"https://www.airbnb.com/rooms/22412172\" target=\"_blank\" rel=\"noopener\">Classic Cozy Cottage</a> in Rankoshi. Whole house with a kitchen, $1,352 for the group, 4.92 from 113 reviews, about 25–30 min to Hirafu","Other whole houses near Niseko on Airbnb ran $2,000–2,200 for these dates","Plush: a condo in Hirafu village, about $190 each a night"] },
+  { ph:"stay-tokyo", t:"Tokyo · 5 nights · Feb 16–21", price:"$29–40 each per night", pts:["One apartment for all five nights. We keep it during the Kyoto night so the big bags stay put","<b>Cheapest:</b> <a href=\"https://www.airbnb.com/rooms/717040692625111113\" target=\"_blank\" rel=\"noopener\">Yotsuya Sanchome apartment</a>, a whole 40 m² place. $584 for the group, 4.66 from 218 reviews","<b>Draft pick:</b> <a href=\"https://www.airbnb.com/rooms/1363005724534872075\" target=\"_blank\" rel=\"noopener\">apartment 5 minutes from the station</a> in Shinjuku. $792 for the group, 4.79 from 920 reviews"] },
+  { ph:"stay-kyoto", t:"Kyoto · 1 night · Feb 19", price:"$11–13 each", pts:["<b>Cheapest:</b> <a href=\"https://www.booking.com/hotel/jp/grand-japaning-karigane-kyoto.html\" target=\"_blank\" rel=\"noopener\">Smart Place Inn Kyoto Shijo Horikawa</a>, a quad with 4 twin beds. $44 for the group on sale (normally $65), 8.2 from 1,239 reviews","<b>Draft pick:</b> <a href=\"https://www.booking.com/hotel/jp/backpackers-hostel-k-s-house-kyoto.html\" target=\"_blank\" rel=\"noopener\">K's House Kyoto</a>, a Japanese-style quad room. $52 for the group, 8.7 from 2,347 reviews","Kyoto adds its own lodging tax at check-in"] }
 ];
 const TRANS = [
   { t:"Airport to Sapporo", pts:["JR Rapid Airport train from under the terminal, about 40 min and $8","Runs several times an hour into the evening"] },
@@ -764,6 +868,111 @@ function costLines(o){
 const costTotal=o=>costLines(o).reduce((s,l)=>s+l[2],0);
 const money=n=>"$"+Math.round(n).toLocaleString("en-US");
 const round50=n=>Math.round(n/50)*50;
+
+/* ---------- photos (Wikimedia Commons, hotlinked at standard thumbnail sizes) ---------- */
+const WM="https://upload.wikimedia.org/wikipedia/commons/";
+const LICENSES={"CC BY 2.0":"https://creativecommons.org/licenses/by/2.0/","CC BY 2.5":"https://creativecommons.org/licenses/by/2.5/","CC BY 3.0":"https://creativecommons.org/licenses/by/3.0/","CC BY 4.0":"https://creativecommons.org/licenses/by/4.0/","CC BY-SA 2.0":"https://creativecommons.org/licenses/by-sa/2.0/","CC BY-SA 3.0":"https://creativecommons.org/licenses/by-sa/3.0/","CC BY-SA 4.0":"https://creativecommons.org/licenses/by-sa/4.0/","CC0":"https://creativecommons.org/publicdomain/zero/1.0/"};
+const PHOTOS={"hero1":{"p":"a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg","w":5127,"a":"MIKI Yoshihito","l":"CC BY 2.0","c":"Mt. Yotei from Niseko Annupuri","alt":"Mount Yotei rising behind the snowy slopes of Niseko Annupuri","fp":"32% 50%"},"plane1":{"p":"b/b1/In_flight_above_scattered_clouds_(Unsplash).jpg","w":4032,"a":"Harry Knight","l":"CC0","c":"Above the clouds","alt":"View from a plane window above scattered clouds"},"ramen4":{"p":"0/05/Miso_corn_ramen_in_Sapporo_03.jpg","w":4032,"a":"ノボホショコロトソ","l":"CC BY 4.0","c":"Sapporo miso ramen","alt":"A bowl of Sapporo miso corn ramen"},"snowfest1":{"p":"0/0d/Hokkaido_Sapporo_Odori_Park.jpg","w":2592,"a":"Nkns","l":"CC BY-SA 3.0","c":"Odori Park, Sapporo","alt":"Snow-covered Odori Park in Sapporo, with the TV Tower at the far end","fp":"50% 22%"},"otarulight1":{"p":"1/1a/%E5%B0%8F%E6%A8%BD%E9%9B%AA%E3%81%82%E3%81%8B%E3%82%8A%E3%81%AE%E8%B7%AF%EF%BC%88Otaru_Snow_Light_Path_Festival%EF%BC%89_-_panoramio.jpg","w":3024,"a":"t-konno","l":"CC BY-SA 3.0","c":"Otaru Snow Light Path","alt":"Candle lanterns along the Otaru Canal during the Snow Light Path festival"},"bluepond6":{"p":"0/0c/Shirogane_Blue_Pond_by_night,_April_2023_18.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Shirogane Blue Pond light-up","alt":"The Shirogane Blue Pond lit up blue at night among bare larch trunks"},"furano0":{"p":"e/ed/Furano_Snow_Resort_view2.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski runs above the town in winter"},"yotei5":{"p":"b/ba/Yoteizan_seen_from_National_Route_276.jpg","w":4896,"a":"ブルーノ・プラス","l":"CC BY 4.0","c":"The road to Mt. Yotei","alt":"A straight road leading toward snow-capped Mount Yotei","fp":"50% 30%"},"hero3":{"p":"e/e9/2010-02.mt_yotei.jpg","w":3648,"a":"Douglas P Perkins","l":"CC BY 3.0","c":"Mt. Yotei from Niseko","alt":"Mount Yotei seen across the Niseko ski slopes in February","fp":"50% 45%"},"annupuri0":{"p":"6/6b/Niseko-Annupuri.JPG","w":2560,"a":"Wakimasa","l":"Public domain","c":"Niseko Annupuri","alt":"Snow-covered Mount Niseko Annupuri","fp":"50% 30%"},"niseko2":{"p":"0/06/2018_skiing_in_niseko.jpg","w":4160,"a":"Lasthib","l":"CC BY-SA 3.0","c":"Niseko slopes","alt":"A snowy Niseko slope with frosted birch trees and Mount Yotei far off"},"jigokudani4":{"p":"f/f8/Jigokudani_(Hell_Valley),_Noboribetsu_Onsen,_Hokkaido,_April_2023_27.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Hell Valley, Noboribetsu","alt":"Steaming volcanic crater and boardwalk at Noboribetsu Hell Valley"},"shibuya0":{"p":"c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg","w":5853,"a":"Benh LIEU SONG","l":"CC BY-SA 2.0","c":"Shibuya Crossing","alt":"Crowds crossing the Shibuya Scramble under neon signs"},"chureito0":{"p":"5/53/Chureito_Pagoda_and_Mount_Fuji_2023-03-07.jpg","w":4251,"a":"Stjepko Krehula","l":"CC BY 4.0","c":"Chureito Pagoda and Mt. Fuji","alt":"Chureito Pagoda with snow-capped Mount Fuji behind it"},"fushimi0":{"p":"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine,_Kyoto,_Japan.jpg","w":5765,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Fushimi Inari","alt":"A tunnel of red torii gates with a hanging lantern at Fushimi Inari"},"kinkakuji3":{"p":"2/21/Kyoto_Rokuon-ji_Kinkaku-ji_c16.jpg","w":5184,"a":"Hyppolyte de Saint-Rambert","l":"CC BY-SA 4.0","c":"Kinkaku-ji in the snow","alt":"The golden pavilion of Kinkaku-ji under falling snow"},"tsukiji0":{"p":"e/ed/Tsukiji_Outer_Market_2.jpg","w":2048,"a":"Aw1805","l":"CC BY-SA 3.0","c":"Tsukiji Outer Market","alt":"A seafood stall at Tsukiji Outer Market"},"niseko5":{"p":"a/aa/%E3%82%B9%E3%82%A4%E3%83%B3%E3%82%AE%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%B3%E3%82%AD%E3%83%BC%EF%BC%882015.03%EF%BC%89.jpg","w":4128,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Niseko lifts and Mt. Yotei","alt":"A Niseko ski run with a chairlift and Mount Yotei behind"},"furano2":{"p":"f/f7/Furano_Snow_Resort_view3.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski slopes in winter"},"myoko0":{"p":"e/ec/Myoko_Suginohara_Ski_Resort_-_Jan_13,_2014_(1).jpg","w":2048,"a":"uka0310","l":"CC BY 2.0","c":"Myoko Suginohara","alt":"A ski slope at Myoko Suginohara under a blue sky"},"penguin2":{"p":"d/dc/Asahiyama_zoo_Penguin.jpg","w":2676,"a":"欅 (Keyaki)","l":"CC BY-SA 3.0","c":"Asahiyama Zoo penguin walk","alt":"King penguins walking through snow at Asahiyama Zoo"},"niseko4":{"p":"b/b2/%E3%83%92%E3%83%A9%E3%83%95%E3%82%B4%E3%83%B3%E3%83%89%E3%83%A9%EF%BC%882019%E5%B9%B43%E6%9C%88%E6%92%AE%E5%BD%B1%EF%BC%89.jpg","w":3072,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Hirafu gondola, Niseko","alt":"A skier below the Hirafu gondola at Niseko"},"toya1":{"p":"9/92/130922_Lake_Toya_Toyako_Hokkaido_Japan03s3.jpg","w":4800,"a":"663highland","l":"CC BY 2.5","c":"Lake Toya","alt":"Lake Toya caldera and its islands seen from above"},"kyoto2":{"p":"5/57/Streets_of_Gion,_Kyoto_-_Gion7708.jpg","w":4930,"a":"lumoplank","l":"CC0","c":"Gion, Kyoto","alt":"A quiet lantern-lit street in Gion at night"},"tokyo4":{"p":"d/dc/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg","w":3400,"a":"Morio","l":"CC BY-SA 3.0","c":"Shinjuku skyline and Mt. Fuji","alt":"Shinjuku skyscrapers with Mount Fuji in the distance","fp":"40% 50%"},"hakone1":{"p":"1/1d/Mount_Fuji_from_Lake_Ashi_20211202-2.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Lake Ashi, Hakone","alt":"Mount Fuji across Lake Ashi, Hakone"},"chureito1":{"p":"3/3b/Chureito_Pagoda_and_Mount_Fuji_20241022.jpg","w":6199,"a":"Supanut Arunoprayote","l":"CC BY 4.0","c":"Chureito Pagoda","alt":"Chureito Pagoda above the trees with Mount Fuji behind","fp":"55% 30%"},"hakone2":{"p":"d/dd/Mount_Fuji_from_Lake_Ashi_20211202-1.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Mt. Fuji over Lake Ashi","alt":"Mount Fuji rising beyond Lake Ashi in Hakone"},"monkeys5":{"p":"8/8b/Nagano_Jigokudani_yaen_park_m.jpg","w":1920,"a":"Akiko Toshinai","l":"CC BY 4.0","c":"Jigokudani Monkey Park","alt":"Japanese macaques bathing in a hot spring"},"nikko4":{"p":"b/b5/Nikko_Toshogu_Yomeimon_Gate_2024.jpg","w":4080,"a":"Jpatokal","l":"CC BY-SA 4.0","c":"Nikko Toshogu","alt":"The ornate Yomeimon gate at Nikko Toshogu","fp":"50% 25%"},"shinjuku5":{"p":"d/d2/Omoide_yokocho_2024_various_05.jpg","w":4032,"a":"Nesnad","l":"CC BY 4.0","c":"Omoide Yokocho, Shinjuku","alt":"The narrow lantern-lit alley of Omoide Yokocho","fp":"50% 35%"},"shibuya2":{"p":"d/d6/Shibuya_crossing_at_night,_Tokyo,_Japan.jpg","w":4032,"a":"Joli Rumi","l":"CC BY-SA 4.0","c":"Shibuya at night","alt":"Shibuya Crossing at night"},"sensoji2":{"p":"d/de/Senso-ji_Temple_@_Asakusa_(13824517393).jpg","w":3968,"a":"Guilhem Vellut","l":"CC BY 2.0","c":"Senso-ji, Asakusa","alt":"The main hall of Senso-ji temple in Asakusa","fp":"50% 28%"},"sapporo1":{"p":"9/91/%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%83%86%E3%83%AC%E3%83%93%E5%A1%94%EF%BC%88Sapporo_tv_Tower%EF%BC%89_-_panoramio.jpg","w":1600,"a":"t-konno","l":"CC BY-SA 3.0","c":"Sapporo TV Tower","alt":"Sapporo TV Tower lit up at night"},"otaru3":{"p":"4/4f/Otaru_Canal_HDR1.jpg","w":4694,"a":"Tan Wei Liang Byorn","l":"CC BY-SA 4.0","c":"Otaru Canal","alt":"Otaru Canal and its stone warehouses at dusk"},"furano1":{"p":"b/b9/Furano_Snow_Resort_view1.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano","alt":"Furano ski area above the town"},"yotei3":{"p":"c/c7/Yotei-zan-from-hirafu.jpg","w":2848,"a":"Oga","l":"CC BY-SA 3.0","c":"Mt. Yotei from Hirafu","alt":"Snow-covered Mount Yotei seen from Hirafu"},"gion0":{"p":"e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_(Hokan-ji_Temple),_Kyoto,_Japan.jpg","w":5550,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Yasaka Pagoda, Kyoto","alt":"Yasaka-dori street and the Yasaka Pagoda in the early morning","fp":"40% 18%"},"shinjukusky":{"p":"1/19/Shinjuku_Skyline_2013.jpg","w":4573,"a":"Dick Thomas Johnson","l":"CC BY 2.0","c":"Shinjuku skyline at dusk","alt":"Shinjuku skyscrapers lit up at dusk"}};
+const PHOTO_FOR={"d0206":"plane1","d0207":"ramen4","d0208":"snowfest1","d0209":"otarulight1","d0210":"bluepond6","d0211":"furano0","d0212":"yotei5","d0213":"hero3","d0214":"annupuri0","d0215":"niseko2","d0216":"jigokudani4","d0217":"shibuya0","d0218":"chureito0","d0219":"fushimi0","d0220":"kinkakuji3","d0221":"tsukiji0","base-niseko":"niseko4","base-furano":"furano2","base-honshu":"myoko0","mid-furano":"penguin2","mid-niseko":"niseko5","mid-onsen":"toya1","after-mix":"kyoto2","after-tokyo":"tokyo4","after-hakone":"hakone1","thu-fuji":"chureito1","thu-hakone":"hakone2","thu-monkeys":"monkeys5","thu-nikko":"nikko4","tokyo-shinjuku":"shinjuku5","tokyo-shibuya":"shibuya2","tokyo-asakusa":"sensoji2","stay-sapporo":"sapporo1","stay-otaru":"otaru3","stay-furano":"furano1","stay-niseko":"yotei3","stay-tokyo":"shinjukusky","stay-kyoto":"gion0"};
+const ICON_EXPAND='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function wmURL(ph,w){ return w>=ph.w ? WM+ph.p : WM+"thumb/"+ph.p+"/"+w+"px-"+ph.p.slice(5); }
+function wmSet(ph,ws){
+  const seen=new Set(), out=[];
+  for(const w0 of ws){ const w=Math.min(w0,ph.w); if(seen.has(w)) continue; seen.add(w); out.push(wmURL(ph,w)+" "+w+"w"); }
+  return out.join(", ");
+}
+const commonsPage=ph=>"https://commons.wikimedia.org/wiki/File:"+ph.p.slice(5);
+function photo(id,o){
+  const key=PHOTO_FOR[id]||id, ph=PHOTOS[key]; if(!ph) return null;
+  o=o||{};
+  const fig=h("figure",{class:"ph"});
+  const img=h("img",{loading:"lazy",decoding:"async",sizes:o.sizes||"(max-width: 600px) 100vw, 360px",
+    onload:()=>img.classList.add("in"),
+    onerror:()=>{ const p=fig.parentElement; if(p) p.classList.remove("has-ph"); fig.remove(); },
+    alt:ph.alt, style:ph.fp?"object-position:"+ph.fp:null,
+    srcset:wmSet(ph,o.widths||[500,960,1280]), src:wmURL(ph,Math.min(960,ph.w))});
+  const btn=h("button",{type:"button",class:"ph-btn","data-ph":key,"aria-label":"View larger photo: "+ph.alt,onclick:()=>openLightbox(btn)},
+    img, h("span",{class:"cap","aria-hidden":"true"},h("span",null,ph.c),h("span",{html:ICON_EXPAND,style:"display:contents"})));
+  fig.append(btn);
+  return fig;
+}
+
+/* lightbox: every photo on the page, in page order */
+let lbList=[], lbIdx=0, lbTok=0, lbRet=null;
+function openLightbox(btn){
+  const lb=$("lb"); if(!lb) return;
+  lbList=[...document.querySelectorAll("[data-ph]")].filter(b=>b.isConnected&&PHOTOS[b.dataset.ph]);
+  lbRet=document.activeElement;
+  lbShow(Math.max(0,lbList.indexOf(btn)));
+  if(!lb.open){ if(typeof lb.showModal==="function") lb.showModal(); else lb.setAttribute("open",""); }
+  $("lbClose").focus();
+}
+function lbShow(i){
+  if(!lbList.length) return;
+  lbIdx=(i+lbList.length)%lbList.length;
+  const btn=lbList[lbIdx], ph=PHOTOS[btn.dataset.ph], img=$("lbImg"), tok=++lbTok;
+  const small=btn.querySelector("img")||(btn.parentElement&&btn.parentElement.querySelector("img"));
+  img.removeAttribute("srcset"); img.removeAttribute("sizes");
+  img.alt=ph.alt;
+  img.src=(small&&small.currentSrc)||wmURL(ph,Math.min(960,ph.w));
+  const big=()=>{ if(tok!==lbTok) return; img.sizes="100vw"; img.srcset=wmSet(ph,[960,1280,1920]); };
+  if(img.decode) img.decode().then(big,big); else big();
+  $("lbCap").textContent=ph.c;
+  const cr=$("lbCredit"); cr.textContent="";
+  cr.append("Photo: "+ph.a+" · ",
+    ph.l==="Public domain"?"public domain":h("a",{href:LICENSES[ph.l],target:"_blank",rel:"noopener license"},ph.l),
+    " · ", h("a",{href:commonsPage(ph),target:"_blank",rel:"noopener"},"Wikimedia Commons"));
+  $("lbCount").textContent=(lbIdx+1)+" / "+lbList.length;
+}
+function initLightbox(){
+  const lb=$("lb"); if(!lb) return;
+  $("lbPrev").addEventListener("click",()=>lbShow(lbIdx-1));
+  $("lbNext").addEventListener("click",()=>lbShow(lbIdx+1));
+  $("lbClose").addEventListener("click",()=>lb.close?lb.close():lb.removeAttribute("open"));
+  lb.addEventListener("keydown",e=>{
+    if(e.key==="ArrowLeft"){ e.preventDefault(); lbShow(lbIdx-1); }
+    else if(e.key==="ArrowRight"){ e.preventDefault(); lbShow(lbIdx+1); }
+  });
+  lb.addEventListener("click",e=>{ if(e.target===lb||e.target.classList.contains("lb-stage")) lb.close(); });
+  lb.addEventListener("close",()=>{ lbTok++; if(lbRet&&lbRet.isConnected&&lbRet.focus) lbRet.focus({preventScroll:true}); });
+  const stage=lb.querySelector(".lb-stage"); let sx=null, sy=null;
+  stage.addEventListener("touchstart",e=>{ sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+  stage.addEventListener("touchend",e=>{
+    if(sx==null) return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; sx=null;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) lbShow(lbIdx+(dx<0?1:-1));
+  },{passive:true});
+  document.querySelectorAll(".hero-credit[data-ph]").forEach(b=>b.addEventListener("click",()=>openLightbox(b)));
+}
+
+/* credits, built from whatever photos are on the page */
+function renderCredits(){
+  const ul=$("photoCredits"); if(!ul) return;
+  const seen=new Set();
+  for(const b of document.querySelectorAll("[data-ph]")){
+    const k=b.dataset.ph, ph=PHOTOS[k]; if(!ph||seen.has(k)) continue; seen.add(k);
+    ul.append(h("li",null,h("a",{href:commonsPage(ph),target:"_blank",rel:"noopener"},ph.c),", "+ph.a+". ",
+      ph.l==="Public domain"?"Public domain.":h("a",{href:LICENSES[ph.l],target:"_blank",rel:"noopener license"},ph.l)));
+  }
+}
+
+/* highlight the section you are reading in the sticky nav */
+function initSpy(){
+  const nav=document.querySelector(".bar nav"); if(!nav||!("IntersectionObserver" in window)) return;
+  const links=[...nav.querySelectorAll('a[href^="#"]')], byId={};
+  for(const a of links) byId[a.getAttribute("href").slice(1)]=a;
+  let cur=null;
+  const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const set=id=>{
+    const a=byId[id]||null; if(a===cur) return; cur=a;
+    for(const l of links) l.removeAttribute("aria-current");
+    if(!a) return;
+    a.setAttribute("aria-current","location");
+    if(nav.scrollWidth>nav.clientWidth+4) nav.scrollTo({left:Math.max(0,a.offsetLeft-(nav.clientWidth-a.offsetWidth)/2),behavior:reduce?"auto":"smooth"});
+  };
+  const io=new IntersectionObserver(es=>{ for(const e of es) if(e.isIntersecting) set(e.target.id); },{rootMargin:"-45% 0px -50% 0px"});
+  document.querySelectorAll("main section[id], header.hero").forEach(s=>io.observe(s));
+}
 
 /* ---------- tiny DOM helper ---------- */
 function h(tag, attrs, ...kids){
@@ -1135,7 +1344,8 @@ function renderDecisions(){
     for(const o of d.opts){
       LABELS[o.id]=d.q+": "+o.t;
       const tags=h("div",{class:"tags"}, o.pick?h("span",{class:"pill pick"},"Draft pick"):null, h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"));
-      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null,o.url?h("a",{href:o.url,target:"_blank",rel:"noopener",class:"small"},"See the listing"):null);
+      const cov=photo(o.id,{sizes:"(max-width: 600px) 100vw, 360px",widths:[500,960]});
+      const el=h("div",{class:"opt",id:"i-"+o.id,"data-opt":o.id},cov,tags,h("h4",null,o.t),h("ul",null,o.pts.map(p=>h("li",null,p))),o.cost?h("div",{class:"cost"},o.cost):null,o.url?h("a",{href:o.url,target:"_blank",rel:"noopener",class:"small"},"See the listing"):null);
       const vbWrap=h("div",{style:"margin-top:auto"}); vbWrap.append(voteBar(o.id)); el.append(vbWrap);
       opts.append(el);
     }
@@ -1146,8 +1356,10 @@ function renderDays(){
   const root=$("dayList");
   for(const d of DAYS){
     LABELS[d.id]=d.dow+" Feb "+d.d+": "+d.title;
-    const body=h("div",{class:"body"},h("h3",null,d.title),h("p",null,d.sum),
-      h("ul",{class:"tl"},d.tl.map(r=>h("li",null,h("span",{class:"t"},r[0]),h("span",{html:r[1]})))),
+    const ph=photo(d.id,{sizes:"(max-width: 600px) 100vw, (max-width: 1000px) 60vw, 340px"});
+    const body=h("div",{class:"body"},
+      h("div",{class:"dtop"+(ph?" has-ph":"")},ph,h("div",{class:"dtext"},h("h3",null,d.title),h("p",null,d.sum),
+        h("ul",{class:"tl"},d.tl.map(r=>h("li",null,h("span",{class:"t"},r[0]),h("span",{html:r[1]})))))),
       h("div",{class:"dayfoot"},d.foot.map(f=>h("span",null,h("b",null,f[0]+": "),f[1]))));
     if(d.extras){
       const ex=h("div",{class:"extras"});
@@ -1164,7 +1376,9 @@ function renderCards(rootId,items,prefix){
   const root=$(rootId);
   items.forEach((c,i)=>{
     const id=prefix+"-"+i; LABELS[id]=c.t;
-    const el=h("div",{class:"card",id:"i-"+id},h("h3",null,c.t),c.price?h("div",{class:"price num"},c.price):null,h("ul",null,c.pts.map(p=>h("li",{html:p}))));
+    const cov=c.ph?photo(c.ph,{sizes:"(max-width: 700px) 100vw, 480px",widths:[500,960]}):null;
+    const tt=c.ph?c.t.split(" · "):[c.t];
+    const el=h("div",{class:"card",id:"i-"+id},cov,h("h3",null,tt[0]),tt.length>1?h("div",{class:"card-sub"},tt.slice(1).join(" · ")):null,c.price?h("div",{class:"price num"},c.price):null,h("ul",null,c.pts.map(p=>h("li",{html:p}))));
     const w=h("div",{style:"margin-top:auto"}); w.append(voteBar(id)); el.append(w); root.append(el);
   });
 }
@@ -1229,6 +1443,7 @@ function setMode(m){ state.mode=m; refresh(); }
 renderDecisions(); renderDays();
 renderCards("flightCards",FLIGHTS,"flight"); renderCards("stayCards",STAYS,"stay"); renderCards("transCards",TRANS,"trans");
 renderBooking(); renderAboutSelect(); renderCalc(); renderHeroCost(); refresh();
+renderCredits(); initLightbox(); initSpy();
 
 $("calcForm").addEventListener("input",renderCalc);
 $("calcForm").addEventListener("change",renderCalc);
