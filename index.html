@@ -203,6 +203,7 @@ details.fold[open] > summary{margin-bottom:8px}
 details.fold > .rows{margin-top:8px}
 @media (prefers-reduced-motion: reduce){details.fold > summary::before{transition:none}}
 .stop-vote{border-top:1px solid var(--line);padding-top:4px}
+.stop-vote.cand .vb::before{content:"Add this place"}
 .stop-vote .vb::before{content:"This stop";font:600 .74rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-right:4px}
 .legs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
 
@@ -372,6 +373,58 @@ html:has(.lb[open]){overflow:hidden}
   .chat-fab{position:fixed;right:16px;bottom:16px;z-index:35}
   body.chat-lock{overflow:hidden}
 }
+
+/* things to do: grouped lists with a time and cost line */
+.cats{display:grid;gap:14px;margin-top:10px}
+.cat{display:grid;gap:6px}
+.cat > .sub{margin-top:0}
+.row-i .rm{grid-column:1;display:flex;flex-wrap:wrap;gap:2px 12px;font-size:.82rem;font-weight:600;color:var(--ice)}
+.row-i .rm .sk{color:var(--accent)}
+.row-i.wanted{border-color:var(--up);background:linear-gradient(90deg,color-mix(in srgb,var(--up) 9%,var(--snow)),var(--snow) 60%)}
+.idea-add select{border:1.5px solid var(--line);border-radius:8px;padding:8px;background:var(--paper);max-width:140px}
+@media (max-width:520px){.idea-add{flex-wrap:wrap}.idea-add input{flex-basis:100%}}
+.stop.cand .stop-n{background:none;border:2px dashed var(--ink-2);color:var(--ink-2)}
+.src-h{margin:22px 0 10px;font-size:1.1rem;text-transform:uppercase}
+
+/* time check */
+.tbar{position:relative;display:block;height:10px;border-radius:999px;background:var(--tint);overflow:visible}
+.tbar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--ink-2);transition:width .25s ease}
+.tbar s{position:absolute;top:-3px;bottom:-3px;width:2.5px;margin-left:-1.25px;border-radius:2px;background:var(--ink);text-decoration:none}
+[data-k="light"] .tbar i{background:var(--ice)}
+[data-k="ok"] .tbar i{background:var(--up)}
+[data-k="full"] .tbar i{background:var(--warn)}
+[data-k="over"] .tbar i{background:var(--accent)}
+.tc{display:grid;gap:7px;font-size:.93rem}
+.tc p{max-width:72ch}
+.tc-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tc-top b{font:700 1.2rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.tc-v,.tcr-v{font:600 .72rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;border:1px solid currentColor;color:var(--ink-2);white-space:nowrap}
+[data-k="light"] .tc-v,[data-k="light"] .tcr-v{color:var(--ice)}
+[data-k="ok"] .tc-v,[data-k="ok"] .tcr-v{color:var(--up)}
+[data-k="full"] .tc-v,[data-k="full"] .tcr-v{color:var(--warn)}
+[data-k="over"] .tc-v,[data-k="over"] .tcr-v{color:var(--accent)}
+.tcl-wrap{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:16px;display:grid;gap:10px;box-shadow:var(--shadow)}
+.tcl-head{display:grid;gap:4px}
+.tcl-head h3{font-size:1.35rem;text-transform:uppercase}
+.tcl-head p{max-width:78ch}
+.tcl{display:grid;gap:2px}
+.tcl-sub{font:600 .74rem/1.2 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:6px}
+.tcr{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(90px,1.4fr) 88px 120px;gap:4px 14px;align-items:center;padding:8px 6px;border-radius:8px;color:inherit;text-decoration:none}
+.tcr:hover{background:var(--tint)}
+.tcr-n{display:grid;line-height:1.2}
+.tcr-n b{font-weight:600}
+.tcr-n small{color:var(--ink-2);font-size:.8rem}
+.tcr-h{font-size:.86rem;color:var(--ink-2);text-align:right;white-space:nowrap}
+.tcr-v{justify-self:start}
+.tcr-add{grid-column:1/-1;font-size:.8rem;color:var(--ink-2);margin-top:-2px}
+@media (max-width:640px){
+  .tcr{grid-template-columns:1fr auto;gap:6px 10px}
+  .tcr .tbar{grid-column:1/-1;grid-row:2}
+  .tcr-h{grid-row:1;grid-column:2}
+  .tcr-v{grid-row:3;grid-column:1}
+  .tcr-add{grid-row:3;grid-column:2;margin:0;text-align:right}
+}
+@media (prefers-reduced-motion: reduce){.tbar i{transition:none}}
 </style>
 </head>
 <body>
@@ -381,7 +434,7 @@ html:has(.lb[open]){overflow:hidden}
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/960px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1280px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg/1920px-Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg 1920w" sizes="(min-width: 1180px) calc(100vw - 380px), 100vw" alt="Mount Yotei rising behind the snowy slopes of Niseko Annupuri" style="object-position:32% 50%" fetchpriority="high" decoding="async" onload="this.classList.add('in')">
     <button type="button" class="hero-credit" data-ph="hero1" aria-label="View larger photo: Mount Yotei rising behind the snowy slopes of Niseko Annupuri"><span>Mt. Yotei from Niseko Annupuri</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="wrap hero-copy">
-      <p class="eyebrow">Draft 3 · the big picture, no hour-by-hour plan · prices checked Nov 9, 2026</p>
+      <p class="eyebrow">Draft 4 · the big picture, plus everything worth doing at each stop · prices checked Nov 9, 2026</p>
       <h1>Japan Boys Ski Trip</h1>
       <p class="hero-sub">Sat Feb 6 to Sun Feb 21, 2027 · Hokkaido, Tokyo and Kyoto</p>
     </div>
@@ -413,6 +466,7 @@ html:has(.lb[open]){overflow:hidden}
     <nav aria-label="Sections">
       <a href="#flights">Flights</a>
       <a href="#stops">Where we go</a>
+      <a href="#extra">Could add</a>
       <a href="#decisions">Trip-wide votes</a>
       <a href="#costs">Costs</a>
       <a href="#booking">Booking order</a>
@@ -428,7 +482,7 @@ html:has(.lb[open]){overflow:hidden}
 
   <div class="how">
     <div><b>1. Say who you are</b>You are asked once and this device remembers. Change it any time from the button at the top right.</div>
-    <div><b>2. Vote on the big stuff</b>Flights, which stops we make, where we sleep and the trip-wide choices. Tap again to undo. Tallies update live.</div>
+    <div><b>2. Vote on the stops and what to do</b>Flights, stops, beds and the trip-wide choices, plus the things to do in each place. The time check adds up the picks so we can see which stops need more days and which we can speedrun.</div>
     <div><b>3. Push back</b>Comment on any stop, post a change proposal for a vote, or ask anything in the group chat.</div>
   </div>
 
@@ -474,9 +528,18 @@ html:has(.lb[open]){overflow:hidden}
   <section id="stops">
     <div class="sec-head">
       <h2>Where we go</h2>
-      <p>Six stops, in order, and no hour-by-hour plan. Each one shows how we get there, where we ski and where we sleep. Open Things to do for a list of options. Nothing on those lists is scheduled, so vote up what you would actually do and we will figure out the days when we are there.</p>
+      <p>Six stops, in order, with a recommended length for each. Every card shows how we get there, where we ski and where we sleep, then everything worth doing there, grouped by kind with a rough time and cost. Nothing is scheduled. Vote up what you would actually do: the time check adds up those picks against the free time at each stop, so if a stop has a ton we want, it gets another night, and if it has little, we speedrun it.</p>
     </div>
+    <div class="tcl-wrap" id="timeCheck"></div>
     <div class="stops" id="stopList"></div>
+  </section>
+
+  <section id="extra">
+    <div class="sec-head">
+      <h2>Places we could add</h2>
+      <p>Not on the route yet. Each one would take nights from Tokyo or Kyoto, or replace a Hokkaido stop, and the card says which. Vote a place up if you would go and vote on what you would do there. Whatever the group wants most goes into the next draft.</p>
+    </div>
+    <div class="stops" id="extraList"></div>
   </section>
 
   <section id="decisions">
@@ -569,6 +632,64 @@ html:has(.lb[open]){overflow:hidden}
       <li><a href="https://selfguidejapan.com/blog/japan-tourist-tax-2026">Japan departure tax and tax-free changes 2026</a></li>
       <li><a href="https://30rates.com/usd-to-jpy-forecast-converter-dollar-to-yen">USD to JPY rate</a></li>
     </ul>
+    <h3 class="src-h">Things to do, checked Nov 9, 2026</h3>
+    <ul class="sources">
+      <li><a href="https://watabi.org/en/articles/sapporo-snow-festival-guide">Sapporo Snow Festival 2027: Feb 4–11, three sites</a></li>
+      <li><a href="https://hiddenjapan-gems.com/sapporo-snow-festival-2027/">Otaru Snow Light Path 2027: Feb 6–13</a></li>
+      <li><a href="https://www.characrosstheworld.com/mt-moiwa-ropeway-sapporo/">Mt. Moiwa ropeway fare</a></li>
+      <li><a href="https://domingo.ne.jp/en/article/8886">Ski areas near Sapporo, Bankei night skiing</a></li>
+      <li><a href="https://japanactivity.com/sapporo-teine-ski-guide">Sapporo Teine day trip</a></li>
+      <li><a href="https://www.trvlogue.com/en/sapporo-winter-guide-2026">Sapporo soup curry picks</a></li>
+      <li><a href="https://www.tokyoweekender.com/?p=227767">Sapporo shime parfait</a></li>
+      <li><a href="https://www.klook.com/activity/81114-2-hour-join-snow-viewing-rafting-jozankei/">Jozankei winter rafting</a></li>
+      <li><a href="https://uu-nippon.info/hokkaido/?p=99049">Otaru Aquarium winter season and price</a></li>
+      <li><a href="https://todolist-japan.com/ko/kiroro-ski-guide/">Kiroro 2026–27 lift prices</a></li>
+      <li><a href="https://www.princehotels.com/shinfurano/?p=11769">Furano Snow Land activity prices</a></li>
+      <li><a href="https://www.princehotels.com/shinfurano/facilities/furano-kan-kan-mura">Furano Snow Night Fantasy</a></li>
+      <li><a href="https://japanuncharted.com/hokkaido/mountain/asahidake-ropeway-guide">Asahidake ropeway winter fare</a></li>
+      <li><a href="https://www.powderhounds.com/Ski-Shop/Travel-Services/Tour-Operators/Asobi-Master/Asahidake-Freeride.aspx">Asahidake guiding rates 2026–27</a></li>
+      <li><a href="https://furanotourism.com/kr/spot/spot_D.php?id=88">Lake Kanayama ice fishing tours</a></li>
+      <li><a href="https://www.snowtomamu.jp/winter/en/icevillage/">Tomamu Ice Village 2026–27</a></li>
+      <li><a href="https://watabi.org/en/articles/asahikawa-zoo-guide">Asahiyama Zoo winter hours and penguin walk</a></li>
+      <li><a href="https://www.iwafu.com/kr/events/1050083">Asahikawa Winter Festival 2027: Feb 6–11</a></li>
+      <li><a href="https://watabi.org/en/articles/sounkyo-gorge-guide">Sounkyo Ice Waterfall Festival 2027 dates</a></li>
+      <li><a href="https://todolist-japan.com/ko/rusutsu-ski-guide/">Rusutsu 2026–27 lift prices</a></li>
+      <li><a href="https://www.niseko-village.com/ja/wp-content/uploads/2025/09/NV-Winter-Catalogue-25-26.pdf">Niseko Village cat skiing, last season</a></li>
+      <li><a href="https://livejapan.com/id/in-hokkaido/in-pref-hokkaido/in-niseko_rusutsu/article-a1000517">Hanazono snowmobile rates</a></li>
+      <li><a href="https://www.skijapan.com/?p=34876">Niseko snowshoe tour prices</a></li>
+      <li><a href="https://rhythmjapan.com/our-stories/niseko-onsen-guide">Niseko onsen guide with tattoo notes</a></li>
+      <li><a href="https://www.worldsnowboardguide.com/japan/niseko-united/niseko-united-town-guide.html">Niseko bars and restaurants 2026–27</a></li>
+      <li><a href="https://www.littlestepsasia.com/travel/japan/niseko/zuma-niseko-pop-up-apres/">Zuma Niseko pop-up, 2026–27</a></li>
+      <li><a href="https://www.headout.com/city-tours/from-sapporo-noboribetsu-hell-valley-lake-toya-and-mt-usu-winter-day-tour-e-58151/">Mt. Usu ropeway closed Jan 12 – Mar 13, 2027</a></li>
+      <li><a href="https://www.haveagood-holiday.com/en/articles/shikotsu-lake-ice-festival-2027-marukoma-onsen-stay">Lake Shikotsu Ice Festival 2027 dates</a></li>
+      <li><a href="https://todolist-japan.com/en/shibuya-sky-guide/">Shibuya Sky prices</a></li>
+      <li><a href="https://www.japan-travel-kit.com/guides/attractions/teamlab-borderless-tickets">teamLab Borderless prices</a></li>
+      <li><a href="https://www.artvisitguide.com/teamlab-planets-vs-borderless-tokyo/">teamLab Planets closing at the end of 2027</a></li>
+      <li><a href="https://www.gotokyo.org/en/spot/74/">Tokyo Metropolitan Government observatory and light show</a></li>
+      <li><a href="https://www.artvisitguide.com/tokyo-skytree-vs-tokyo-tower/">Skytree and Tokyo Tower prices</a></li>
+      <li><a href="https://sumoexperience.com/?p=42">Sumo practice viewing and the Osaka tournament break</a></li>
+      <li><a href="https://street-kart-shibuya.pages.dev/blog/how-much-does-tokyo-go-karting-cost/">Tokyo street kart prices and permit rules</a></li>
+      <li><a href="https://watabi.org/en/articles/toyosu-market-guide">Toyosu tuna auction viewing</a></li>
+      <li><a href="https://tokyo-how.pages.dev/guides/onsen-sento-guide-tokyo">Tokyo sento prices and tattoo policies</a></li>
+      <li><a href="https://www.japan-travel-kit.com/guides/attractions/gala-yuzawa-ski-day-trip-from-tokyo">GALA Yuzawa 2026–27 day trip</a></li>
+      <li><a href="https://hiddenjapan-gems.com/tokyo-to-hakone/">Hakone ropeway winter 2026–27 closures</a></li>
+      <li><a href="https://selfguidejapan.com/blog/hakone-autumn-leaves-2026">Hakone Freepass price</a></li>
+      <li><a href="https://www.japan-travel-kit.com/guides/attractions/kawaguchiko-day-trip-from-tokyo">Kawaguchiko bus and ropeway fares</a></li>
+      <li><a href="https://www.veltra.com/en/travelguide/?p=1999">Kawaguchiko winter fireworks, last season</a></li>
+      <li><a href="https://selfguidejapan.com/blog/jigokudani-monkey-park">Snow monkey park access and pass</a></li>
+      <li><a href="https://hiddenjapan-gems.com/nagano-winter-itinerary-4-days/">Snow monkeys, Shibu Onsen and Nozawa in winter 2026–27</a></li>
+      <li><a href="https://japanactivity.com/nozawa-onsen-skiing-guide">Nozawa Onsen lift prices and free baths</a></li>
+      <li><a href="https://watabi.org/en/articles/shirakawa-go-winter-illumination-guide">Shirakawa-go 2027 light-up dates</a></li>
+      <li><a href="https://japanrevisited.pages.dev/kanazawa">Kanazawa trains and crab season</a></li>
+      <li><a href="https://www.japan-guide.com/e/e3982.html">Nintendo Museum ticket lottery</a></li>
+      <li><a href="https://www.japantimes.co.jp/news/2025/02/16/japan/himeji-castle-fee-rise">Himeji Castle fee for non-residents</a></li>
+      <li><a href="https://timeout.com/osaka/news/kyotos-highest-hotel-tax-hike-takes-effect-all-you-need-to-know-030226">Kyoto lodging tax from March 2026</a></li>
+      <li><a href="https://www.japan-guide.com/blog/raina/260219.html">Kitano Tenmangu plum grove</a></li>
+      <li><a href="https://selfguidejapan.com/blog/things-to-do-in-kyoto">Kyoto temple fees, Nijo Castle</a></li>
+      <li><a href="https://bucketlistguides.com/osaka-diy-cruise-port-guide/">Osaka Castle keep price</a></li>
+      <li><a href="https://www.nomadotravel.app/en/guides/universal-studios-japan-guide">Universal Studios Japan tickets and Nintendo World entry</a></li>
+      <li><a href="https://travelvaluefinder.com/?p=12422">Umeda Sky and Kaiyukan prices</a></li>
+    </ul>
     <div class="credits" id="photo-credits">
       <h3>Photo credits</h3>
       <p class="small muted">Every photo is from Wikimedia Commons, shown under the license listed. Tap any photo on the page to see it bigger.</p>
@@ -577,7 +698,7 @@ html:has(.lb[open]){overflow:hidden}
   </section>
 </main>
 
-<footer><div class="wrap">Draft 3. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay and are copied to a public backup every few minutes, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
+<footer><div class="wrap">Draft 4. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay and are copied to a public backup every few minutes, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
 
 <dialog class="lb" id="lb" aria-labelledby="lbCap">
   <div class="lb-stage"><img id="lbImg" alt=""></div>
@@ -657,12 +778,22 @@ const DECISIONS = [
     ]},
 ];
 
-/* One card per place. Nothing here is scheduled: ideas are options to vote on, not a timetable.
-   Ids that existed in earlier drafts (lodge-*, tokyo-*, thu-*, wild-*, mid-*, gear-*, x-*) are kept so votes carry over. */
+/* Things to do are grouped by kind. Each idea carries a rough time cost in hours (h) so the votes can be added up
+   against the free time at each stop. sk = it happens on a ski day instead of the planned skiing, so it costs no extra time.
+   Ids that existed in earlier drafts (lodge-*, tokyo-*, thu-*, wild-*, mid-*, gear-*, x-*, a-*) are kept so votes carry over. */
+const CATS = [
+  ["see","Sights and views"],["snow","Snow and outdoors"],["do","Experiences"],["food","Eat and drink"],
+  ["night","Nights out"],["shop","Shopping"],["trip","Day trips"],["way","On the way"]
+];
+const DAY_H = 10;   /* waking hours we count as one full day of doing things */
+
+/* One card per place. Nothing here is scheduled: ideas are options to vote on, not a timetable. */
 const STOPS = [
   { id:"s-sapporo", name:"Sapporo", dates:"Sun Feb 7 – Tue Feb 9", nights:"2 nights",
     photos:["snowfest1","ramen4","sapporo1"],
     sum:"We land in the middle of the Snow Festival, which runs Feb 4–11 and is free. Two nights on foot to shake the jet lag.",
+    free:17, freeNote:"late Sunday evening, all of Monday and Tuesday morning",
+    range:"Speedrun: 1 night. Planned: 2. Could easily fill 4.",
     facts:[["Getting there","Fly into New Chitose through Tokyo, then the JR airport train into the city: about 40 min and $8."]],
     sleep:{ note:"Festival week and Korea's Lunar New Year both land on these nights, so book a free-cancellation room early. Prices are for the whole group of four.",
       groups:[{ opts:[
@@ -671,18 +802,31 @@ const STOPS = [
         { id:"sl-sapporo-susukino", t:"Susukino apartment (Airbnb)", url:"https://www.airbnb.com/rooms/1559062540418818413", d:"$495 for the group · in the bar district, but it lists only 3 beds", price:"$62 each a night" }
       ]}]},
     ideas:[
-      { id:"a-odori", t:"Odori Park snow sculptures, eleven blocks of them, by day and lit up at night" },
-      { id:"a-susukino-ice", t:"Susukino ice sculptures and the bars around them" },
-      { id:"a-beer", t:"Sapporo Beer Museum, then all-you-can-eat grilled lamb in the old brick beer hall" },
-      { id:"a-nijo", t:"Seafood rice bowl breakfast at Nijo Market" },
-      { id:"a-ramen", t:"Miso ramen, the style Sapporo is known for" },
-      { id:"a-moiwa", t:"Mt. Moiwa ropeway for the city lights at dusk, about $13", d:"One viewpoint is probably enough: this or the ski jump." },
-      { id:"x-tsudome", t:"Snow slides and tubing at the Tsudome festival site" },
-      { id:"x-jump", t:"Okurayama Olympic ski jump: ride the lift to the top for the city view", d:"The other way to get a view over Sapporo if we skip Mt. Moiwa." }
+      { id:"a-odori", c:"see", h:2, t:"Snow Festival at Odori Park: eleven blocks of snow sculptures, some the size of buildings", d:"Free. Worth seeing once by day and once after dark, when projection-mapping shows play across the biggest ones. Runs Feb 4–11." },
+      { id:"a-moiwa", c:"see", h:1.5, cost:"$13", t:"Mt. Moiwa ropeway at dusk for the city lights", d:"Closes in high wind. One viewpoint is probably enough: this, the ski jump or the TV Tower." },
+      { id:"x-jump", c:"see", h:1.5, t:"Okurayama Olympic ski jump: ride the chairlift to the top and look straight down the in-run", d:"The 1972 Olympic hill, with the whole city behind it." },
+      { id:"a-tvtower", c:"see", h:0.75, t:"Sapporo TV Tower deck, right above the festival", d:"Quick and central. The view runs straight down the line of sculptures." },
+      { id:"a-jingu", c:"see", h:1.5, t:"Hokkaido Jingu shrine in the snow, then coffee in Maruyama" },
+      { id:"a-shiroi", c:"see", h:2, t:"Shiroi Koibito Park: the chocolate-cookie factory with its own winter light display", d:"The grounds are free to wander. Small fee for the factory tour." },
+      { id:"x-tsudome", c:"snow", h:2.5, t:"Tsudome, the festival's play site: long tube slides, snow rafts and snow play", d:"Free, about 30 minutes out by subway and shuttle bus. Daytime only." },
+      { id:"a-bankei", c:"snow", h:3, eve:true, cost:"~$13 + rental", t:"Night skiing at Bankei, 20 minutes from downtown, lifts until 10 pm", d:"Last season's night ticket was about $13. The easiest way to ski on a city night." },
+      { id:"a-teine", c:"snow", h:9, cost:"~$36", t:"A day at Sapporo Teine, the 1972 Olympic slopes 40 minutes away", d:"Ocean views from the top. Last season's day pass was about $36. Trades a city day for a fifth ski day." },
+      { id:"a-ramen", c:"food", h:1, cost:"$8–12", t:"Miso ramen, the style Sapporo invented: the Ganso Ramen Yokocho alley or the Ramen Republic at the station" },
+      { id:"a-soupcurry", c:"food", h:1, cost:"$10–15", t:"Soup curry, Sapporo's other signature dish", d:"A spiced broth loaded with chicken and vegetables. Suage, Garaku and Okushiba Shoten are the usual picks. Expect a line." },
+      { id:"a-jingisukan", c:"food", h:1.5, t:"Jingisukan: grill-your-own lamb at a tiny Susukino counter like Daruma", d:"Cheap, smoky and made for beer. Lines form early." },
+      { id:"a-beer", c:"food", h:2.5, t:"Sapporo Beer Museum, then all-you-can-eat grilled lamb and beer in the old brick beer hall" },
+      { id:"a-nijo", c:"food", h:1, t:"Seafood rice bowl breakfast at Nijo Market" },
+      { id:"a-crab", c:"food", h:2, t:"A Hokkaido crab feast: king crab and hairy crab, including all-you-can-eat crab buffets", d:"The big-dinner splurge of the Hokkaido leg, if Niseko's doesn't win." },
+      { id:"a-parfait", c:"food", h:0.5, eve:true, t:"Shime parfait: Sapporo's habit of ending a night out with a late-night parfait", d:"Dessert bars in Susukino stay open past midnight for exactly this." },
+      { id:"a-susukino-ice", c:"night", h:1.5, eve:true, t:"Susukino's ice sculptures after dark, then the bars around them" },
+      { id:"a-susukino", c:"night", h:3, eve:true, t:"Susukino bar crawl: thousands of bars and izakaya, the biggest nightlife district north of Tokyo", d:"Tiny themed bars, standing bars, karaoke. Many small places take cash only." },
+      { id:"a-jozankei", c:"trip", h:6, t:"Jozankei hot-spring town, an hour south: soak, and go winter rafting down the snowy gorge", d:"Rafting runs in winter on the Toyohira River. Tattoo rules vary by bath." }
     ]},
   { id:"s-otaru", name:"Otaru", dates:"Tue Feb 9", nights:"1 night",
     photos:["otarulight1","otaru3"],
     flag:"In question", sum:"A harbor town 45 minutes from Sapporo, best known for sushi and seafood, with its canal lit by snow lanterns that week. This is the stop most in question: the first round of feedback was lukewarm, and cutting it would buy a day somewhere else.",
+    free:7, freeNote:"Tuesday afternoon and evening",
+    range:"Speedrun: a half-day stop on the way out of Sapporo. Planned: 1 night. Could fill 2.",
     facts:[["Getting there","45 minutes from Sapporo by expressway. This is the day we pick up the van, if the van wins."]],
     sleep:{ note:"Ask about parking for the van when booking.",
       groups:[{ opts:[
@@ -690,20 +834,29 @@ const STOPS = [
         { id:"sl-otaru-garden", t:"Otaru Garden Stay", url:"https://www.booking.com/hotel/jp/otaru-garden-stay.html", d:"$109 for the group · quad with 4 twin beds · 7.4 from 182 reviews", price:"$27 each" }
       ]}]},
     ideas:[
-      { id:"a-otaru-sushi", t:"Sushi and the Sankaku fish market" },
-      { id:"a-tengu", t:"Mt. Tengu ropeway for the night view over the harbor, running until 9 pm", d:"Counted as one of Hokkaido's three best night views. There is a small ski hill on the same slope." },
-      { id:"a-otaru-izakaya", t:"Izakaya dinner on foot" },
-      { id:"a-nikka", t:"Nikka whisky distillery in Yoichi, 25 min by train: tasting bar and museum", d:"No booking needed for the tasting bar or museum. The free guided tour is in Japanese and has to be reserved 4 weeks ahead." }
+      { id:"a-canal", c:"see", h:1, t:"The canal and its stone warehouses, by day and lit up at night" },
+      { id:"a-tengu", c:"see", h:1.5, eve:true, t:"Mt. Tengu ropeway for the night view over the harbor, running until 9 pm", d:"Counted as one of Hokkaido's three best night views. There is a small ski hill on the same slope." },
+      { id:"a-aquarium", c:"see", h:2.5, cost:"~$8", t:"Otaru Aquarium: penguins walking on the snow, seals and sea lions in outdoor pools", d:"Winter hours 10 to 4. Last winter its winter season ran until Feb 23." },
+      { id:"a-lightpath", c:"see", h:1, eve:true, t:"Snow Light Path festival, Feb 6–13: snow lanterns along the canal and the old rail line", d:"Evenings, free. We'd be there Tuesday Feb 9." },
+      { id:"a-sakaimachi", c:"see", h:1.5, t:"Sakaimachi street: glass studios, the music box museum, cheesecake shops", d:"Mostly souvenir shopping. Quick if it isn't your thing." },
+      { id:"a-kiroro", c:"snow", h:9, cost:"~$58", t:"A powder day at Kiroro, 50 minutes inland and often the deepest snow in Hokkaido", d:"Day pass about $58 this season. This is what cutting Otaru for a ski day would look like." },
+      { id:"a-otaru-sushi", c:"food", h:1.5, t:"Sushi street and the Sankaku fish market by the station" },
+      { id:"a-wakadori", c:"food", h:1, cost:"~$10", t:"Half a deep-fried chicken at Naruto, an Otaru institution" },
+      { id:"a-otaru-beer", c:"food", h:1.5, eve:true, t:"Otaru Beer's brewhouse in a canal warehouse: German-style beer brewed on site" },
+      { id:"a-otaru-izakaya", c:"night", h:2, eve:true, t:"Izakaya dinner on foot" },
+      { id:"a-nikka", c:"trip", h:3, t:"Nikka whisky distillery in Yoichi, 25 min by train: tasting bar and museum", d:"No booking needed for the tasting bar or museum. The free guided tour is in Japanese and has to be reserved 4 weeks ahead." }
     ],
     swaps:{ title:"Or cut this stop", note:"Two ways to spend the night somewhere else.", opts:[
-      { id:"ot-skip-ski", t:"Cut Otaru and add a ski day", d:"Leave Sapporo for the mountains a day early. The extra day can go to Niseko, the bigger mountain, or to Furano." },
+      { id:"ot-skip-ski", t:"Cut Otaru and add a ski day", d:"Leave Sapporo for the mountains a day early. The extra day can go to Kiroro on the way, to Niseko, the bigger mountain, or to Furano." },
       { id:"ot-skip-sapporo", t:"Cut Otaru and stay a third night in Sapporo", d:"More of the festival and the nightlife. Otaru is still there as a half-day trip, 45 minutes each way." }
     ]}},
   { id:"mid-furano", name:"Furano", dates:"Wed Feb 10 – Fri Feb 12", nights:"2 nights", skiDays:"1 ski day", ski:true,
     photos:["furano0","bluepond6","penguin2"],
     sum:"A quieter, colder, more Japanese ski town in the middle of Hokkaido. The skiing is the reason to come. The sightseeing loop on the way in is optional.",
+    free:12, freeNote:"the drive in on Wednesday, Wednesday and Thursday evenings, a little of Friday morning",
+    range:"Speedrun: drive straight through to Niseko. Planned: 2 nights. Could fill 4.",
     facts:[
-      ["Getting there","By van. About 2 hours 10 minutes direct from Sapporo, or about 4 hours of driving if we go the long way round through Asahikawa and Biei for the zoo."],
+      ["Getting there","By van. About 2 hours 10 minutes direct from Sapporo, or about 4 hours of driving if we go the long way round through Asahikawa and Biei."],
       ["Skiing","Furano Snow Resort, one day. Lift ticket $57. Some of Hokkaido's driest snow, two linked zones and a ropeway to 1,074 m. Thursday Feb 11 is a national holiday, so locals will be out too."]],
     sleep:{ groups:[{ opts:[
         { id:"sl-furano-tomar", pick:true, t:"Hostel Tomar", url:"https://www.booking.com/hotel/jp/hostel-tomar.html", d:"$400 for the group · family room with bunks, shared shower · 8.5 from 1,183 reviews", price:"$50 each a night" },
@@ -711,14 +864,23 @@ const STOPS = [
         { id:"sl-furano-prince", t:"New Furano Prince Hotel", d:"Ski-in ski-out, next to Ningle Terrace. The plush option", price:"Price not checked" }
       ]}]},
     ideas:[
-      { id:"a-zoo", t:"Asahiyama Zoo on the drive in: the penguin walk through the snow, polar bears and seals from underwater tunnels, $6" },
-      { id:"x-nozoo", t:"Drive direct and ski the arrival afternoon instead of sightseeing" },
-      { id:"a-furano-night", t:"Night skiing at Furano, a separate $25 ticket" },
-      { id:"a-ningle", t:"Ningle Terrace: log cabin craft shops lit up in snowy woods" },
-      { id:"a-omucurry", t:"Omelette curry or an izakaya in Kitanomine" },
-      { id:"a-asahikawa-ramen", t:"Asahikawa ramen, the soy-sauce style" },
-      { id:"a-biei", t:"Biei's rolling white hills and Shirahige Falls pouring into a blue river" },
-      { id:"a-bluepond", t:"Blue Pond light-up in Biei: the frozen pond under shifting lights, on until 9 pm" }
+      { id:"a-ningle", c:"see", h:1, eve:true, t:"Ningle Terrace: log-cabin craft shops lit up in the snowy woods" },
+      { id:"a-furano-night", c:"snow", h:2.5, eve:true, t:"Night skiing at Furano, a separate $25 ticket" },
+      { id:"a-snowland", c:"snow", h:1.5, cost:"$13–19", t:"Furano Snow Land by the Prince Hotel: snow rafting behind a snowmobile, or drive a snowmobile yourself", d:"About $13 a raft ride and $19 a snowmobile lap at the last posted prices. Daytime, 9 to 4." },
+      { id:"a-kankan", c:"snow", h:1.5, eve:true, t:"Snow Night Fantasy: a lit-up snow village with dog sledding, tubing and an ice bar", d:"Evenings next to the Prince Hotel. Last season it ran Dec 21 to Feb 28." },
+      { id:"a-asahidake", c:"snow", sk:true, book:true, t:"Swap the Furano ski day for Asahidake: a ropeway up Hokkaido's highest volcano, steaming vents and backcountry powder", d:"Ropeway about $20 round trip. Nearly all of it is unpatrolled, so go with a guide (roughly $190 each for four). About 70 min from Asahikawa. Shuts in high wind." },
+      { id:"a-icefish", c:"snow", h:4, t:"Ice fishing for smelt on a frozen lake, then fry the catch in the tent", d:"Tours run on Lake Kanayama, about an hour south, from late December to early March." },
+      { id:"a-omucurry", c:"food", h:1, t:"Omelette curry, Furano's local dish" },
+      { id:"a-kumagera", c:"food", h:2, eve:true, t:"Kumagera: a log-cabin izakaya known for venison and beef hot pots" },
+      { id:"a-cheese", c:"food", h:1.5, t:"Furano Cheese Factory and the Furano Winery tasting room" },
+      { id:"a-tomamu", c:"trip", h:3, eve:true, cost:"~$4", t:"Tomamu Ice Village, an hour south: an ice bar, ice chapel and ice slide, lit up at night", d:"Open 5 to 10 pm, Dec 20 to Mar 10." },
+      { id:"a-zoo", c:"way", h:2.5, cost:"~$6", t:"Asahiyama Zoo: the penguin walk through the snow, polar bears and seals from underwater tunnels", d:"Winter hours 10:30 to 3:30. Penguin walks at 11 and 2:30 when there's snow." },
+      { id:"a-asahikawa-fest", c:"way", h:1.5, t:"Asahikawa Winter Festival, Feb 6–11: a giant snow stage, an ice sculpture contest along the main street, fireworks", d:"Free. We'd drive through on Wednesday Feb 10." },
+      { id:"a-asahikawa-ramen", c:"way", h:1, t:"Asahikawa ramen, the soy-sauce style" },
+      { id:"a-biei", c:"way", h:1.5, t:"Biei's rolling white hills and Shirahige Falls pouring into a blue river" },
+      { id:"a-bluepond", c:"way", h:1, eve:true, t:"Blue Pond light-up in Biei: the frozen pond under shifting lights, on until 9 pm" },
+      { id:"a-sounkyo", c:"way", h:4, eve:true, t:"Detour to Sounkyo's Ice Waterfall Festival: ice towers and tunnels in a frozen gorge, lit at night", d:"Jan 23 to Mar 7. Adds about 3 hours of driving east of Asahikawa, so it only works with a late arrival in Furano." },
+      { id:"x-nozoo", c:"way", h:3, t:"Drive direct and ski the arrival afternoon instead of sightseeing" }
     ],
     swaps:{ title:"Or skip this stop", note:"Two other ways to spend these two days.", opts:[
       { id:"mid-niseko", t:"Straight to Niseko and ski five days", d:"Otaru to Niseko is 1.5 h. Two more lift days at about $85 each, and six nights of Niseko lodging, the priciest beds of the trip." },
@@ -727,6 +889,8 @@ const STOPS = [
   { id:"s-niseko", name:"Niseko", dates:"Fri Feb 12 – Tue Feb 16", nights:"4 nights", skiDays:"3 ski days", ski:true,
     photos:["hero3","niseko4","jigokudani4"],
     sum:"The main event. Four linked resorts on one mountain, 2,191 acres, night skiing and backcountry gates, plus the liveliest food and bars of our ski stops.",
+    free:22, freeNote:"Friday afternoon, the evenings after skiing, and Tuesday's drive to the airport",
+    range:"Speedrun: 3 nights and 2 ski days. Planned: 4 nights and 3 ski days. Could fill a week.",
     facts:[
       ["Getting there","3.5 to 4 hours by van from Furano, mostly expressway. The one long drive of the trip."],
       ["Skiing","Niseko United, three days, Saturday to Monday. About $85 a day or $250 for a 3 day All Mountain pass, which covers all four areas, the shuttle between them and night skiing at Hirafu."],
@@ -744,25 +908,39 @@ const STOPS = [
         { id:"lodge-hirafu", t:"Condo in Hirafu village", d:"Walk to the gondola and the bars, nobody drives after drinks. The most expensive option by far", price:"Est. $190 each a night" }
       ]}]},
     ideas:[
-      { id:"wild-niseko", t:"Follow the snow on the quiet Monday, with the 20 minute peak hike to 1,308 m if the gate is open" },
-      { id:"a-hirafu-night", t:"Night skiing at Hirafu, included in the day pass" },
-      { id:"a-gates", t:"Backcountry gates at Annupuri", d:"Open and close on patrol's call. Beacon, shovel and probe if you go through one." },
-      { id:"wild-guide", book:true, t:"Hire a backcountry guide for a day", d:"Guide plus avalanche gear for the gates and beyond. Needs a quote for our group size." },
-      { id:"wild-rusutsu", t:"Day trip to Rusutsu for tree skiing, 40 min by van", d:"Separate lift ticket: last season $76 online, $103 at the window." },
-      { id:"x-early", t:"Leave Furano at 7 am and ski the first Niseko afternoon" },
-      { id:"x-snowmobile", t:"Snowmobile tour" },
-      { id:"a-onsen-niseko", t:"Outdoor onsen in the snow at Annupuri, about $6 to $8", d:"Tattoo rules differ between the Niseko baths. See the note above." },
-      { id:"a-niseko-dinner", book:true, t:"One big dinner: Hokkaido crab, wagyu or a proper sushi counter", d:"Niseko tables vanish in February. Reserve weeks ahead." },
-      { id:"a-kutchan", t:"Yakitori or soup curry down in Kutchan town at local prices" },
-      { id:"x-gyu", t:"Late drinks at the fridge-door bar (Bar Gyu+)" },
-      { id:"a-toya", t:"On the way out: the Lake Toya caldera viewpoint" },
-      { id:"a-hell", t:"On the way out: Noboribetsu Hell Valley", d:"Boardwalk through a steaming volcanic crater, a hot river foot bath and a soak at one of the big onsen hotels, about $13 to $16. The biggest bath there, Dai-ichi Takimotokan, does not publish a tattoo policy: by one guide's account you get in with tattoos fully covered by patches, and it has no private bath. Check before we go." },
-      { id:"x-shikotsu", t:"On the way out: the Lake Shikotsu Ice Festival near the airport", d:"Usually runs late January to late February. 2027 dates not posted." },
-      { id:"x-ninja", t:"On the way out: the Edo-period ninja village in Noboribetsu (Date Jidaimura)" }
+      { id:"wild-niseko", c:"snow", sk:true, t:"Follow the snow on the quiet Monday, with the 20 minute peak hike to 1,308 m if the gate is open" },
+      { id:"a-hirafu-night", c:"snow", h:2, eve:true, t:"Night skiing at Hirafu, included in the day pass" },
+      { id:"a-gates", c:"snow", sk:true, t:"Backcountry gates at Annupuri", d:"They open and close on ski patrol's call. Beacon, shovel and probe if you go through one." },
+      { id:"wild-guide", c:"snow", sk:true, book:true, t:"Hire a backcountry guide for a day", d:"Guide plus avalanche gear for the gates and beyond. Needs a quote for our group size." },
+      { id:"wild-rusutsu", c:"snow", sk:true, t:"Day trip to Rusutsu for tree skiing, 40 min by van", d:"Separate ticket: this season about $84 online and $106 at the window, the priciest day ticket in Japan." },
+      { id:"a-catski", c:"snow", sk:true, book:true, t:"First-tracks cat skiing at Niseko Village before the lifts open", d:"Last season about $630 for the whole group in one cat. Advanced riders only, snow permitting." },
+      { id:"a-yotei", c:"snow", sk:true, book:true, t:"Ski the crater of Mt. Yotei with a guide", d:"A full day of hiking and skiing on the volcano across the valley. Strong skiers, clear weather and a guide only." },
+      { id:"x-early", c:"snow", h:4, t:"Leave Furano at 7 am and ski the first Niseko afternoon" },
+      { id:"x-snowmobile", c:"snow", h:2, cost:"~$150/machine", t:"Snowmobile tour at Hanazono with Mt. Yotei in view", d:"Last season about $152 for a machine with one rider, $228 with two." },
+      { id:"a-snowshoe", c:"snow", h:3, cost:"~$60", t:"Guided snowshoe walk through the birch forest" },
+      { id:"a-onsen-niseko", c:"do", h:1.5, cost:"$6–8", t:"Outdoor onsen in the snow: Goshiki, Kira no Yu or one of the hotel baths", d:"Several Niseko baths take tattoos. Check the one we pick." },
+      { id:"a-yukichichibu", c:"do", h:2, t:"Yukichichibu: milky sulfur pools and a mud bath, 30 minutes out", d:"Cash only. One guide says tattoos must be fully covered here." },
+      { id:"a-privonsen", c:"do", h:1, book:true, t:"Rent a private onsen by the hour", d:"Tattoo rules don't apply. Book a slot." },
+      { id:"a-niseko-dinner", c:"food", h:2.5, eve:true, book:true, t:"One big dinner: Hokkaido crab, wagyu or a proper sushi counter", d:"Niseko tables vanish in February. Reserve weeks ahead." },
+      { id:"a-kutchan", c:"food", h:2, eve:true, t:"Yakitori or soup curry down in Kutchan town at local prices" },
+      { id:"a-bangbang", c:"food", h:1.5, eve:true, t:"Yakitori and grilled skewers at Bang Bang in Hirafu" },
+      { id:"a-soba", c:"food", h:1.5, book:true, t:"Rakuichi: a tiny soba counter in the woods run by a master noodle maker", d:"A handful of seats and very hard to book." },
+      { id:"a-milkkobo", c:"food", h:0.5, t:"Milk Kobo: Niseko dairy cream puffs and soft serve with a view of Mt. Yotei" },
+      { id:"x-gyu", c:"night", h:1.5, eve:true, t:"Cocktails behind the fridge door at Bar Gyu+" },
+      { id:"a-halfnote", c:"night", h:2, eve:true, t:"Live music, trivia and bingo nights at Half Note" },
+      { id:"a-barunba", c:"night", h:1, eve:true, t:"Barunba, a tiny wooden locals' bar on Momiji-zaka: ask for a Bruce Lee" },
+      { id:"a-zuma", c:"night", h:2, eve:true, book:true, t:"Zuma's one-season pop-up in Hirafu: robata grill and cocktails", d:"Winter 2026–27 only. Drinks from 3 pm, dinner from 5. Pricey." },
+      { id:"a-toya", c:"way", h:1, t:"On the way out: the Lake Toya caldera viewpoint", d:"The Mt. Usu ropeway above the lake is closed Jan 12 to Mar 13, 2027 for maintenance." },
+      { id:"a-hell", c:"way", h:2.5, t:"On the way out: Noboribetsu Hell Valley", d:"Boardwalk through a steaming volcanic crater, a hot river foot bath and a soak at one of the big onsen hotels, about $13 to $16. The biggest bath there, Dai-ichi Takimotokan, does not publish a tattoo policy: by one guide's account you get in with tattoos fully covered by patches, and it has no private bath. Check before we go." },
+      { id:"a-bearpark", c:"way", h:1.5, t:"On the way out: Noboribetsu Bear Park, a ropeway up to Hokkaido brown bears" },
+      { id:"x-shikotsu", c:"way", h:1.5, cost:"~$6", t:"On the way out: the Lake Shikotsu Ice Festival, blue ice towers and tunnels sprayed from the lake", d:"Jan 30 to Feb 23, 2027, lit up after dark. About 40 minutes from the airport, so it fits right before the evening flight." },
+      { id:"x-ninja", c:"way", h:2, t:"On the way out: the Edo-period ninja village in Noboribetsu (Date Jidaimura)" }
     ]},
   { id:"s-tokyo", name:"Tokyo", dates:"Tue Feb 16 – Sun Feb 21", nights:"4 nights here, 1 in Kyoto",
-    photos:["shibuya0","chureito0","shinjuku5"],
+    photos:["shibuya0","sensoji2","shinjuku5"],
     sum:"The city days, with room for one day trip out to Mt. Fuji or somewhere else. We fly home from here.",
+    free:34, freeNote:"Tuesday night, all of Wednesday and Thursday, Saturday evening, Sunday until the flight",
+    range:"Speedrun: 2 nights. Planned: 4. Could easily fill a week.",
     facts:[
       ["Getting there","Fly Sapporo to Tokyo Haneda on Tuesday evening, 1h40, from about $80. Haneda to Shinjuku is 30 to 45 minutes."],
       ["Getting around","Trains and subway only. Add a Suica card to Apple Wallet and tap onto everything."]],
@@ -779,38 +957,178 @@ const STOPS = [
         ]}
       ]},
     ideas:[
-      { id:"thu-fuji", t:"Day trip: Mt. Fuji, Lake Kawaguchi and the Chureito Pagoda", d:"Winter gives the clearest Fuji views of the year. About 2 h each way by highway bus, around $28 round trip." },
-      { id:"thu-hakone", t:"Day trip: the Hakone loop", d:"Ropeway over the sulfur vents, lake cruise, onsen, and Fuji views if the weather plays along." },
-      { id:"thu-monkeys", t:"Day trip: snow monkeys in Nagano", d:"Wild macaques soaking in a hot spring in the snow. A long day by bullet train plus bus, and pricier." },
-      { id:"thu-nikko", t:"Day trip: Nikko", d:"Toshogu shrine in the cedars and Kegon Falls partly frozen. About 2 h each way by train." },
-      { id:"a-shinjuku-night", t:"A Shinjuku night: yakitori in Omoide Yokocho, tiny bars in Golden Gai, karaoke" },
-      { id:"a-shibuyasky", book:true, t:"Shibuya Scramble and the Shibuya Sky rooftop at sunset, about $19", d:"The sunset slot sells out. Book ahead." },
-      { id:"a-teamlab", book:true, t:"teamLab digital art museum, timed ticket, about $25" },
-      { id:"a-sensoji", t:"Senso-ji temple and Nakamise street in Asakusa" },
-      { id:"a-akihabara", t:"Akihabara: arcades, retro games, a ramen counter" },
-      { id:"a-tsukiji", t:"Tsukiji Outer Market breakfast: tuna, tamago, coffee" },
-      { id:"x-wagyu", book:true, t:"One blowout wagyu or omakase sushi dinner" },
-      { id:"x-sumo", book:true, t:"Morning sumo stable practice visit" },
-      { id:"x-kart", book:true, t:"Street go-karts through Shibuya (needs the driving permit)" }
+      { id:"a-shibuyasky", c:"see", h:2, book:true, cost:"$17–22", t:"Shibuya Scramble, then the Shibuya Sky rooftop at sunset", d:"$17 before 3 pm, $22 after, booked online. Sunset slots sell out about two weeks ahead." },
+      { id:"a-tocho", c:"see", h:1.5, eve:true, cost:"Free", t:"The free 45th-floor deck at the Tokyo Metropolitan Government Building, then the light show on its face", d:"The nightly projection on the building is a world record. Fuji shows up on clear winter mornings." },
+      { id:"a-sensoji", c:"see", h:1.5, t:"Senso-ji temple and Nakamise street in Asakusa" },
+      { id:"a-meiji", c:"see", h:2, t:"Meiji Jingu's forest shrine, then Harajuku's Takeshita Street" },
+      { id:"a-towers", c:"see", h:1.5, t:"Tokyo Skytree (from about $11) or Tokyo Tower's main deck ($9.50)", d:"Pick one. Skytree is twice as high; Tokyo Tower is the classic, and its view includes Skytree." },
+      { id:"a-teamlab", c:"see", h:2, book:true, cost:"~$22–23", t:"teamLab digital art: Planets, where you wade barefoot through the rooms, or Borderless", d:"Timed tickets, sold online only. Planets closes for good at the end of 2027." },
+      { id:"a-gundam", c:"see", h:2, t:"Odaiba: the life-size Unicorn Gundam and Rainbow Bridge at night" },
+      { id:"x-sumo", c:"do", h:2.5, book:true, cost:"$57–90", t:"Morning sumo practice at a stable", d:"With a guide. Some stables head to Osaka for the March tournament from mid-February, so check before booking." },
+      { id:"x-kart", c:"do", h:1.5, book:true, cost:"$70–120", t:"Street go-karts through Shibuya or Akihabara, in costume", d:"About an hour of driving. Every driver needs a paper International Driving Permit." },
+      { id:"a-toyosu", c:"do", h:3, t:"The tuna auction at Toyosu Market at 5:30 am, then sushi for breakfast", d:"Free from the upper gallery. The closer deck is by lottery, opening a month ahead." },
+      { id:"a-sento", c:"do", h:1, cost:"$3.50", t:"A tattoo-friendly neighborhood sento (public bath)", d:"One flat price across Tokyo. A growing list of baths welcome ink." },
+      { id:"a-karaoke", c:"do", h:2, eve:true, t:"A private karaoke room, all night if it goes that way" },
+      { id:"a-batting", c:"do", h:1, eve:true, t:"Batting cages in Kabukicho, then the arcade next door" },
+      { id:"a-wrestling", c:"do", h:3, eve:true, book:true, t:"Pro wrestling at Korakuen Hall, if a show lines up with our dates" },
+      { id:"a-ghibli", c:"do", h:3, book:true, cost:"~$6", t:"The Ghibli Museum", d:"Tickets go on sale the 10th of the month before: January 10 for February." },
+      { id:"a-tsukiji", c:"food", h:1.5, t:"Tsukiji Outer Market breakfast: tuna, tamago, coffee" },
+      { id:"a-ramen-tokyo", c:"food", h:1, t:"Ramen crawl: Fuunji tsukemen, Ichiran's solo booths, Ramen Street under Tokyo Station" },
+      { id:"a-conveyor", c:"food", h:1, t:"A conveyor-belt or standing sushi bar: cheap and very good" },
+      { id:"a-yakiniku", c:"food", h:2, eve:true, t:"All-you-can-eat yakiniku: grill wagyu at the table" },
+      { id:"a-monja", c:"food", h:1.5, t:"Monjayaki on Tsukishima's Monja Street" },
+      { id:"a-tonkatsu", c:"food", h:1, t:"Tonkatsu at a specialist like Butagumi or Maisen" },
+      { id:"a-depachika", c:"food", h:1, t:"Department store food halls and a 7-Eleven snack haul" },
+      { id:"x-wagyu", c:"food", h:2.5, eve:true, book:true, t:"One blowout wagyu or omakase sushi dinner" },
+      { id:"a-shinjuku-night", c:"night", h:3, eve:true, t:"A Shinjuku night: yakitori in Omoide Yokocho, tiny bars in Golden Gai, karaoke" },
+      { id:"a-yokocho", c:"night", h:2.5, eve:true, t:"Under-the-tracks izakaya in Yurakucho, or the Ebisu Yokocho food alley" },
+      { id:"a-clubs", c:"night", h:4, eve:true, t:"A big night out at the clubs in Shibuya or Roppongi" },
+      { id:"a-akihabara", c:"shop", h:2.5, t:"Akihabara: arcades, retro games, anime shops, a ramen counter" },
+      { id:"a-kanda", c:"shop", h:1.5, t:"Kanda's ski and snowboard shop street: dozens of shops on a few blocks", d:"Near Ochanomizu and Jimbocho stations." },
+      { id:"a-kappabashi", c:"shop", h:1.5, t:"Kappabashi kitchen street for Japanese knives" },
+      { id:"a-donki", c:"shop", h:2, t:"Don Quijote and Nakano Broadway: odd souvenirs, retro games, collectibles" },
+      { id:"a-nintendo-tokyo", c:"shop", h:1, t:"Nintendo Tokyo and the Pokémon Center in Shibuya Parco" },
+      { id:"a-camera", c:"shop", h:1, t:"Used camera and lens shops in Shinjuku" },
+      { id:"thu-fuji", c:"trip", h:9, cost:"$14 each way", t:"Day trip: Mt. Fuji, Lake Kawaguchi and the Chureito Pagoda", d:"Winter gives the clearest Fuji views of the year. Highway bus from Shinjuku, 1 h 45. Also listed as an overnight under Places we could add." },
+      { id:"thu-hakone", c:"trip", h:9, cost:"~$45 pass", t:"Day trip: the Hakone loop", d:"Ropeway over the sulfur vents, lake cruise, onsen, Fuji views if the weather plays along. This winter a bus replaces the ropeway between the lake and Owakudani, Jan 12 to Feb 26." },
+      { id:"thu-monkeys", c:"trip", h:11, t:"Day trip: snow monkeys in Nagano", d:"Wild macaques in a hot spring in the snow. Bullet train to Nagano, about 80–90 min, then a bus; a $32 pass covers the local trains, buses and park entry. A long day, and better as an overnight." },
+      { id:"thu-nikko", c:"trip", h:9, t:"Day trip: Nikko", d:"Toshogu shrine in the cedars and Kegon Falls partly frozen. About 2 h each way by train." },
+      { id:"a-gala", c:"trip", h:9, cost:"$47 + train", t:"Ski day at GALA Yuzawa: step off the bullet train into the gondola, 71 min from Tokyo Station", d:"Day pass $47 online, rental set $41. A small mountain, but a fifth ski day without leaving Tokyo." },
+      { id:"a-kamakura", c:"trip", h:8, t:"Day trip: Kamakura's Great Buddha and the island of Enoshima" }
     ]},
   { id:"s-kyoto", name:"Kyoto", dates:"Fri Feb 19 – Sat Feb 20", nights:"1 night",
     photos:["fushimi0","kinkakuji3","gion0"],
     sum:"One night out of Tokyo for temples, torii gates and old lanes, then back for the last night before the flight.",
+    free:19, freeNote:"Friday from mid-morning, Saturday until the train back",
+    range:"Speedrun: a day trip from Tokyo. Planned: 1 night. Could fill 4.",
     facts:[["Getting there","Nozomi bullet train from Tokyo, 2h15, $91 each way with a reserved seat. Big bags stay at the Tokyo apartment. Skip the Japan Rail Pass: at $316 or more it costs well over the $182 round trip."]],
-    sleep:{ note:"Kyoto adds its own lodging tax at check-in.",
+    sleep:{ note:"Kyoto adds a lodging tax at check-in: about $1.30 each a night at these prices, more at pricier hotels since March 2026.",
       groups:[{ opts:[
         { id:"sl-kyoto-ks", pick:true, t:"K's House Kyoto", url:"https://www.booking.com/hotel/jp/backpackers-hostel-k-s-house-kyoto.html", d:"$52 for the group · Japanese-style quad room · 8.7 from 2,347 reviews", price:"$13 each" },
         { id:"sl-kyoto-smart", t:"Smart Place Inn Kyoto Shijo Horikawa", url:"https://www.booking.com/hotel/jp/grand-japaning-karigane-kyoto.html", d:"$44 for the group on sale, normally $65 · quad with 4 twin beds · 8.2 from 1,239 reviews", price:"$11 each" }
       ]}]},
     ideas:[
-      { id:"a-fushimi", t:"Fushimi Inari: the tunnel of ten thousand red torii gates up the mountain" },
-      { id:"a-kiyomizu", t:"Kiyomizu-dera and the old lanes below it" },
-      { id:"a-gion", t:"Gion at dusk, dinner in the Pontocho alley, then a sake bar" },
-      { id:"a-arashiyama", t:"Arashiyama bamboo grove, early, while it is empty" },
-      { id:"a-kinkakuji", t:"Kinkaku-ji, the golden pavilion" },
-      { id:"a-nishiki", t:"Nishiki Market lunch" },
-      { id:"x-nara", t:"Swap the Kyoto morning for Nara: the deer park and the Great Buddha, 45 min by train" },
-      { id:"x-osaka", t:"Stop in Osaka for Dotonbori street food on the way back" }
+      { id:"a-fushimi", c:"see", h:2.5, cost:"Free", t:"Fushimi Inari: the tunnel of ten thousand red torii gates up the mountain", d:"Open all night. Go early or after dark to beat the crowds. The full loop to the top is about 2 hours." },
+      { id:"a-kiyomizu", c:"see", h:2, t:"Kiyomizu-dera and the old lanes below it" },
+      { id:"a-arashiyama", c:"see", h:2, t:"Arashiyama bamboo grove, early, while it is empty" },
+      { id:"a-monkeypark", c:"see", h:1.5, t:"Monkey Park Iwatayama above Arashiyama: hand food to wild macaques from inside a hut" },
+      { id:"a-kinkakuji", c:"see", h:1, t:"Kinkaku-ji, the golden pavilion" },
+      { id:"a-nijojo", c:"see", h:1.5, cost:"~$8", t:"Nijo Castle and its squeaking 'nightingale' floors" },
+      { id:"a-sanjusangendo", c:"see", h:1, t:"Sanjusangen-do: 1,001 gold statues in one long hall" },
+      { id:"a-ginkakuji", c:"see", h:2, t:"Ginkaku-ji and the Philosopher's Path" },
+      { id:"a-plum", c:"see", h:1, t:"Plum blossoms at Kitano Tenmangu shrine", d:"The plum grove opens in early February. Last year's entry, with tea, was about $19." },
+      { id:"a-railway", c:"do", h:2, t:"Kyoto Railway Museum: steam locomotives and old bullet trains" },
+      { id:"a-toei", c:"do", h:3, t:"Toei Kyoto Studio Park: samurai film sets and ninja shows" },
+      { id:"a-teaceremony", c:"do", h:1, cost:"from ~$16", t:"A tea ceremony in Gion" },
+      { id:"a-nishiki", c:"food", h:1.5, t:"Nishiki Market lunch" },
+      { id:"a-kaiseki", c:"food", h:2.5, eve:true, book:true, t:"A kaiseki dinner: Kyoto's many-course seasonal meal" },
+      { id:"a-yudofu", c:"food", h:1, t:"Yudofu tofu hot pot near Nanzen-ji or in Arashiyama" },
+      { id:"a-ramen-kyoto", c:"food", h:1, t:"Kyoto ramen at the Ramen Koji in Kyoto Station" },
+      { id:"a-sake", c:"food", h:2, t:"Fushimi sake district: a brewery museum and tastings in new-sake season" },
+      { id:"a-gion", c:"night", h:3, eve:true, t:"Gion at dusk, dinner in the Pontocho alley, then a sake bar" },
+      { id:"a-kiyamachi", c:"night", h:2, eve:true, t:"Kiyamachi, the canal-side bar street" },
+      { id:"x-nara", c:"trip", h:6, t:"Swap the Kyoto morning for Nara: bowing deer and the Great Buddha, 45 min by train" },
+      { id:"x-osaka", c:"trip", h:4, t:"Stop in Osaka for Dotonbori street food on the way back", d:"Or give Osaka a night of its own: see Places we could add." },
+      { id:"a-nintendo", c:"trip", h:3, book:true, cost:"~$21", t:"The Nintendo Museum in Uji, 30 min south", d:"Tickets by lottery three months ahead: entries for February dates go in during November." },
+      { id:"a-uji", c:"trip", h:3, t:"Uji: Byodo-in temple and matcha everything" },
+      { id:"a-himeji", c:"trip", h:5, cost:"~$16", t:"Himeji Castle, Japan's finest original castle, 45 min by bullet train", d:"Visitors from outside Himeji have paid more since March 2026." },
+      { id:"a-kurama", c:"trip", h:4, t:"Kurama to Kibune: a mountain trail between two shrines, often snowy in February" }
+    ]}
+];
+
+/* Places that aren't on the route. Each one costs nights from somewhere else, which the card says. */
+const CANDIDATES = [
+  { id:"c-hakone", name:"Hakone", nights:"1 night", photos:["hakone2","hakone3"],
+    sum:"Hot-spring mountains an hour and a half from Tokyo: a volcano valley, a lake with a torii gate standing in it, and a ryokan night with dinner and an outdoor bath.",
+    free:13, freeNote:"arrive late morning, leave after breakfast",
+    range:"Speedrun: a day trip from Tokyo. Recommended: 1 night.",
+    facts:[
+      ["Where it fits","Swap one Tokyo night. It's also listed as a day trip under Tokyo."],
+      ["Getting there","Romancecar from Shinjuku, about 85 min. The Hakone Freepass covers the trains, ropeway, boat and buses for about $45 from Shinjuku, plus about $8 each way for the Romancecar seat."],
+      ["Heads up","A bus replaces the ropeway between Lake Ashi and Owakudani from Jan 12 to Feb 26, 2027. The Sounzan to Owakudani section still runs."],
+      ["Where we'd sleep","A ryokan with dinner, breakfast and a private outdoor bath, roughly $100–200 each for four sharing (estimate). Private baths sidestep any tattoo rule."]],
+    ideas:[
+      { id:"h-owakudani", c:"see", h:2, t:"Owakudani: the steaming sulfur valley, and eggs boiled black in the vents" },
+      { id:"h-lake", c:"see", h:2, t:"Lake Ashi 'pirate ship' cruise and the torii gate standing in the lake" },
+      { id:"h-fujiview", c:"see", h:1, t:"Early-morning Mt. Fuji views from the lake shore" },
+      { id:"h-openair", c:"see", h:2, cost:"~$10", t:"Hakone Open-Air Museum: big sculptures on a hillside, a Picasso pavilion and a hot foot bath" },
+      { id:"h-ryokan", c:"do", h:4, eve:true, book:true, t:"The ryokan night: a multi-course dinner, yukata, and a private outdoor bath" },
+      { id:"h-yuryo", c:"do", h:2, book:true, t:"Hakone Yuryo: private day-use onsen rooms near Hakone-Yumoto", d:"Tattoo-proof, since the bath is yours." },
+      { id:"h-yumoto", c:"food", h:1, t:"Street snacks and soba along Hakone-Yumoto's old shopping street" }
+    ]},
+  { id:"c-fuji", name:"Mt. Fuji: Lake Kawaguchi", nights:"1 night", photos:["chureito1","fuji2"],
+    sum:"Sleep at the foot of Fuji instead of seeing it from a bus window. Winter has the clearest views of the year, and sunrise at the Chureito Pagoda is the classic shot.",
+    free:13, freeNote:"arrive late morning, leave after a sunrise and breakfast",
+    range:"Speedrun: a day trip from Tokyo. Recommended: 1 night.",
+    facts:[
+      ["Where it fits","Swap one Tokyo night. It's also listed as a day trip under Tokyo."],
+      ["Getting there","Highway bus from Shinjuku, about 1 h 45, $14 each way. Buses can stop in heavy snow."],
+      ["Where we'd sleep","A lakeside ryokan or guesthouse with a Fuji-view bath, roughly $50–150 each (estimate)."]],
+    ideas:[
+      { id:"f-chureito", c:"see", h:2, cost:"Free", t:"Chureito Pagoda at sunrise, with Fuji right behind it", d:"398 steps up from the shrine." },
+      { id:"f-oishi", c:"see", h:1, t:"Oishi Park on the north shore for the classic Fuji-over-the-lake view" },
+      { id:"f-ropeway", c:"see", h:1.5, cost:"~$8", t:"Mt. Fuji Panoramic Ropeway up Mt. Kachikachi" },
+      { id:"f-oshino", c:"see", h:1.5, t:"Oshino Hakkai: spring-fed ponds in an old village under Fuji" },
+      { id:"f-fireworks", c:"see", h:1, eve:true, t:"Winter fireworks over Lake Kawaguchi", d:"Last winter they ran on weekend nights until Feb 23. The 2027 dates aren't out yet." },
+      { id:"f-caves", c:"snow", h:2, t:"Narusawa Ice Cave and Fugaku Wind Cave: lava tubes lined with ice" },
+      { id:"f-fujiq", c:"do", h:5, t:"Fuji-Q Highland: some of Japan's most extreme roller coasters, with Fuji in the background" },
+      { id:"f-onsen", c:"do", h:2, t:"An onsen with a view of Fuji" },
+      { id:"f-hoto", c:"food", h:1, t:"Hoto: thick noodles stewed in miso with pumpkin, the local winter dish" }
+    ]},
+  { id:"c-nagano", name:"Snow monkeys and Shibu Onsen", nights:"1 night, or 2 with Nozawa", photos:["monkeys5","shibu1"],
+    sum:"Wild macaques soaking in a hot spring in the snow, then a night in an old onsen street where your inn hands you the key to nine public baths.",
+    free:14, freeNote:"arrive around midday, leave the next afternoon",
+    range:"Speedrun: a very long day trip from Tokyo. Recommended: 1 night. Add a second in Nozawa Onsen to ski.",
+    facts:[
+      ["Where it fits","Swap one or two Tokyo nights. It lines up with Kanazawa: Tokyo, Nagano, Kanazawa and on to Kyoto are all on one bullet train line."],
+      ["Getting there","Bullet train from Tokyo to Nagano, about 80–90 min, then the local line to Yudanaka, about 45 min. A $32 Snow Monkey pass covers the local trains, buses and park entry."],
+      ["Where we'd sleep","A Shibu Onsen ryokan with dinner, roughly $80–150 each (estimate)."]],
+    ideas:[
+      { id:"n-monkeys", c:"see", h:3, t:"Jigokudani: wild snow monkeys soaking in a hot spring", d:"A 30-minute forest walk in. The park moved to dated online tickets in August 2026 and raises its fee on Dec 1. Best early in the morning." },
+      { id:"n-shibu", c:"do", h:3, eve:true, t:"Shibu Onsen's nine-bath crawl in yukata, with the key your inn gives you" },
+      { id:"n-zenkoji", c:"see", h:2, t:"Zenko-ji temple and the pitch-black tunnel under its main hall" },
+      { id:"n-togakushi", c:"see", h:4, t:"Togakushi shrine's cedar avenue in the snow, and its famous soba" },
+      { id:"n-nozawa", c:"snow", h:9, cost:"~$47", t:"A night in Nozawa Onsen: a ski day, then thirteen free public baths around the village", d:"The village baths are generally relaxed about tattoos." },
+      { id:"n-matsumoto", c:"trip", h:4, t:"Matsumoto Castle, the black castle, an hour away" },
+      { id:"n-sake", c:"food", h:1, t:"Local sake tasting and oyaki dumplings" }
+    ]},
+  { id:"c-kanazawa", name:"Kanazawa and Shirakawa-go", nights:"2 nights", photos:["shirakawa1","kanazawa1"],
+    sum:"Snow-crab season on the Sea of Japan, a famous garden roped against the snow, and a day trip to a village of steep thatched farmhouses buried in winter.",
+    free:24, freeNote:"two full days between the trains",
+    range:"Speedrun: 1 night, Kanazawa only. Recommended: 2 nights with the Shirakawa-go day.",
+    facts:[
+      ["Where it fits","Take two nights from Tokyo and ride Tokyo to Kanazawa (about 2.5 h) to Kyoto (about 2 h, changing at Tsuruga) instead of Tokyo to Kyoto and back."],
+      ["Heads up","Shirakawa-go's famous light-up nights are only Jan 11 to 31 in 2027, so this would be a daytime visit."],
+      ["Where we'd sleep","Business hotels near Kanazawa station, roughly $40–70 each (estimate)."]],
+    ideas:[
+      { id:"k-shirakawa", c:"trip", h:7, book:true, t:"Shirakawa-go: a village of steep thatched farmhouses under deep snow", d:"Bus from Kanazawa, about 75 min. Book the seats ahead." },
+      { id:"k-kenrokuen", c:"see", h:1.5, t:"Kenroku-en garden, its pines held up by yukitsuri rope cones" },
+      { id:"k-higashi", c:"see", h:1.5, t:"Higashi Chaya teahouse district and gold-leaf ice cream" },
+      { id:"k-ninja", c:"see", h:1, book:true, t:"Myoryu-ji, the 'Ninja Temple': trap doors and hidden stairs, by guided tour" },
+      { id:"k-samurai", c:"see", h:1, t:"The Nagamachi samurai district" },
+      { id:"k-21c", c:"see", h:1.5, t:"The 21st Century Museum and its swimming pool you can stand under" },
+      { id:"k-omicho", c:"food", h:1.5, t:"Omicho Market: snow crab, sweet shrimp and seafood bowls at their winter best" },
+      { id:"k-katamachi", c:"night", h:2.5, eve:true, t:"Katamachi's bar district and Kanazawa oden" },
+      { id:"k-takayama", c:"trip", h:8, t:"Or Takayama instead: old merchant streets, sake breweries and Hida beef" }
+    ]},
+  { id:"c-osaka", name:"Osaka", nights:"1 night, or 2 with Universal", photos:["osaka1","osaka2"],
+    sum:"Japan's loudest food city, 15 minutes from Kyoto. Neon canals, street food, cheap bars, and Universal Studios with Super Nintendo World.",
+    free:14, freeNote:"an afternoon, a night out and the next morning",
+    range:"Speedrun: an evening stop on the way back from Kyoto. Recommended: 1 night, or 2 for a Universal day.",
+    facts:[
+      ["Where it fits","Turn Kyoto into Kyoto plus Osaka by taking a night from Tokyo, then ride back to Tokyo for the flight, about 2.5 h."],
+      ["Getting there","15 min from Kyoto by bullet train, or about 30 min on a regular JR train."],
+      ["Where we'd sleep","Namba hotels or apartments, roughly $30–60 each (estimate)."]],
+    ideas:[
+      { id:"o-dotonbori", c:"night", h:3, eve:true, t:"Dotonbori at night: neon, the Glico running man, takoyaki and okonomiyaki" },
+      { id:"o-amemura", c:"night", h:3, eve:true, t:"Amerikamura and the Ura-Namba bar alleys" },
+      { id:"o-kuromon", c:"food", h:1.5, t:"Grazing through Kuromon Market" },
+      { id:"o-shinsekai", c:"food", h:2, t:"Shinsekai: kushikatsu skewers under the retro Tsutenkaku tower" },
+      { id:"o-usj", c:"do", h:10, book:true, cost:"from ~$56", t:"Universal Studios Japan and Super Nintendo World", d:"Super Nintendo World needs a timed-entry ticket or an Express Pass on top of the day ticket." },
+      { id:"o-castle", c:"see", h:2, cost:"~$8", t:"Osaka Castle", d:"The grounds are free; the price is for the keep." },
+      { id:"o-umeda", c:"see", h:1.5, cost:"~$10", t:"Umeda Sky Building's open-air rooftop at sunset" },
+      { id:"o-kaiyukan", c:"see", h:2.5, cost:"~$17", t:"Kaiyukan aquarium and its whale sharks" },
+      { id:"o-kobe", c:"trip", h:4, t:"Kobe beef lunch in Kobe, 15 min by bullet train" }
     ]}
 ];
 
@@ -832,10 +1150,10 @@ const FLIGHTS = [
   { id:"fl-seoul", t:"Via Seoul: not this year", price:"no savings", pts:["San Francisco to Seoul is cheap, $349 one way on United or Air Premia","But Korea's Lunar New Year holiday runs Feb 6–9, and Seoul to Sapporo is $267–401 one way with morning and afternoon flights only","That means a night in Seoul and reaching Sapporo on Monday, after most of the Snow Festival","On one ticket the cheapest Seoul routing came to $7,056. Worth saving for a trip that misses Lunar New Year"] }
 ];
 const BOOKING = [
-  { when:"This month", pts:["Vote here and lock the dates","Book the shared flight once dates are locked. SFO to Tokyo fares are currently rated high","Sapporo beds for Feb 7–9. Festival week sells out","Niseko and Furano beds. February is peak and the cheap places go first"] },
+  { when:"This month", pts:["Vote here and lock the dates","Book the shared flight once dates are locked. SFO to Tokyo fares are currently rated high","Sapporo beds for Feb 7–9. Festival week sells out","Niseko and Furano beds. February is peak and the cheap places go first","If the Nintendo Museum gets votes: its lottery for February dates takes entries through the end of November"] },
   { when:"By early December", pts:["Otaru, Tokyo and Kyoto beds with free cancellation","Reserve the van for Feb 9–16, if the van wins"] },
-  { when:"December to January", pts:["International Driving Permits at AAA for anyone who will drive","Anything tagged Book ahead that the group has voted up"] },
-  { when:"Late January", pts:["Bullet train seats to Kyoto","Visit Japan Web entry forms, eSIMs, yen for cash-only spots"] }
+  { when:"December to January", pts:["International Driving Permits at AAA for anyone who will drive, including go-karts","Anything tagged Book ahead that the group has voted up: Niseko dinners, guides and cat skiing go first","Beds for any place from Places we could add that makes the cut","Jan 10: Ghibli Museum tickets for February go on sale"] },
+  { when:"Late January", pts:["Bullet train seats to Kyoto","Two weeks out: Shibuya Sky sunset slots, teamLab, a sumo practice visit","Visit Japan Web entry forms, eSIMs, yen for cash-only spots"] }
 ];
 
 /* cost model: yen unless marked usd */
@@ -884,8 +1202,8 @@ const round50=n=>Math.round(n/50)*50;
 
 /* ---------- photos (Wikimedia Commons, hotlinked at standard thumbnail sizes) ---------- */
 const WM="https://upload.wikimedia.org/wikipedia/commons/";
-const LICENSES={"CC BY 2.0":"https://creativecommons.org/licenses/by/2.0/","CC BY 2.5":"https://creativecommons.org/licenses/by/2.5/","CC BY 3.0":"https://creativecommons.org/licenses/by/3.0/","CC BY 4.0":"https://creativecommons.org/licenses/by/4.0/","CC BY-SA 2.0":"https://creativecommons.org/licenses/by-sa/2.0/","CC BY-SA 3.0":"https://creativecommons.org/licenses/by-sa/3.0/","CC BY-SA 4.0":"https://creativecommons.org/licenses/by-sa/4.0/","CC0":"https://creativecommons.org/publicdomain/zero/1.0/"};
-const PHOTOS={"hero1":{"p":"a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg","w":5127,"a":"MIKI Yoshihito","l":"CC BY 2.0","c":"Mt. Yotei from Niseko Annupuri","alt":"Mount Yotei rising behind the snowy slopes of Niseko Annupuri","fp":"32% 50%"},"plane1":{"p":"b/b1/In_flight_above_scattered_clouds_(Unsplash).jpg","w":4032,"a":"Harry Knight","l":"CC0","c":"Above the clouds","alt":"View from a plane window above scattered clouds"},"ramen4":{"p":"0/05/Miso_corn_ramen_in_Sapporo_03.jpg","w":4032,"a":"ノボホショコロトソ","l":"CC BY 4.0","c":"Sapporo miso ramen","alt":"A bowl of Sapporo miso corn ramen"},"snowfest1":{"p":"0/0d/Hokkaido_Sapporo_Odori_Park.jpg","w":2592,"a":"Nkns","l":"CC BY-SA 3.0","c":"Odori Park, Sapporo","alt":"Snow-covered Odori Park in Sapporo, with the TV Tower at the far end","fp":"50% 22%"},"otarulight1":{"p":"1/1a/%E5%B0%8F%E6%A8%BD%E9%9B%AA%E3%81%82%E3%81%8B%E3%82%8A%E3%81%AE%E8%B7%AF%EF%BC%88Otaru_Snow_Light_Path_Festival%EF%BC%89_-_panoramio.jpg","w":3024,"a":"t-konno","l":"CC BY-SA 3.0","c":"Otaru Snow Light Path","alt":"Candle lanterns along the Otaru Canal during the Snow Light Path festival"},"bluepond6":{"p":"0/0c/Shirogane_Blue_Pond_by_night,_April_2023_18.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Shirogane Blue Pond light-up","alt":"The Shirogane Blue Pond lit up blue at night among bare larch trunks"},"furano0":{"p":"e/ed/Furano_Snow_Resort_view2.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski runs above the town in winter"},"yotei5":{"p":"b/ba/Yoteizan_seen_from_National_Route_276.jpg","w":4896,"a":"ブルーノ・プラス","l":"CC BY 4.0","c":"The road to Mt. Yotei","alt":"A straight road leading toward snow-capped Mount Yotei","fp":"50% 30%"},"hero3":{"p":"e/e9/2010-02.mt_yotei.jpg","w":3648,"a":"Douglas P Perkins","l":"CC BY 3.0","c":"Mt. Yotei from Niseko","alt":"Mount Yotei seen across the Niseko ski slopes in February","fp":"50% 45%"},"annupuri0":{"p":"6/6b/Niseko-Annupuri.JPG","w":2560,"a":"Wakimasa","l":"Public domain","c":"Niseko Annupuri","alt":"Snow-covered Mount Niseko Annupuri","fp":"50% 30%"},"niseko2":{"p":"0/06/2018_skiing_in_niseko.jpg","w":4160,"a":"Lasthib","l":"CC BY-SA 3.0","c":"Niseko slopes","alt":"A snowy Niseko slope with frosted birch trees and Mount Yotei far off"},"jigokudani4":{"p":"f/f8/Jigokudani_(Hell_Valley),_Noboribetsu_Onsen,_Hokkaido,_April_2023_27.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Hell Valley, Noboribetsu","alt":"Steaming volcanic crater and boardwalk at Noboribetsu Hell Valley"},"shibuya0":{"p":"c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg","w":5853,"a":"Benh LIEU SONG","l":"CC BY-SA 2.0","c":"Shibuya Crossing","alt":"Crowds crossing the Shibuya Scramble under neon signs"},"chureito0":{"p":"5/53/Chureito_Pagoda_and_Mount_Fuji_2023-03-07.jpg","w":4251,"a":"Stjepko Krehula","l":"CC BY 4.0","c":"Chureito Pagoda and Mt. Fuji","alt":"Chureito Pagoda with snow-capped Mount Fuji behind it"},"fushimi0":{"p":"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine,_Kyoto,_Japan.jpg","w":5765,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Fushimi Inari","alt":"A tunnel of red torii gates with a hanging lantern at Fushimi Inari"},"kinkakuji3":{"p":"2/21/Kyoto_Rokuon-ji_Kinkaku-ji_c16.jpg","w":5184,"a":"Hyppolyte de Saint-Rambert","l":"CC BY-SA 4.0","c":"Kinkaku-ji in the snow","alt":"The golden pavilion of Kinkaku-ji under falling snow"},"tsukiji0":{"p":"e/ed/Tsukiji_Outer_Market_2.jpg","w":2048,"a":"Aw1805","l":"CC BY-SA 3.0","c":"Tsukiji Outer Market","alt":"A seafood stall at Tsukiji Outer Market"},"niseko5":{"p":"a/aa/%E3%82%B9%E3%82%A4%E3%83%B3%E3%82%AE%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%B3%E3%82%AD%E3%83%BC%EF%BC%882015.03%EF%BC%89.jpg","w":4128,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Niseko lifts and Mt. Yotei","alt":"A Niseko ski run with a chairlift and Mount Yotei behind"},"furano2":{"p":"f/f7/Furano_Snow_Resort_view3.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski slopes in winter"},"myoko0":{"p":"e/ec/Myoko_Suginohara_Ski_Resort_-_Jan_13,_2014_(1).jpg","w":2048,"a":"uka0310","l":"CC BY 2.0","c":"Myoko Suginohara","alt":"A ski slope at Myoko Suginohara under a blue sky"},"penguin2":{"p":"d/dc/Asahiyama_zoo_Penguin.jpg","w":2676,"a":"欅 (Keyaki)","l":"CC BY-SA 3.0","c":"Asahiyama Zoo penguin walk","alt":"King penguins walking through snow at Asahiyama Zoo"},"niseko4":{"p":"b/b2/%E3%83%92%E3%83%A9%E3%83%95%E3%82%B4%E3%83%B3%E3%83%89%E3%83%A9%EF%BC%882019%E5%B9%B43%E6%9C%88%E6%92%AE%E5%BD%B1%EF%BC%89.jpg","w":3072,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Hirafu gondola, Niseko","alt":"A skier below the Hirafu gondola at Niseko"},"toya1":{"p":"9/92/130922_Lake_Toya_Toyako_Hokkaido_Japan03s3.jpg","w":4800,"a":"663highland","l":"CC BY 2.5","c":"Lake Toya","alt":"Lake Toya caldera and its islands seen from above"},"kyoto2":{"p":"5/57/Streets_of_Gion,_Kyoto_-_Gion7708.jpg","w":4930,"a":"lumoplank","l":"CC0","c":"Gion, Kyoto","alt":"A quiet lantern-lit street in Gion at night"},"tokyo4":{"p":"d/dc/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg","w":3400,"a":"Morio","l":"CC BY-SA 3.0","c":"Shinjuku skyline and Mt. Fuji","alt":"Shinjuku skyscrapers with Mount Fuji in the distance","fp":"40% 50%"},"hakone1":{"p":"1/1d/Mount_Fuji_from_Lake_Ashi_20211202-2.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Lake Ashi, Hakone","alt":"Mount Fuji across Lake Ashi, Hakone"},"chureito1":{"p":"3/3b/Chureito_Pagoda_and_Mount_Fuji_20241022.jpg","w":6199,"a":"Supanut Arunoprayote","l":"CC BY 4.0","c":"Chureito Pagoda","alt":"Chureito Pagoda above the trees with Mount Fuji behind","fp":"55% 30%"},"hakone2":{"p":"d/dd/Mount_Fuji_from_Lake_Ashi_20211202-1.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Mt. Fuji over Lake Ashi","alt":"Mount Fuji rising beyond Lake Ashi in Hakone"},"monkeys5":{"p":"8/8b/Nagano_Jigokudani_yaen_park_m.jpg","w":1920,"a":"Akiko Toshinai","l":"CC BY 4.0","c":"Jigokudani Monkey Park","alt":"Japanese macaques bathing in a hot spring"},"nikko4":{"p":"b/b5/Nikko_Toshogu_Yomeimon_Gate_2024.jpg","w":4080,"a":"Jpatokal","l":"CC BY-SA 4.0","c":"Nikko Toshogu","alt":"The ornate Yomeimon gate at Nikko Toshogu","fp":"50% 25%"},"shinjuku5":{"p":"d/d2/Omoide_yokocho_2024_various_05.jpg","w":4032,"a":"Nesnad","l":"CC BY 4.0","c":"Omoide Yokocho, Shinjuku","alt":"The narrow lantern-lit alley of Omoide Yokocho","fp":"50% 35%"},"shibuya2":{"p":"d/d6/Shibuya_crossing_at_night,_Tokyo,_Japan.jpg","w":4032,"a":"Joli Rumi","l":"CC BY-SA 4.0","c":"Shibuya at night","alt":"Shibuya Crossing at night"},"sensoji2":{"p":"d/de/Senso-ji_Temple_@_Asakusa_(13824517393).jpg","w":3968,"a":"Guilhem Vellut","l":"CC BY 2.0","c":"Senso-ji, Asakusa","alt":"The main hall of Senso-ji temple in Asakusa","fp":"50% 28%"},"sapporo1":{"p":"9/91/%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%83%86%E3%83%AC%E3%83%93%E5%A1%94%EF%BC%88Sapporo_tv_Tower%EF%BC%89_-_panoramio.jpg","w":1600,"a":"t-konno","l":"CC BY-SA 3.0","c":"Sapporo TV Tower","alt":"Sapporo TV Tower lit up at night"},"otaru3":{"p":"4/4f/Otaru_Canal_HDR1.jpg","w":4694,"a":"Tan Wei Liang Byorn","l":"CC BY-SA 4.0","c":"Otaru Canal","alt":"Otaru Canal and its stone warehouses at dusk"},"furano1":{"p":"b/b9/Furano_Snow_Resort_view1.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano","alt":"Furano ski area above the town"},"yotei3":{"p":"c/c7/Yotei-zan-from-hirafu.jpg","w":2848,"a":"Oga","l":"CC BY-SA 3.0","c":"Mt. Yotei from Hirafu","alt":"Snow-covered Mount Yotei seen from Hirafu"},"gion0":{"p":"e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_(Hokan-ji_Temple),_Kyoto,_Japan.jpg","w":5550,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Yasaka Pagoda, Kyoto","alt":"Yasaka-dori street and the Yasaka Pagoda in the early morning","fp":"40% 18%"},"shinjukusky":{"p":"1/19/Shinjuku_Skyline_2013.jpg","w":4573,"a":"Dick Thomas Johnson","l":"CC BY 2.0","c":"Shinjuku skyline at dusk","alt":"Shinjuku skyscrapers lit up at dusk"}};
+const LICENSES={"CC BY 2.0":"https://creativecommons.org/licenses/by/2.0/","CC BY 2.5":"https://creativecommons.org/licenses/by/2.5/","CC BY 3.0":"https://creativecommons.org/licenses/by/3.0/","CC BY 4.0":"https://creativecommons.org/licenses/by/4.0/","CC BY-SA 2.0":"https://creativecommons.org/licenses/by-sa/2.0/","CC BY-SA 3.0":"https://creativecommons.org/licenses/by-sa/3.0/","CC BY-SA 4.0":"https://creativecommons.org/licenses/by-sa/4.0/","CC0":"https://creativecommons.org/publicdomain/zero/1.0/","CC BY-SA 2.1 JP":"https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en"};
+const PHOTOS={"hero1":{"p":"a/ac/Mount_Y%C5%8Dtei_from_Niseko_Annupuri_(33253188670).jpg","w":5127,"a":"MIKI Yoshihito","l":"CC BY 2.0","c":"Mt. Yotei from Niseko Annupuri","alt":"Mount Yotei rising behind the snowy slopes of Niseko Annupuri","fp":"32% 50%"},"plane1":{"p":"b/b1/In_flight_above_scattered_clouds_(Unsplash).jpg","w":4032,"a":"Harry Knight","l":"CC0","c":"Above the clouds","alt":"View from a plane window above scattered clouds"},"ramen4":{"p":"0/05/Miso_corn_ramen_in_Sapporo_03.jpg","w":4032,"a":"ノボホショコロトソ","l":"CC BY 4.0","c":"Sapporo miso ramen","alt":"A bowl of Sapporo miso corn ramen"},"snowfest1":{"p":"0/0d/Hokkaido_Sapporo_Odori_Park.jpg","w":2592,"a":"Nkns","l":"CC BY-SA 3.0","c":"Odori Park, Sapporo","alt":"Snow-covered Odori Park in Sapporo, with the TV Tower at the far end","fp":"50% 22%"},"otarulight1":{"p":"1/1a/%E5%B0%8F%E6%A8%BD%E9%9B%AA%E3%81%82%E3%81%8B%E3%82%8A%E3%81%AE%E8%B7%AF%EF%BC%88Otaru_Snow_Light_Path_Festival%EF%BC%89_-_panoramio.jpg","w":3024,"a":"t-konno","l":"CC BY-SA 3.0","c":"Otaru Snow Light Path","alt":"Candle lanterns along the Otaru Canal during the Snow Light Path festival"},"bluepond6":{"p":"0/0c/Shirogane_Blue_Pond_by_night,_April_2023_18.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Shirogane Blue Pond light-up","alt":"The Shirogane Blue Pond lit up blue at night among bare larch trunks"},"furano0":{"p":"e/ed/Furano_Snow_Resort_view2.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski runs above the town in winter"},"yotei5":{"p":"b/ba/Yoteizan_seen_from_National_Route_276.jpg","w":4896,"a":"ブルーノ・プラス","l":"CC BY 4.0","c":"The road to Mt. Yotei","alt":"A straight road leading toward snow-capped Mount Yotei","fp":"50% 30%"},"hero3":{"p":"e/e9/2010-02.mt_yotei.jpg","w":3648,"a":"Douglas P Perkins","l":"CC BY 3.0","c":"Mt. Yotei from Niseko","alt":"Mount Yotei seen across the Niseko ski slopes in February","fp":"50% 45%"},"annupuri0":{"p":"6/6b/Niseko-Annupuri.JPG","w":2560,"a":"Wakimasa","l":"Public domain","c":"Niseko Annupuri","alt":"Snow-covered Mount Niseko Annupuri","fp":"50% 30%"},"niseko2":{"p":"0/06/2018_skiing_in_niseko.jpg","w":4160,"a":"Lasthib","l":"CC BY-SA 3.0","c":"Niseko slopes","alt":"A snowy Niseko slope with frosted birch trees and Mount Yotei far off"},"jigokudani4":{"p":"f/f8/Jigokudani_(Hell_Valley),_Noboribetsu_Onsen,_Hokkaido,_April_2023_27.jpg","w":4608,"a":"Calistemon","l":"CC BY-SA 4.0","c":"Hell Valley, Noboribetsu","alt":"Steaming volcanic crater and boardwalk at Noboribetsu Hell Valley"},"shibuya0":{"p":"c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg","w":5853,"a":"Benh LIEU SONG","l":"CC BY-SA 2.0","c":"Shibuya Crossing","alt":"Crowds crossing the Shibuya Scramble under neon signs"},"chureito0":{"p":"5/53/Chureito_Pagoda_and_Mount_Fuji_2023-03-07.jpg","w":4251,"a":"Stjepko Krehula","l":"CC BY 4.0","c":"Chureito Pagoda and Mt. Fuji","alt":"Chureito Pagoda with snow-capped Mount Fuji behind it"},"fushimi0":{"p":"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine,_Kyoto,_Japan.jpg","w":5765,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Fushimi Inari","alt":"A tunnel of red torii gates with a hanging lantern at Fushimi Inari"},"kinkakuji3":{"p":"2/21/Kyoto_Rokuon-ji_Kinkaku-ji_c16.jpg","w":5184,"a":"Hyppolyte de Saint-Rambert","l":"CC BY-SA 4.0","c":"Kinkaku-ji in the snow","alt":"The golden pavilion of Kinkaku-ji under falling snow"},"tsukiji0":{"p":"e/ed/Tsukiji_Outer_Market_2.jpg","w":2048,"a":"Aw1805","l":"CC BY-SA 3.0","c":"Tsukiji Outer Market","alt":"A seafood stall at Tsukiji Outer Market"},"niseko5":{"p":"a/aa/%E3%82%B9%E3%82%A4%E3%83%B3%E3%82%AE%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%B3%E3%82%AD%E3%83%BC%EF%BC%882015.03%EF%BC%89.jpg","w":4128,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Niseko lifts and Mt. Yotei","alt":"A Niseko ski run with a chairlift and Mount Yotei behind"},"furano2":{"p":"f/f7/Furano_Snow_Resort_view3.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano Snow Resort","alt":"Furano ski slopes in winter"},"myoko0":{"p":"e/ec/Myoko_Suginohara_Ski_Resort_-_Jan_13,_2014_(1).jpg","w":2048,"a":"uka0310","l":"CC BY 2.0","c":"Myoko Suginohara","alt":"A ski slope at Myoko Suginohara under a blue sky"},"penguin2":{"p":"d/dc/Asahiyama_zoo_Penguin.jpg","w":2676,"a":"欅 (Keyaki)","l":"CC BY-SA 3.0","c":"Asahiyama Zoo penguin walk","alt":"King penguins walking through snow at Asahiyama Zoo"},"niseko4":{"p":"b/b2/%E3%83%92%E3%83%A9%E3%83%95%E3%82%B4%E3%83%B3%E3%83%89%E3%83%A9%EF%BC%882019%E5%B9%B43%E6%9C%88%E6%92%AE%E5%BD%B1%EF%BC%89.jpg","w":3072,"a":"BATACHAN","l":"CC BY-SA 4.0","c":"Hirafu gondola, Niseko","alt":"A skier below the Hirafu gondola at Niseko"},"toya1":{"p":"9/92/130922_Lake_Toya_Toyako_Hokkaido_Japan03s3.jpg","w":4800,"a":"663highland","l":"CC BY 2.5","c":"Lake Toya","alt":"Lake Toya caldera and its islands seen from above"},"kyoto2":{"p":"5/57/Streets_of_Gion,_Kyoto_-_Gion7708.jpg","w":4930,"a":"lumoplank","l":"CC0","c":"Gion, Kyoto","alt":"A quiet lantern-lit street in Gion at night"},"tokyo4":{"p":"d/dc/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg","w":3400,"a":"Morio","l":"CC BY-SA 3.0","c":"Shinjuku skyline and Mt. Fuji","alt":"Shinjuku skyscrapers with Mount Fuji in the distance","fp":"40% 50%"},"hakone1":{"p":"1/1d/Mount_Fuji_from_Lake_Ashi_20211202-2.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Lake Ashi, Hakone","alt":"Mount Fuji across Lake Ashi, Hakone"},"chureito1":{"p":"3/3b/Chureito_Pagoda_and_Mount_Fuji_20241022.jpg","w":6199,"a":"Supanut Arunoprayote","l":"CC BY 4.0","c":"Chureito Pagoda","alt":"Chureito Pagoda above the trees with Mount Fuji behind","fp":"55% 30%"},"hakone2":{"p":"d/dd/Mount_Fuji_from_Lake_Ashi_20211202-1.jpg","w":5184,"a":"Suicasmo","l":"CC BY-SA 4.0","c":"Mt. Fuji over Lake Ashi","alt":"Mount Fuji rising beyond Lake Ashi in Hakone"},"monkeys5":{"p":"8/8b/Nagano_Jigokudani_yaen_park_m.jpg","w":1920,"a":"Akiko Toshinai","l":"CC BY 4.0","c":"Jigokudani Monkey Park","alt":"Japanese macaques bathing in a hot spring"},"nikko4":{"p":"b/b5/Nikko_Toshogu_Yomeimon_Gate_2024.jpg","w":4080,"a":"Jpatokal","l":"CC BY-SA 4.0","c":"Nikko Toshogu","alt":"The ornate Yomeimon gate at Nikko Toshogu","fp":"50% 25%"},"shinjuku5":{"p":"d/d2/Omoide_yokocho_2024_various_05.jpg","w":4032,"a":"Nesnad","l":"CC BY 4.0","c":"Omoide Yokocho, Shinjuku","alt":"The narrow lantern-lit alley of Omoide Yokocho","fp":"50% 35%"},"shibuya2":{"p":"d/d6/Shibuya_crossing_at_night,_Tokyo,_Japan.jpg","w":4032,"a":"Joli Rumi","l":"CC BY-SA 4.0","c":"Shibuya at night","alt":"Shibuya Crossing at night"},"sensoji2":{"p":"d/de/Senso-ji_Temple_@_Asakusa_(13824517393).jpg","w":3968,"a":"Guilhem Vellut","l":"CC BY 2.0","c":"Senso-ji, Asakusa","alt":"The main hall of Senso-ji temple in Asakusa","fp":"50% 28%"},"sapporo1":{"p":"9/91/%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%83%86%E3%83%AC%E3%83%93%E5%A1%94%EF%BC%88Sapporo_tv_Tower%EF%BC%89_-_panoramio.jpg","w":1600,"a":"t-konno","l":"CC BY-SA 3.0","c":"Sapporo TV Tower","alt":"Sapporo TV Tower lit up at night"},"otaru3":{"p":"4/4f/Otaru_Canal_HDR1.jpg","w":4694,"a":"Tan Wei Liang Byorn","l":"CC BY-SA 4.0","c":"Otaru Canal","alt":"Otaru Canal and its stone warehouses at dusk"},"furano1":{"p":"b/b9/Furano_Snow_Resort_view1.JPG","w":2816,"a":"wakimasa","l":"Public domain","c":"Furano","alt":"Furano ski area above the town"},"yotei3":{"p":"c/c7/Yotei-zan-from-hirafu.jpg","w":2848,"a":"Oga","l":"CC BY-SA 3.0","c":"Mt. Yotei from Hirafu","alt":"Snow-covered Mount Yotei seen from Hirafu"},"gion0":{"p":"e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_(Hokan-ji_Temple),_Kyoto,_Japan.jpg","w":5550,"a":"Basile Morin","l":"CC BY-SA 4.0","c":"Yasaka Pagoda, Kyoto","alt":"Yasaka-dori street and the Yasaka Pagoda in the early morning","fp":"40% 18%"},"shinjukusky":{"p":"1/19/Shinjuku_Skyline_2013.jpg","w":4573,"a":"Dick Thomas Johnson","l":"CC BY 2.0","c":"Shinjuku skyline at dusk","alt":"Shinjuku skyscrapers lit up at dusk"},"osaka1":{"p":"0/02/2021-12-11_D%C5%8Dtonbori_at_Night.jpg","w":5935,"a":"Dick Thomas Johnson","l":"CC BY 2.0","c":"Dotonbori at night","alt":"Neon signs along the Dotonbori canal in Osaka at night"},"osaka2":{"p":"c/c8/20190121_Osaka_Castle-1.jpg","w":4861,"a":"Balon Greyjoy","l":"CC0","c":"Osaka Castle in January","alt":"Osaka Castle's main keep above its stone walls"},"kanazawa1":{"p":"9/90/Kenrokuen_in_winter_01.jpg","w":1280,"a":"yosi.nakao","l":"CC BY-SA 2.1 JP","c":"Kenroku-en in winter","alt":"Pines at Kenroku-en held up by yukitsuri rope cones in the snow"},"shirakawa1":{"p":"0/06/Shirakawago.jpg","w":4200,"a":"Jordy Meow","l":"CC BY-SA 3.0","c":"Shirakawa-go in winter","alt":"The thatched farmhouses of Shirakawa-go under snow at dusk"},"hakone3":{"p":"2/2b/161223_Owakudani_Hakone_Japan08s3.jpg","w":6000,"a":"663highland","l":"CC BY 2.5","c":"Owakudani, Hakone","alt":"Steaming volcanic vents at Owakudani in Hakone"},"fuji2":{"p":"1/1c/Mount_Fuji_from_Lake_Kawaguchi.jpg","w":1728,"a":"Subramaniam K V","l":"CC BY 3.0","c":"Mt. Fuji from Lake Kawaguchi","alt":"Snow-capped Mount Fuji across Lake Kawaguchi"},"shibu1":{"p":"e/e1/Shibu_Onsen,_Yudanaka_(6289612301).jpg","w":4288,"a":"Bryan Ledgard","l":"CC BY 2.0","c":"Shibu Onsen","alt":"The old wooden ryokan street of Shibu Onsen"}};
 const PHOTO_FOR={"d0206":"plane1","d0207":"ramen4","d0208":"snowfest1","d0209":"otarulight1","d0210":"bluepond6","d0211":"furano0","d0212":"yotei5","d0213":"hero3","d0214":"annupuri0","d0215":"niseko2","d0216":"jigokudani4","d0217":"shibuya0","d0218":"chureito0","d0219":"fushimi0","d0220":"kinkakuji3","d0221":"tsukiji0","base-niseko":"niseko4","base-furano":"furano2","base-honshu":"myoko0","mid-furano":"penguin2","mid-niseko":"niseko5","mid-onsen":"toya1","after-mix":"kyoto2","after-tokyo":"tokyo4","after-hakone":"hakone1","thu-fuji":"chureito1","thu-hakone":"hakone2","thu-monkeys":"monkeys5","thu-nikko":"nikko4","tokyo-shinjuku":"shinjuku5","tokyo-shibuya":"shibuya2","tokyo-asakusa":"sensoji2","stay-sapporo":"sapporo1","stay-otaru":"otaru3","stay-furano":"furano1","stay-niseko":"yotei3","stay-tokyo":"shinjukusky","stay-kyoto":"gion0"};
 const ICON_EXPAND='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function wmURL(ph,w){ return w>=ph.w ? WM+ph.p : WM+"thumb/"+ph.p+"/"+w+"px-"+ph.p.slice(5); }
@@ -1022,6 +1340,7 @@ function cleanDoc(d){
   if(d.notes&&typeof d.notes==="object") for(const k of Object.keys(d.notes).slice(0,300)){
     const x=d.notes[k]; if(!x||typeof x!=="object"||!ID_OK.test(k)) continue;
     out.notes[k]=x.del?{del:true,ts:+x.ts||0}:{item:ID_OK.test(x.item)?x.item:"general",kind:x.kind==="change"?"change":"comment",text:String(x.text||"").slice(0,600),ts:+x.ts||0};
+    if(!x.del&&typeof x.hrs==="number"&&x.hrs>=0.5&&x.hrs<=12) out.notes[k].hrs=Math.round(x.hrs*2)/2;
   }
   return out;
 }
@@ -1088,9 +1407,9 @@ function loading(){ return false; }
 
 /* ---------- actions ---------- */
 function vote(id,v){ needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const cur=p.votes[id]?p.votes[id].v:0; p.votes[id]={v:cur===v?0:v,t:Date.now()}; })); }
-function addNote(item,kind,text){
+function addNote(item,kind,text,extra){
   text=(text||"").trim().slice(0,600); if(!text) return false;
-  needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const now=Date.now(); p.notes["n-"+state.me+"-"+now.toString(36)]={item,kind,text,ts:now}; }));
+  needMe(()=>mutate(state.me,p=>{ if(!p.name) p.name=state.meName||state.me; const now=Date.now(); p.notes["n-"+state.me+"-"+now.toString(36)]=Object.assign({item,kind,text,ts:now},extra||{}); }));
   return true;
 }
 function delNote(n){ mutate(n.by,p=>{ p.notes[n.id]={del:true,ts:Date.now()}; }); }
@@ -1377,48 +1696,154 @@ function optRow(o,stop,kind,label){
     o.book?h("span",{class:"pill book"},"Book ahead"):null,
     kind==="pick"?h("span",{class:"pill lead",hidden:true,"data-lead":o.id},"Leading"):null);
   const li=h("li",{class:"row-i"+(kind==="idea"?" idea":""),id:"i-"+o.id,"data-opt":o.id},title,
+    kind==="idea"?h("div",{class:"rm"},h("span",{class:o.sk?"sk":null},durLabel(o)),o.cost?h("span",null,o.cost):null):null,
     o.price?h("div",{class:"rp num"},o.price):null,
     o.d?h("div",{class:"rd"},o.d):null);
   li.append(voteBar(o.id,{mini:true}));
   return li;
 }
 function optGroup(opts,stop){ VOTE_GROUPS.push(opts.map(o=>o.id)); return h("ul",{class:"rows"},opts.map(o=>optRow(o,stop,"pick"))); }
-function renderStops(){
-  const root=$("stopList");
-  root.append(h("div",{class:"leg"},h("b",null,"Sat Feb 6"),h("span",null,"Fly to Sapporo, all on the same long flight across the Pacific if we can line it up. You cross the date line and land Sunday.")));
-  STOPS.forEach((s,i)=>{
-    LABELS[s.id]="Stop "+(i+1)+": "+s.name;
-    const photos=h("div",{class:"stop-photos"},s.photos.map(k=>photo(k,{sizes:"(max-width: 600px) 84vw, 340px",widths:[500,960]})));
-    const body=h("div",{class:"stop-body"},
-      h("div",{class:"stop-head"},h("span",{class:"stop-n num","aria-hidden":"true"},String(i+1)),
-        h("div",null,h("h3",null,s.name),h("div",{class:"stop-meta"},h("span",{class:"chip"},s.dates),h("span",{class:"chip"},s.nights),s.skiDays?h("span",{class:"chip ski"},s.skiDays):null,s.flag?h("span",{class:"chip flag"},s.flag):null))),
-      h("p",{class:"stop-sum"},s.sum),
-      h("dl",{class:"kv"},s.facts.map(f=>h("div",null,h("dt",null,f[0]),h("dd",null,f[1])))));
+const IDEA_HOURS=[[1,"About 1 h"],[2,"About 2 h"],[3,"An evening"],[4,"Half a day"],[9,"A full day"]];
+/* one card per place: big facts, beds, the time check, then everything worth doing, grouped by kind */
+function renderStopCard(s,i,cand){
+  LABELS[s.id]=cand?("Could add: "+s.name):("Stop "+(i+1)+": "+s.name);
+  const photos=h("div",{class:"stop-photos"},(s.photos||[]).map(k=>photo(k,{sizes:"(max-width: 600px) 84vw, 340px",widths:[500,960]})));
+  const body=h("div",{class:"stop-body"},
+    h("div",{class:"stop-head"},h("span",{class:"stop-n num","aria-hidden":"true"},cand?"+":String(i+1)),
+      h("div",null,h("h3",null,s.name),h("div",{class:"stop-meta"},
+        s.dates?h("span",{class:"chip"},s.dates):null,h("span",{class:"chip"},s.nights),
+        s.skiDays?h("span",{class:"chip ski"},s.skiDays):null,s.flag?h("span",{class:"chip flag"},s.flag):null,
+        cand?h("span",{class:"chip flag"},"Not on the route"):null))),
+    h("p",{class:"stop-sum"},s.sum),
+    h("dl",{class:"kv"},s.facts.map(f=>h("div",null,h("dt",null,f[0]),h("dd",null,f[1])))));
+  if(s.sleep){
     const sleep=h("div",{class:"blk"},h("h4",null,"Where we sleep"),s.sleep.note?h("p",{class:"small muted"},s.sleep.note):null);
     for(const g of s.sleep.groups){ if(g.label) sleep.append(h("div",{class:"sub"},g.label)); sleep.append(optGroup(g.opts,s)); }
     body.append(sleep);
-    if(s.extraGroup){
-      const g=s.extraGroup;
-      body.append(h("div",{class:"blk"},h("h4",null,g.title),g.note?h("p",{class:"small muted"},g.note):null,h("ul",{class:"rows"},g.opts.map(o=>optRow(o,s,"plain")))));
-    }
-    if(s.swaps){
-      const w=s.swaps;
-      body.append(h("div",{class:"blk"},h("h4",null,w.title),h("p",{class:"small muted"},w.note),h("ul",{class:"rows"},w.opts.map(o=>optRow(o,s,"plain")))));
-    }
-    const ul=h("ul",{class:"rows"},s.ideas.map(o=>optRow(o,s,"idea")));
-    const ideaItem="ideas-"+s.id; LABELS[ideaItem]=s.name+": idea from the group";
-    const count=h("span",{class:"count"});
-    const inp=h("input",{type:"text",maxlength:"200",id:"in-"+ideaItem,"aria-label":"Add an idea for "+s.name,placeholder:"Something else worth doing in "+s.name+"…"});
-    const form=h("form",{class:"idea-add",onsubmit:e=>{ e.preventDefault(); if(addNote(ideaItem,"change",inp.value)) inp.value=""; }},inp,h("button",{class:"btn",type:"submit"},"Add idea"));
-    IDEA_LISTS.push({ul,order:s.ideas.map(o=>o.id),item:ideaItem,count});
-    body.append(h("div",{class:"blk"},h("details",{class:"fold",id:"i-"+ideaItem},
-      h("summary",null,"Things to do here",count),
-      h("p",{class:"small muted"},"Options, not a plan. Vote up what you would actually do and the favorites rise to the top. Missing something? Add it and the group can vote on it."),ul,form)));
-    const sv=h("div",{class:"stop-vote"}); sv.append(voteBar(s.id)); body.append(sv);
-    root.append(h("article",{class:"stop"+(s.ski?" ski":""),id:"i-"+s.id},photos,body));
-  });
+  }
+  if(s.extraGroup){
+    const g=s.extraGroup;
+    body.append(h("div",{class:"blk"},h("h4",null,g.title),g.note?h("p",{class:"small muted"},g.note):null,h("ul",{class:"rows"},g.opts.map(o=>optRow(o,s,"plain")))));
+  }
+  if(s.swaps){
+    const w=s.swaps;
+    body.append(h("div",{class:"blk"},h("h4",null,w.title),h("p",{class:"small muted"},w.note),h("ul",{class:"rows"},w.opts.map(o=>optRow(o,s,"plain")))));
+  }
+  body.append(h("div",{class:"blk"},h("div",{class:"tc",id:"tc-"+s.id})));
+  const ideaItem="ideas-"+s.id; LABELS[ideaItem]=s.name+": idea from the group";
+  const count=h("span",{class:"count"}), groups=[], cats=h("div",{class:"cats"});
+  for(const [k,label] of CATS){
+    const list=s.ideas.filter(o=>o.c===k); if(!list.length) continue;
+    const ul=h("ul",{class:"rows"},list.map(o=>optRow(o,s,"idea")));
+    groups.push({ul,order:list.map(o=>o.id)});
+    cats.append(h("div",{class:"cat"},h("div",{class:"sub"},label),ul));
+  }
+  const userUl=h("ul",{class:"rows"}), userCat=h("div",{class:"cat",hidden:true},h("div",{class:"sub"},"Added by the group"),userUl);
+  cats.append(userCat);
+  const inp=h("input",{type:"text",maxlength:"200",id:"in-"+ideaItem,"aria-label":"Add an idea for "+s.name,placeholder:"Something else worth doing in "+s.name+"…"});
+  const sel=h("select",{"aria-label":"Roughly how long it takes"},IDEA_HOURS.map(([v,l])=>h("option",{value:String(v),selected:v===2},l)));
+  const form=h("form",{class:"idea-add",onsubmit:e=>{ e.preventDefault(); if(addNote(ideaItem,"change",inp.value,{hrs:+sel.value})) inp.value=""; }},inp,sel,h("button",{class:"btn",type:"submit"},"Add idea"));
+  IDEA_LISTS.push({stop:s,groups,userUl,userCat,box:cats,item:ideaItem,count});
+  body.append(h("div",{class:"blk"},h("details",{class:"fold",id:"i-"+ideaItem},
+    h("summary",null,"Things to do here",count),
+    h("p",{class:"small muted"},"Options, not a plan. Each one shows roughly how long it takes and what it costs. Vote up what you'd actually do and it counts toward the time check above; the favorites rise to the top of each group. Missing something? Add it with a rough time and the group can vote on it."),
+    cats,form)));
+  const sv=h("div",{class:"stop-vote"+(cand?" cand":"")}); sv.append(voteBar(s.id)); body.append(sv);
+  return h("article",{class:"stop"+(s.ski?" ski":"")+(cand?" cand":""),id:"i-"+s.id},photos,body);
+}
+function renderStops(){
+  const root=$("stopList");
+  root.append(h("div",{class:"leg"},h("b",null,"Sat Feb 6"),h("span",null,"Fly to Sapporo, all on the same long flight across the Pacific if we can line it up. You cross the date line and land Sunday.")));
+  STOPS.forEach((s,i)=>root.append(renderStopCard(s,i,false)));
   root.append(h("div",{class:"leg"},h("b",null,"Sun Feb 21"),h("span",null,"Fly home from Tokyo Haneda. You land the same day you leave and are at work Monday Feb 22.")));
 }
+function renderExtra(){
+  const root=$("extraList");
+  CANDIDATES.forEach(s=>root.append(renderStopCard(s,0,true)));
+}
+/* ---------- time check: the group's picks against each stop's free time ---------- */
+const fmtH=x=>{ const r=Math.round(x*2)/2; return (r%1?r.toFixed(1):String(r))+" h"; };
+const fmtD=x=>{ const d=Math.round(x/DAY_H*2)/2; return d<=0?"":(d===1?"about a day":"about "+(d%1?d.toFixed(1):d)+" days"); };
+function durLabel(o){
+  if(o.sk) return "Uses a ski day";
+  const x=o.h||0; let s;
+  if(x<=0.75) s="Under an hour"; else if(x<=1) s="About 1 h"; else if(x<=1.5) s="1–2 h"; else if(x<=2) s="About 2 h";
+  else if(x<=3) s="2–3 h"; else if(x<=5) s="Half a day"; else if(x<=7) s="Most of a day"; else s="Full day";
+  return s+(o.eve?", evening":"");
+}
+/* an idea counts as picked when it has more up votes than down */
+function stopPicks(s){
+  let n=0, hrs=0, ski=0, voted=false;
+  for(const o of s.ideas){
+    const t=tally(o.id); if(t.up.length||t.down.length) voted=true;
+    if(t.net>0){ if(o.sk) ski++; else { n++; hrs+=o.h||0; } }
+  }
+  for(const x of allNotes()){
+    if(x.item!=="ideas-"+s.id) continue;
+    const t=tally(x.id); if(t.up.length||t.down.length) voted=true;
+    if(t.net>0){ n++; hrs+=x.hrs||2; }
+  }
+  return {n,hrs,ski,voted};
+}
+function verdict(p,free){
+  if(!p.voted) return {k:"none",short:"No votes yet",long:"Nobody has voted on things to do here yet. Vote up what you'd actually do and this fills in."};
+  if(!p.n&&p.ski) return {k:"none",short:"Only ski swaps",long:"So far the only picks here replace planned skiing, so they cost no extra time."};
+  if(!p.n) return {k:"none",short:"Nothing picked",long:"Nothing here has more up votes than down yet."};
+  const r=p.hrs/free;
+  if(r<0.5) return {k:"light",short:"Room to spare",long:"Light so far. The picks fill less than half the free time, so this stop could be cut short and the time given to another."};
+  if(r<=1.05) return {k:"ok",short:"About right",long:"About right for the time we have here."};
+  if(r<=1.4) return {k:"full",short:"Full",long:"Full. The picks use all the free time here, so expect to drop a few."};
+  return {k:"over",short:"Wants more time",long:"More than fits. Worth adding a night here or trimming the list."};
+}
+function meterBar(p,free,label){
+  const max=Math.max(free,p.hrs)||1;
+  return h("span",{class:"tbar",role:"img","aria-label":label},
+    h("i",{style:"width:"+(p.hrs/max*100).toFixed(1)+"%"}),
+    h("s",{style:"left:"+(free/max*100).toFixed(1)+"%"}));
+}
+function renderMeter(el,s,p,v){
+  el.dataset.k=v.k; el.textContent="";
+  const freeTxt=fmtH(s.free)+(fmtD(s.free)?" ("+fmtD(s.free)+")":"");
+  const skiTxt=p.ski?" "+(p.ski===1?"One more pick replaces planned skiing, so it":p.ski+" more picks replace planned skiing, so they")+" cost"+(p.ski===1?"s":"")+" no extra time.":"";
+  const line=p.n
+    ? (p.n===1?"The one pick takes":"The "+p.n+" picks add up to")+" about "+fmtH(p.hrs)+", against "+freeTxt+" free here: "+s.freeNote+"."+skiTxt
+    : "Free time here: "+freeTxt+", "+s.freeNote+"."+(p.ski?skiTxt.replace(" One more pick"," One pick").replace(" more picks"," picks"):"");
+  el.append(
+    h("div",{class:"tc-top"},h("b",null,"Time check"),h("span",{class:"tc-v"},v.short)),
+    meterBar(p,s.free,"Picks "+fmtH(p.hrs)+" of "+fmtH(s.free)+" free"),
+    h("p",null,line),
+    h("p",null,v.long),
+    h("p",{class:"muted"},s.range));
+}
+function renderTimeCheck(rows){
+  const box=$("timeCheck"); if(!box) return;
+  box.textContent="";
+  const mk=(r,cand)=>{
+    const s=r.s, p=r.p, v=r.v;
+    const add=cand?tally(s.id):null;
+    return h("a",{class:"tcr",href:"#i-"+s.id,"data-k":v.k},
+      h("span",{class:"tcr-n"},h("b",null,s.name),h("small",null,s.nights)),
+      meterBar(p,s.free,"Picks "+fmtH(p.hrs)+" of "+fmtH(s.free)+" free"),
+      h("span",{class:"tcr-h num"},fmtH(p.hrs)+" of "+fmtH(s.free)),
+      h("span",{class:"tcr-v"},v.short),
+      cand?h("span",{class:"tcr-add num"},"Add it: "+add.up.length+" up, "+add.down.length+" down"):null);
+  };
+  const route=rows.filter(r=>!r.cand), extra=rows.filter(r=>r.cand);
+  box.append(
+    h("div",{class:"tcl-head"},h("h3",null,"Time check"),
+      h("p",{class:"small muted"},"Each stop's free time against the things to do the group has voted up. A thing counts once it has more up votes than down. The bar fills with the picked hours; the tick marks the free time we have there. Stops with room to spare are candidates to speedrun; stops that want more time are candidates for another night.")),
+    h("div",{class:"tcl"},route.map(r=>mk(r,false))),
+    h("div",{class:"tcl-sub"},"Places we could add"),
+    h("div",{class:"tcl"},extra.map(r=>mk(r,true))));
+}
+function refreshMeters(){
+  const rows=[];
+  for(const s of STOPS) rows.push({s,cand:false});
+  for(const s of CANDIDATES) rows.push({s,cand:true});
+  for(const r of rows){ r.p=stopPicks(r.s); r.v=verdict(r.p,r.s.free); const el=$("tc-"+r.s.id); if(el) renderMeter(el,r.s,r.p,r.v); }
+  renderTimeCheck(rows);
+}
+
 function renderCards(rootId,items,prefix){
   const root=$(rootId);
   items.forEach((c,i)=>{
@@ -1448,6 +1873,7 @@ function renderHeroCost(){
 function renderAboutSelect(){
   const sel=$("bAbout"); sel.append(h("option",{value:"general"},"The whole trip"));
   STOPS.forEach((s,i)=>sel.append(h("option",{value:s.id},"Stop "+(i+1)+": "+s.name)));
+  CANDIDATES.forEach(s=>sel.append(h("option",{value:s.id},"Could add: "+s.name)));
   for(const d of DECISIONS) sel.append(h("option",{value:d.id},"Vote: "+d.q));
 }
 
@@ -1470,33 +1896,41 @@ function refreshLeaders(){
     }
   }
 }
-/* ideas with the most votes rise to the top of their list; ties keep the original order, group-added ideas after ours */
+/* ideas with the most votes rise to the top of their group; ties keep the original order */
 function userIdeaRow(n){
   const li=h("li",{class:"row-i idea user-idea",id:"i-"+n.id,"data-opt":n.id},
     h("div",{class:"rt"},n.text,h("span",{class:"pill fb"},"Added by "+n.byName)),
+    h("div",{class:"rm"},h("span",null,durLabel({h:n.hrs||2}))),
     n.by===state.me?h("div",{class:"rd"},h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete my idea")):null);
   li.append(miniVote(n.id));
   return li;
 }
 function refreshIdeas(){
+  const notes=allNotes();
   for(const L of IDEA_LISTS){
-    const mine=allNotes().filter(n=>n.item===L.item).sort((a,b)=>(a.ts||0)-(b.ts||0));
-    const act=L.ul.contains(document.activeElement)?document.activeElement:null;
+    const act=L.box.contains(document.activeElement)?document.activeElement:null;
     const actLi=act&&act.closest("li"), actId=actLi&&actLi.id, actCls=act&&act.className;
-    for(const li of [...L.ul.querySelectorAll(".user-idea")]) li.remove();
-    const rows=L.order.map((id,i)=>({el:$("i-"+id),i,net:tally(id).net}));
-    mine.forEach((n,j)=>rows.push({el:userIdeaRow(n),i:L.order.length+j,net:tally(n.id).net}));
-    rows.sort((a,b)=>b.net-a.net||a.i-b.i);
-    const want=rows.map(x=>x.el), have=[...L.ul.children];
-    if(want.length!==have.length||want.some((el,k)=>el!==have[k])) for(const el of want) L.ul.append(el);
-    const total=L.order.length+mine.length;
-    L.count.textContent=total+" ideas, none scheduled"+(mine.length?" · "+mine.length+" from the group":"");
+    let picked=0;
+    for(const g of L.groups){
+      const rows=g.order.map((id,i)=>({el:$("i-"+id),i,net:tally(id).net}));
+      rows.sort((a,b)=>b.net-a.net||a.i-b.i);
+      for(const x of rows){ x.el.classList.toggle("wanted",x.net>0); if(x.net>0) picked++; }
+      const have=[...g.ul.children];
+      if(rows.some((x,k)=>x.el!==have[k])) for(const x of rows) g.ul.append(x.el);
+    }
+    const mine=notes.filter(n=>n.item===L.item).sort((a,b)=>(a.ts||0)-(b.ts||0))
+      .map((n,j)=>({n,i:j,net:tally(n.id).net})).sort((a,b)=>b.net-a.net||a.i-b.i);
+    L.userUl.textContent="";
+    for(const x of mine){ const li=userIdeaRow(x.n); li.classList.toggle("wanted",x.net>0); if(x.net>0) picked++; L.userUl.append(li); }
+    L.userCat.hidden=!mine.length;
+    const total=L.stop.ideas.length+mine.length;
+    L.count.textContent=total+" ideas"+(mine.length?" · "+mine.length+" from the group":"")+(picked?" · "+picked+" picked":"");
     if(actId){ const li=$(actId); const again=li&&[...li.querySelectorAll("button,a")].find(b=>b.className===actCls); if(again&&again!==document.activeElement) again.focus({preventScroll:true}); }
   }
 }
 function refresh(){
   for(const u of widgets) u();
-  refreshBoard(); refreshLeaders(); refreshIdeas();
+  refreshBoard(); refreshLeaders(); refreshIdeas(); refreshMeters();
   const n=Object.keys(state.people).length;
   $("meBtn").textContent=state.me?("Voting as "+((state.people[state.me]&&state.people[state.me].name)||state.meName||state.me)):"Pick your name";
   const s=$("status"), txt=s.lastElementChild;
@@ -1511,7 +1945,7 @@ function refresh(){
 function setMode(m){ state.mode=m; refresh(); }
 
 /* ---------- wire up ---------- */
-renderCards("flightCards",FLIGHTS,"flight"); renderStops(); renderDecisions();
+renderCards("flightCards",FLIGHTS,"flight"); renderStops(); renderExtra(); renderDecisions();
 renderBooking(); renderAboutSelect(); renderCalc(); renderHeroCost(); refresh();
 renderCredits(); initLightbox(); initSpy();
 
