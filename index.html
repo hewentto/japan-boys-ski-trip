@@ -162,6 +162,13 @@ section{padding:40px 0 8px}
 .stop-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .chip{font:600 .8rem/1 var(--body);padding:5px 9px;border-radius:999px;background:var(--tint);color:var(--ink);white-space:nowrap}
 .chip.ski{background:var(--accent);color:var(--accent-ink)}
+.chip.flag{background:none;border:1.5px solid var(--warn);color:var(--warn);padding:3.5px 8px}
+.idea-add{display:flex;gap:8px;margin-top:10px}
+.idea-add input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--paper)}
+.user-idea .pill{margin-left:6px;vertical-align:1px}
+.user-idea .del{border:0;background:none;padding:0;color:var(--ink-2);cursor:pointer;font-size:.8rem;text-decoration:underline}
+.findtip{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:0 0 14px;font-size:.95rem;max-width:none;box-shadow:var(--shadow)}
+.findtip b{font-weight:600}
 .stop-sum{color:var(--ink-2);max-width:70ch}
 .kv{display:grid;gap:9px;margin:0}
 .kv > div{display:grid;grid-template-columns:124px 1fr;gap:2px 14px;font-size:.96rem}
@@ -382,7 +389,7 @@ html:has(.lb[open]){overflow:hidden}
   <div class="wrap hero-meta">
     <p class="lede">Sixteen days. Sapporo's Snow Festival, a Hokkaido road trip with four ski days at Furano and Niseko, then Tokyo, Mt. Fuji and a night in Kyoto. Saturday Feb 6 to Sunday Feb 21, 2027, using all ten days off and the weekends on both ends.</p>
     <ol class="route" aria-label="Route">
-      <li><span class="dot"></span><a href="#flights">Salt Lake City<small>Sat Feb 6</small></a></li>
+      <li><span class="dot"></span><a href="#flights">Fly out<small>Sat Feb 6</small></a></li>
       <li><span class="dot"></span><a href="#i-s-sapporo">Sapporo<small>2 nights, Snow Festival</small></a></li>
       <li><span class="dot"></span><a href="#i-s-otaru">Otaru + Yoichi<small>1 night</small></a></li>
       <li class="ski"><span class="dot"></span><a href="#i-mid-furano">Furano<small>2 nights, 1 ski day</small></a></li>
@@ -390,7 +397,7 @@ html:has(.lb[open]){overflow:hidden}
       <li><span class="dot"></span><a href="#i-s-niseko">Lake Toya + Hell Valley<small>day stop</small></a></li>
       <li><span class="dot"></span><a href="#i-s-tokyo">Tokyo + Fuji<small>4 nights</small></a></li>
       <li><span class="dot"></span><a href="#i-s-kyoto">Kyoto<small>1 night</small></a></li>
-      <li><span class="dot"></span><a href="#flights">Salt Lake City<small>Sun Feb 21</small></a></li>
+      <li><span class="dot"></span><a href="#flights">Fly home<small>Sun Feb 21</small></a></li>
     </ol>
     <div class="facts">
       <div class="fact"><span class="k">Skiing</span><b>4 ski days</b><span>Three at Niseko United, one at Furano</span></div>
@@ -428,16 +435,17 @@ html:has(.lb[open]){overflow:hidden}
   <section id="flights">
     <div class="sec-head">
       <h2>Flights</h2>
-      <p>There is no nonstop from Salt Lake to Japan, so every option is one stop on the way to Tokyo (usually Seattle or Los Angeles) plus a 1h40 hop to Sapporo. Weekend departures can run higher than midweek, so recheck for our exact days before buying.</p>
+      <p>We are coming from more than one city, and the flight is more fun together, so the aim is one shared flight across the Pacific. Who starts where gets worked out around it. There is no nonstop from Salt Lake to Japan, so from there it is one stop on the West Coast either way, plus a 1h40 hop from Tokyo to Sapporo.</p>
     </div>
     <ul class="legs">
-      <li class="leg"><b>Out · Sat Feb 6</b><span>Salt Lake City to Sapporo (New Chitose), connecting in Tokyo. Lands Sunday Feb 7.</span></li>
+      <li class="leg"><b>Out · Sat Feb 6</b><span>Home to Sapporo (New Chitose), meeting up for the long flight. Lands Sunday Feb 7.</span></li>
       <li class="leg"><b>Hop · Tue Feb 16</b><span>Sapporo to Tokyo Haneda, 1h40, from about $80.</span></li>
-      <li class="leg"><b>Home · Sun Feb 21</b><span>Tokyo Haneda to Salt Lake City. Lands the same afternoon, work Monday.</span></li>
+      <li class="leg"><b>Home · Sun Feb 21</b><span>Tokyo Haneda to home. Lands the same day, work Monday.</span></li>
     </ul>
+    <p class="findtip"><b>How to search.</b> Use something that can stitch different airlines and separate legs together, not only round trips on one airline group. Google Flights Multi-city prices one protected ticket. <a href="https://matrix.itasoftware.com" target="_blank" rel="noopener">ITA Matrix</a> searches almost any combination of airlines, but you book elsewhere. <a href="https://www.kiwi.com" target="_blank" rel="noopener">Kiwi.com</a> and Skyscanner build self-transfer combinations out of separate tickets, which are often cheapest, but nobody rebooks you if the first flight runs late, so leave a long layover.</p>
     <div class="grid2" id="flightCards"></div>
     <details class="fold" style="margin-top:16px">
-      <summary>Fares we saw <span class="count">past week, round trip</span></summary>
+      <summary>Fares we saw <span class="count">from Salt Lake City, past week, round trip</span></summary>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Fare seen</th><th>Route</th><th class="r">Price</th><th>Where</th></tr></thead>
@@ -482,7 +490,7 @@ html:has(.lb[open]){overflow:hidden}
         <label for="cTier">Comfort level
           <select id="cTier"><option value="0">Lean: cheapest good stays</option><option value="1" selected>Middle: nicer cheap stays</option><option value="2">Plush: hotels and condos (estimate)</option></select>
         </label>
-        <label class="chk" for="cRent"><input type="checkbox" id="cRent"> I'm renting skis or a board</label>
+        <label class="chk" for="cRent"><input type="checkbox" id="cRent" checked> I'm renting skis or a board</label>
         <label class="chk" for="cVan"><input type="checkbox" id="cVan" checked> Group rents a van in Hokkaido</label>
         <label class="chk" for="cKyoto"><input type="checkbox" id="cKyoto" checked> Night in Kyoto</label>
       </form>
@@ -544,6 +552,12 @@ html:has(.lb[open]){overflow:hidden}
       <li><a href="https://www.powderhounds.com/Japan/Hokkaido/Kutchan.aspx">Kutchan as a cheaper Niseko base</a></li>
       <li><a href="https://www.airroi.com/airbnb-data/japan/hokkaido-prefecture/niseko">Niseko Airbnb nightly rates</a></li>
       <li><a href="https://watabi.org/en/articles/japan-accommodation-tax-guide">Kutchan 3% lodging tax</a></li>
+      <li><a href="https://thejapanode.com/guides/japan-onsen-etiquette-tattoo-guide">Onsen tattoo policies, by tier</a></li>
+      <li><a href="https://www.japanryokanguide.com/en/blog/tattoo-friendly-ryokans">Tattoo-friendly onsen areas, cover stickers and private baths</a></li>
+      <li><a href="https://onedayawaytravel.com/noboribetsu-onsen-tattoo-friendly/">Noboribetsu onsen and tattoos, Dai-ichi Takimotokan</a></li>
+      <li><a href="https://www.visit-hokkaido.jp/en/spot/detail_10038.html">Otaru Tenguyama ropeway and night view</a></li>
+      <li><a href="https://www.furanotourism.com/en/static/access.php">Driving times to Furano</a></li>
+      <li><a href="https://support.google.com/travel/answer/11583641?hl=en-GB">Self-transfer fares explained</a></li>
       <li><a href="https://selfguidejapan.com/blog/japan-tourist-tax-2026">Japan departure tax and tax-free changes 2026</a></li>
       <li><a href="https://30rates.com/usd-to-jpy-forecast-converter-dollar-to-yen">USD to JPY rate</a></li>
     </ul>
@@ -555,7 +569,7 @@ html:has(.lb[open]){overflow:hidden}
   </section>
 </main>
 
-<footer><div class="wrap">Draft 3. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
+<footer><div class="wrap">Draft 3. Nothing is booked. Votes and comments sync to everyone with this link through a free public relay and are copied to a public backup every few minutes, so keep it to trip talk. <a href="#photo-credits">Photo credits</a></div></footer>
 
 <dialog class="lb" id="lb" aria-labelledby="lbCap">
   <div class="lb-stage"><img id="lbImg" alt=""></div>
@@ -654,13 +668,13 @@ const STOPS = [
       { id:"a-beer", t:"Sapporo Beer Museum, then all-you-can-eat grilled lamb in the old brick beer hall" },
       { id:"a-nijo", t:"Seafood rice bowl breakfast at Nijo Market" },
       { id:"a-ramen", t:"Miso ramen, the style Sapporo is known for" },
-      { id:"a-moiwa", t:"Mt. Moiwa ropeway for the city lights at dusk, about $13" },
+      { id:"a-moiwa", t:"Mt. Moiwa ropeway for the city lights at dusk, about $13", d:"One viewpoint is probably enough: this or the ski jump." },
       { id:"x-tsudome", t:"Snow slides and tubing at the Tsudome festival site" },
-      { id:"x-jump", t:"Ride the lift to the top of the Okurayama Olympic ski jump" }
+      { id:"x-jump", t:"Okurayama Olympic ski jump: ride the lift to the top for the city view", d:"The other way to get a view over Sapporo if we skip Mt. Moiwa." }
     ]},
   { id:"s-otaru", name:"Otaru", dates:"Tue Feb 9", nights:"1 night",
     photos:["otarulight1","otaru3"],
-    sum:"A canal town on the coast with a whisky distillery one train stop away. Sleeping here means nobody drives after the tasting.",
+    flag:"In question", sum:"A harbor town 45 minutes from Sapporo, best known for sushi and seafood, with its canal lit by snow lanterns that week. This is the stop most in question: the first round of feedback was lukewarm, and cutting it would buy a day somewhere else.",
     facts:[["Getting there","45 minutes from Sapporo by expressway. This is the day we pick up the van, if the van wins."]],
     sleep:{ note:"Ask about parking for the van when booking.",
       groups:[{ opts:[
@@ -668,17 +682,20 @@ const STOPS = [
         { id:"sl-otaru-garden", t:"Otaru Garden Stay", url:"https://www.booking.com/hotel/jp/otaru-garden-stay.html", d:"$109 for the group · quad with 4 twin beds · 7.4 from 182 reviews", price:"$27 each" }
       ]}]},
     ideas:[
-      { id:"a-nikka", book:true, t:"Nikka whisky distillery in Yoichi, 25 min by train", d:"Free guided tour with three tastings, in Japanese. Reservations open 4 weeks ahead, so Jan 12. The museum and paid tasting bar need no booking." },
-      { id:"a-snowlight", t:"Otaru Snow Light Path: thousands of candles in snow lanterns along the canal, Feb 6–13" },
       { id:"a-otaru-sushi", t:"Sushi and the Sankaku fish market" },
-      { id:"a-canal", t:"The canal, the stone warehouses and the glass shops" },
-      { id:"a-otaru-izakaya", t:"Izakaya dinner on foot" }
-    ]},
+      { id:"a-tengu", t:"Mt. Tengu ropeway for the night view over the harbor, running until 9 pm", d:"Counted as one of Hokkaido's three best night views. There is a small ski hill on the same slope." },
+      { id:"a-otaru-izakaya", t:"Izakaya dinner on foot" },
+      { id:"a-nikka", t:"Nikka whisky distillery in Yoichi, 25 min by train: tasting bar and museum", d:"No booking needed for the tasting bar or museum. The free guided tour is in Japanese and has to be reserved 4 weeks ahead." }
+    ],
+    swaps:{ title:"Or cut this stop", note:"Two ways to spend the night somewhere else.", opts:[
+      { id:"ot-skip-ski", t:"Cut Otaru and add a ski day", d:"Leave Sapporo for the mountains a day early. The extra day can go to Niseko, the bigger mountain, or to Furano." },
+      { id:"ot-skip-sapporo", t:"Cut Otaru and stay a third night in Sapporo", d:"More of the festival and the nightlife. Otaru is still there as a half-day trip, 45 minutes each way." }
+    ]}},
   { id:"mid-furano", name:"Furano", dates:"Wed Feb 10 – Fri Feb 12", nights:"2 nights", skiDays:"1 ski day", ski:true,
     photos:["furano0","bluepond6","penguin2"],
-    sum:"A quieter, colder, more Japanese ski town in the middle of Hokkaido, with a scenic drive in through Asahikawa and Biei.",
+    sum:"A quieter, colder, more Japanese ski town in the middle of Hokkaido. The skiing is the reason to come. The sightseeing loop on the way in is optional.",
     facts:[
-      ["Getting there","By van from Otaru. About 4 hours of driving if we go the scenic way through Asahikawa and Biei."],
+      ["Getting there","By van. About 2 hours 10 minutes direct from Sapporo, or about 4 hours of driving if we go the long way round through Asahikawa and Biei for the zoo."],
       ["Skiing","Furano Snow Resort, one day. Lift ticket $57. Some of Hokkaido's driest snow, two linked zones and a ropeway to 1,074 m. Thursday Feb 11 is a national holiday, so locals will be out too."]],
     sleep:{ groups:[{ opts:[
         { id:"sl-furano-tomar", pick:true, t:"Hostel Tomar", url:"https://www.booking.com/hotel/jp/hostel-tomar.html", d:"$400 for the group · family room with bunks, shared shower · 8.5 from 1,183 reviews", price:"$50 each a night" },
@@ -687,17 +704,17 @@ const STOPS = [
       ]}]},
     ideas:[
       { id:"a-zoo", t:"Asahiyama Zoo on the drive in: the penguin walk through the snow, polar bears and seals from underwater tunnels, $6" },
-      { id:"a-bluepond", t:"Blue Pond light-up in Biei: the frozen pond under shifting lights, on until 9 pm" },
-      { id:"a-biei", t:"Biei's rolling white hills and Shirahige Falls pouring into a blue river" },
-      { id:"a-asahikawa-ramen", t:"Asahikawa ramen, the soy-sauce style" },
+      { id:"x-nozoo", t:"Drive direct and ski the arrival afternoon instead of sightseeing" },
       { id:"a-furano-night", t:"Night skiing at Furano, a separate $25 ticket" },
       { id:"a-ningle", t:"Ningle Terrace: log cabin craft shops lit up in snowy woods" },
       { id:"a-omucurry", t:"Omelette curry or an izakaya in Kitanomine" },
-      { id:"x-nozoo", t:"Skip the zoo, go straight to Furano and ski the afternoon" }
+      { id:"a-asahikawa-ramen", t:"Asahikawa ramen, the soy-sauce style" },
+      { id:"a-biei", t:"Biei's rolling white hills and Shirahige Falls pouring into a blue river" },
+      { id:"a-bluepond", t:"Blue Pond light-up in Biei: the frozen pond under shifting lights, on until 9 pm" }
     ],
     swaps:{ title:"Or skip this stop", note:"Two other ways to spend these two days.", opts:[
       { id:"mid-niseko", t:"Straight to Niseko and ski five days", d:"Otaru to Niseko is 1.5 h. Two more lift days at about $85 each, and six nights of Niseko lodging, the priciest beds of the trip." },
-      { id:"mid-onsen", t:"Onsen days at Lake Toya and Noboribetsu", d:"Two nights in a hot spring ryokan with dinner included, and Hell Valley without the airport clock. Skiing stays at 3 days." }
+      { id:"mid-onsen", t:"Onsen days at Lake Toya and Noboribetsu", d:"Two nights in a hot spring ryokan with dinner included, and Hell Valley without the airport clock. Skiing stays at 3 days. Check the ryokan's tattoo rules before booking." }
     ]}},
   { id:"s-niseko", name:"Niseko", dates:"Fri Feb 12 – Tue Feb 16", nights:"4 nights", skiDays:"3 ski days", ski:true,
     photos:["hero3","niseko4","jigokudani4"],
@@ -705,9 +722,10 @@ const STOPS = [
     facts:[
       ["Getting there","3.5 to 4 hours by van from Furano, mostly expressway. The one long drive of the trip."],
       ["Skiing","Niseko United, three days, Saturday to Monday. About $85 a day or $250 for a 3 day All Mountain pass, which covers all four areas, the shuttle between them and night skiing at Hirafu."],
+      ["Onsen and tattoos","Rules are set bath by bath, on every onsen stop of this trip. Plenty of Japanese baths still turn away visible tattoos, though the Niseko area is among the most relaxed. If you have ink, check the bath we pick and bring cover stickers. A private bath rented by the hour always works."],
       ["Leaving","Tuesday Feb 16: the scenic drive to the airport past Lake Toya and Hell Valley, about 3.5 hours of driving, then the evening flight to Tokyo."]],
     extraGroup:{ title:"Roll call: your gear", note:"This sets how big a van we need.", opts:[
-      { id:"gear-own", t:"Bringing my own skis or board", d:"Counts as a checked bag on most airlines. Confirm with yours." },
+      { id:"gear-own", t:"Bringing my own skis or board", d:"Counts as a checked bag on most airlines, and it has to be hauled through every stop: Sapporo, the van, the flight to Tokyo." },
       { id:"gear-rent", t:"Renting in Niseko", d:"Rhythm premium set with boots is $178 for 3 days, 10% off booked online 48 h ahead. Standard set $141." }
     ]},
     sleep:{ note:"The slopeside villages are the priciest beds in Japan in February. Staying 10 to 30 minutes away cuts the bill by more than half. Prices are for Feb 12–16 and four people.",
@@ -725,12 +743,12 @@ const STOPS = [
       { id:"wild-rusutsu", t:"Day trip to Rusutsu for tree skiing, 40 min by van", d:"Separate lift ticket: last season $76 online, $103 at the window." },
       { id:"x-early", t:"Leave Furano at 7 am and ski the first Niseko afternoon" },
       { id:"x-snowmobile", t:"Snowmobile tour" },
-      { id:"a-onsen-niseko", t:"Outdoor onsen in the snow at Annupuri, about $6 to $8" },
+      { id:"a-onsen-niseko", t:"Outdoor onsen in the snow at Annupuri, about $6 to $8", d:"Tattoo rules differ between the Niseko baths. See the note above." },
       { id:"a-niseko-dinner", book:true, t:"One big dinner: Hokkaido crab, wagyu or a proper sushi counter", d:"Niseko tables vanish in February. Reserve weeks ahead." },
       { id:"a-kutchan", t:"Yakitori or soup curry down in Kutchan town at local prices" },
       { id:"x-gyu", t:"Late drinks at the fridge-door bar (Bar Gyu+)" },
       { id:"a-toya", t:"On the way out: the Lake Toya caldera viewpoint" },
-      { id:"a-hell", t:"On the way out: Noboribetsu Hell Valley", d:"Boardwalk through a steaming volcanic crater, a hot river foot bath and a soak at one of the big onsen hotels, about $13 to $16." },
+      { id:"a-hell", t:"On the way out: Noboribetsu Hell Valley", d:"Boardwalk through a steaming volcanic crater, a hot river foot bath and a soak at one of the big onsen hotels, about $13 to $16. The biggest bath there, Dai-ichi Takimotokan, does not publish a tattoo policy: by one guide's account you get in with tattoos fully covered by patches, and it has no private bath. Check before we go." },
       { id:"x-shikotsu", t:"On the way out: the Lake Shikotsu Ice Festival near the airport", d:"Usually runs late January to late February. 2027 dates not posted." },
       { id:"x-ninja", t:"On the way out: the Edo-period ninja village in Noboribetsu (Date Jidaimura)" }
     ]},
@@ -790,7 +808,7 @@ const STOPS = [
 
 /* Comments left on things from earlier drafts show up under the stop or vote that replaced them. */
 const ALIAS = {
-  d0207:"s-sapporo", d0208:"s-sapporo", d0209:"s-otaru", d0210:"mid-furano", d0211:"mid-furano",
+  d0206:"flight-together", d0207:"s-sapporo", d0208:"s-sapporo", d0209:"s-otaru", d0210:"mid-furano", d0211:"mid-furano",
   d0212:"s-niseko", d0213:"s-niseko", d0214:"s-niseko", d0215:"s-niseko", d0216:"s-niseko",
   d0217:"s-tokyo", d0218:"s-tokyo", d0219:"s-kyoto", d0220:"s-kyoto", d0221:"s-tokyo",
   mid:"mid-furano", lodge:"s-niseko", wild:"s-niseko", "roll-gear":"s-niseko", thu:"s-tokyo", tokyo:"s-tokyo",
@@ -800,9 +818,10 @@ const ALIAS = {
 const PARENT = {};   /* option or idea id -> the stop it sits in, filled in as the stops render */
 
 const FLIGHTS = [
-  { t:"Recommended: multi-city ticket", price:"est. $950–1,250", pts:["Out: SLC to Sapporo (CTS) on Sat Feb 6, connecting in Tokyo","Back: Tokyo Haneda to SLC on Sun Feb 21","One booking, bags checked through, protected if the first leg runs late","Add Sapporo to Tokyo on Tue Feb 16 separately: JAL Japan Explorer Pass from about $80","Price it under Multi-city on Google Flights. The range is our estimate from the fares we saw"] },
-  { t:"Cheaper and more flexible: Tokyo round trip plus two hops", price:"about $910–1,140", pts:["SLC ⇄ Tokyo Haneda round trip, seen at $749 to $981 this week","Two JAL Explorer one-ways, Tokyo to Sapporo and back, about $80 each","Separate tickets, so leave 3 hours at Haneda on the way in","The Alaska/Hawaiian $777 sale covers January and February 2027"] },
-  { t:"Worth a look: via Seoul", price:"check price", pts:["Delta flies SLC to Seoul Incheon nonstop (3 a week last winter)","Seoul to Sapporo is a nonstop of under 3 hours on several airlines","Could beat backtracking through Tokyo if the days line up"] }
+  { id:"flight-together", t:"Proposed: everyone on the same long flight", price:"price it per city", pts:["We are not all starting from the same city, so pick one flight across the Pacific that everyone can reach, most likely out of San Francisco, Seattle or Los Angeles","Each of us sorts out our own way to that gateway from Salt Lake City, San Francisco or wherever","Works with either ticket type below. The first leg is the only part that differs per person","If the first leg is on a separate ticket, leave a long layover or fly in the night before"] },
+  { id:"flight-0", t:"Multi-city ticket into Sapporo, home from Tokyo", price:"est. $950–1,250 from SLC", pts:["Out: to Sapporo (CTS) on Sat Feb 6, connecting in Tokyo","Back: Tokyo Haneda to home on Sun Feb 21","One booking, bags checked through, protected if the first leg runs late","Add Sapporo to Tokyo on Tue Feb 16 separately: JAL Japan Explorer Pass from about $80","The range is our estimate from the Salt Lake City fares we saw"] },
+  { id:"flight-1", t:"Cheaper and more flexible: Tokyo round trip plus two hops", price:"about $910–1,140 from SLC", pts:["Round trip to Tokyo Haneda, seen at $749 to $981 from Salt Lake City this week","Two JAL Explorer one-ways, Tokyo to Sapporo and back, about $80 each","Separate tickets, so leave 3 hours at Haneda on the way in","The Alaska/Hawaiian $777 sale covers January and February 2027"] },
+  { id:"flight-2", t:"Worth a look: via Seoul", price:"check price", pts:["Seoul to Sapporo is a nonstop of under 3 hours on several airlines, so there is no backtracking through Tokyo","The group flew San Francisco to Korea last trip and rated it","Delta flies SLC to Seoul Incheon nonstop (3 a week last winter)","Could be the same-flight option if the days line up"] }
 ];
 const BOOKING = [
   { when:"This month", pts:["Vote here and lock the dates","Book flights while the winter sale fares are live","Sapporo beds for Feb 7–9. Festival week sells out","Niseko and Furano beds. February is peak and the cheap places go first"] },
@@ -826,7 +845,7 @@ const COST = {
 function costLines(o){
   const t=o.tier, y=v=>v/RATE, d=v=>"$"+Math.round(v/RATE).toLocaleString("en-US"), L=[];
   const tokyoNights=5;
-  L.push(["Flights from SLC","multi-city ticket, estimate",COST.flight[t]]);
+  L.push(["Flights to Japan and back","from Salt Lake City, multi-city ticket, estimate",COST.flight[t]]);
   L.push(["Sapporo to Tokyo flight","JAL Explorer Pass",COST.hop]);
   const src=t===2?"estimate, ":"real price, ";
   L.push(["Sapporo, 2 nights",src+d(COST.sapporo[t])+" a night, festival week",y(COST.sapporo[t]*2)]);
@@ -1358,13 +1377,13 @@ function optRow(o,stop,kind,label){
 function optGroup(opts,stop){ VOTE_GROUPS.push(opts.map(o=>o.id)); return h("ul",{class:"rows"},opts.map(o=>optRow(o,stop,"pick"))); }
 function renderStops(){
   const root=$("stopList");
-  root.append(h("div",{class:"leg"},h("b",null,"Sat Feb 6"),h("span",null,"Fly Salt Lake City to Sapporo with one stop on the West Coast and a connection in Tokyo. You cross the date line and land Sunday.")));
+  root.append(h("div",{class:"leg"},h("b",null,"Sat Feb 6"),h("span",null,"Fly to Sapporo, all on the same long flight across the Pacific if we can line it up. You cross the date line and land Sunday.")));
   STOPS.forEach((s,i)=>{
     LABELS[s.id]="Stop "+(i+1)+": "+s.name;
     const photos=h("div",{class:"stop-photos"},s.photos.map(k=>photo(k,{sizes:"(max-width: 600px) 84vw, 340px",widths:[500,960]})));
     const body=h("div",{class:"stop-body"},
       h("div",{class:"stop-head"},h("span",{class:"stop-n num","aria-hidden":"true"},String(i+1)),
-        h("div",null,h("h3",null,s.name),h("div",{class:"stop-meta"},h("span",{class:"chip"},s.dates),h("span",{class:"chip"},s.nights),s.skiDays?h("span",{class:"chip ski"},s.skiDays):null))),
+        h("div",null,h("h3",null,s.name),h("div",{class:"stop-meta"},h("span",{class:"chip"},s.dates),h("span",{class:"chip"},s.nights),s.skiDays?h("span",{class:"chip ski"},s.skiDays):null,s.flag?h("span",{class:"chip flag"},s.flag):null))),
       h("p",{class:"stop-sum"},s.sum),
       h("dl",{class:"kv"},s.facts.map(f=>h("div",null,h("dt",null,f[0]),h("dd",null,f[1])))));
     const sleep=h("div",{class:"blk"},h("h4",null,"Where we sleep"),s.sleep.note?h("p",{class:"small muted"},s.sleep.note):null);
@@ -1379,19 +1398,23 @@ function renderStops(){
       body.append(h("div",{class:"blk"},h("h4",null,w.title),h("p",{class:"small muted"},w.note),h("ul",{class:"rows"},w.opts.map(o=>optRow(o,s,"plain")))));
     }
     const ul=h("ul",{class:"rows"},s.ideas.map(o=>optRow(o,s,"idea")));
-    IDEA_LISTS.push({ul,order:s.ideas.map(o=>o.id)});
-    body.append(h("div",{class:"blk"},h("details",{class:"fold"},
-      h("summary",null,"Things to do here",h("span",{class:"count"},s.ideas.length+" ideas, none scheduled")),
-      h("p",{class:"small muted"},"Options, not a plan. Vote up what you would actually do and the favorites rise to the top."),ul)));
+    const ideaItem="ideas-"+s.id; LABELS[ideaItem]=s.name+": idea from the group";
+    const count=h("span",{class:"count"});
+    const inp=h("input",{type:"text",maxlength:"200",id:"in-"+ideaItem,"aria-label":"Add an idea for "+s.name,placeholder:"Something else worth doing in "+s.name+"…"});
+    const form=h("form",{class:"idea-add",onsubmit:e=>{ e.preventDefault(); if(addNote(ideaItem,"change",inp.value)) inp.value=""; }},inp,h("button",{class:"btn",type:"submit"},"Add idea"));
+    IDEA_LISTS.push({ul,order:s.ideas.map(o=>o.id),item:ideaItem,count});
+    body.append(h("div",{class:"blk"},h("details",{class:"fold",id:"i-"+ideaItem},
+      h("summary",null,"Things to do here",count),
+      h("p",{class:"small muted"},"Options, not a plan. Vote up what you would actually do and the favorites rise to the top. Missing something? Add it and the group can vote on it."),ul,form)));
     const sv=h("div",{class:"stop-vote"}); sv.append(voteBar(s.id)); body.append(sv);
     root.append(h("article",{class:"stop"+(s.ski?" ski":""),id:"i-"+s.id},photos,body));
   });
-  root.append(h("div",{class:"leg"},h("b",null,"Sun Feb 21"),h("span",null,"Fly Tokyo Haneda to Salt Lake City with one stop on the West Coast. You land Sunday afternoon and are at work Monday Feb 22.")));
+  root.append(h("div",{class:"leg"},h("b",null,"Sun Feb 21"),h("span",null,"Fly home from Tokyo Haneda. You land the same day you leave and are at work Monday Feb 22.")));
 }
 function renderCards(rootId,items,prefix){
   const root=$(rootId);
   items.forEach((c,i)=>{
-    const id=prefix+"-"+i; LABELS[id]=c.t;
+    const id=c.id||(prefix+"-"+i); LABELS[id]=c.t;
     const cov=c.ph?photo(c.ph,{sizes:"(max-width: 700px) 100vw, 480px",widths:[500,960]}):null;
     const tt=c.ph?c.t.split(" · "):[c.t];
     const el=h("div",{class:"card",id:"i-"+id},cov,h("h3",null,tt[0]),tt.length>1?h("div",{class:"card-sub"},tt.slice(1).join(" · ")):null,c.price?h("div",{class:"price num"},c.price):null,h("ul",null,c.pts.map(p=>h("li",{html:p}))));
@@ -1409,10 +1432,10 @@ function renderCalc(){
   body.append(h("tr",{class:"total"},h("td",null,"Total each"),h("td",{class:"muted small"},"door to door, 15 nights away"),h("td",{class:"r"},money(costTotal(o)))));
 }
 function renderHeroCost(){
-  const base={size:4,rent:false,van:true,kyoto:true};
+  const base={size:4,rent:true,van:true,kyoto:true};
   const mid=costTotal(Object.assign({tier:1},base)), lo=costTotal(Object.assign({tier:0},base)), hi=costTotal(Object.assign({tier:2},base));
   $("heroCost").textContent="about "+money(round50(mid));
-  $("heroCostSub").textContent="Lean "+money(round50(lo))+" to plush "+money(round50(hi))+". Four sharing, 4 days of lift tickets, own skis";
+  $("heroCostSub").textContent="Lean "+money(round50(lo))+" to plush "+money(round50(hi))+". Four sharing, 4 days of lift tickets, rented gear";
 }
 function renderAboutSelect(){
   const sel=$("bAbout"); sel.append(h("option",{value:"general"},"The whole trip"));
@@ -1439,15 +1462,28 @@ function refreshLeaders(){
     }
   }
 }
-/* ideas with the most votes rise to the top of their list; ties keep the original order */
+/* ideas with the most votes rise to the top of their list; ties keep the original order, group-added ideas after ours */
+function userIdeaRow(n){
+  const li=h("li",{class:"row-i idea user-idea",id:"i-"+n.id,"data-opt":n.id},
+    h("div",{class:"rt"},n.text,h("span",{class:"pill fb"},"Added by "+n.byName)),
+    n.by===state.me?h("div",{class:"rd"},h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete my idea")):null);
+  li.append(miniVote(n.id));
+  return li;
+}
 function refreshIdeas(){
   for(const L of IDEA_LISTS){
-    const want=L.order.map((id,i)=>({id,i,net:tally(id).net})).sort((a,b)=>b.net-a.net||a.i-b.i).map(x=>x.id);
-    const have=[...L.ul.children].map(li=>li.dataset.opt);
-    if(want.join()===have.join()) continue;
-    const focus=L.ul.contains(document.activeElement)?document.activeElement:null;
-    for(const id of want) L.ul.append($("i-"+id));
-    if(focus&&focus.focus) focus.focus({preventScroll:true});
+    const mine=allNotes().filter(n=>n.item===L.item).sort((a,b)=>(a.ts||0)-(b.ts||0));
+    const act=L.ul.contains(document.activeElement)?document.activeElement:null;
+    const actLi=act&&act.closest("li"), actId=actLi&&actLi.id, actCls=act&&act.className;
+    for(const li of [...L.ul.querySelectorAll(".user-idea")]) li.remove();
+    const rows=L.order.map((id,i)=>({el:$("i-"+id),i,net:tally(id).net}));
+    mine.forEach((n,j)=>rows.push({el:userIdeaRow(n),i:L.order.length+j,net:tally(n.id).net}));
+    rows.sort((a,b)=>b.net-a.net||a.i-b.i);
+    const want=rows.map(x=>x.el), have=[...L.ul.children];
+    if(want.length!==have.length||want.some((el,k)=>el!==have[k])) for(const el of want) L.ul.append(el);
+    const total=L.order.length+mine.length;
+    L.count.textContent=total+" ideas, none scheduled"+(mine.length?" · "+mine.length+" from the group":"");
+    if(actId){ const li=$(actId); const again=li&&[...li.querySelectorAll("button,a")].find(b=>b.className===actCls); if(again&&again!==document.activeElement) again.focus({preventScroll:true}); }
   }
 }
 function refresh(){
@@ -1490,10 +1526,30 @@ $("boardForm").addEventListener("submit",e=>{
   if(addNote($("bAbout").value,kind,$("bText").value)) $("bText").value="";
 });
 
+/* A GitHub Action copies every vote and comment from the relays into the repo's "backup" branch every few minutes.
+   Merging that copy in before the relays connect means anything a relay has lost is shown here and sent back to it. */
+const BACKUP_URL="https://raw.githubusercontent.com/hewentto/japan-boys-ski-trip/backup/backup.json";
+function loadBackup(){
+  if(!window.fetch) return Promise.resolve();
+  const ctl=("AbortController" in window)?new AbortController():null;
+  const timer=setTimeout(()=>{ if(ctl) ctl.abort(); },3500);
+  return fetch(BACKUP_URL,{cache:"no-store",signal:ctl?ctl.signal:undefined}).then(r=>r.ok?r.json():null).then(j=>{
+    if(!j||!j.people||typeof j.people!=="object") return;
+    const next=Object.assign({},state.people); let changed=false;
+    for(const slug of Object.keys(j.people).slice(0,80)){
+      if(!/^[a-z0-9-]{1,40}$/.test(slug)) continue;
+      const d=cleanDoc(j.people[slug]); if(!d) continue;
+      const cur=next[slug], m=mergeDoc(cur,d);
+      if(!cur||canon(cur)!==canon(m)){ next[slug]=m; changed=true; }
+    }
+    if(changed){ state.people=next; saveCache(); scheduleRefresh(); }
+  }).catch(()=>{}).then(()=>clearTimeout(timer));
+}
 (function loadSync(){
+  const backup=loadBackup();
   const el=document.createElement("script");
   el.src="https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js";
-  el.onload=startSync; el.onerror=()=>setMode("offline");
+  el.onload=()=>backup.then(startSync); el.onerror=()=>backup.then(()=>setMode("offline"));
   document.head.append(el);
 })();
 /* first visit on this device: ask for a name straight away */
