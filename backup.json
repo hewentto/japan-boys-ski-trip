@@ -59,8 +59,13 @@
     "tanner": {
       "name": "Tanner",
       "notes": {},
-      "updated": 1794268635353,
-      "votes": {}
+      "updated": 1794335864102,
+      "votes": {
+        "base-niseko": {"t":1794335671510,"v":1},
+        "dates-a": {"t":1794335756384,"v":1},
+        "dates-c": {"t":1794335864102,"v":1},
+        "gear-rent": {"t":1794335583282,"v":1}
+      }
     }
   },
   "version": 1
