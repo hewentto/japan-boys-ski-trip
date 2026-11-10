@@ -532,6 +532,53 @@ details.round > summary .count,.folds > details.fold > summary .count{grid-colum
 .folds > details.fold > summary{font-size:1.15rem}
 details.fold > summary::before{border-color:var(--ink-2)}
 details.fold > summary:hover{color:inherit}
+
+/* ---------- unread: bell, panel, pop-up ---------- */
+.bellb{position:relative}
+.bellb .badge{position:absolute;top:-6px;right:-7px;min-width:19px;padding:2px 5px;font-size:.7rem;line-height:1.15}
+.inbox{position:fixed;z-index:36;top:56px;left:8px;right:8px;max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px -18px rgba(10,14,26,.5);padding:14px 16px 16px;display:grid;gap:8px;align-content:start}
+@media (min-width:700px){.inbox{left:auto;right:max(16px,calc((100vw - 1020px)/2 + 20px));width:400px}}
+.ib-head{display:flex;align-items:center;gap:12px}
+.ib-head h2{font-size:1.4rem;flex:1}
+.ib-x{display:grid;place-items:center;width:34px;height:34px;flex:none;border:1.5px solid var(--line);border-radius:50%;background:var(--paper);color:inherit;cursor:pointer;padding:0}
+.ib-x svg{width:13px;height:13px}
+.ib-empty{color:var(--ink-2);padding:8px 0 4px}
+.ib-h{display:flex;align-items:center;gap:8px;font:600 .84rem/1.2 var(--body);color:var(--ink-2);margin-top:8px}
+.ib-h span{min-width:20px;padding:2px 6px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.72rem;text-align:center}
+.ib-list{list-style:none;margin:0;padding:0;display:grid}
+.ib-item{display:grid;gap:2px;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:none;color:inherit;padding:9px 2px;cursor:pointer;font-size:.92rem}
+.ib-list li:first-child .ib-item{border-top:0}
+.ib-item:hover .ib-text{color:var(--ink)}
+.ib-meta{display:flex;flex-wrap:wrap;gap:0 4px;align-items:baseline;color:var(--ink-2);font-size:.84rem}
+.ib-meta b{color:var(--ink);font-weight:600}
+.ib-meta time{margin-left:auto;padding-left:8px;font-size:.78rem}
+.ib-text{color:var(--ink-2);line-height:1.4;overflow-wrap:anywhere}
+.ib-more{justify-self:start;font-size:.84rem;padding:4px 2px}
+.ib-qs{justify-self:start;margin-top:6px;border:1.5px solid var(--accent);background:none;color:var(--accent);border-radius:999px;padding:6px 12px;font-weight:600;font-size:.86rem;cursor:pointer}
+.ib-foot{border-top:1px solid var(--line);padding-top:10px;margin-top:6px;font-size:.84rem;color:var(--ink-2)}
+.ib-foot .lnk{padding:0;font-size:inherit}
+.note.unread{box-shadow:inset 3px 0 0 var(--accent)}
+.note.unread .meta b::after{content:"New";margin-left:8px;font:600 .66rem/1 var(--body);padding:3px 6px;border-radius:4px;background:var(--accent);color:var(--accent-ink);vertical-align:1px}
+.turn-unread:empty{display:none}
+.turn-unread{display:flex;flex-wrap:wrap;gap:2px 14px;align-items:baseline;border-top:1px solid color-mix(in srgb,var(--snow) 22%,transparent);padding-top:10px;font-size:.9rem}
+.turn-unread b{font-weight:600}
+.turn-unread .lnk{color:inherit;padding:2px 0}
+.toast{position:fixed;z-index:38;left:50%;bottom:16px;transform:translateX(-50%);width:min(440px,calc(100vw - 24px));display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;background:var(--ink);color:var(--snow);border-radius:12px;padding:12px 12px 12px 16px;box-shadow:0 14px 34px -12px rgba(10,14,26,.6);animation:toastIn .2s ease-out}
+.toast p{display:grid;gap:1px;min-width:0;font-size:.9rem}
+.toast p b{font-weight:600}
+.toast p span{opacity:.82;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast .btn{padding:7px 14px}
+.toast .ib-x{border-color:color-mix(in srgb,var(--snow) 30%,transparent);background:none}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (prefers-reduced-motion: reduce){.toast{animation:none}}
+.user-idea.unread .idea-tt::after{content:"New";margin-left:8px;font:600 .66rem/1 var(--body);padding:3px 6px;border-radius:4px;background:var(--accent);color:var(--accent-ink);vertical-align:2px}
+@media (max-width:480px){
+  .bar .wrap{gap:6px;padding:0 12px}
+  .bar nav a{padding:9px 7px}
+  .bar .chatb{padding:5px 8px}
+  .me button{max-width:92px;padding:7px 11px}
+}
+@media (max-width:370px){.status{display:none}}
 </style>
 </head>
 <body>
@@ -555,10 +602,14 @@ details.fold > summary:hover{color:inherit}
       <a href="#more">More</a>
     </nav>
     <div class="status" id="status"><i></i><span>Connecting…</span></div>
+    <button type="button" class="chatb bellb" id="bellBtn" aria-label="Unread" aria-expanded="false" aria-controls="inbox"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2a3.6 3.6 0 0 0-3.6 3.6v2.6L3 10.6v.9h10v-.9l-1.4-2.2V5.8A3.6 3.6 0 0 0 8 2.2zM6.6 13a1.5 1.5 0 0 0 2.8 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="badge" id="bellBadge" hidden aria-hidden="true">0</span></button>
     <button type="button" class="chatb" id="chatFab" aria-label="Group chat"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tx">Chat</span><span class="badge" id="chatBadge" hidden>0</span></button>
     <div class="me"><button type="button" id="meBtn">Pick your name</button></div>
   </div>
 </div>
+
+<div class="inbox" id="inbox" role="dialog" aria-labelledby="inboxH" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <main class="wrap">
   <div id="banner" class="banner" hidden></div>
@@ -1649,6 +1700,7 @@ function renderChat(){
   if(chatVisible()&&latest>chat.lastSeen){ chat.lastSeen=latest; LS.set("jbst.chatSeen",String(latest)); }
   const unread=msgs.filter(m=>m.ts>chat.lastSeen&&m.by!==state.me).length;
   const badge=$("chatBadge"); badge.textContent=unread>9?"9+":String(unread); badge.hidden=!unread;
+  if(notifyReady) updateUnreadUI();
 }
 function jumpTo(id){
   if(!$("m-"+id)){ chat.filter="all"; renderChat(); }
@@ -1704,7 +1756,8 @@ function noteEl(n,showAbout){
   if(showAbout){ const tgt=document.getElementById("i-"+n.item)?n.item:(ALIAS[n.item]&&document.getElementById("i-"+ALIAS[n.item])?ALIAS[n.item]:null);
     const lab=LABELS[n.item]||LABELS[ALIAS[n.item]]||"The whole trip"; meta.append(h("span",null,"on "),h("a",{href:"#"+(tgt?"i-"+tgt:"board")},lab)); }
   if(n.by===state.me) meta.append(h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete"));
-  const li=h("li",{class:"note"},meta,h("p",null,n.text));
+  const li=h("li",{class:"note"+(isUnreadNote(n)?" unread":""),"data-note":n.id},meta,h("p",null,n.text));
+  if(isUnreadNote(n)) watchNote(li,n.id);
   if(n.kind==="change") li.append(miniVote(n.id));
   return li;
 }
@@ -1816,8 +1869,8 @@ function tallyAt(id,cut){
   for(const k in state.people){ const x=state.people[k].votes[id]; if(!x||(cut&&x.t>cut)) continue; if(x.v===1) up.push(nameOf(k)); else if(x.v===-1) down.push(nameOf(k)); }
   return {up,down};
 }
-function answered(d,slug){ const p=state.people[slug]; return !!p&&d.opts.some(o=>p.votes[o.id]&&p.votes[o.id].v!==0); }
-function answerers(d){ return Object.keys(state.people).filter(k=>answered(d,k)).map(nameOf).sort(); }
+function hasAnswered(d,slug){ const p=state.people[slug]; return !!p&&d.opts.some(o=>p.votes[o.id]&&p.votes[o.id].v!==0); }
+function answerers(d){ return Object.keys(state.people).filter(k=>hasAnswered(d,k)).map(nameOf).sort(); }
 /* The rule, same for every decision: the option that works for the most people wins. A "Not for me" takes an option
    off the table unless that would leave nothing. Ties, and no answers at all, go to the draft pick. */
 function outcome(d){
@@ -1848,6 +1901,7 @@ function copyText(text,btn){
 const pageURL=()=>/^https?:/.test(location.protocol)?location.origin+location.pathname:SITE;
 
 /* comments on one decision or stop: a count that opens the thread and a box to add to it */
+const THREADS={};   /* id -> its comment thread, so the unread panel can open it */
 function threadFor(id){
   const list=h("ul",{class:"notes"});
   const ta=h("textarea",{id:"ta-"+id,maxlength:"600","aria-label":"Your comment",placeholder:"Say why, or suggest a change…"});
@@ -1862,6 +1916,7 @@ function threadFor(id){
     btn.textContent=ns.length?("Comments ("+ns.length+")"):"Comment";
     if(!thread.hidden){ list.textContent=""; for(const n of ns) list.append(noteEl(n,n.item!==id&&ALIAS[n.item]!==id&&!!(LABELS[n.item]||LABELS[ALIAS[n.item]]))); }
   }
+  THREADS[id]={thread,open(){ if(thread.hidden){ thread.hidden=false; btn.setAttribute("aria-expanded","true"); update(); } }};
   return {btn,thread,update};
 }
 
@@ -2005,12 +2060,10 @@ function sinceItems(){
   const out=[];
   for(const k in state.people){
     if(k===state.me) continue;
-    const p=state.people[k], nm=p.name||k, decs=new Set(); let hearts=0, notes=0;
+    const p=state.people[k], nm=p.name||k, decs=new Set(); let hearts=0;
     for(const id in p.votes){ const x=p.votes[id]; if(x.t<=SINCE||!x.v) continue; if(OPT_DEC[id]) decs.add(OPT_DEC[id].s); else if(x.v===1) hearts++; }
-    for(const id in p.notes){ const n=p.notes[id]; if(!n.del&&n.ts>SINCE) notes++; }
     if(decs.size) out.push(nm+" answered "+[...decs].join(", "));
     if(hearts) out.push(nm+" hearted "+hearts+(hearts===1?" idea":" ideas"));
-    if(notes) out.push(nm+" left "+notes+(notes===1?" comment":" comments"));
   }
   return out.slice(0,5);
 }
@@ -2021,7 +2074,7 @@ function renderTurn(){
   const big=h("p",{class:"turn-big"}), sub=h("p",{class:"turn-sub"});
   box.append(h("h2",{id:"turnH"},"Your turn"),big,sub);
   if(!r){ big.textContent="All decided"; sub.textContent="Every round has closed. The plan next to this is the plan."; return; }
-  const decs=r.list.filter(d=>d.kind!=="poll"), open=me?decs.filter(d=>!answered(d,me)):decs;
+  const decs=r.list.filter(d=>d.kind!=="poll"), open=me?decs.filter(d=>!hasAnswered(d,me)):decs;
   const nextR=ROUNDS[r.n]||null;
   if(!me){
     big.textContent=decs.length+" answers needed this week";
@@ -2035,7 +2088,7 @@ function renderTurn(){
   }
   const list=h("ul",{class:"turn-list"});
   for(const d of decs){
-    const ok=me&&answered(d,me);
+    const ok=me&&hasAnswered(d,me);
     list.append(h("li",null,h("a",{href:"#i-"+d.id,class:ok?"ok":""},h("span",{class:"mk","aria-hidden":"true",html:ok?ICON_CHECK:""}),h("span",{class:"tl"},d.s),h("span",{class:"go"},ok?"Answered":"Answer"))));
   }
   box.append(list);
@@ -2049,6 +2102,7 @@ function renderTurn(){
     if(!GEAR.opts.some(o=>myVote(o.id)===1)) links.append(h("a",{href:"#i-gear"},"Say if you're renting gear"));
     box.append(links);
   }
+  box.append(h("div",{class:"turn-unread",id:"turnUnread"}));
   const news=sinceItems();
   if(news.length) box.append(h("div",{class:"turn-news"},h("b",null,"Since you were last here"),h("ul",null,news.map(t=>h("li",null,t)))));
   if(hadFocus){ const f=box.querySelector(".turn-ok, .turn-list a"); if(f) f.focus({preventScroll:true}); }
@@ -2058,7 +2112,7 @@ function renderTurn(){
 function nudgeText(){
   const r=currentRound(); if(!r) return "Japan trip: every round has closed. The plan: "+pageURL();
   const decs=r.list.filter(d=>d.kind!=="poll");
-  const all=Object.keys(state.people).filter(k=>decs.every(d=>answered(d,k))).map(nameOf).sort();
+  const all=Object.keys(state.people).filter(k=>decs.every(d=>hasAnswered(d,k))).map(nameOf).sort();
   const lines=["Japan trip, round "+r.n+": "+decs.length+" quick calls, about a minute."];
   for(const d of decs) lines.push("- "+d.s+": "+outcome(d).win.t+", unless someone objects");
   lines.push("No answer by "+fmtDayTime(r.closesAt)+" and those stand.");
@@ -2162,10 +2216,12 @@ function layoutIdeas(v){
 }
 function userIdeaRow(n){
   const heart=heartBtn(n.id); setHeart(heart,n.id);
-  return h("li",{class:"idea user-idea",id:"i-"+n.id},
+  const li=h("li",{class:"idea user-idea"+(isUnreadNote(n)?" unread":""),id:"i-"+n.id},
     h("div",{class:"idea-t"},h("span",{class:"idea-tt"},n.text),
       h("span",{class:"idea-m"},h("span",null,durLabel({h:n.hrs||2})),h("span",null,"Added by "+n.byName),
         n.by===state.me?h("button",{class:"del",type:"button",onclick:()=>delNote(n)},"Delete"):null)),heart);
+  if(isUnreadNote(n)) watchNote(li,n.id);
+  return li;
 }
 function renderStop(s,i,cand){
   LABELS[s.id]=cand?("Could add: "+s.name):("Stop "+(i+1)+": "+s.name);
@@ -2253,16 +2309,232 @@ function goHash(){
   if(!el&&id.startsWith("i-")) el=document.getElementById("x-"+id.slice(2));
   if(!el) return;
   if(el.hidden&&el.classList.contains("idea")){ const v=stopViews.find(x=>x.rows[id.slice(2)]===el); if(v){ v.filter="all"; v.det.open=true; layoutIdeas(v); } }
+  revealEl(el,()=>location.hash.slice(1)===id);
+}
+/* open every folded section around an element, jump to it and flash it */
+function revealEl(el,still,block){
   let opened=false;
   for(let p=el;p;p=p.parentElement) if(p.tagName==="DETAILS"&&!p.open){ p.open=true; opened=true; }
   /* jump straight there (no smooth scroll), and once more in case photos above it changed height while loading */
-  const jump=()=>el.scrollIntoView({block:"start",behavior:"instant"});
+  const jump=()=>el.scrollIntoView({block:block||"start",behavior:"instant"});
   const go=()=>{ jump(); el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),1600);
-    setTimeout(()=>{ if(location.hash.slice(1)===id&&Math.abs(el.getBoundingClientRect().top-64)>48) jump(); },450); };
+    setTimeout(()=>{ if((!still||still())&&!block&&Math.abs(el.getBoundingClientRect().top-64)>48) jump(); },450); };
   if(opened) requestAnimationFrame(go); else go();
 }
 window.addEventListener("hashchange",goHash);
 document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a&&a.getAttribute("href")===location.hash) setTimeout(goHash,0); });
+
+/* =====================================================================================================
+   UNREAD: what's new since you last looked, kept per device.
+   Chat uses the chat's own "last seen" time. Comments, proposals and added ideas keep a list of what
+   you've opened. Shown as the bell count, the unread panel, a line on the Your turn board, the tab
+   title, a pop-up when something arrives while you're here, and (opt-in) a browser alert.
+   ===================================================================================================== */
+var notifyReady=false;
+const BASE_TITLE=document.title;
+const SESSION_T=Date.now();
+const READ_KEY="jbst.readNotes";
+const readNotes=(()=>{
+  try{ const r=JSON.parse(LS.get(READ_KEY)||"null");
+    if(r&&typeof r.base==="number"&&Array.isArray(r.ids)) return {base:r.base,ids:new Set(r.ids.filter(x=>typeof x==="string"&&ID_OK.test(x)))}; }catch(e){}
+  return {base:0,ids:new Set()};
+})();
+function saveRead(){ LS.set(READ_KEY,JSON.stringify({base:readNotes.base,ids:[...readNotes.ids].slice(-600)})); }
+function isUnreadNote(n){ return n.by!==state.me&&n.ts>readNotes.base&&!readNotes.ids.has(n.id); }
+function markNotesRead(ids){
+  let changed=false;
+  for(const id of ids) if(!readNotes.ids.has(id)){ readNotes.ids.add(id); changed=true; }
+  if(changed){ saveRead(); if(notifyReady) updateUnreadUI(); }
+}
+/* a comment counts as read once it has been on screen for a moment, wherever it is shown */
+const seenTimers=new WeakMap();
+const seenObs=("IntersectionObserver" in window)?new IntersectionObserver(es=>{
+  for(const e of es){
+    const el=e.target;
+    if(e.isIntersecting){ if(!seenTimers.has(el)) seenTimers.set(el,setTimeout(()=>{ seenObs.unobserve(el); markNotesRead([el.dataset.note]); },700)); }
+    else { clearTimeout(seenTimers.get(el)); seenTimers.delete(el); }
+  }
+},{threshold:0.6}):null;
+function watchNote(el,id){ el.dataset.note=id; if(seenObs) seenObs.observe(el); else markNotesRead([id]); }
+function markAllRead(){
+  const notes=allNotes(), msgs=allChat();
+  readNotes.base=Math.max(readNotes.base,Date.now(),...notes.map(n=>n.ts||0)); readNotes.ids.clear(); saveRead();
+  const latest=Math.max(chat.lastSeen,Date.now(),...msgs.map(m=>m.ts||0));
+  chat.lastSeen=latest; LS.set("jbst.chatSeen",String(latest));
+  renderChat(); updateUnreadUI();
+}
+
+/* where a comment shows up: the decision or stop whose thread holds it, or the board */
+function noteTarget(n){
+  for(const id of [n.item,ALIAS[n.item],PARENT[ALIAS[n.item]||n.item]]) if(id&&THREADS[id]) return id;
+  return null;
+}
+function noteWhere(n){
+  const m=/^ideas-(.+)$/.exec(n.item);
+  if(m){ const s=stopById(m[1]); return "added an idea for "+(s?s.name:"a stop"); }
+  const t=noteTarget(n), lab=t?(DECS[t]?DECS[t].s:(stopById(t)?stopById(t).name:LABELS[t]||"the trip")):"the whole trip";
+  return (n.kind==="change"?"proposed a change on ":"commented on ")+lab;
+}
+function myChatIds(){ const d=state.me&&chat.people[state.me]; return d?new Set(Object.keys(d.msgs)):new Set(); }
+function unreadItems(){
+  const out=[], mine=myChatIds();
+  for(const m of allChat()){
+    if(m.by===state.me||m.ts<=chat.lastSeen) continue;
+    const kind=m.re&&mine.has(m.re)?"reply":(m.q?"question":"chat");
+    out.push({kind,id:m.id,by:chatName(m.by),ts:m.ts,text:m.text,where:kind==="reply"?"replied to you":kind==="question"?"asked the group":"in chat",m});
+  }
+  for(const n of allNotes()){
+    if(!isUnreadNote(n)) continue;
+    out.push({kind:"note",id:n.id,by:n.byName,ts:n.ts,text:n.text,where:noteWhere(n),n});
+  }
+  return out.sort((a,b)=>b.ts-a.ts);
+}
+const openQuestions=()=>allChat().filter(m=>m.q&&!answered(m.id));
+
+/* go to the thing itself */
+function openItem(x){
+  closeInbox(false);
+  if(x.m){ openChat(true); jumpTo(x.m.id); return; }
+  const n=x.n, t=noteTarget(n);
+  let el=null;
+  if(/^ideas-/.test(n.item)){
+    el=document.getElementById("i-"+n.id);
+  } else if(t){
+    THREADS[t].open();
+    el=THREADS[t].thread.querySelector('[data-note="'+n.id+'"]')||THREADS[t].thread;
+  } else {
+    $("board").open=true; refreshBoard();
+    el=$("boardList").querySelector('[data-note="'+n.id+'"]')||$("board");
+  }
+  if(el){ history.replaceState(null,"",location.pathname+location.search); revealEl(el,null,"center"); }
+}
+
+/* ---------- the bell and its panel ---------- */
+const KINDS=[["reply","Replies to you"],["question","New questions"],["chat","New in chat"],["note","Comments, proposals and ideas"]];
+const shorten=(t,n)=>t.length>n?t.slice(0,n-1).trimEnd()+"…":t;
+let inboxRet=null;
+const inboxAll=new Set();   /* groups the reader expanded past the first six */
+/* keep the panel just under the top bar, which slides up as the photo scrolls away */
+function placeInbox(){
+  const box=$("inbox"); if(box.hidden) return;
+  const top=Math.max(0,document.querySelector(".bar").getBoundingClientRect().bottom)+8;
+  box.style.top=top+"px"; box.style.maxHeight="calc(100dvh - "+(top+12)+"px)";
+}
+function openInbox(){
+  const box=$("inbox"); inboxRet=document.activeElement;
+  box.hidden=false; $("bellBtn").setAttribute("aria-expanded","true"); placeInbox();
+  renderInbox(); const f=box.querySelector(".ib-item, .ib-x"); if(f) f.focus({preventScroll:true});
+}
+function closeInbox(restore){
+  const box=$("inbox"); if(box.hidden) return;
+  box.hidden=true; $("bellBtn").setAttribute("aria-expanded","false"); inboxAll.clear();
+  if(restore!==false&&inboxRet&&inboxRet.isConnected) inboxRet.focus({preventScroll:true});
+}
+function renderInbox(){
+  const box=$("inbox"); if(box.hidden) return;
+  const items=unreadItems(), qs=openQuestions();
+  box.textContent="";
+  box.append(h("div",{class:"ib-head"},
+    h("h2",{id:"inboxH"},"Unread"),
+    items.length?h("button",{class:"lnk",type:"button",onclick:markAllRead},"Mark all read"):null,
+    h("button",{class:"ib-x",type:"button","aria-label":"Close",html:ICON_X,onclick:()=>closeInbox()})));
+  if(!items.length) box.append(h("p",{class:"ib-empty"},"You're all caught up."));
+  for(const [k,label] of KINDS){
+    const list=items.filter(x=>x.kind===k); if(!list.length) continue;
+    const shown=inboxAll.has(k)?list:list.slice(0,6);
+    box.append(...[h("h3",{class:"ib-h"},label,h("span",null,String(list.length))),
+      h("ul",{class:"ib-list"},shown.map(x=>h("li",null,h("button",{class:"ib-item",type:"button",onclick:()=>openItem(x)},
+        h("span",{class:"ib-meta"},h("b",null,x.by)," "+x.where,h("time",null,fmtTime(x.ts))),
+        h("span",{class:"ib-text"},shorten(x.text,140)))))),
+      list.length>shown.length?h("button",{class:"lnk ib-more",type:"button",onclick:()=>{ inboxAll.add(k); renderInbox(); }},"Show "+(list.length-shown.length)+" more"):null].filter(Boolean));
+  }
+  if(qs.length) box.append(h("button",{class:"ib-qs",type:"button",onclick:()=>{ closeInbox(false); chat.filter="open"; openChat(true); }},
+    qs.length===1?"1 question in the chat is still open":qs.length+" questions in the chat are still open"));
+  box.append(alertsBlock());
+}
+
+/* ---------- browser alerts, opt-in, only while the page is open ---------- */
+const canAlert=()=>"Notification" in window;
+const alertsOn=()=>canAlert()&&Notification.permission==="granted"&&LS.get("jbst.alerts")==="1";
+let alertNote="";
+function alertsBlock(){
+  if(!canAlert()) return h("p",{class:"ib-foot"},"This browser can't show alerts. The bell and the count in the tab title keep track instead.");
+  if(alertsOn()) return h("p",{class:"ib-foot"},"Browser alerts are on while this page is open. ",
+    h("button",{class:"lnk",type:"button",onclick:()=>{ LS.set("jbst.alerts","0"); renderInbox(); }},"Turn off"));
+  if(Notification.permission==="denied") return h("p",{class:"ib-foot"},alertNote||"Alerts are blocked for this site in your browser settings.");
+  return h("p",{class:"ib-foot"},alertNote?alertNote+" ":"",
+    h("button",{class:"lnk",type:"button",onclick:enableAlerts},"Get a browser alert"),
+    " when someone posts while this page is open in another tab.");
+}
+function enableAlerts(){
+  const done=p=>{
+    if(p==="granted"){
+      try{ new Notification("Japan Boys Ski Trip",{body:"Alerts are on. You'll get one when someone posts while this page is open."}); LS.set("jbst.alerts","1"); alertNote=""; }
+      catch(e){ LS.set("jbst.alerts","0"); alertNote="This browser only shows alerts for installed apps, so keep an eye on the bell instead."; }
+    } else alertNote="Alerts weren't allowed.";
+    renderInbox();
+  };
+  try{ const r=Notification.requestPermission(done); if(r&&r.then) r.then(done); }catch(e){ done("denied"); }
+}
+
+/* ---------- something new while you're here: a pop-up, plus a browser alert if the tab is in the background ---------- */
+const announced=new Set();
+let toastTimer=null;
+function announceNew(items){
+  const fresh=items.filter(x=>x.ts>SESSION_T-2000&&!announced.has(x.id));
+  for(const x of fresh) announced.add(x.id);
+  if(!fresh.length) return;
+  showToast(fresh);
+  if(document.hidden&&alertsOn()){
+    const x=fresh[0];
+    try{
+      const a=new Notification(fresh.length===1?x.by+" "+x.where:fresh.length+" new posts on the trip page",{body:fresh.length===1?shorten(x.text,120):fresh.map(y=>y.by+": "+shorten(y.text,50)).join("\n"),tag:"jbst"});
+      a.onclick=()=>{ window.focus(); if(fresh.length===1) openItem(x); else openInbox(); a.close(); };
+    }catch(e){}
+  }
+}
+function showToast(fresh){
+  const t=$("toast"), x=fresh[0];
+  t.textContent="";
+  t.append(h("p",null,fresh.length===1?h("b",null,x.by+" "+x.where):h("b",null,fresh.length+" new posts"),
+      fresh.length===1?h("span",null,shorten(x.text,90)):h("span",null,"From "+[...new Set(fresh.map(y=>y.by))].join(", "))),
+    h("button",{class:"btn hot",type:"button",onclick:()=>{ hideToast(); if(fresh.length===1) openItem(x); else openInbox(); }},"View"),
+    h("button",{class:"ib-x",type:"button","aria-label":"Dismiss",html:ICON_X,onclick:hideToast}));
+  t.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){ clearTimeout(toastTimer); $("toast").hidden=true; }
+
+/* ---------- keep every unread indicator in step ---------- */
+function updateUnreadUI(){
+  if(!notifyReady) return;
+  const items=unreadItems(), n=items.length;
+  const badge=$("bellBadge"); badge.textContent=n>99?"99+":String(n); badge.hidden=!n;
+  $("bellBtn").setAttribute("aria-label",n?"Unread, "+n+" new":"Unread, nothing new");
+  document.title=(n?"("+n+") ":"")+BASE_TITLE;
+  const line=$("turnUnread");
+  if(line){
+    line.textContent="";
+    if(n){
+      const by={}; for(const x of items) by[x.kind]=(by[x.kind]||0)+1;
+      const parts=[["reply","reply","replies"],["question","question","questions"],["chat","chat message","chat messages"],["note","comment","comments"]]
+        .filter(([k])=>by[k]).map(([k,one,many])=>by[k]+" "+(by[k]===1?one:many));
+      line.append(h("p",null,h("b",null,n+" unread: "),parts.join(", ")+"."),
+        h("button",{class:"lnk",type:"button",onclick:openInbox},"Read them"));
+    }
+  }
+  renderInbox();
+  announceNew(items);
+}
+function initNotify(){
+  notifyReady=true;
+  $("bellBtn").addEventListener("click",()=>{ if($("inbox").hidden) openInbox(); else closeInbox(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("inbox").hidden) closeInbox(); });
+  window.addEventListener("scroll",placeInbox,{passive:true});
+  window.addEventListener("resize",placeInbox);
+  /* the path is fixed when the click starts, so buttons the panel redraws still count as inside it */
+  document.addEventListener("click",e=>{ const box=$("inbox"), path=e.composedPath?e.composedPath():[e.target]; if(!box.hidden&&!path.includes(box)&&!path.includes($("bellBtn"))) closeInbox(false); });
+  updateUnreadUI();
+}
 
 /* ---------- dynamic refresh ---------- */
 function refresh(){
@@ -2277,6 +2549,7 @@ function refresh(){
   s.className="status"+(state.mode==="live"?" live":(state.mode==="connecting"?"":" warn"));
   txt.textContent={connecting:"Connecting…",live:"Live, "+n+(n===1?" voter":" voters"),offline:"Offline"}[state.mode];
   renderChat();
+  updateUnreadUI();
   if(!$("whoScrim").hidden) renderWhoNames();
   const b=$("banner");
   if(state.mode==="offline"){ b.hidden=false; b.textContent=""; b.append(h("b",null,"Can't reach the vote relay right now.")," Votes you cast are saved on this device and will sync when it reconnects."); }
@@ -2289,6 +2562,7 @@ renderExplore(); renderBooking(); renderAboutSelect(); renderCalc(); refresh();
 renderCredits(); initLightbox(); initSpy(); goHash();
 setInterval(()=>{ if(phaseKey()!==lastPhase) refresh(); },30000);
 
+initNotify();
 $("calcForm").addEventListener("input",renderCalc);
 $("calcForm").addEventListener("change",renderCalc);
 $("calcForm").addEventListener("submit",e=>e.preventDefault());

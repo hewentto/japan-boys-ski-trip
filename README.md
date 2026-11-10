@@ -27,3 +27,13 @@ Votes and comments sync between visitors through public MQTT relays. A GitHub Ac
 `backup.json` from that branch on every visit, so anything a relay loses is restored. The group chat is not backed up.
 
 Item ids never change between drafts, so earlier votes and comments carry over.
+
+## Unread
+
+The bell in the top bar counts chat messages, chat questions, replies to you, and comments, proposals and ideas
+from other people that you haven't seen yet. The same count shows on the Your turn board and in the tab title,
+and a pop-up appears when something new arrives while the page is open. Browser alerts are opt-in from the bell
+panel and only fire while the page is open in a tab; phones generally don't support them.
+
+What you've read is kept per device in the browser (`jbst.chatSeen` and `jbst.readNotes`), so reading on your
+phone doesn't clear the count on your laptop. A comment counts as read once it has been on screen for a moment.
