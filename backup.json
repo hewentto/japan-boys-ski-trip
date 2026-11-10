@@ -58,13 +58,17 @@
     },
     "tanner": {
       "name": "Tanner",
-      "notes": {},
-      "updated": 1794335864102,
+      "notes": {
+        "n-tanner-mwb1ba2j": {"item":"dates","kind":"comment","text":"It looks like ill be a few days behind you guys since i only have FEB 10 - 20 guaranteed off. Might be able to call off Feb 9th and leave feb 8th after work (red eye) or early feb 9th.","ts":1794335978683}
+      },
+      "updated": 1794336367337,
       "votes": {
         "base-niseko": {"t":1794335671510,"v":1},
         "dates-a": {"t":1794335756384,"v":1},
         "dates-c": {"t":1794335864102,"v":1},
-        "gear-rent": {"t":1794335583282,"v":1}
+        "gear-rent": {"t":1794335583282,"v":1},
+        "n-adam-mw9zc08a": {"t":1794336117452,"v":1},
+        "wheels-van": {"t":1794336367337,"v":1}
       }
     }
   },
