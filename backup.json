@@ -43,12 +43,14 @@
       "notes": {
         "n-jared-mwa3mr97": {"item":"flight-together","kind":"comment","text":"Ran this through tools that mix airlines and separate legs: Google Flights multi-city, ITA Matrix and Kiwi. Best shared flight is United SFO→Haneda Sat Feb 6 at 10:20 AM, then all of us on one flight to Sapporo Sunday evening (~$90). From SF: $1,404 round trip, or $1,459 on one ticket into Sapporo. From SLC: $1,387 on one United ticket with a Friday night in SF. Korea is out this year: Lunar New Year (Feb 6–9) makes Seoul→Sapporo $267–401 with no evening flights, so we'd lose a festival day. All the fares are on this card.","ts":1794279407227}
       },
-      "updated": 1794332013048,
+      "updated": 1794336667826,
       "votes": {
         "a-ramen": {"t":1794331988409,"v":1},
         "a-susukino": {"t":1794332013048,"v":1},
         "base-niseko": {"t":1794269988574,"v":1},
         "dates-b": {"t":1794269975139,"v":1},
+        "dates-c": {"t":1794336579799,"v":-1},
+        "fl-cheapest": {"t":1794336667826,"v":1},
         "gear-own": {"t":1794269927780,"v":-1},
         "gear-rent": {"t":1794269936504,"v":1},
         "lodge-cottage": {"t":1794270023316,"v":1},
@@ -61,10 +63,11 @@
       "notes": {
         "n-tanner-mwb1ba2j": {"item":"dates","kind":"comment","text":"It looks like ill be a few days behind you guys since i only have FEB 10 - 20 guaranteed off. Might be able to call off Feb 9th and leave feb 8th after work (red eye) or early feb 9th.","ts":1794335978683}
       },
-      "updated": 1794336367337,
+      "updated": 1794336571327,
       "votes": {
         "base-niseko": {"t":1794335671510,"v":1},
-        "dates-a": {"t":1794335756384,"v":1},
+        "dates-a": {"t":1794336571327,"v":0},
+        "dates-b": {"t":1794336570405,"v":1},
         "dates-c": {"t":1794335864102,"v":1},
         "gear-rent": {"t":1794335583282,"v":1},
         "n-adam-mw9zc08a": {"t":1794336117452,"v":1},
