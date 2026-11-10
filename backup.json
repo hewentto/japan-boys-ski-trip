@@ -1,4 +1,57 @@
 {
-  "people": {},
+  "people": {
+    "adam": {
+      "name": "Adam",
+      "notes": {
+        "n-adam-mw9xo9ad": {"item":"dates-c","kind":"comment","text":"I get having a rest day after potentially, but a day before seems rarted.","ts":1794269399557},
+        "n-adam-mw9yswmu": {"item":"gear-own","kind":"comment","text":"Would be insane to manage along every step of the way.","ts":1794271296054},
+        "n-adam-mw9z1exv": {"del":true,"ts":1794271878521},
+        "n-adam-mw9z4qey": {"item":"d0208","kind":"comment","text":"Getting chills just thinking about this.","ts":1794271847866},
+        "n-adam-mw9z6ozy": {"del":true,"ts":1794271943310},
+        "n-adam-mw9z6ttt": {"item":"d0206","kind":"change","text":"Flight in is less important, and people are coming from multiple places. Fun to be on the same flight and travel together (SFO->Korea flight was the best thing ever last trip), so we can work out the inbetween of SLC-> Sapporo or SFO -> Sapporo later. We should make sure to evaluate with a capable tool that can truly connect different legs properly, not something that looks as a round trip or only same-group airlines.","ts":1794271945601},
+        "n-adam-mw9z7h3y": {"item":"x-jump","kind":"comment","text":"If we don't get a view otherwise, I'm down.","ts":1794271975774},
+        "n-adam-mw9zc08a": {"item":"d0209","kind":"change","text":"Nothing about this day seems too great. I don't personally care too much for a distillery tour, warehouses, or romantic candles with the boys. If there are better things to do or if this day could be eliminated to instead give us better time spent elsewhere, I would be fine with it.","ts":1794272187178},
+        "n-adam-mw9zj1rt": {"item":"d0210","kind":"change","text":"Nothing super appetizing on this list. Would enjoy the zoo, but another case of if there are alternative/better activities I could be down, and if we wanted to skip over in favor of speeding up timeline for more time elsewhere, I wouldn't complain.","ts":1794272515769},
+        "n-adam-mw9zkfdh": {"item":"d0211","kind":"comment","text":"Gonna feel like an anime fr.","ts":1794272580053},
+        "n-adam-mw9zu6uv": {"item":"general","kind":"change","text":"Change this to be more cities, travel, overview, and then discovery on things to do, not a \"here's a plan of what to do\". We want options and discovery/info on what the city has to offer, then the ability to vote on things to do, not be limited to pre-chosen 2-4 options.","ts":1794273035575}
+      },
+      "updated": 1794273035575,
+      "votes": {
+        "base-niseko": {"t":1794270814744,"v":1},
+        "d0207": {"t":1794271718438,"v":1},
+        "d0208": {"t":1794271830514,"v":1},
+        "d0211": {"t":1794272572989,"v":1},
+        "dates-a": {"t":1794269360937,"v":1},
+        "dates-b": {"t":1794269362146,"v":1},
+        "dates-c": {"t":1794269367978,"v":-1},
+        "gear-own": {"t":1794271283563,"v":-1},
+        "gear-rent": {"t":1794271276705,"v":1},
+        "lodge-cottage": {"t":1794271141806,"v":0},
+        "lodge-kutchan": {"t":1794270928660,"v":1},
+        "wheels-van": {"t":1794271216421,"v":1},
+        "x-tsudome": {"t":1794271810405,"v":1}
+      }
+    },
+    "jared": {
+      "name": "Jared",
+      "notes": {},
+      "updated": 1794270091349,
+      "votes": {
+        "base-niseko": {"t":1794269988574,"v":1},
+        "dates-b": {"t":1794269975139,"v":1},
+        "gear-own": {"t":1794269927780,"v":-1},
+        "gear-rent": {"t":1794269936504,"v":1},
+        "lodge-cottage": {"t":1794270023316,"v":1},
+        "lodge-kutchan": {"t":1794270036225,"v":1},
+        "wheels-van": {"t":1794270091349,"v":1}
+      }
+    },
+    "tanner": {
+      "name": "Tanner",
+      "notes": {},
+      "updated": 1794268635353,
+      "votes": {}
+    }
+  },
   "version": 1
 }
